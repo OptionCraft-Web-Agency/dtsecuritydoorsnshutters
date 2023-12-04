@@ -125,7 +125,7 @@ export default function Home() {
 
           <div
             style={{
-              backgroundImage: `url("/Blinds.jpg")`,
+              backgroundImage: `url("/Blinds1.jpg")`,
               backgroundSize: "cover", // Optional: Adjust how the image covers the div
               backgroundPosition: "center", // Optional: Adjust the position of the image
               height: "200px", // Set the height as needed

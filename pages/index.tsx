@@ -99,10 +99,20 @@ export default function Home() {
         </div>
       </div>
 
-      <div>
+      <div
+        style={{
+          textAlign:'center',
+          fontSize:'3vw'
+        }}
+      >
         <h3>Our Services</h3>
-
-        <div>
+        <div
+          style={{
+            display:'flex',
+            flexDirection:'row',
+            alignItems:'center'
+          }}
+        >
           <div
             style={{
               backgroundImage: `url(/RollerDoor1.jpg)`,
@@ -115,7 +125,7 @@ export default function Home() {
 
           <div
             style={{
-              backgroundImage: `url("/Blinds1.jpg"])`,
+              backgroundImage: `url("/Blinds.jpg"])`,
               backgroundSize: "cover", // Optional: Adjust how the image covers the div
               backgroundPosition: "center", // Optional: Adjust the position of the image
               height: "200px", // Set the height as needed

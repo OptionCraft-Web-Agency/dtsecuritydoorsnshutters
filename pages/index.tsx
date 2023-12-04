@@ -271,7 +271,10 @@ export default function Home() {
         style={{
           height: '50vh',
           width: '100%',
-          backgroundColor: 'pink',
+          backgroundImage: `url(/RollerDoor2.png)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
           margin: '30px 0px',
           display: 'flex',
           justifyContent: 'center',

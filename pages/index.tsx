@@ -14,11 +14,13 @@ export default function Home() {
           background:
             "linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%)",
           width: "100%",
-          height: "100vh",
-          backgroundImage: `url(/RollerDoor1.jpg)`,
+          height: "calc(100vh - 80px)",
+          backgroundImage: `url(/RollerDoor3.png)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
+          display: 'flex',
+          alignItems: 'center', 
         }}
       >
         <div
@@ -34,6 +36,7 @@ export default function Home() {
             justifyContent: "center",
             alignItems: "center",
             padding: "1rem",
+            margin:'20px'
           }}
         >
           <div
@@ -85,7 +88,7 @@ export default function Home() {
               style={{
                 borderRadius: "4px",
                 border: "1px solid rgba(0, 87, 255)",
-                background: "transparent",
+                background: "white",
                 boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                 color: "rgba(0, 87, 255)",
                 fontFamily: "Lexend",
@@ -184,7 +187,6 @@ export default function Home() {
             padding: "1rem",
             width:'50%', 
             height:'100vh',
-            backgroundColor:'lightGreen', 
           }}
         >
           <div
@@ -329,7 +331,7 @@ export default function Home() {
               style={{
                 borderRadius: "4px",
                 border: "1px solid rgba(0, 87, 255)",
-                background: "transparent",
+                background: "white",
                 boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                 color: "rgba(0, 87, 255)",
                 fontFamily: "Lexend",
@@ -351,7 +353,9 @@ export default function Home() {
       <div
         style={{
           backgroundColor:'rgba(0, 87, 255, 0.64)',
-          textAlign:'center'
+          textAlign:'center',
+          height: '50vh',
+          width: '100%',
         }}
       >
         <h3

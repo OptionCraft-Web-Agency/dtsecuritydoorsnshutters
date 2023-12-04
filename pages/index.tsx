@@ -112,7 +112,7 @@ export default function Home() {
           justifyContent:'center',
           alignItems: 'center',
           fontSize:'3vw',
-          height:'100vh'
+          height:'calc(100vh - 80px)'
         }}
       >
         <h3 style={{padding:'20px'}}>Our Services</h3>
@@ -175,7 +175,8 @@ export default function Home() {
       <div
         style={{
           display:'flex',
-          flexDirection:'row'
+          flexDirection:'row',
+          height:'calc(100vh - 80px)'
         }}
       >
         <div
@@ -186,7 +187,7 @@ export default function Home() {
             alignItems: "center",
             padding: "1rem",
             width:'50%', 
-            height:'100vh',
+            height:'calc(100vh - 80px)',
           }}
         >
           <div
@@ -263,7 +264,7 @@ export default function Home() {
           style={{
             backgroundColor:'blue', 
             width:'50%', 
-            height:'100vh'
+            height:'calc(100vh - 80px)'
           }}
         >
         </div>
@@ -356,6 +357,7 @@ export default function Home() {
           textAlign:'center',
           height: '50vh',
           width: '100%',
+          margin: '30px 0px',
         }}
       >
         <h3
@@ -388,7 +390,7 @@ export default function Home() {
       >
         <div
           style={{
-            height: '100vh',
+            height: 'calc(100vh - 80px)',
             width: '50%',
             display: 'flex',
             flexDirection: 'column',
@@ -429,7 +431,7 @@ export default function Home() {
 
         <div
           style={{
-            height: '100vh',
+            height: 'calc(100vh - 80px)',
             width: '50%',
             backgroundImage: `url(/RollerDoor1.jpg)`,
             backgroundSize: 'cover',

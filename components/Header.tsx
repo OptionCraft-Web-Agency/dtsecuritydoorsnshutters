@@ -1,12 +1,23 @@
 import React from "react";
-import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faSquareFacebook } from '@fortawesome/free-brands-svg-icons';
+
+// Define the PhoneIcon component using Font Awesome
+const PhoneIcon = ({ color = "white" }) => {
+  return <FontAwesomeIcon icon={faPhone} style={{ color, fontSize: '24px' }} />;
+};
+
+const FacebookIcon = ({ color = "white" }) => {
+  return <FontAwesomeIcon icon={faSquareFacebook} style={{ color, fontSize: '24px' }} />;
+};
 
 type Props = {};
 
 export default function Header({}: Props) {
   return (
-    <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center">
+    <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center bg-[#B3B3B3] shadow">
       <motion.div
         initial={{
           x: -500,
@@ -23,21 +34,8 @@ export default function Header({}: Props) {
         }}
         className="flex flex-row items-center"
       >
-        <SocialIcon
-          url="https://www.facebook.com/quocchic/"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>{" "}
-        <SocialIcon
-          url="https://github.com/Kedoichi"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>{" "}
-        <SocialIcon
-          url="https://www.linkedin.com/in/tien-quoc-vu-2065a6162/"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>
+        <PhoneIcon color="white" />
+        <p className="text-white ml-2">0434 227 688</p>
       </motion.div>
       <motion.div
         initial={{
@@ -53,17 +51,12 @@ export default function Header({}: Props) {
         transition={{
           duration: 0.8,
         }}
-        className="flex flex-row items-center text-gray-300 cursor-pointer"
+        className="flex flex-row items-center cursor-pointer"
       >
-        <SocialIcon
-          className="cursor-pointer"
-          network="email"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>
-        <p className="uppercase hiddne md:inline-flex text-sm text-gray-400">
-          Get In Touch
+        <p className="uppercase hidden md:inline-flex text-sm text-white mr-2">
+          Contact With Us
         </p>
+        <FacebookIcon color="white" />
       </motion.div>
     </header>
   );

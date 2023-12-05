@@ -34,22 +34,52 @@ const MainHeader = (props: Props) => {
         }}
         className="flex flex-row items-center cursor-pointer"
       >
-        <div className="flex justify-between items-center w-full space-x-10">
-            <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
-                Home
-            </p>
-            <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
-                Our Services
-            </p>
-            <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
-                Our Projects
-            </p>
-            <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
-                About Us
-            </p>
-            <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
-                Contact Us
-            </p>
+        <div 
+          style={{
+            display:'flex',
+            justifyContent:'space-evenly',
+            width:'100vw'
+          }}
+        >
+          <div
+            style={{
+              width:'20%'
+            }}
+          >
+            <button 
+              style={{            
+                backgroundImage: `url(/Logo.png)`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                width:'10vw',
+                height:'5vw'
+              }}
+            >
+
+            </button>
+          </div>
+
+          <div 
+            className="flex justify-between items-center w-full space-x-10"
+            style={{width:'70%'}}
+          >
+              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+                  Home
+              </p>
+              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+                  Our Services
+              </p>
+              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+                  Our Projects
+              </p>
+              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+                  About Us
+              </p>
+              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+                  Contact Us
+              </p>
+          </div>
         </div>
 
       </motion.div>

@@ -692,7 +692,7 @@ export default function Home() {
               id="message"
               name="message"
               placeholder="Message"
-              rows="4"
+              rows={4}
               style={{
                 marginBottom: "2vw",
                 padding: "1vw",

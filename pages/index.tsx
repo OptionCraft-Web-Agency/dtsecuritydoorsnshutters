@@ -2,6 +2,9 @@ import React from "react";
 import Header from "../components/Header";
 import MainHeader from "../components/MainHeader";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMap, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 //images
 export default function Home() {
   return (
@@ -276,17 +279,16 @@ export default function Home() {
 
         <div
           style={{
-            width: '750px', // Container width
-            height: 'auto', // Height to fit content
+            width: '750px',
+            height: 'auto',
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)', // Four columns
-            gridTemplateRows: 'repeat(5, 1fr)', // Six rows
-            gap: '1vw', // Spacing between images
-            padding: '1vw', // Padding around the grid
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateRows: 'repeat(5, 1fr)',
+            gap: '1vw',
+            padding: '1vw',
             paddingRight: '10vw'
           }}
         >
-          {/* Adjust the grid positioning to fit the provided layout */}
           {/* Image 1 - Top left, taking up two columns and three rows */}
           <img
             src="/RollerDoor1.jpg"
@@ -620,6 +622,174 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      {/* contact us */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          backgroundColor: 'white',
+          color: 'black',
+          padding: '20px',
+          fontFamily: 'Arial, sans-serif',
+        }}
+      >
+        <div
+          style={{
+            width: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            padding: '20px',
+          }}
+        >
+          <p style={{fontWeight:'bold', fontSize:'2.5vw'}}>Contact Details</p>
+          <p style={{ display: 'flex', alignItems: 'center' }}>
+            <FontAwesomeIcon icon={faMap} style={{ marginRight: '10px' }} />
+            30 Ralston Ave, Sunshine North VIC 3020
+          </p>
+          <p style={{ display: 'flex', alignItems: 'center' }}>
+            <FontAwesomeIcon icon={faPhone} style={{ marginRight: '10px' }} />
+            0434 227 688
+          </p>
+          <p style={{ display: 'flex', alignItems: 'center' }}>
+            <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: '10px' }} />
+            dt.windowsndoors@gmail.com
+          </p>
+          <div style={{ width: '100%', height: '200px', marginTop: '20px' }}>
+            <iframe
+              title="DT Security Doors & Shutters Location"
+              width="100%"
+              height="100%"
+              frameBorder="0"
+              style={{ border: '0' }}
+              loading="lazy"
+              allowFullScreen
+              src="https://maps.google.com/maps?q=30%20Ralston%20Ave%2C%20Sunshine%20North%20VIC%203020&t=&z=13&ie=UTF8&iwloc=&output=embed">
+            </iframe>
+          </div>
+        </div>
+
+        <div
+          style={{
+            width: '50%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            padding: '20px',
+          }}
+        >
+          <p style={{fontWeight:'bold', fontSize:'2.5vw'}}>Opening Hours</p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height:'100%', width:'100%', justifyContent:'space-evenly' }}>
+            <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Monday:</span> <span>8:30am-5pm</span></p>
+            <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Tuesday:</span> <span>8:30am-5pm</span></p>
+            <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Wednesday:</span> <span>8:30am-5pm</span></p>
+            <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Thursday:</span> <span>8:30am-5pm</span></p>
+            <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Friday:</span> <span>8:30am-5pm</span></p>
+            <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Saturday:</span> <span>Closed</span></p>
+            <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Sunday:</span> <span>Closed</span></p>
+          </div>
+
+        </div>
+      </div>
+
+      {/* contact us form */}
+      <div
+        style={{
+          height: "50vw",
+          width: '100%',
+          backgroundImage: `url(/RollerDoor2.png)`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          justifyContent: 'center',
+          alignItems: 'center', 
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            marginBottom: "1rem",
+            justifyContent:'center',
+            alignItems:'center',
+            height:'100%'
+          }}
+        >
+          <p style={{ fontSize: "3vw", padding:'10px 0px' }}>
+            Enquire Form
+          </p>
+
+          <form style={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '80%', // Consider using a percentage for responsive width
+          }}>
+            <div style={{width:'100%'}}>
+              {/* left */}
+              <div style={{width:'100%', display:'flex', justifyContent:'space-between'}}>
+                <input type="text" id="name" name="name" placeholder="Name" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+                <input type="email" id="email" name="email" placeholder="Email" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+              </div>
+              {/* right */}
+              <div style={{width:'100%', display:'flex', justifyContent:'space-between'}}>
+                <input type="phone" id="phone" name="phone" placeholder="Phone Number" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+                <input type="address" id="address" name="address" placeholder="Address" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+              </div>
+            </div>
+            
+            <textarea id="message" name="message" placeholder="Message" rows="4" style={{ marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+            
+            <button type="submit" style={{
+              padding: '1.5vw',
+              border: 'none',
+              borderRadius: '0.5vw',
+              color: 'white',
+              fontSize: '1.2vw',
+              cursor: 'pointer',
+              backgroundColor: "rgba(0, 87, 255)",
+              boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
+            }}>
+              Send
+            </button>
+          </form>
+        </div>
+      </div>
+
+      {/* about us */}
+      <div style={{display: 'flex', flexDirection: 'column', textAlign: 'center', alignItems: 'center'}}>
+        <p style={{fontSize:'2.5vw'}}>AT PAGE DOORS & BLINDS WE HAVE A SIMPLE BUSINESS PHILOSOPHY – WE STRIVE FOR HAPPY AND SATISFIED CLIENTS</p>
+        <p>
+          Keeping clients happy always sounds like an easy task, and good businesses make it seem as though it is. In order to keep clients happy however, it’s essential to listen, observe and most importantly deliver a first class product accompanied by outstanding service. We take this aspect of our business extremely seriously as our strong reputation demands that we go above and beyond in the pursuit of satisfied clients.
+          Our reputation for high standards and hard work combined with our passion for personalised service and custom made solutions coincides with our desire for customer satisfaction, which means we go above and beyond to make sure our clients love the product as much as we do.
+          Travelling 10 years to the past, Page Doors & Blinds only sold steel doors. We found this to not only disadvantage ourselves but also our clients. Page Doors and Blinds identified a gap in the market and understood the need for services outside of just steel doors. We wanted to provide the highest quality Security Doors to Melbourne, as well as Blinds, Fly Screens, Blinds, Plantation Shutters, Awnings and Brio Pleated Screens.
+        </p>
+        <div style={{display:'flex', flexDirection:'row', justifyContent:'center'}}>
+          <img style={{width:'10vw', height:'10vw'}} src="/QualityLogo.png"></img>
+          <img style={{width:'10vw', height:'10vw'}} src="/WarrantyLogo.png"></img>
+        </div>
+        <button
+          style={{
+            borderRadius: "4px",
+            border: "1px solid rgba(0, 87, 255)",
+            background: "white",
+            boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
+            color: "rgba(0, 87, 255)",
+            fontFamily: "Lexend",
+            fontSize: "1vw",
+            fontStyle: "normal",
+            fontWeight: 500,
+            lineHeight: "12px",
+            textTransform: "capitalize",
+            padding: "1vw",
+            width:'10vw',
+            margin:'2vw 0vw'
+          }}
+        >
+          Contact Us
+        </button>
+      </div>
     </>
   );
 }

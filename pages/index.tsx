@@ -117,7 +117,6 @@ export default function Home() {
           alignItems: "center",
           width: "100%",
           padding: "2vw 0",
-          height: '100vh'
         }}
       >
         <h2 style={{ fontSize: "2.5vw", marginBottom: "2vw" }}>Our Services</h2>
@@ -257,6 +256,7 @@ export default function Home() {
         style={{
           display: "flex",
           flexDirection: "row",
+          height:'100vh'
         }}
       >
         <div

@@ -46,37 +46,29 @@ const MainHeader = (props: Props) => {
               width:'20%'
             }}
           >
-            <button 
-              style={{            
-                backgroundImage: `url(/Logo.png)`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                width:'10vw',
-                height:'5vw'
-              }}
-            >
-
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <img src="Logo1.png" style={{ marginRight: '1vw', width: '6vw' }} />
+              <img src="Logo2.png" style={{ marginRight: '1vw', width:'9vw' }} />
+            </div>
           </div>
 
           <div 
             className="flex justify-between items-center w-full space-x-10"
             style={{width:'70%'}}
           >
-              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
                   Home
               </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
                   Our Services
               </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
                   Our Projects
               </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
                   About Us
               </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.5vw' }}>
+              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
                   Contact Us
               </p>
           </div>

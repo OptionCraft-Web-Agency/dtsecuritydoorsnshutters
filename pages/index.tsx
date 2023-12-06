@@ -1,6 +1,11 @@
 import React from "react";
+
+// components
 import Header from "../components/Header";
 import MainHeader from "../components/MainHeader";
+import CustomerReview from "../components/CustomerReview";
+import HomePage from "../components/HomePage";
+
 import Image from "next/image";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +23,8 @@ export default function Home() {
       >
         <Header />
         <MainHeader />
-
+        
+        {/* HomePage */}
         <div
           style={{
             background:

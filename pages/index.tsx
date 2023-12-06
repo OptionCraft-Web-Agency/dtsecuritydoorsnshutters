@@ -950,20 +950,20 @@ export default function Home() {
               <div style={{width:'100%'}}>
                 {/* left */}
                 <div style={{width:'100%', display:'flex', justifyContent:'space-between', fontSize:'1vw'}}>
-                  <input type="text" id="name" name="name" placeholder="Name" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
-                  <input type="email" id="email" name="email" placeholder="Email" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+                  <input type="text" id="name" name="name" placeholder="Name" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+                  <input type="email" id="email" name="email" placeholder="Email" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
                 </div>
                 {/* right */}
                 <div style={{width:'100%', display:'flex', justifyContent:'space-between', fontSize:'1vw'}}>
-                  <input type="phone" id="phone" name="phone" placeholder="Phone Number" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
-                  <input type="address" id="address" name="address" placeholder="Address" style={{ width: '49%', marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+                  <input type="phone" id="phone" name="phone" placeholder="Phone Number" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+                  <input type="address" id="address" name="address" placeholder="Address" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
                 </div>
               </div>
               
-              <textarea id="message" name="message" placeholder="Message" rows="4" style={{ marginBottom: '2vw', padding: '1vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+              <textarea id="message" name="message" placeholder="Message" rows="4" style={{ marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
               
               <button type="submit" style={{
-                padding: '1.5vw',
+                padding: '0.5vw',
                 border: 'none',
                 borderRadius: '0.5vw',
                 color: 'white',

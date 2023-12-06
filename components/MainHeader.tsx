@@ -1,82 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faSquareFacebook } from '@fortawesome/free-brands-svg-icons';
 
-// Define the PhoneIcon component using Font Awesome
-const PhoneIcon = ({ color = "black" }) => {
-  return <FontAwesomeIcon icon={faPhone} style={{ color, fontSize: '24px' }} />;
-};
+const MainHeader = () => (
+  <header className="p-5 flex justify-between items-center max-w-7xl mx-auto bg-white shadow-md">
+    <motion.div
+      initial={{ x: -100, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.5 }}
+      className="flex items-center"
+    >
+      <img src="Logo1.png" alt="Logo 1" style={{ marginRight: '1vw', width: '6vw' }} />
+      <img src="Logo2.png" alt="Logo 2" style={{ width: '9vw' }} />
+    </motion.div>
 
-const FacebookIcon = ({ color = "black" }) => {
-  return <FontAwesomeIcon icon={faSquareFacebook} style={{ color, fontSize: '24px' }} />;
-};
-
-type Props = {};
-
-const MainHeader = (props: Props) => {
-  return (
-    <header className="top-0 p-5 flex justify-center items-center max-w-7xl mx-auto z-20 xl:items-center">
-      <motion.div
-        initial={{
-          x: 500,
-          opacity: 0,
-          scale: 0.5,
-        }}
-        animate={{
-          x: 0,
-          opacity: 1,
-          scale: 1,
-        }}
-        transition={{
-          duration: 0.8,
-        }}
-        className="flex flex-row items-center cursor-pointer"
-      >
-        <div 
-          style={{
-            display:'flex',
-            justifyContent:'space-evenly',
-            width:'100vw'
-          }}
+    <nav className="flex space-x-4">
+      {['Home', 'Our Services', 'Our Projects', 'About Us', 'Contact Us'].map(text => (
+        <motion.p
+          key={text}
+          className="uppercase text-black cursor-pointer hover:text-blue-600"
+          style={{ fontSize: '1.3vw' }}
+          whileHover={{ scale: 1.1 }}
         >
-          <div
-            style={{
-              width:'20%'
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <img src="Logo1.png" style={{ marginRight: '1vw', width: '6vw' }} />
-              <img src="Logo2.png" style={{ marginRight: '1vw', width:'9vw' }} />
-            </div>
-          </div>
-
-          <div 
-            className="flex justify-between items-center w-full space-x-10"
-            style={{width:'70%'}}
-          >
-              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
-                  Home
-              </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
-                  Our Services
-              </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
-                  Our Projects
-              </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
-                  About Us
-              </p>
-              <p className="uppercase text-black" style={{ fontSize: '1.3vw' }}>
-                  Contact Us
-              </p>
-          </div>
-        </div>
-
-      </motion.div>
-    </header>
-  );
-};
+          {text}
+        </motion.p>
+      ))}
+    </nav>
+  </header>
+);
 
 export default MainHeader;

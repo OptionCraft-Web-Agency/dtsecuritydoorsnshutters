@@ -58,12 +58,11 @@ export default function Home() {
                 marginBottom: "1rem",
               }}
             >
-              <p style={{ fontSize: "1.5vw" }}>
-                Secure and Beautify Your Home with XYZ Company
+              <p style={{ fontSize: "1.8vw", fontWeight:'bold' }}>
+                Enhance Home Security with Customized Solutions from DT Security Doors & Shutters
               </p>
               <p style={{ fontSize: "1vw" }}>
-                Expert Craftsmanship in Security Doors, Blinds, Flyscreens, and
-                More
+                Discover our range of expertly crafted security doors, blinds, and flyscreens to protect and beautify your home.
               </p>
             </div>
 
@@ -72,7 +71,7 @@ export default function Home() {
                 display: "flex",
                 justifyContent: "space-evenly",
                 alignItems: "center",
-                width: "70%",
+                width: "80%",
                 padding: "1rem",
               }}
             >
@@ -83,16 +82,14 @@ export default function Home() {
                   background: "rgba(0, 87, 255)",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "#FFF",
-                  fontFamily: "Lexend",
                   fontSize: "1vw",
                   fontStyle: "normal",
-                  fontWeight: 500,
                   lineHeight: "12px",
                   textTransform: "capitalize",
                   padding: "1vw",
                 }}
               >
-                Explore Our Range
+                View Our Product Range
               </button>
               <button
                 style={{
@@ -101,16 +98,14 @@ export default function Home() {
                   background: "white",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "rgba(0, 87, 255)",
-                  fontFamily: "Lexend",
                   fontSize: "1vw",
                   fontStyle: "normal",
-                  fontWeight: 500,
                   lineHeight: "12px",
                   textTransform: "capitalize",
                   padding: "1vw",
                 }}
               >
-                Get a Free Quote
+                Request a Free Estimate
               </button>
             </div>
           </div>
@@ -125,7 +120,7 @@ export default function Home() {
             padding: "2vw 0",
           }}
         >
-          <h2 style={{ fontSize: "2.5vw", marginBottom: "2vw" }}>Our Services</h2>
+          <h2 style={{ fontSize: "2.5vw", marginBottom: "2vw", fontWeight:'bold' }}>Our Services</h2>
 
           <div
             style={{
@@ -159,7 +154,7 @@ export default function Home() {
                   objectFit="cover"
                 />
               </div>
-              <h3 style={{ fontSize: "1.2vw" }}>Roller Doors</h3>
+              <h3 style={{ fontSize: "1.2vw", fontWeight:'bold' }}>Roller Doors</h3>
               <p style={{ fontSize: "1vw" }}>
                 High-quality roller doors designed for smooth operation and robust
                 security.
@@ -189,7 +184,7 @@ export default function Home() {
                   objectFit="cover" // Cover the area, similar to background-size: cover in CSS
                 />
               </div>
-              <h3 style={{ fontSize: "1.2vw" }}>Blinds</h3>
+              <h3 style={{ fontSize: "1.2vw", fontWeight:'bold' }}>Blinds</h3>
               <p style={{ fontSize: "1vw" }}>
                 Stylish and functional blinds to enhance your privacy and control
                 natural lighting.
@@ -219,7 +214,7 @@ export default function Home() {
                   objectFit="cover" // Cover the area, will not stretch the image
                 />
               </div>
-              <h3 style={{ fontSize: "1.2vw" }}>Security Doors</h3>
+              <h3 style={{ fontSize: "1.2vw", fontWeight:'bold' }}>Security Doors</h3>
               <p style={{ fontSize: "1vw" }}>
                 Durable security doors that provide peace of mind with enhanced
                 protection.
@@ -249,7 +244,7 @@ export default function Home() {
                   objectFit="cover" // Cover the area, will not stretch the image
                 />
               </div>
-              <h3 style={{ fontSize: "1.2vw" }}>Windows</h3>
+              <h3 style={{ fontSize: "1.2vw", fontWeight:'bold' }}>Windows</h3>
               <p style={{ fontSize: "1vw" }}>
                 Custom-designed windows that bring natural beauty right into your
                 home.
@@ -284,27 +279,28 @@ export default function Home() {
             >
               <p
                 style={{
-                  fontSize: "1.5vw",
+                  fontSize: "2vw",
                   textAlign: "left",
                   padding: "10px 0px",
+                  fontWeight: 'bold'
                 }}
               >
-                Embrace the Harmony of Safety and Style
+                Elevate Your Home with DT Security Doors & Shutters
               </p>
               <p
                 style={{ fontSize: "1vw", textAlign: "left", padding: "5px 0px" }}
               >
-                Tailored designs to reflect your personal style
+                Experience custom-designed elegance that complements your personal style.
               </p>
               <p
                 style={{ fontSize: "1vw", textAlign: "left", padding: "5px 0px" }}
               >
-                Robust construction for assured security
+                Rely on our robust and durable construction for unmatched home security.
               </p>
               <p
                 style={{ fontSize: "1vw", textAlign: "left", padding: "5px 0px" }}
               >
-                A blend of elegance and efficiency
+                Discover the perfect balance of aesthetic elegance and practical efficiency.
               </p>
             </div>
 
@@ -333,7 +329,7 @@ export default function Home() {
                   padding: "1vw",
                 }}
               >
-                Learn More
+                Discover More
               </button>
 
               <button
@@ -352,14 +348,14 @@ export default function Home() {
                   padding: "1vw",
                 }}
               >
-                Contact Us
+                Get in Touch
               </button>
             </div>
           </div>
 
           <div
             style={{
-              width: "750px", // Container width
+              width: "50%", // Container width
               height: "auto", // Height to fit content
               display: "grid",
               gridTemplateColumns: "repeat(4, 1fr)", // Four columns
@@ -460,7 +456,7 @@ export default function Home() {
               alignItems: "center",
             }}
           >
-            <p style={{ fontSize: "1.5vw", padding: "10px 0px" }}>
+            <p style={{ fontSize: "2vw", padding: "10px 0px", fontWeight:'bold' }}>
               Secure Your Home With Us
             </p>
             <p style={{ fontSize: "1vw", padding: "5px 0px" }}>
@@ -533,8 +529,9 @@ export default function Home() {
           <h2
             style={{
               color: "white",
-              fontSize: "2.5vw", // Increase font size for the heading
+              fontSize: "2vw", // Increase font size for the heading
               margin: "0 0 1vw 0",
+              fontWeight:'bold'
             }}
           >
             What Our Customers Are Saying
@@ -864,7 +861,7 @@ export default function Home() {
               padding: '20px',
             }}
           >
-            <p style={{fontWeight:'bold', fontSize:'2.5vw'}}>Contact Details</p>
+            <p style={{fontWeight:'bold', fontSize:'2vw'}}>Contact Details</p>
             <p style={{ display: 'flex', alignItems: 'center' }}>
               <FontAwesomeIcon icon={faMap} style={{ marginRight: '10px' }} />
               30 Ralston Ave, Sunshine North VIC 3020
@@ -900,7 +897,7 @@ export default function Home() {
               padding: '20px',
             }}
           >
-            <p style={{fontWeight:'bold', fontSize:'2.5vw'}}>Opening Hours</p>
+            <p style={{fontWeight:'bold', fontSize:'2vw'}}>Opening Hours</p>
 
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height:'100%', width:'100%', justifyContent:'space-evenly' }}>
               <p style={{display:'flex', flexDirection:'row', width:'100%', justifyContent:'space-between'}}><span style={{ fontWeight: 'bold' }}>Monday:</span> <span>8:30am-5pm</span></p>
@@ -979,16 +976,15 @@ export default function Home() {
         </div>
 
         {/* about us */}
-        <div style={{display: 'flex', flexDirection: 'column', textAlign: 'center', alignItems: 'center', padding:'0 4vw'}}>
-          <p style={{fontSize:'2vw', marginBottom:'1vw'}}>AT PAGE DOORS & BLINDS WE HAVE A SIMPLE BUSINESS PHILOSOPHY – WE STRIVE FOR HAPPY AND SATISFIED CLIENTS</p>
-          <p style={{marginBottom:'1vw'}}>
-            Keeping clients happy always sounds like an easy task, and good businesses make it seem as though it is. In order to keep clients happy however, it’s essential to listen, observe and most importantly deliver a first class product accompanied by outstanding service. We take this aspect of our business extremely seriously as our strong reputation demands that we go above and beyond in the pursuit of satisfied clients.
-            Our reputation for high standards and hard work combined with our passion for personalised service and custom made solutions coincides with our desire for customer satisfaction, which means we go above and beyond to make sure our clients love the product as much as we do.
-            Travelling 10 years to the past, Page Doors & Blinds only sold steel doors. We found this to not only disadvantage ourselves but also our clients. Page Doors and Blinds identified a gap in the market and understood the need for services outside of just steel doors. We wanted to provide the highest quality Security Doors to Melbourne, as well as Blinds, Fly Screens, Blinds, Plantation Shutters, Awnings and Brio Pleated Screens.
+        <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'center', alignItems: 'center', padding: '0 4vw' }}>
+          <p style={{ fontSize: '2vw', marginBottom: '1vw' }}>Discover the DT Security Doors & Shutters Difference: Committed to Excellence</p>
+          <p style={{ marginBottom: '1vw' }}>
+            At DT Security Doors & Shutters, client satisfaction is at the heart of everything we do. We understand that true client happiness goes beyond just offering a product; it's about providing a solution that brings security and elegance to your home. With a dedication to exceptional craftsmanship and personalized service, we ensure every product from security doors to plantation shutters meets your specific needs.
+            Reflecting on our journey, we've evolved from focusing solely on steel doors to offering a comprehensive range of home safety solutions in Melbourne. Our expanded offerings include premium quality security doors, versatile blinds, fly screens, and elegant awnings, tailored to enhance the safety and style of your living space.
           </p>
-          <div style={{display:'flex', flexDirection:'row', justifyContent:'center', marginBottom:'1vw'}}>
-            <img style={{width:'10vw', height:'10vw'}} src="/QualityLogo.png"></img>
-            <img style={{width:'10vw', height:'10vw'}} src="/WarrantyLogo.png"></img>
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', marginBottom: '1vw' }}>
+            <img style={{ width: '10vw', height: '10vw' }} src="/QualityLogo.png" alt="Quality Assurance Logo"></img>
+            <img style={{ width: '10vw', height: '10vw' }} src="/WarrantyLogo.png" alt="Warranty Logo"></img>
           </div>
           <button
             style={{
@@ -997,15 +993,13 @@ export default function Home() {
               background: "white",
               boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
               color: "rgba(0, 87, 255)",
-              fontFamily: "Lexend",
               fontSize: "1vw",
               fontStyle: "normal",
-              fontWeight: 500,
               lineHeight: "12px",
               textTransform: "capitalize",
               padding: "1vw",
-              width:'10vw',
-              margin:'2vw 0vw'
+              width: '10vw',
+              margin: '2vw 0vw'
             }}
           >
             Contact Us

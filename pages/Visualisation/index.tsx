@@ -1,11 +1,18 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import CanvasComponent from "@/components/Canvas";
 
 export default function Home() {
   const [doorColor, setDoorColor] = useState("");
   const [pattern, setPattern] = useState("");
   const [rollerColor, setRollerColor] = useState("#ffffff");
   const [blindColor, setBlindColor] = useState("#ffffff");
+  const [roofColor, setRoofColor] = useState("#ffffff");
+  const containerRef = useRef(null);
+  const [containerSize, setContainerSize] = useState({
+    width: 800,
+    height: 600,
+  });
 
   const colors = [
     "Pearl White",
@@ -32,63 +39,44 @@ export default function Home() {
 
   const patterns = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current) {
+        const { offsetWidth, offsetHeight } = containerRef.current;
+        setContainerSize({
+          width: Math.max(offsetWidth, 800),
+          height: Math.max(offsetHeight, 600),
+        });
+      }
+    };
+
+    // Set initial size
+    handleResize();
+
+    // Add resize event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="container mx-auto p-4">
       <div className="flex">
         <div className="w-1/4 p-4 space-y-4">
-          {/* Garage Roller */}
-          <div id="roller">
-            <p>Garage Roller</p>
-            <input type="color" value={rollerColor} className="colorPicker" />
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Animate
-            </button>
-          </div>
-          {/* Security Door */}
-          <div id="door">
-            <p>Security Door</p>
-            <select
-              value={doorColor}
-              onChange={(e) => setDoorColor(e.target.value)}
-              className="colorDropdown"
-            >
-              <option value="">Select a color</option>
-              {colors.map((color, index) => (
-                <option key={index} value={color}>
-                  {color}
-                </option>
-              ))}
-            </select>
-
-            <select
-              value={pattern}
-              onChange={(e) => setPattern(e.target.value)}
-              className="patternDropdown"
-            >
-              <option value="">Select a pattern</option>
-              {patterns.map((letter, index) => (
-                <option key={index} value={letter}>
-                  {letter}
-                </option>
-              ))}
-            </select>
-          </div>
-          {/* Window Blind */}
-          <div id="blind">
-            <p>Window Blind</p>
-            <input type="color" value={blindColor} className="colorPicker" />
-
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-              Action
-            </button>
+          <div>
+            <input
+              type="color"
+              value={roofColor}
+              onChange={(e) => setRoofColor(e.target.value)}
+            />
           </div>
         </div>
         <div className="w-3/4 p-4">
-          <Image
-            src="/Vis/open.png"
-            alt="Roller Shutter"
-            width={800}
-            height={600}
+          <CanvasComponent
+            roofColor={roofColor}
+            width={containerSize.width}
+            height={containerSize.height}
           />
         </div>
       </div>

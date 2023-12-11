@@ -3,11 +3,14 @@ import Image from "next/image";
 import CanvasComponent from "@/components/Canvas";
 
 export default function Home() {
-  const [doorColor, setDoorColor] = useState("");
-  const [pattern, setPattern] = useState("");
-  const [rollerColor, setRollerColor] = useState("#ffffff");
-  const [blindColor, setBlindColor] = useState("#ffffff");
-  const [roofColor, setRoofColor] = useState("#ffffff");
+  const [roofMainColor, setRoofMainColor] = useState("#ffffff");
+  const [lowerRoofColor, setlowerRoofColor] = useState("#ffffff");
+  const [leftDWallColor, setleftDWallColor] = useState("#ffffff");
+  const [leftWallColor, setleftWallColor] = useState("#ffffff");
+  const [pillarsColor, setpillarsColor] = useState("#ffffff");
+  const [pillarsBaseColor, setpillarsBaseColor] = useState("#ffffff");
+  const [rightDWallColor, setrightDWallColor] = useState("#ffffff");
+  const [rightWallColor, setrightWallColor] = useState("#ffffff");
   const containerRef = useRef(null);
   const [containerSize, setContainerSize] = useState({
     width: 800,
@@ -67,14 +70,56 @@ export default function Home() {
           <div>
             <input
               type="color"
-              value={roofColor}
-              onChange={(e) => setRoofColor(e.target.value)}
+              value={roofMainColor}
+              onChange={(e) => setRoofMainColor(e.target.value)}
+            />
+            <input
+              type="color"
+              value={lowerRoofColor}
+              onChange={(e) => setlowerRoofColor(e.target.value)}
+            />
+            <input
+              type="color"
+              value={leftDWallColor}
+              onChange={(e) => setleftDWallColor(e.target.value)}
+            />
+            <input
+              type="color"
+              value={leftWallColor}
+              onChange={(e) => setleftWallColor(e.target.value)}
+            />
+            <input
+              type="color"
+              value={pillarsColor}
+              onChange={(e) => setpillarsColor(e.target.value)}
+            />
+            <input
+              type="color"
+              value={pillarsBaseColor}
+              onChange={(e) => setpillarsBaseColor(e.target.value)}
+            />
+            <input
+              type="color"
+              value={rightDWallColor}
+              onChange={(e) => setrightDWallColor(e.target.value)}
+            />
+            <input
+              type="color"
+              value={rightWallColor}
+              onChange={(e) => setrightWallColor(e.target.value)}
             />
           </div>
         </div>
-        <div className="w-3/4 p-4">
+        <div className="w-3/4 p-4 min-h-[600px]">
           <CanvasComponent
-            roofColor={roofColor}
+            mainRoofColor={roofMainColor}
+            lowerRoofColor={lowerRoofColor}
+            leftDWallColor={leftDWallColor}
+            leftWallColor={leftWallColor}
+            pillarsColor={pillarsColor}
+            pillarsBaseColor={pillarsBaseColor}
+            rightDWallColor={rightDWallColor}
+            rightWallColor={rightWallColor}
             width={containerSize.width}
             height={containerSize.height}
           />

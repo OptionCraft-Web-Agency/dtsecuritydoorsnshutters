@@ -1,13 +1,27 @@
 import React, { useRef, useEffect } from "react";
 
 type CanvasComponentProps = {
-  roofColor: string;
+  mainRoofColor: string;
+  lowerRoofColor: string;
+  leftDWallColor: string;
+  leftWallColor: string;
+  pillarsColor: string;
+  pillarsBaseColor: string;
+  rightDWallColor: string;
+  rightWallColor: string;
   width: number;
   height: number;
 };
 
 const CanvasComponent: React.FC<CanvasComponentProps> = ({
-  roofColor,
+  mainRoofColor,
+  lowerRoofColor,
+  leftDWallColor,
+  leftWallColor,
+  pillarsColor,
+  pillarsBaseColor,
+  rightDWallColor,
+  rightWallColor,
   width,
   height,
 }) => {
@@ -15,98 +29,127 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (canvas && canvas.getContext) {
-      const context = canvas.getContext("2d");
-      if (context) {
-        const houseImage = new Image();
-        const roofMask = new Image();
+    if (!canvas || !canvas.getContext) return;
 
-        houseImage.src = "/Vis/houseMain.png";
-        roofMask.src = "/Vis/Mask/Mask.png";
+    const context = canvas.getContext("2d");
+    if (!context) return;
 
-        const drawImageScaled = (
-          img: HTMLImageElement,
-          ctx: CanvasRenderingContext2D
-        ) => {
-          ctx.drawImage(img, 0, 0, ctx.canvas.width, ctx.canvas.height);
-        };
+    const houseImage = new Image();
+    houseImage.src = "/Vis/houseMain.png";
 
-        const applyRoofColor = () => {
-          const offScreenCanvas = document.createElement("canvas");
-          const offCtx = offScreenCanvas.getContext("2d");
-          if (!offCtx) return;
+    const masks = {
+      mainRoof: { color: mainRoofColor, src: "/Vis/Mask/MainRoof.png" },
+      lowerRoof: { color: lowerRoofColor, src: "/Vis/Mask/LowerRoof.png" },
+      leftDWall: { color: leftDWallColor, src: "/Vis/Mask/LeftDWall.png" },
+      leftWall: { color: leftWallColor, src: "/Vis/Mask/LeftWall.png" },
+      pillars: { color: pillarsColor, src: "/Vis/Mask/Pillars.png" },
+      pillarsBase: {
+        color: pillarsBaseColor,
+        src: "/Vis/Mask/PillarsBase.png",
+      },
+      rightDWall: { color: rightDWallColor, src: "/Vis/Mask/RightDWall.png" },
+      rightWall: { color: rightWallColor, src: "/Vis/Mask/RightWall.png" },
+    };
 
-          offScreenCanvas.width = canvas.width;
-          offScreenCanvas.height = canvas.height;
+    const applyColor = (color: string, maskSrc: string) => {
+      const offScreenCanvas = document.createElement("canvas");
+      const offCtx = offScreenCanvas.getContext("2d");
+      if (!offCtx) return;
 
-          // Draw the mask onto the off-screen canvas
-          offCtx.drawImage(
-            roofMask,
-            0,
-            0,
-            offScreenCanvas.width,
-            offScreenCanvas.height
-          );
-          // Set the blending mode to 'multiply' to blend the color with the mask
-          offCtx.globalCompositeOperation = "multiply";
-          offCtx.fillStyle = roofColor;
-          offCtx.fillRect(0, 0, offScreenCanvas.width, offScreenCanvas.height);
+      offScreenCanvas.width = canvas.width;
+      offScreenCanvas.height = canvas.height;
 
-          // Reset the composite operation to 'destination-in' to retain the mask shape
-          offCtx.globalCompositeOperation = "destination-in";
-          offCtx.drawImage(
-            roofMask,
-            0,
-            0,
-            offScreenCanvas.width,
-            offScreenCanvas.height
-          );
+      const maskImage = new Image();
+      maskImage.src = maskSrc;
+      maskImage.onload = () => {
+        offCtx.drawImage(
+          maskImage,
+          0,
+          0,
+          offScreenCanvas.width,
+          offScreenCanvas.height
+        );
+        offCtx.globalCompositeOperation = "multiply";
+        offCtx.fillStyle = color;
+        offCtx.fillRect(0, 0, offScreenCanvas.width, offScreenCanvas.height);
 
-          // Clear the main canvas and draw the house image
-          context.clearRect(0, 0, canvas.width, canvas.height);
-          context.drawImage(houseImage, 0, 0, canvas.width, canvas.height);
+        offCtx.globalCompositeOperation = "destination-in";
+        offCtx.drawImage(
+          maskImage,
+          0,
+          0,
+          offScreenCanvas.width,
+          offScreenCanvas.height
+        );
 
-          // Draw the off-screen canvas onto the main canvas using 'source-over'
-          // This will draw the blended mask over the house image
-          context.globalCompositeOperation = "source-over";
-          context.drawImage(offScreenCanvas, 0, 0);
+        context.drawImage(offScreenCanvas, 0, 0);
+        offScreenCanvas.remove();
+      };
+    };
 
-          // Clean up:
-          offScreenCanvas.remove();
-        };
+    const applyAllColors = () => {
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(houseImage, 0, 0, canvas.width, canvas.height);
+      Object.values(masks).forEach((mask) => applyColor(mask.color, mask.src));
+    };
 
-        // Resize the canvas to fill the window and maintain aspect ratio
-        const resizeCanvas = () => {
-          const aspectRatio = width / height;
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerWidth / aspectRatio;
-          if (canvas.height > window.innerHeight) {
-            canvas.height = window.innerHeight;
-            canvas.width = canvas.height * aspectRatio;
-          }
-          applyRoofColor();
-        };
+    houseImage.onload = applyAllColors;
+    houseImage.onerror = () => console.error("Error loading house image");
 
-        // Add resize listener
-        window.addEventListener("resize", resizeCanvas);
-
-        // Load images and apply color
-        houseImage.onload = resizeCanvas;
-        roofMask.onload = applyRoofColor;
-
-        // Error handling
-        houseImage.onerror = () => console.error("Error loading house image");
-        roofMask.onerror = () => console.error("Error loading roof mask image");
-
-        // Cleanup
-        return () => {
-          window.removeEventListener("resize", resizeCanvas);
-        };
+    const resizeCanvas = () => {
+      const aspectRatio = 13 / 9;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerWidth / aspectRatio;
+      if (canvas.height > window.innerHeight) {
+        canvas.height = window.innerHeight;
+        canvas.width = canvas.height * aspectRatio;
       }
-    }
-  }, [roofColor, width, height]);
+      applyAllColors();
+    };
 
-  return <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />;
+    // Initial resize and color application
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+    return () => window.removeEventListener("resize", resizeCanvas);
+  }, [
+    mainRoofColor,
+    lowerRoofColor,
+    leftDWallColor,
+    leftWallColor,
+    pillarsColor,
+    pillarsBaseColor,
+    rightDWallColor,
+    rightWallColor,
+    width,
+    height,
+  ]);
+
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          left: 0,
+          top: 0,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          left: 0,
+          top: 0,
+          // additional styling for your animation
+        }}
+      >
+        {/* Animation content here */}
+      </div>
+    </div>
+  );
 };
 
 export default CanvasComponent;

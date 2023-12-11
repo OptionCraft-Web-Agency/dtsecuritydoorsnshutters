@@ -3,10 +3,6 @@ import Image from "next/image";
 import CanvasComponent from "@/components/Canvas";
 
 export default function Home() {
-  const [doorColor, setDoorColor] = useState("");
-  const [pattern, setPattern] = useState("");
-  const [rollerColor, setRollerColor] = useState("#ffffff");
-  const [blindColor, setBlindColor] = useState("#ffffff");
   const [roofMainColor, setRoofMainColor] = useState("#ffffff");
   const [lowerRoofColor, setlowerRoofColor] = useState("#ffffff");
   const [leftDWallColor, setleftDWallColor] = useState("#ffffff");
@@ -114,7 +110,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className="w-3/4 p-4">
+        <div className="w-3/4 p-4 min-h-[600px]">
           <CanvasComponent
             mainRoofColor={roofMainColor}
             lowerRoofColor={lowerRoofColor}

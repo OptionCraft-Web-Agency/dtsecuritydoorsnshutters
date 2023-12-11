@@ -124,7 +124,32 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     height,
   ]);
 
-  return <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />;
+  return (
+    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+      <canvas
+        ref={canvasRef}
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          left: 0,
+          top: 0,
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          left: 0,
+          top: 0,
+          // additional styling for your animation
+        }}
+      >
+        {/* Animation content here */}
+      </div>
+    </div>
+  );
 };
 
 export default CanvasComponent;

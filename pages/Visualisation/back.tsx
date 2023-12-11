@@ -43,10 +43,7 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
       leftDWall: { color: leftDWallColor, src: "/Vis/Mask/LeftDWall.png" },
       leftWall: { color: leftWallColor, src: "/Vis/Mask/LeftWall.png" },
       pillars: { color: pillarsColor, src: "/Vis/Mask/Pillars.png" },
-      pillarsBase: {
-        color: pillarsBaseColor,
-        src: "/Vis/Mask/PillarsBase.png",
-      },
+      pillarsBase: { color: pillarsBaseColor, src: "/Vis/Mask/PillarsBase.png" },
       rightDWall: { color: rightDWallColor, src: "/Vis/Mask/RightDWall.png" },
       rightWall: { color: rightWallColor, src: "/Vis/Mask/RightWall.png" },
     };
@@ -62,25 +59,13 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
       const maskImage = new Image();
       maskImage.src = maskSrc;
       maskImage.onload = () => {
-        offCtx.drawImage(
-          maskImage,
-          0,
-          0,
-          offScreenCanvas.width,
-          offScreenCanvas.height
-        );
+        offCtx.drawImage(maskImage, 0, 0, offScreenCanvas.width, offScreenCanvas.height);
         offCtx.globalCompositeOperation = "multiply";
         offCtx.fillStyle = color;
         offCtx.fillRect(0, 0, offScreenCanvas.width, offScreenCanvas.height);
 
         offCtx.globalCompositeOperation = "destination-in";
-        offCtx.drawImage(
-          maskImage,
-          0,
-          0,
-          offScreenCanvas.width,
-          offScreenCanvas.height
-        );
+        offCtx.drawImage(maskImage, 0, 0, offScreenCanvas.width, offScreenCanvas.height);
 
         context.drawImage(offScreenCanvas, 0, 0);
         offScreenCanvas.remove();
@@ -88,9 +73,8 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     };
 
     const applyAllColors = () => {
-      context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(houseImage, 0, 0, canvas.width, canvas.height);
-      Object.values(masks).forEach((mask) => applyColor(mask.color, mask.src));
+      Object.values(masks).forEach(mask => applyColor(mask.color, mask.src));
     };
 
     houseImage.onload = applyAllColors;
@@ -107,8 +91,6 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
       applyAllColors();
     };
 
-    // Initial resize and color application
-    resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
     return () => window.removeEventListener("resize", resizeCanvas);
   }, [
@@ -124,7 +106,4 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     height,
   ]);
 
-  return <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />;
-};
-
-export default CanvasComponent;
+  return <canvas ref={canvasRef} style={{ width: "100%", height: "100

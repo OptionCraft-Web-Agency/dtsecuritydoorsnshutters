@@ -705,7 +705,7 @@ export default function Home() {
                 id="message"
                 name="message"
                 placeholder="Message"
-                rows="4"
+                rows={4}
                 style={{
                   marginBottom: "2vw",
                   padding: "1vw",
@@ -964,7 +964,7 @@ export default function Home() {
                 </div>
               </div>
               
-              <textarea id="message" name="message" placeholder="Message" rows="4" style={{ marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+              <textarea id="message" name="message" placeholder="Message" rows={4} style={{ marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
               
               <button type="submit" style={{
                 padding: '0.5vw',

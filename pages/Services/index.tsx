@@ -1,11 +1,10 @@
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import Header from '@/components/Header'
-import MainHeader from '@/components/MainHeader'
+import React from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Services() {
   return (
     <p>Services Page- This is for testing</p>
   )

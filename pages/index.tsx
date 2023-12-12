@@ -1,4 +1,5 @@
-import React from "react";
+import { Inter } from 'next/font/google'
+import React from 'react'
 
 // components
 import Header from "../components/Header";
@@ -41,8 +42,8 @@ export default function Home() {
         >
           <div
             style={{
-              width: "578px",
-              height: "340px",
+              maxWidth: "800px",
+              width: "50%", // Responsive width
               borderRadius: "12px",
               opacity: 0.7,
               background:
@@ -51,7 +52,7 @@ export default function Home() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              padding: "1rem",
+              padding: "1vw", // Responsive padding
               margin: "20px",
             }}
           >
@@ -64,10 +65,10 @@ export default function Home() {
                 marginBottom: "1rem",
               }}
             >
-              <p style={{ fontSize: "1.8vw", fontWeight:'bold' }}>
+              <p style={{ fontSize: "min(2vw, 24px)", fontWeight: 'bold' }}> {/* Adjusted font size */}
                 Enhance Home Security with Customized Solutions from DT Security Doors & Shutters
               </p>
-              <p style={{ fontSize: "1vw" }}>
+              <p style={{ fontSize: "min(1vw, 16px)" }}> {/* Adjusted font size */}
                 Discover our range of expertly crafted security doors, blinds, and flyscreens to protect and beautify your home.
               </p>
             </div>
@@ -77,7 +78,7 @@ export default function Home() {
                 display: "flex",
                 justifyContent: "space-evenly",
                 alignItems: "center",
-                width: "80%",
+                width: "100%",
                 padding: "1rem",
               }}
             >
@@ -88,11 +89,9 @@ export default function Home() {
                   background: "rgba(0, 87, 255)",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "#FFF",
-                  fontSize: "1vw",
-                  fontStyle: "normal",
-                  lineHeight: "12px",
+                  fontSize: "min(1.25vw, 12px)", // Adjusted font size for the button
+                  padding: "min(0.8vw, 10px)", // Adjusted padding for the button
                   textTransform: "capitalize",
-                  padding: "1vw",
                 }}
               >
                 View Our Product Range
@@ -104,11 +103,9 @@ export default function Home() {
                   background: "white",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "rgba(0, 87, 255)",
-                  fontSize: "1vw",
-                  fontStyle: "normal",
-                  lineHeight: "12px",
+                  fontSize: "min(1.25vw, 12px)", // Adjusted font size for the button
+                  padding: "min(0.8vw, 10px)", // Adjusted padding for the button
                   textTransform: "capitalize",
-                  padding: "1vw",
                 }}
               >
                 Request a Free Estimate
@@ -326,7 +323,6 @@ export default function Home() {
                   background: "rgba(0, 87, 255)",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "#FFF",
-                  fontFamily: "Lexend",
                   fontSize: "1vw",
                   fontStyle: "normal",
                   fontWeight: 500,
@@ -345,7 +341,6 @@ export default function Home() {
                   background: "transparent",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "rgba(0, 87, 255)",
-                  fontFamily: "Lexend",
                   fontSize: "1vw",
                   fontStyle: "normal",
                   fontWeight: 500,
@@ -485,7 +480,6 @@ export default function Home() {
                   background: "rgba(0, 87, 255)",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "#FFF",
-                  fontFamily: "Lexend",
                   fontSize: "1vw",
                   fontStyle: "normal",
                   fontWeight: 500,
@@ -504,7 +498,6 @@ export default function Home() {
                   background: "white",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
                   color: "rgba(0, 87, 255)",
-                  fontFamily: "Lexend",
                   fontSize: "1vw",
                   fontStyle: "normal",
                   fontWeight: 500,
@@ -632,7 +625,7 @@ export default function Home() {
         </div>
 
         {/* form */}
-        <div
+        <div 
           style={{
             height: "100vh",
             width: "100%",
@@ -640,7 +633,7 @@ export default function Home() {
             flexDirection: "row",
           }}
         >
-          <div
+          <div 
             style={{
               height: "calc(100vh - 80px)",
               width: "50%",
@@ -648,17 +641,16 @@ export default function Home() {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              padding: "5vw", // Changed from rem to vw
+              padding: "5vw",
               boxSizing: "border-box",
             }}
           >
-            <p style={{ fontSize: "3vw", marginBottom: "2vw" }}>Inquiry</p>{" "}
-            {/* Changed font-size and margin-bottom to vw */}
-            <form
+            <p style={{ fontSize: "min(3vw, 24px)", marginBottom: "2vw" }}>Inquiry</p>
+            <form 
               style={{
                 display: "flex",
                 flexDirection: "column",
-                width: "80%", // Consider using a percentage for responsive width
+                width: "80%",
               }}
             >
               <input
@@ -668,7 +660,7 @@ export default function Home() {
                 placeholder="Name"
                 style={{
                   marginBottom: "2vw",
-                  padding: "1vw",
+                  padding: "0.5vw",
                   borderRadius: "0.5vw",
                   border: "1px solid black",
                 }}
@@ -681,7 +673,7 @@ export default function Home() {
                 placeholder="Email"
                 style={{
                   marginBottom: "2vw",
-                  padding: "1vw",
+                  padding: "0.5vw",
                   borderRadius: "0.5vw",
                   border: "1px solid black",
                 }}
@@ -694,7 +686,7 @@ export default function Home() {
                 placeholder="Phone Number"
                 style={{
                   marginBottom: "2vw",
-                  padding: "1vw",
+                  padding: "0.5vw",
                   borderRadius: "0.5vw",
                   border: "1px solid black",
                 }}
@@ -707,7 +699,7 @@ export default function Home() {
                 rows={4}
                 style={{
                   marginBottom: "2vw",
-                  padding: "1vw",
+                  padding: "0.5vw",
                   borderRadius: "0.5vw",
                   border: "1px solid black",
                 }}
@@ -720,7 +712,7 @@ export default function Home() {
                   border: "none",
                   borderRadius: "0.5vw",
                   color: "white",
-                  fontSize: "1.2vw",
+                  fontSize: "min(1.2vw, 14px)",
                   cursor: "pointer",
                   backgroundColor: "rgba(0, 87, 255)",
                   boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
@@ -731,16 +723,14 @@ export default function Home() {
             </form>
           </div>
 
-          <div
-            style={{
-              height: "calc(100vh - 80px)",
-              width: "50%",
-              backgroundImage: `url(/RollerDoor1.jpg)`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
+          <div style={{
+            height: "calc(100vh - 80px)",
+            width: "50%",
+            backgroundImage: `url(/RollerDoor1.jpg)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}></div>
         </div>
 
         {/* foooter */}
@@ -928,7 +918,7 @@ export default function Home() {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
             justifyContent: 'center',
-            alignItems: 'center', 
+            alignItems: 'center',
           }}
         >
           <div
@@ -936,41 +926,40 @@ export default function Home() {
               display: "flex",
               flexDirection: "column",
               marginBottom: "1rem",
-              justifyContent:'center',
-              alignItems:'center',
-              height:'100%'
+              justifyContent: 'center',
+              alignItems: 'center',
+              height: '100%'
             }}
           >
-            <p style={{ fontSize: "2vw", padding:'10px 0px' }}>
+            <p style={{ fontSize: "min(3vw, 30px)", padding: '10px 0px', fontWeight: 'bold' }}>
               Enquire Form
             </p>
 
             <form style={{
               display: 'flex',
               flexDirection: 'column',
-              width: '80%', // Consider using a percentage for responsive width
+              width: '80%',
             }}>
-              <div style={{width:'100%'}}>
-                {/* left */}
-                <div style={{width:'100%', display:'flex', justifyContent:'space-between', fontSize:'1vw'}}>
-                  <input type="text" id="name" name="name" placeholder="Name" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
-                  <input type="email" id="email" name="email" placeholder="Email" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+              <div style={{ width: '100%' }}>
+                {/* inputs */}
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', fontSize: 'min(1.5vw, 16px)' }}>
+                  <input type="text" id="name" name="name" placeholder="Name" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw', border: '1px solid black' }} />
+                  <input type="email" id="email" name="email" placeholder="Email" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw', border: '1px solid black' }} />
                 </div>
-                {/* right */}
-                <div style={{width:'100%', display:'flex', justifyContent:'space-between', fontSize:'1vw'}}>
-                  <input type="phone" id="phone" name="phone" placeholder="Phone Number" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
-                  <input type="address" id="address" name="address" placeholder="Address" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', fontSize: 'min(1.5vw, 16px)' }}>
+                  <input type="phone" id="phone" name="phone" placeholder="Phone Number" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw', border: '1px solid black' }} />
+                  <input type="address" id="address" name="address" placeholder="Address" style={{ width: '49%', marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw', border: '1px solid black' }} />
                 </div>
               </div>
               
-              <textarea id="message" name="message" placeholder="Message" rows={4} style={{ marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw',border:'1px solid black' }} />
+              <textarea id="message" name="message" placeholder="Message" rows={4} style={{ marginBottom: '2vw', padding: '0.5vw', borderRadius: '0.5vw', border: '1px solid black', fontSize: 'min(1.5vw, 16px)' }} />
               
               <button type="submit" style={{
-                padding: '0.5vw',
+                padding: '1vw',
                 border: 'none',
                 borderRadius: '0.5vw',
                 color: 'white',
-                fontSize: '1.2vw',
+                fontSize: 'min(1.5vw, 16px)',
                 cursor: 'pointer',
                 backgroundColor: "rgba(0, 87, 255)",
                 boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
@@ -1145,20 +1134,22 @@ export default function Home() {
 
         {/* info1 */}
         <div style={{ textAlign: 'center' }}>
-          <p style={{ fontWeight: 'bold', fontSize: '1.8vw' }}>Maximize Comfort and Security with Diverse Roller Shutters Operation Modes</p>
-          <p style={{ marginBottom: '20px', fontSize: '1.2vw' }}>Choose an operation style that aligns with your home's design and your convenience needs</p>
+          <p style={{ fontWeight: 'bold', fontSize: 'min(1.8vw, 40px)' }}>Maximize Comfort and Security with Diverse Roller Shutters Operation Modes</p>
+          <p style={{ marginBottom: '20px', fontSize: 'min(1.2vw, 26px)' }}>Choose an operation style that aligns with your home's design and your convenience needs</p>
           
           <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-evenly', textAlign: 'left' }}>
             {/* 1 */}
             <div style={{ display: 'flex', flexDirection: 'column', width: '22%' }}>
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '20px' }}>
-                <img src="/RollerDoor1.jpg" style={{ width: '4vw', height: '4vw' }}></img>
+                <div style={{ width: '10%', maxWidth: '4vw' }}>
+                  <img src="/RollerDoor1.jpg" style={{ width: '100%', height: 'auto' }} alt="Manual Strap Winch" />
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px' }}>
-                  <p style={{ fontWeight: 'bold' }}>Manual Strap Winch</p>
-                  <p>(Manual Operation)</p>
+                  <p style={{ fontWeight: 'bold', fontSize: 'min(1vw, 18px)' }}>Manual Strap Winch</p>
+                  <p style={{ fontSize: 'min(0.8vw, 14px)' }}>(Manual Operation)</p>
                 </div>
               </div>
-              <p>
+              <p style={{ fontSize: 'min(1vw, 16px)' }}>
                 The manual strap winch is an ideal choice for traditional homes, offering a non-invasive and electricity-free operation, particularly suitable for double brick structures.
               </p>
             </div>
@@ -1166,13 +1157,15 @@ export default function Home() {
             {/* 2 */}
             <div style={{ display: 'flex', flexDirection: 'column', width: '22%' }}>
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '20px' }}>
-                <img src="/RollerDoor1.jpg" style={{ width: '4vw', height: '4vw' }}></img>
+                <div style={{ width: '10%', maxWidth: '4vw' }}>
+                  <img src="/RollerDoor1.jpg" style={{ width: '100%', height: 'auto' }} alt="Manual Strap Winch" />
+                </div>                
                 <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px' }}>
-                  <p style={{ fontWeight: 'bold' }}>Strap Coiler System</p>
-                  <p>(Manual Operation)</p>
+                  <p style={{ fontWeight: 'bold', fontSize: 'min(1vw, 18px)' }}>Strap Coiler System</p>
+                  <p style={{ fontSize: 'min(0.8vw, 14px)' }}>(Manual Operation)</p>
                 </div>
               </div>
-              <p>
+              <p style={{ fontSize: 'min(1vw, 16px)' }}>
                 Perfect for confined spaces like small washrooms, our manual strap coiler system offers a convenient solution for smaller windows, combining ease of use with space efficiency.
               </p>
             </div>
@@ -1180,13 +1173,15 @@ export default function Home() {
             {/* 3 */}
             <div style={{ display: 'flex', flexDirection: 'column', width: '22%' }}>
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '20px' }}>
-                <img src="/RollerDoor1.jpg" style={{ width: '4vw', height: '4vw' }}></img>
+                <div style={{ width: '10%', maxWidth: '4vw' }}>
+                  <img src="/RollerDoor1.jpg" style={{ width: '100%', height: 'auto' }} alt="Manual Strap Winch" />
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px' }}>
-                  <p style={{ fontWeight: 'bold' }}>Electric Switch</p>
-                  <p>(Electric Operation)</p>
+                  <p style={{ fontWeight: 'bold', fontSize: 'min(1vw, 18px)' }}>Electric Switch</p>
+                  <p style={{ fontSize: 'min(0.8vw, 14px)' }}>(Electric Operation)</p>
                 </div>
               </div>
-              <p>
+              <p style={{ fontSize: 'min(1vw, 16px)' }}>
                 Our electrically operated shutters feature an integrated switch, seamlessly blending with your home's interior just like a regular light switch, offering both convenience and a modern touch.
               </p>
             </div>
@@ -1194,13 +1189,15 @@ export default function Home() {
             {/* 4 */}
             <div style={{ display: 'flex', flexDirection: 'column', width: '22%' }}>
               <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', marginBottom: '20px' }}>
-                <img src="/RollerDoor1.jpg" style={{ width: '4vw', height: '4vw' }}></img>
+                <div style={{ width: '10%', maxWidth: '4vw' }}>
+                  <img src="/RollerDoor1.jpg" style={{ width: '100%', height: 'auto' }} alt="Manual Strap Winch" />
+                </div>
                 <div style={{ display: 'flex', flexDirection: 'column', marginLeft: '10px' }}>
-                  <p style={{ fontWeight: 'bold' }}>Remote Control</p>
-                  <p>(Electric Operation)</p>
+                  <p style={{ fontWeight: 'bold', fontSize: 'min(1vw, 18px)' }}>Remote Control</p>
+                  <p style={{ fontSize: 'min(0.8vw, 14px)' }}>(Electric Operation)</p>
                 </div>
               </div>
-              <p>
+              <p style={{ fontSize: 'min(1vw, 16px)' }}>
                 Experience the ultimate convenience with our remote-controlled roller shutters, allowing you to adjust your shutters effortlessly from any location in your room, adding a layer of modern ease to your home security.
               </p>
             </div>

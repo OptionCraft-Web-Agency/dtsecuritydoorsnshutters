@@ -51,6 +51,20 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
       rightWall: { color: rightWallColor, src: "/Vis/Mask/RightWall.png" },
     };
 
+    const Tom = {
+      mainRoof: { color: mainRoofColor, src: "/Vis/Tom/roof.png" },
+      lowerRoof: { color: lowerRoofColor, src: "/Vis/Tom/roofroof.png" },
+      leftDWall: { color: leftDWallColor, src: "/Vis/Tom/left.png" },
+      leftWall: { color: leftWallColor, src: "/Vis/Tom/pipes.png" },
+      pillars: { color: pillarsColor, src: "/Vis/Tom/right.png" },
+      pillarsBase: {
+        color: pillarsBaseColor,
+        src: "/Vis/Tom/front.png",
+      },
+      rightDWall: { color: rightDWallColor, src: "/Vis/Tom/frontfront.png" },
+      rightWall: { color: rightWallColor, src: "/Vis/Tom/right.png" },
+    };
+
     const applyColor = (color: string, maskSrc: string) => {
       const offScreenCanvas = document.createElement("canvas");
       const offCtx = offScreenCanvas.getContext("2d");
@@ -90,7 +104,7 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     const applyAllColors = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(houseImage, 0, 0, canvas.width, canvas.height);
-      Object.values(masks).forEach((mask) => applyColor(mask.color, mask.src));
+      Object.values(Tom).forEach((mask) => applyColor(mask.color, mask.src));
     };
 
     houseImage.onload = applyAllColors;

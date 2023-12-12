@@ -9,6 +9,7 @@ type CanvasComponentProps = {
   pillarsBaseColor: string;
   rightDWallColor: string;
   rightWallColor: string;
+  doorColor: string;
   width: number;
   height: number;
 };
@@ -22,6 +23,7 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
   pillarsBaseColor,
   rightDWallColor,
   rightWallColor,
+  doorColor,
   width,
   height,
 }) => {
@@ -63,6 +65,7 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
       },
       rightDWall: { color: rightDWallColor, src: "/Vis/Tom/frontfront.png" },
       rightWall: { color: rightWallColor, src: "/Vis/Tom/right.png" },
+      door: { color: doorColor, src: "/Vis/Tom/door.png" },
     };
 
     const applyColor = (color: string, maskSrc: string) => {
@@ -134,6 +137,7 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     pillarsBaseColor,
     rightDWallColor,
     rightWallColor,
+    doorColor,
     width,
     height,
   ]);

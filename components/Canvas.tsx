@@ -98,13 +98,26 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     houseImage.onerror = () => console.error("Error loading house image");
 
     const resizeCanvas = () => {
-      const aspectRatio = 13 / 9;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerWidth / aspectRatio;
-      if (canvas.height > window.innerHeight) {
-        canvas.height = window.innerHeight;
-        canvas.width = canvas.height * aspectRatio;
+      let aspectRatio = 13 / 9;
+
+      if (window.innerWidth > 1026) {
+        // Using optional chaining and providing default values
+        const parentWidth =
+          canvas.parentElement?.offsetWidth || window.innerWidth;
+        const parentHeight =
+          canvas.parentElement?.offsetHeight || window.innerHeight;
+
+        canvas.width = parentWidth;
+        canvas.height = parentHeight;
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerWidth / aspectRatio;
+        if (canvas.height > window.innerHeight) {
+          canvas.height = window.innerHeight;
+          canvas.width = canvas.height * aspectRatio;
+        }
       }
+
       applyAllColors();
     };
 

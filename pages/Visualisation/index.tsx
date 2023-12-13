@@ -236,7 +236,7 @@ export default function Home() {
           <div className="flex flex-row-reverse justify-evenly max-h-full lg:flex-row">
             {/* Color Selection */}
             <div className="overflow-auto w-full">
-              <div className="grid grid-cols-2 gap-2 mt-10 flex-1 xl:grid-cols-3 2xl:grid-cols-4 ultraWide:grid-cols-5">
+              <div className="grid grid-cols-2 gap-2 mt-10 flex-1 md:grid-cols-3 2xl:grid-cols-4 ultraWide:grid-cols-5">
                 {sections[selectedSection]?.map((color: Color) => (
                   <div key={color.name} className="flex flex-col items-center">
                     <button
@@ -253,7 +253,7 @@ export default function Home() {
                 {/* TODO:: Adding custom color input */}
               </div>
             </div>
-            <div className="flex flex-col my-auto px-2">
+            <div className="flex flex-col my-10 xl:my-auto px-2">
               {Object.keys(sections).map((section) => (
                 <button
                   key={section}
@@ -268,8 +268,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full lg:max-h-[1000px] lg:w-1/2]">
-          <div className="lg:w-full lg:h-full">
+        <div className="w-full lg:max-h-[1000px] lg:w-1/2">
+          <div className="w-full h-[500px] md:h-[550px]">
             <CanvasComponent
               door={doorColor}
               facia={facia}

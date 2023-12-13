@@ -230,13 +230,13 @@ export default function Home() {
   };
 
   return (
-    <div className="container min-w-full">
+    <div className="container mx-auto">
       <div className="flex bg-red-200 flex-col-reverse lg:flex-row ">
-        <div className="w-full lg:w-1/2">
+        <div className="w-full lg:w-1/2 3xl:w-1/3 wide:w-3/10">
           <div className="flex flex-row-reverse justify-evenly max-h-full lg:flex-row">
             {/* Color Selection */}
             <div className="overflow-auto w-full">
-              <div className="grid grid-cols-2 gap-2 mt-10 flex-1 md:grid-cols-3 2xl:grid-cols-4 ultraWide:grid-cols-5">
+              <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
                 {sections[selectedSection]?.map((color: Color) => (
                   <div key={color.name} className="flex flex-col items-center">
                     <button
@@ -247,7 +247,9 @@ export default function Home() {
                       }
                     ></button>
 
-                    <span className="text-sm text-gray-700">{color.name}</span>
+                    <span className="text-sm text-gray-700               ">
+                      {color.name}
+                    </span>
                   </div>
                 ))}
                 {/* TODO:: Adding custom color input */}
@@ -268,8 +270,8 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="w-full lg:max-h-[1000px] lg:w-1/2">
-          <div className="w-full h-[500px] md:h-[550px]">
+        <div className="w-full lg:max-h-[1000px] lg:w-1/2 3xl:w-2/3 wide:w-7/10 mx-auto">
+          <div className="w-full h-[500px] md:h-[550px] xl:h-full">
             <CanvasComponent
               door={doorColor}
               facia={facia}

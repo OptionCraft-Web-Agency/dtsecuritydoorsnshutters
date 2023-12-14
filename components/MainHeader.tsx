@@ -9,7 +9,7 @@ const MainHeader = () => (
       transition={{ duration: 0.5 }}
       className="flex items-center"
     >
-      <img src="Logo1.png" alt="Logo 1" style={{ marginRight: '1vw', width: '6vw' }} />
+      <img src="Logo1.png" alt="Logo 1" style={{ marginRight: '', width: '6vw' }} />
       <img src="Logo2.png" alt="Logo 2" style={{ width: '9vw' }} />
     </motion.div>
 

@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 import { color, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faBars } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { SocialIcon } from "react-social-icons";
 
 interface IconProps {

@@ -246,8 +246,8 @@ export default function Home() {
                         handleColorSelection(selectedSection, color)
                       }
                     ></button>
+                    <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
 
-                    <span className="text-sm text-gray-700               ">
                       {color.name}
                     </span>
                   </div>

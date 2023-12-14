@@ -1,29 +1,27 @@
 import React, { useRef, useEffect } from "react";
 
 type CanvasComponentProps = {
-  mainRoofColor: string;
-  lowerRoofColor: string;
-  leftDWallColor: string;
-  leftWallColor: string;
-  pillarsColor: string;
-  pillarsBaseColor: string;
-  rightDWallColor: string;
-  rightWallColor: string;
-  doorColor: string;
+  door: string;
+  facia: string;
+  frontWall: string;
+  left: string;
+  lowerRoof: string;
+  pillars: string;
+  right: string;
+  roof: string;
   width: number;
   height: number;
 };
 
 const CanvasComponent: React.FC<CanvasComponentProps> = ({
-  mainRoofColor,
-  lowerRoofColor,
-  leftDWallColor,
-  leftWallColor,
-  pillarsColor,
-  pillarsBaseColor,
-  rightDWallColor,
-  rightWallColor,
-  doorColor,
+  door,
+  facia,
+  frontWall,
+  left,
+  lowerRoof,
+  pillars,
+  right,
+  roof,
   width,
   height,
 }) => {
@@ -39,33 +37,19 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     const houseImage = new Image();
     houseImage.src = "/Vis/houseMain.png";
 
-    const masks = {
-      mainRoof: { color: mainRoofColor, src: "/Vis/Mask/MainRoof.png" },
-      lowerRoof: { color: lowerRoofColor, src: "/Vis/Mask/LowerRoof.png" },
-      leftDWall: { color: leftDWallColor, src: "/Vis/Mask/LeftDWall.png" },
-      leftWall: { color: leftWallColor, src: "/Vis/Mask/LeftWall.png" },
-      pillars: { color: pillarsColor, src: "/Vis/Mask/Pillars.png" },
-      pillarsBase: {
-        color: pillarsBaseColor,
-        src: "/Vis/Mask/PillarsBase.png",
-      },
-      rightDWall: { color: rightDWallColor, src: "/Vis/Mask/RightDWall.png" },
-      rightWall: { color: rightWallColor, src: "/Vis/Mask/RightWall.png" },
-    };
-
     const Tom = {
-      mainRoof: { color: mainRoofColor, src: "/Vis/Tom/roof.png" },
-      lowerRoof: { color: lowerRoofColor, src: "/Vis/Tom/roofroof.png" },
-      leftDWall: { color: leftDWallColor, src: "/Vis/Tom/left.png" },
-      leftWall: { color: leftWallColor, src: "/Vis/Tom/pipes.png" },
-      pillars: { color: pillarsColor, src: "/Vis/Tom/right.png" },
-      pillarsBase: {
-        color: pillarsBaseColor,
-        src: "/Vis/Tom/front.png",
+      door: { color: door, src: "/Vis/Tom/door.png" },
+      Facia: { color: facia, src: "/Vis/Tom/facia.png" },
+      frontWall: {
+        color: frontWall,
+        src: "/Vis/Tom/frontWall.png",
       },
-      rightDWall: { color: rightDWallColor, src: "/Vis/Tom/frontfront.png" },
-      rightWall: { color: rightWallColor, src: "/Vis/Tom/right.png" },
-      door: { color: doorColor, src: "/Vis/Tom/door.png" },
+
+      pillars: { color: pillars, src: "/Vis/Tom/pillars.png" },
+      right: { color: right, src: "/Vis/Tom/right.png" },
+      lowerRoof: { color: lowerRoof, src: "/Vis/Tom/lowerRoof.png" },
+      left: { color: left, src: "/Vis/Tom/left.png" },
+      roof: { color: roof, src: "/Vis/Tom/roof.png" },
     };
 
     const applyColor = (color: string, maskSrc: string) => {
@@ -114,13 +98,26 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     houseImage.onerror = () => console.error("Error loading house image");
 
     const resizeCanvas = () => {
-      const aspectRatio = 13 / 9;
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerWidth / aspectRatio;
-      if (canvas.height > window.innerHeight) {
-        canvas.height = window.innerHeight;
-        canvas.width = canvas.height * aspectRatio;
+      let aspectRatio = 13 / 9;
+
+      if (window.innerWidth > 1026) {
+        // Using optional chaining and providing default values
+        const parentWidth =
+          canvas.parentElement?.offsetWidth || window.innerWidth;
+        const parentHeight =
+          canvas.parentElement?.offsetHeight || window.innerHeight;
+
+        canvas.width = parentWidth;
+        canvas.height = parentHeight;
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerWidth / aspectRatio;
+        if (canvas.height > window.innerHeight) {
+          canvas.height = window.innerHeight;
+          canvas.width = canvas.height * aspectRatio;
+        }
       }
+
       applyAllColors();
     };
 
@@ -129,15 +126,14 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     window.addEventListener("resize", resizeCanvas);
     return () => window.removeEventListener("resize", resizeCanvas);
   }, [
-    mainRoofColor,
-    lowerRoofColor,
-    leftDWallColor,
-    leftWallColor,
-    pillarsColor,
-    pillarsBaseColor,
-    rightDWallColor,
-    rightWallColor,
-    doorColor,
+    door,
+    facia,
+    frontWall,
+    left,
+    lowerRoof,
+    pillars,
+    right,
+    roof,
     width,
     height,
   ]);

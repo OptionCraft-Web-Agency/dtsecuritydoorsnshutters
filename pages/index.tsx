@@ -6,6 +6,7 @@ import Header from "../components/Header";
 import MainHeader from "../components/MainHeader";
 import CustomerReview from "../components/CustomerReview";
 import HomePage from "../components/HomePage";
+import Info2 from "../components/Info2"
 
 import Image from "next/image";
 
@@ -19,6 +20,8 @@ export default function Home() {
       <Header />
       <div className="bg-[#FFFCF8] w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
         <MainHeader />
+
+        <HomePage />
 
         {/* HomePage */}
         <div
@@ -1635,6 +1638,9 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        <Info2 />
+
       </div>
     </>
   );

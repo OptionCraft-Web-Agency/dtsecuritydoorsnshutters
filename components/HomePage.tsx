@@ -1,12 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 const HomePage: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  // Initialize state without relying on 'window'
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Function to update the state based on the window width
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+
+    // Set the initial value based on the current window size
+    if (typeof window !== 'undefined') {
+      handleResize();
+    }
 
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);

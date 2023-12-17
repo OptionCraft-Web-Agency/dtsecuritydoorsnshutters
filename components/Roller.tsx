@@ -28,17 +28,14 @@ const RollerComponent: React.FC<RollerComponentProps> = ({
     const context = canvas.getContext("2d");
     if (!context) return;
 
-    const bottom = new Image();
-    const rail = new Image();
-    const slat = new Image();
-    const headBox = new Image();
-
-    bottom.src = "/Vis/roller/Bottom.png";
-    rail.src = "/Vis/roller/guiderail.png";
-    slat.src = "/Vis/roller/slat.png";
-    headBox.src = "/Vis/roller/headbox.png";
+    const base = new Image();
+    base.src = "/Vis/roller/base.png";
 
     const curtains = {
+      bottom: { color: bottom, src: "/Vis/roller/Bottom.png" },
+      rail: { color: rail, src: "/Vis/roller/guiderail.png" },
+      slat: { color: slat, src: "/Vis/roller/slat.png" },
+      headBox: { color: headBox, src: "/Vis/roller/headbox.png" },
       1: { color: curtainsColor[0], src: "/Vis/roller/curtain/1.png" },
       2: { color: curtainsColor[1], src: "/Vis/roller/curtain/2.png" },
       3: { color: curtainsColor[2], src: "/Vis/roller/curtain/3.png" },
@@ -102,16 +99,14 @@ const RollerComponent: React.FC<RollerComponentProps> = ({
 
     const applyAllColors = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
-      context.drawImage(bottom, 0, 0, canvas.width, canvas.height);
+      context.drawImage(base, 0, 0, canvas.width, canvas.height);
       Object.values(curtains).forEach((mask) =>
         applyColor(mask.color, mask.src)
       );
     };
 
-    bottom.onload = applyAllColors;
-    rail.onload = applyAllColors;
-    headBox.onload = applyAllColors;
-    slat.onload = applyAllColors;
+    base.onload = applyAllColors;
+    base.onerror = () => console.error("Error loading house image");
 
     const resizeCanvas = () => {
       let aspectRatio = 13 / 9;
@@ -141,10 +136,10 @@ const RollerComponent: React.FC<RollerComponentProps> = ({
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
     return () => window.removeEventListener("resize", resizeCanvas);
-  }, [bottom, rail, headBox, slat, width, height]);
+  }, [bottom, rail, headBox, slat, curtainsColor, width, height]);
 
   return (
-    <div className="bg-black w-full h-full top-0 left-0 absolute">
+    <div className="w-full h-full top-0 left-0 absolute">
       <canvas
         ref={canvasRef}
         style={{

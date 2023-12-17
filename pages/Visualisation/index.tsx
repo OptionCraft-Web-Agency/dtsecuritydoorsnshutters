@@ -30,7 +30,7 @@ export default function Home() {
   const [rail, setrail] = useState("#ffffff");
   const [headBox, setheadBox] = useState("#ffffff");
   const [slat, setslat] = useState("#ffffff");
-  const [curtainsColor, setCurtainsColor] = useState(Array(22).fill("#ffffff"));
+  const [curtainsColor, setCurtainsColor] = useState(Array(23).fill("#ffffff"));
   const [selectedIndex, setSelectedIndex] = useState(1);
   const [selectedColor, setSelectedColor] = useState("#ffffff");
 
@@ -62,7 +62,7 @@ export default function Home() {
   const updateCurtainColor = (index: number, color: string) => {
     setCurtainsColor((prevColors) => {
       const newColors = [...prevColors];
-      newColors[index--] = color;
+      newColors[index] = color;
 
       return newColors;
     });
@@ -467,7 +467,7 @@ export default function Home() {
                         onChange={handleIndexChange}
                       >
                         {Array.from({ length: 23 }, (_, i) => (
-                          <option key={i} value={i + 1}>
+                          <option key={i} value={i}>
                             Curtain {i + 1}
                           </option>
                         ))}
@@ -536,6 +536,13 @@ export default function Home() {
                   Curtains
                 </button>
               )}
+              <button
+                onClick={() => {
+                  console.log(curtainsColor);
+                }}
+              >
+                sss
+              </button>
             </div>
           </div>
         </div>

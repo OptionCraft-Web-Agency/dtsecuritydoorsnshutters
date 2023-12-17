@@ -164,7 +164,7 @@ export default function CostCalc() {
         {selections.map((selection) => (
           <div key={selection.id} className="mb-3 p-1 rounded shadow">
             <div className="flex flex-col xl:flex-row ">
-              <div className="w-full md:w-auto px-2 mb-2 flex flex-col xl:flex-row items-center justify-between xl:w-[80%] bg-red-400 xl:w-[85%] bg-red-400 ">
+              <div className="w-full md:w-auto px-2 mb-2 flex flex-col xl:flex-row items-center justify-between xl:w-[80%] xl:w-[85%] ">
                 <div className="flex flex-row   w-full justify-evenly mb-1 xl:mb-0 xl:mr-2">
                   <span className="font-bold text-gray-70 w-[20%] text-center mx-auto my-auto bg-yellow-800 text-yellow-100">
                     {selection.id}

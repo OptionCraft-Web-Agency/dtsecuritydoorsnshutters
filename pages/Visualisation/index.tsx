@@ -1,6 +1,8 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import CanvasComponent from "@/components/Canvas";
+import RollerComponent from "@/components/Roller";
+import CostCalc from "@/components/CostCalc";
 
 interface ColorSetters {
   [key: string]: Dispatch<SetStateAction<string>>;
@@ -33,6 +35,19 @@ export default function Home() {
   });
   const [selectedSection, setSelectedSection] = useState("Roof");
   const [selectedColor, setSelectedColor] = useState("");
+  const [bottom, setbottom] = useState("#ffffff");
+  const [rail, setrail] = useState("#ffffff");
+  const [headBox, setheadBox] = useState("#ffffff");
+  const [slat, setslat] = useState("#ffffff");
+  const [curtainsColor, setCurtainsColor] = useState(Array(23).fill("#ffffff"));
+
+  const updateCurtainColor = (index: number, color: string) => {
+    setCurtainsColor((prevColors) => {
+      const newColors = [...prevColors];
+      newColors[index] = color;
+      return newColors;
+    });
+  };
 
   interface Color {
     name: string;
@@ -247,7 +262,6 @@ export default function Home() {
                       }
                     ></button>
                     <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
-
                       {color.name}
                     </span>
                   </div>
@@ -272,21 +286,38 @@ export default function Home() {
         </div>
         <div className="w-full lg:max-h-[1000px] lg:w-1/2 3xl:w-2/3 wide:w-7/10 mx-auto">
           <div className="w-full h-[500px] md:h-[550px] xl:h-full">
-            <CanvasComponent
-              door={doorColor}
-              facia={facia}
-              frontWall={frontWall}
-              left={leftWallColor}
-              lowerRoof={lowerRoofColor}
-              pillars={pillarsColor}
-              right={rightWallColor}
-              roof={roofMainColor}
-              width={containerSize.width}
-              height={containerSize.height}
-            />
+            <div
+              style={{ position: "relative", width: "100%", height: "100%" }}
+            >
+              <CanvasComponent
+                door={doorColor}
+                facia={facia}
+                frontWall={frontWall}
+                left={leftWallColor}
+                lowerRoof={lowerRoofColor}
+                pillars={pillarsColor}
+                right={rightWallColor}
+                roof={roofMainColor}
+                width={containerSize.width}
+                height={containerSize.height}
+              />
+              {/**
+               * <RollerComponent
+                curtainsColor={curtainsColor}
+                bottom={bottom}
+                rail={rail}
+                headBox={headBox}
+                slat={slat}
+                width={containerSize.width}
+                height={containerSize.height}
+              /> 
+              
+              */}
+            </div>
           </div>
         </div>
       </div>
+      <CostCalc />
     </div>
   );
 }

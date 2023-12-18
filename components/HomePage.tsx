@@ -1,6 +1,24 @@
-import React from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 const HomePage: React.FC = () => {
+  // Initialize state without relying on 'window'
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Function to update the state based on the window width
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Set the initial value based on the current window size
+    if (typeof window !== 'undefined') {
+      handleResize();
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div
       style={{
@@ -17,8 +35,8 @@ const HomePage: React.FC = () => {
     >
       <div
         style={{
-          width: "578px",
-          height: "340px",
+          maxWidth: "800px",
+          width: "90%", 
           borderRadius: "12px",
           opacity: 0.7,
           background: "linear-gradient(0deg, rgba(130, 123, 114, 0.22) 0%, rgba(130, 123, 114, 0.22) 100%), #D9D9D9",
@@ -26,7 +44,7 @@ const HomePage: React.FC = () => {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "1rem",
+          padding: "2rem",
           margin: "20px",
         }}
       >
@@ -39,10 +57,10 @@ const HomePage: React.FC = () => {
             marginBottom: "1rem",
           }}
         >
-          <p style={{ fontSize: "1.8vw", fontWeight: 'bold' }}>
+          <p style={{ fontSize: "min(4vw, 24px)", fontWeight: "bold" }}>
             Enhance Home Security with Customized Solutions from DT Security Doors & Shutters
           </p>
-          <p style={{ fontSize: "1vw" }}>
+          <p style={{ fontSize: "min(3vw, 16px)" }}>
             Discover our range of expertly crafted security doors, blinds, and flyscreens to protect and beautify your home.
           </p>
         </div>
@@ -50,9 +68,10 @@ const HomePage: React.FC = () => {
         <div
           style={{
             display: "flex",
+            flexDirection: isMobile ? 'column' : 'row',
             justifyContent: "space-evenly",
             alignItems: "center",
-            width: "80%",
+            width: "100%",
             padding: "1rem",
           }}
         >
@@ -63,11 +82,10 @@ const HomePage: React.FC = () => {
               background: "rgba(0, 87, 255)",
               boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
               color: "#FFF",
-              fontSize: "1vw",
-              fontStyle: "normal",
-              lineHeight: "12px",
+              fontSize: "min(3vw, 12px)",
+              padding: "min(1vw, 10px)",
               textTransform: "capitalize",
-              padding: "1vw",
+              marginBottom: isMobile ? "10px" : "0",
             }}
           >
             View Our Product Range
@@ -79,11 +97,10 @@ const HomePage: React.FC = () => {
               background: "white",
               boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
               color: "rgba(0, 87, 255)",
-              fontSize: "1vw",
-              fontStyle: "normal",
-              lineHeight: "12px",
+              fontSize: "min(3vw, 12px)",
+              padding: "min(1vw, 10px)",
               textTransform: "capitalize",
-              padding: "1vw",
+              marginLeft: isMobile ? "0" : "10px",
             }}
           >
             Request a Free Estimate

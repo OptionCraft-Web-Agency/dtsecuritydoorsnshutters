@@ -536,13 +536,6 @@ export default function Home() {
                   Curtains
                 </button>
               )}
-              <button
-                onClick={() => {
-                  console.log(curtainsColor);
-                }}
-              >
-                sss
-              </button>
             </div>
           </div>
         </div>

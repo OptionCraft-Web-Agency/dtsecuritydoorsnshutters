@@ -63,7 +63,6 @@ export default function Home() {
     setCurtainsColor((prevColors) => {
       const newColors = [...prevColors];
       newColors[index] = color;
-
       return newColors;
     });
   };

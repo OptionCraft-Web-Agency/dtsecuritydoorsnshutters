@@ -31,7 +31,7 @@ export default function Home() {
   const [headBox, setheadBox] = useState("#ffffff");
   const [slat, setslat] = useState("#ffffff");
   const [curtainsColor, setCurtainsColor] = useState(Array(23).fill("#ffffff"));
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState("#ffffff");
 
   const [showRoller, setShowRoller] = useState(false);

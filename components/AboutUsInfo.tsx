@@ -11,7 +11,12 @@ const AboutUsInfo: React.FC = () => {
     padding: '0 4vw',
   };
 
-  const paragraphStyle: CSSProperties = { fontSize: '2vw', marginBottom: '1vw' };
+  const paragraphStyle: CSSProperties = {     
+    fontSize: '2.5vw',
+    marginBottom: '2vw',
+    fontWeight: 'bold',
+  };
+
   const descriptionStyle: CSSProperties = { marginBottom: '1vw' };
   const imageContainerStyle: CSSProperties = {
     display: 'flex',

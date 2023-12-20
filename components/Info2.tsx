@@ -31,7 +31,7 @@ const Info2: React.FC = () => {
   // Styles
   const containerStyle: CSSProperties = {
     display: 'flex',
-    flexDirection: isMobile ? 'column' : 'row'
+    flexDirection: isMobile ? 'column' : 'row',
   };
 
   const imageContainerStyle: CSSProperties = {
@@ -44,7 +44,8 @@ const Info2: React.FC = () => {
     display: 'flex',
     flexDirection: 'column',
     width: isMobile ? '100%' : '50%',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    padding: "2vw"
   };
 
   const innerContainerStyle: CSSProperties = {

@@ -47,7 +47,7 @@ const HomeForm: React.FC = () => {
   return (
     <div style={containerStyle}>
       <div style={formContainerStyle}>
-        <p style={{ fontSize: 'min(3vw, 24px)', marginBottom: '2vw' }}>
+        <p style={{ fontSize: '2.5vw', marginBottom: '2vw', fontWeight: 'bold' }}>
           Inquiry
         </p>
         <form style={{

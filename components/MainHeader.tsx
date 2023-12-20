@@ -27,11 +27,11 @@ export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { Text: "Home", link: "" },
-    { Text: "Our Services", link: "" },
-    { Text: "Our Projects", link: "" },
-    { Text: "About Us", link: "" },
-    { Text: "Contact Us", link: "" },
+    { Text: "Home", link: "/" },
+    { Text: "Our Services", link: "/Services" },
+    { Text: "Our Projects", link: "/Projects" },
+    { Text: "About Us", link: "AboutUs" },
+    { Text: "Contact Us", link: "ContactUs" },
     { Text: "Color Visualization", link: "/Visualisation" },
   ];
   return (

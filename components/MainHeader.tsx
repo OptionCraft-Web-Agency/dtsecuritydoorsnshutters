@@ -27,11 +27,12 @@ export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    "Home",
-    "Our Services",
-    "Our Projects",
-    "About Us",
-    "Contact Us",
+    { Text: "Home", link: "" },
+    { Text: "Our Services", link: "" },
+    { Text: "Our Projects", link: "" },
+    { Text: "About Us", link: "" },
+    { Text: "Contact Us", link: "" },
+    { Text: "Color Visualization", link: "/Visualisation" },
   ];
   return (
     <nav className="px-2 lg:px-10 py-2 flex justify-between items-center bg-white relative px-4">
@@ -63,23 +64,17 @@ export default function MainHeader() {
         } lg:block bg-white shadow-lg rounded-lg lg:shadow-none lg:rounded-none lg:bg-transparent  md:mr-2 z-10`}
       >
         <div className="flex flex-col p-4 lg:p-0 lg:flex-row">
-          {[
-            "Home",
-            "Our Services",
-            "Our Projects",
-            "About Us",
-            "Contact Us",
-          ].map((text) => (
+          {menuItems.map((element) => (
             <motion.li
-              key={text}
+              key={element.Text.toLowerCase()}
               className="text-sm uppercase text-black cursor-pointer hover:text-blue-600 mb-2 lg:mb-0"
               whileHover={{ scale: 1.1 }}
             >
               <a
-                href=""
+                href={element.link}
                 className="block rounded-lg px-4 py-2 text-sm md:text-xl wide:text-2xl font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
-                {text}
+                {element.Text}
               </a>
             </motion.li>
           ))}

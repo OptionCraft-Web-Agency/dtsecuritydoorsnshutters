@@ -3,25 +3,17 @@ import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import Link from "next/link";
 interface IconProps {
   style?: CSSProperties;
   className?: string;
   link?: string;
 }
-
 const MenuIcon: React.FC<IconProps> = ({ style, className, link }) => {
-  return (
-    <a href={link}>
-      <FontAwesomeIcon icon={faBars} style={style} className={className} />
-    </a>
-  );
+  return <FontAwesomeIcon icon={faBars} style={style} className={className} />;
 };
 const CloseIcon: React.FC<IconProps> = ({ style, className, link }) => {
-  return (
-    <a href={link}>
-      <FontAwesomeIcon icon={faX} style={style} className={className} />
-    </a>
-  );
+  return <FontAwesomeIcon icon={faX} style={style} className={className} />;
 };
 export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,11 +35,14 @@ export default function MainHeader() {
         transition={{ duration: 0.5 }}
         className="flex items-center"
       >
-        <div className="max-h-[10vh] flex">
-          <img src="Logo1.png" alt="Logo 1" className="max-h-full" />
-          <img src="Logo2.png" alt="Logo 2" className="max-h-full" />
-        </div>
+        <Link href="/" legacyBehavior>
+          <a className="max-h-[10vh] flex">
+            <img src="/Logo1.png" alt="Logo 1" className="max-h-full" />
+            <img src="/Logo2.png" alt="Logo 2" className="max-h-full" />
+          </a>
+        </Link>
       </motion.div>
+
       {/* Menu Button */}
       <button
         className="block lg:hidden"
@@ -70,12 +65,12 @@ export default function MainHeader() {
               className="text-sm uppercase text-black cursor-pointer hover:text-blue-600 mb-2 lg:mb-0"
               whileHover={{ scale: 1.1 }}
             >
-              <a
+              <Link
                 href={element.link}
                 className="block rounded-lg px-4 py-2 text-sm md:text-xl wide:text-2xl font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 {element.Text}
-              </a>
+              </Link>
             </motion.li>
           ))}
           <button

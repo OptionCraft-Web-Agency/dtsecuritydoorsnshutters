@@ -680,7 +680,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <CostCalc />
         </div>
         <CostCalc />
       </div>

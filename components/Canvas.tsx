@@ -35,7 +35,8 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
     if (!context) return;
 
     const houseImage = new Image();
-    houseImage.src = "/Vis/houseMain.png";
+    //houseImage.src = "/Vis/houseMain.png";
+    houseImage.src = "/Vis/roller/homebasseee.png";
 
     const Tom = {
       door: { color: door, src: "/Vis/Tom/door.png" },
@@ -48,7 +49,7 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
       pillars: { color: pillars, src: "/Vis/Tom/pillars.png" },
       right: { color: right, src: "/Vis/Tom/right.png" },
       lowerRoof: { color: lowerRoof, src: "/Vis/Tom/lowerRoof.png" },
-      left: { color: left, src: "/Vis/Tom/left.png" },
+      left: { color: left, src: "/Vis/Tom/leftWall.png" },
       roof: { color: roof, src: "/Vis/Tom/roof.png" },
     };
 
@@ -139,29 +140,14 @@ const CanvasComponent: React.FC<CanvasComponentProps> = ({
   ]);
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "100%" }}>
+    <div className="w-full h-full top-0 left-0 absolute">
       <canvas
         ref={canvasRef}
         style={{
-          position: "absolute",
           width: "100%",
           height: "100%",
-          left: 0,
-          top: 0,
         }}
       />
-      <div
-        style={{
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          left: 0,
-          top: 0,
-          // additional styling for your animation
-        }}
-      >
-        {/* Animation content here */}
-      </div>
     </div>
   );
 };

@@ -159,18 +159,18 @@ export default function CostCalc() {
   };
 
   return (
-    <div className="bg-yellow-200 p-4">
+    <div className="bg-[#F0EDD4] p-4">
       <div className="overflow-x-auto">
         {selections.map((selection) => (
           <div key={selection.id} className="mb-3 p-1 rounded shadow">
             <div className="flex flex-col xl:flex-row ">
               <div className="w-full md:w-auto px-2 mb-2 flex flex-col xl:flex-row items-center justify-between xl:w-[80%] xl:w-[85%] ">
                 <div className="flex flex-row   w-full justify-evenly mb-1 xl:mb-0 xl:mr-2">
-                  <span className="font-bold text-gray-70 w-[20%] text-center mx-auto my-auto bg-yellow-800 text-yellow-100">
+                  <span className="font-bold text-gray-70 w-[20%] text-center mx-auto my-auto bg-[#8E8B82] text-yellow-100">
                     {selection.id}
                   </span>
                   <select
-                    className="p-1 bg-yellow-100 border border-yellow-300 w-[20%] mx-2 my-auto text-center "
+                    className="p-1 bg-[#F9FBE7] border border-yellow-300 w-[20%] mx-2 my-auto text-center "
                     value={selection.unit}
                     onChange={(e) =>
                       handleInputChange(selection.id, "unit", e.target.value)
@@ -181,7 +181,7 @@ export default function CostCalc() {
                     <option value="m">m</option>
                   </select>
                   <select
-                    className="p-1 bg-yellow-100 border border-yellow-300 w-[60%] mx-auto my-auto text-center "
+                    className="p-1 bg-[#F9FBE7] border border-yellow-300 w-[60%] mx-auto my-auto text-center "
                     value={selection.product}
                     onChange={(e) =>
                       handleInputChange(selection.id, "product", e.target.value)
@@ -199,7 +199,7 @@ export default function CostCalc() {
                   <div className="w-1/2 mr-1  ">
                     <input
                       type="number"
-                      className="form-input block w-full p-1 bg-yellow-100 border border-yellow-300 text-center "
+                      className="form-input block w-full p-1 bg-[#F9FBE7] border border-yellow-300 text-center "
                       placeholder="Width"
                       value={selection.width}
                       onChange={(e) =>
@@ -213,7 +213,7 @@ export default function CostCalc() {
                   <div className="w-1/2 ml-1">
                     <input
                       type="number"
-                      className="form-input block w-full p-1 bg-yellow-100 border border-yellow-300 text-center "
+                      className="form-input block w-full p-1 bg-[#F9FBE7] border border-yellow-300 text-center "
                       placeholder="Height"
                       value={selection.height}
                       onChange={(e) =>
@@ -229,7 +229,7 @@ export default function CostCalc() {
                 <div className="flex flex-row w-full justify-evenly ">
                   <div className="w-full mr-1">
                     <select
-                      className="form-select block w-full p-1 bg-yellow-100 border border-yellow-300"
+                      className="form-select block w-full p-1 bg-[#F9FBE7] border border-yellow-300"
                       value={selection.operationType}
                       onChange={(e) =>
                         handleInputChange(
@@ -248,7 +248,7 @@ export default function CostCalc() {
                   </div>
                   <div className="w-full  ml-1">
                     <select
-                      className="form-select block w-full p-1 bg-yellow-100 border border-yellow-300"
+                      className="form-select block w-full p-1 bg-[#F9FBE7] border border-yellow-300"
                       value={selection.location}
                       onChange={(e) =>
                         handleInputChange(
@@ -268,7 +268,7 @@ export default function CostCalc() {
                 </div>
               </div>
               <div className="w-full flex justify-end xl:w-[15%]">
-                <span className="text-red-600 font-bold">
+                <span className="text-[#494949] font-bold">
                   RRP: ${selection.cost}
                 </span>
               </div>
@@ -277,7 +277,7 @@ export default function CostCalc() {
         ))}
         <div className="flex justify-center mt-4">
           <button
-            className="text-white bg-red-500 hover:bg-red-700 font-bold py-2 px-4 rounded"
+            className="text-white bg-[#DC8686] hover:bg-[#EA7659] font-bold py-2 px-4 rounded"
             onClick={addSelection}
           >
             + ADD MORE SHUTTERS

@@ -16,16 +16,19 @@ const config: Config = {
     },
 
     screens: {
-      'sm': "640px",
-      'md': "768px",
-      'lg': "1024px",
-      'xl': "1280px",
+      sm: "640px",
+      md: "768px",
+      lg: "1024px",
+      xl: "1280px",
       "2xl": "1546px",
       "3xl": "1840px",
-      'wide': "2100px",
-      'ultraWide': "2500px",
+      wide: "2100px",
+      ultraWide: "2500px",
     },
   },
-  plugins: [require("@tailwindcss/aspect-ratio")],
+  plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    require("tailwind-scrollbar"),
+  ],
 };
 export default config;

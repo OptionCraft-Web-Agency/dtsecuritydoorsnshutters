@@ -446,7 +446,7 @@ export default function Home() {
                     {/* Section Picker for Roller*/}
                     {showRoller && (
                       <div className="flex flex-col justify-center w-full">
-                        <div className="flex flex-rol my-10 xl:my-auto pt-4 justify-between">
+                        <div className="flex flex-rol my-10 xl:my-auto pt-4 overflow-y-auto justify-between pb-2 scrollbar-thin scrollbar-track-[#F1DEC9] scrollbar-thumb-[#8D7B68]">
                           {Object.keys(roller).map((section) => (
                             <button
                               key={section}

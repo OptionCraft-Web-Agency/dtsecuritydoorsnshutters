@@ -10,6 +10,12 @@ import Image from "next/image";
 import CanvasComponent from "@/components/Canvas";
 import RollerComponent from "@/components/Roller";
 import CostCalc from "@/components/CostCalc";
+import Tests from "@/components/Tests";
+import RollerComponentTest from "@/components/Tests";
+import Static from "@/components/vis/StaticRoller";
+import CurtainRoller from "@/components/vis/CurtainRoller";
+import Inside from "@/components/vis/inside";
+import InsideCurtain from "@/components/vis/insideCurtain";
 import MainHeader from "@/components/MainHeader";
 
 interface ColorSetters {
@@ -32,11 +38,13 @@ export default function Home() {
   const [headBox, setheadBox] = useState("#ffffff");
   const [slat, setslat] = useState("#ffffff");
   const [curtainsColor, setCurtainsColor] = useState(Array(23).fill("#ffffff"));
-  const [selectedIndex, setSelectedIndex] = useState(1);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState("#ffffff");
 
   const [showRoller, setShowRoller] = useState(false);
   const [curtainColor, showCurtainColor] = useState(false);
+  const [animationState, setAnimationState] = useState("paused");
+  const [translateY, setTranslateY] = useState(0);
 
   const colorSetters: ColorSetters = {
     Roof: setRoofMainColor,
@@ -64,7 +72,6 @@ export default function Home() {
     setCurtainsColor((prevColors) => {
       const newColors = [...prevColors];
       newColors[index] = color;
-
       return newColors;
     });
   };
@@ -390,192 +397,290 @@ export default function Home() {
   const handleColorChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setSelectedColor(event.target.value);
   };
+  const movingRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    let intervalId: number | undefined;
+
+    const getScrollLimit = () => {
+      if (movingRef.current) {
+        return -movingRef.current.offsetHeight / 4.2; // Height of the element
+      }
+      return -100; // Default if the element is not available
+    };
+
+    if (animationState !== "paused") {
+      intervalId = window.setInterval(() => {
+        const maxScroll = getScrollLimit();
+        console.log(maxScroll);
+
+        setTranslateY((currentY) => {
+          if (animationState === "up") {
+            return Math.max(currentY - 2, maxScroll);
+          } else if (animationState === "down") {
+            return Math.min(currentY + 2, 0);
+          }
+          return currentY;
+        });
+      }, 50);
+    }
+
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [animationState]);
 
   return (
     <>
       <MainHeader />
-      <div className="container mx-auto">
-        <div className="flex bg-red-200 flex-col-reverse lg:flex-row ">
-          <div className="w-full lg:w-1/2 2xl:w-1/3 wide:w-3/10">
-            <div className="flex flex-row-reverse justify-evenly max-h-full lg:flex-row">
-              {/* Color Selection */}
-              <div className="overflow-auto w-full">
-                <div className="mx-auto my-auto">
-                  {!curtainColor && (
-                    <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
-                      {sections[selectedSection]?.map((color: Color) => (
-                        <div
-                          key={color.name}
-                          className="flex flex-col items-center"
-                        >
-                          <button
-                            className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
-                            style={{ backgroundColor: color.code }}
-                            onClick={() =>
-                              handleColorSelection(selectedSection, color)
-                            }
-                          ></button>
-                          <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
-                            {color.name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {!curtainColor && (
-                    <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
-                      {roller[selectedSection]?.map((color: Color) => (
-                        <div
-                          key={color.name}
-                          className="flex flex-col items-center"
-                        >
-                          <button
-                            className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
-                            style={{ backgroundColor: color.code }}
-                            onClick={() =>
-                              handleRollerSelection(selectedSection, color)
-                            }
-                          ></button>
-                          <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
-                            {color.name}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-
-                  {curtainColor && (
-                    <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
-                      {Curtain.map((color, index) => (
-                        <div key={index} className="flex flex-col items-center">
-                          <button
-                            className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
-                            style={{ backgroundColor: color.code }}
-                            onClick={() => {
-                              updateCurtainColor(selectedIndex, color.code);
-                            }}
-                          ></button>
-                          <span className="text-sm text-gray-700 sm:text-lg md:text-base 2xl:text-lg">
-                            {color.name}
-                          </span>
-                        </div>
-                      ))}
-
-                      {/* Dropdown to select curtain number */}
-                      <div className="col-span-2 md:col-span-3 2xl:col-span-3 3xl:col-span-4 ultraWide:col-span-5">
-                        <select
-                          className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline text-center"
-                          value={selectedIndex}
-                          onChange={handleIndexChange}
-                        >
-                          {Array.from({ length: 23 }, (_, i) => (
-                            <option key={i} value={i}>
-                              Curtain {i + 1}
-                            </option>
+      <div className="bg-[#F6F4EB]">
+        <div className="container mx-auto ">
+          <div className="flex  flex-col-reverse lg:flex-row ">
+            <div className="w-full lg:w-1/2 2xl:w-1/3 wide:w-3/10">
+              <div className="flex flex-row-reverse justify-evenly max-h-full lg:flex-row">
+                {/* Color Selection */}
+                <div className="overflow-auto w-full ">
+                  <div className="mx-auto my-auto ">
+                    {/* Section Picker for Roller*/}
+                    {showRoller && (
+                      <div className="flex flex-col justify-center w-full">
+                        <div className="flex flex-rol my-10 xl:my-auto pt-4 justify-between">
+                          {Object.keys(roller).map((section) => (
+                            <button
+                              key={section}
+                              className={`px-7 py-2 m-1 ${
+                                selectedSection === section
+                                  ? "bg-gray-200"
+                                  : "bg-white"
+                              } border border-gray-300 rounded shadow`}
+                              onClick={() => {
+                                setSelectedSection(section);
+                                showCurtainColor(false);
+                              }}
+                            >
+                              {section}
+                            </button>
                           ))}
-                        </select>
+                          <button
+                            className={`px-6 py-2 m-1 ${
+                              curtainColor ? "bg-gray-200" : "bg-white"
+                            } border border-gray-300 rounded shadow`}
+                            onClick={() => {
+                              showCurtainColor(!curtainColor);
+                              setSelectedSection("");
+                            }}
+                          >
+                            Curtains
+                          </button>
+                        </div>
+                        <div className="flex flex-row justify-evenly pt-1">
+                          <button
+                            className={`px-7 py-2 m-1 ${
+                              animationState === "up"
+                                ? "bg-gray-200"
+                                : "bg-white"
+                            } border border-gray-300 rounded shadow`}
+                            onClick={() => setAnimationState("up")}
+                          >
+                            Scroll Up
+                          </button>
+                          <button
+                            className={`px-7 py-2 m-1 ${
+                              animationState === "paused"
+                                ? "bg-gray-200"
+                                : "bg-white"
+                            } border border-gray-300 rounded shadow`}
+                            onClick={() => setAnimationState("paused")}
+                          >
+                            Pause
+                          </button>
+                          <button
+                            className={`px-7 py-2 m-1 ${
+                              animationState === "down"
+                                ? "bg-gray-200"
+                                : "bg-white"
+                            } border border-gray-300 rounded shadow`}
+                            onClick={() => setAnimationState("down")}
+                          >
+                            Scroll Down
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    )}
 
-                  {/* TODO:: Adding custom color input */}
+                    {/* Color Picker For house*/}
+                    {!curtainColor && (
+                      <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
+                        {sections[selectedSection]?.map((color: Color) => (
+                          <div
+                            key={color.name}
+                            className="flex flex-col items-center"
+                          >
+                            <button
+                              className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
+                              style={{ backgroundColor: color.code }}
+                              onClick={() =>
+                                handleColorSelection(selectedSection, color)
+                              }
+                            ></button>
+                            <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
+                              {color.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    {/* Color Picker For Roller */}
+                    {!curtainColor && (
+                      <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
+                        {roller[selectedSection]?.map((color: Color) => (
+                          <div
+                            key={color.name}
+                            className="flex flex-col items-center"
+                          >
+                            <button
+                              className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
+                              style={{ backgroundColor: color.code }}
+                              onClick={() =>
+                                handleRollerSelection(selectedSection, color)
+                              }
+                            ></button>
+                            <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
+                              {color.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* Color Picker For Curtain */}
+                    {curtainColor && (
+                      <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
+                        {/* Dropdown to select curtain number */}
+                        <div className="pb-2 px-2 col-span-2 md:col-span-3 2xl:col-span-3 3xl:col-span-4 ultraWide:col-span-5">
+                          <select
+                            className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline text-center"
+                            value={selectedIndex}
+                            onChange={handleIndexChange}
+                          >
+                            {Array.from({ length: 23 }, (_, i) => (
+                              <option key={i} value={i}>
+                                Curtain {i + 1}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+
+                        {Curtain.map((color, index) => (
+                          <div
+                            key={index}
+                            className="flex flex-col items-center"
+                          >
+                            <button
+                              className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
+                              style={{ backgroundColor: color.code }}
+                              onClick={() => {
+                                updateCurtainColor(selectedIndex, color.code);
+                              }}
+                            ></button>
+                            <span className="text-sm text-gray-700 sm:text-lg md:text-base 2xl:text-lg">
+                              {color.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
-              <div className="flex flex-col my-10 xl:my-auto px-2">
-                {Object.keys(sections).map((section) => (
+                <div className="flex flex-col my-10 xl:my-auto px-2">
+                  {Object.keys(sections).map((section) => (
+                    <button
+                      key={section}
+                      className={`px-4 py-2 m-1 ${
+                        selectedSection === section ? "bg-gray-200" : "bg-white"
+                      } border border-gray-300 rounded shadow`}
+                      onClick={() => {
+                        setSelectedSection(section);
+                        showCurtainColor(false);
+                      }}
+                    >
+                      {section}
+                    </button>
+                  ))}
                   <button
-                    key={section}
                     className={`px-4 py-2 m-1 ${
-                      selectedSection === section ? "bg-gray-200" : "bg-white"
+                      showRoller ? "bg-green-200" : "bg-slate-300"
                     } border border-gray-300 rounded shadow`}
                     onClick={() => {
-                      setSelectedSection(section);
+                      setShowRoller(!showRoller);
                       showCurtainColor(false);
                     }}
                   >
-                    {section}
+                    Roller Shutter
                   </button>
-                ))}
-                <button
-                  className={`px-4 py-2 m-1 ${
-                    showRoller ? "bg-green-200" : "bg-slate-300"
-                  } border border-gray-300 rounded shadow`}
-                  onClick={() => {
-                    setShowRoller(!showRoller);
-                    showCurtainColor(false);
-                  }}
-                >
-                  Roller Shutter
-                </button>
-                {showRoller && (
-                  <div className="flex flex-col my-10 xl:my-auto">
-                    {Object.keys(roller).map((section) => (
-                      <button
-                        key={section}
-                        className={`px-4 py-2 m-1 ${
-                          selectedSection === section
-                            ? "bg-gray-200"
-                            : "bg-white"
-                        } border border-gray-300 rounded shadow`}
-                        onClick={() => {
-                          setSelectedSection(section);
-                          showCurtainColor(false);
-                        }}
-                      >
-                        {section}
-                      </button>
-                    ))}
-                  </div>
-                )}
-                {showRoller && (
-                  <button
-                    className={`px-4 py-2 m-1 ${
-                      curtainColor ? "bg-gray-200" : "bg-white"
-                    } border border-gray-300 rounded shadow`}
-                    onClick={() => {
-                      showCurtainColor(!curtainColor);
-                      setSelectedSection("");
-                    }}
-                  >
-                    Curtains
-                  </button>
-                )}
+                </div>
               </div>
             </div>
-          </div>
-          <div className="w-full  lg:max-h-[1000px] lg:w-1/2 2xl:w-2/3 wide:w-7/10 mx-auto">
-            <div className="w-full h-[400px] md:h-[550px] xl:h-full">
-              <div
-                style={{ position: "relative", width: "100%", height: "100%" }}
-              >
-                <CanvasComponent
-                  door={doorColor}
-                  facia={facia}
-                  frontWall={frontWall}
-                  left={leftWallColor}
-                  lowerRoof={lowerRoofColor}
-                  pillars={pillarsColor}
-                  right={rightWallColor}
-                  roof={roofMainColor}
-                  width={containerSize.width}
-                  height={containerSize.height}
-                />
+            <div
+              className="w-full  lg:max-h-[1000px] lg:w-1/2 2xl:w-2/3 wide:w-7/10 mx-auto"
+              ref={movingRef}
+            >
+              <div className="w-full h-[400px] md:h-[550px] xl:h-full">
+                <div
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
+                  <div>
+                    <InsideCurtain
+                      width={containerSize.width}
+                      height={containerSize.height}
+                    />
+                  </div>
 
-                {showRoller && (
-                  <RollerComponent
-                    curtainsColor={curtainsColor}
-                    bottom={bottom}
-                    rail={rail}
-                    headBox={headBox}
-                    slat={slat}
+                  {showRoller && (
+                    <div id="Moving" className="z-0">
+                      <CurtainRoller
+                        curtainsColor={curtainsColor}
+                        slat={slat}
+                        width={containerSize.width}
+                        height={containerSize.height}
+                        translateY={translateY}
+                      />
+                    </div>
+                  )}
+
+                  <CanvasComponent
+                    door={doorColor}
+                    facia={facia}
+                    frontWall={frontWall}
+                    left={leftWallColor}
+                    lowerRoof={lowerRoofColor}
+                    pillars={pillarsColor}
+                    right={rightWallColor}
+                    roof={roofMainColor}
                     width={containerSize.width}
                     height={containerSize.height}
                   />
-                )}
+
+                  {showRoller && (
+                    <Static
+                      bottom={bottom}
+                      rail={rail}
+                      headBox={headBox}
+                      width={containerSize.width}
+                      height={containerSize.height}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           </div>
+          <CostCalc />
         </div>
         <CostCalc />
       </div>

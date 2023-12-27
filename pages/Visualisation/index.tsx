@@ -435,7 +435,6 @@ export default function Home() {
   return (
     <>
       <MainHeader />
-
       <div className="bg-[#F6F4EB]">
         <div className="container mx-auto ">
           <div className="flex  flex-col-reverse lg:flex-row ">
@@ -683,6 +682,7 @@ export default function Home() {
           </div>
           <CostCalc />
         </div>
+        <CostCalc />
       </div>
     </>
   );

@@ -1,12 +1,35 @@
-import React from "react";
+import React, { CSSProperties } from "react";
+import { color, motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { SocialIcon } from "react-social-icons";
-import { motion } from "framer-motion";
 
+interface IconProps {
+  style?: CSSProperties;
+  className?: string;
+  link?: string;
+}
+
+const PhoneIcon: React.FC<IconProps> = ({ style, className, link }) => {
+  return (
+    <a href={link}>
+      <FontAwesomeIcon icon={faPhone} style={style} className={className} />
+    </a>
+  );
+};
+const FacebookIcon: React.FC<IconProps> = ({ style, className, link }) => {
+  return (
+    <a href={link}>
+      <FontAwesomeIcon icon={faFacebookF} style={style} className={className} />
+    </a>
+  );
+};
 type Props = {};
 
 export default function Header({}: Props) {
   return (
-    <header className="sticky top-0 p-5 flex items-start justify-between max-w-7xl mx-auto z-20 xl:items-center">
+    <header className="sticky top-0 py-1 md:py-5 px-10 flex justify-between justify-center mx-auto z-20 bg-[#B3B3B3] w-screen text-base   ultraWide: px-[5%] wide:text-3xl ">
       <motion.div
         initial={{
           x: -500,
@@ -23,21 +46,11 @@ export default function Header({}: Props) {
         }}
         className="flex flex-row items-center"
       >
-        <SocialIcon
-          url="https://www.facebook.com/quocchic/"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>{" "}
-        <SocialIcon
-          url="https://github.com/Kedoichi"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>{" "}
-        <SocialIcon
-          url="https://www.linkedin.com/in/tien-quoc-vu-2065a6162/"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>
+        <PhoneIcon
+          className="text-xl pr-1 text-white md:text-3xl"
+          link="tel:0434 227 688"
+        />
+        <p className="text-white ml-2 md:text-xl">0434 227 688</p>
       </motion.div>
       <motion.div
         initial={{
@@ -53,17 +66,17 @@ export default function Header({}: Props) {
         transition={{
           duration: 0.8,
         }}
-        className="flex flex-row items-center text-gray-300 cursor-pointer"
+        className="flex flex-row items-center cursor-pointer"
       >
-        <SocialIcon
-          className="cursor-pointer"
-          network="email"
-          fgColor="gray"
-          bgColor="transparent"
-        ></SocialIcon>
-        <p className="uppercase hiddne md:inline-flex text-sm text-gray-400">
-          Get In Touch
+        <p className="uppercase hidden md:inline-flex text-white mr-2 pr-4 md:text-xl">
+          Contact With Us
         </p>
+        <div className="rounded-lg cursor-pointer border border-white border-2 ">
+          <FacebookIcon
+            className="text-white px-2 py-1 text-center justify-center flex text-xl md:text-3xl"
+            link="https://www.facebook.com/"
+          ></FacebookIcon>
+        </div>
       </motion.div>
     </header>
   );

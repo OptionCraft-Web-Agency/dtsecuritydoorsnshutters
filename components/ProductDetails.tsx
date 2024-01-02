@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-// Define your types for props
+// Types for props
 type Attribute = {
   name: string;
   value: string;
@@ -38,77 +38,37 @@ type ProductProps = {
   };
 };
 
+const normalizeAttributeName = (name: string) =>
+  name.toLowerCase().replace(/[^a-zA-Z0-9]+/g, "");
+
 const ProductDetails: React.FC<ProductProps> = ({ product }) => {
-  // State for selected attributes
   const [selectedAttributes, setSelectedAttributes] = useState<
     Record<string, string>
   >({});
-
-  // State for the selected variation
   const [selectedVariation, setSelectedVariation] = useState<Variation | null>(
-    product.variations.nodes[0] as Variation
+    null
   );
 
-  // Effect hook to set the default attributes when the component mounts
+  // Set default attributes and find matching variation on mount and when product changes
   useEffect(() => {
-    // Convert default attribute names to a normalized format
-    const defaultAttrValues = product.defaultAttributes.nodes.reduce(
-      (acc, attr) => {
-        const normalizedAttributeName = normalizeAttributeName(attr.name);
-        acc[normalizedAttributeName] = attr.value;
-        return acc;
-      },
-      {} as Record<string, string>
-    );
+    const defaultAttrValues = getDefaultAttributeValues();
+    setSelectedAttributes(defaultAttrValues);
+    findAndSetMatchingVariation(defaultAttrValues);
+  }, [product]); // Dependency on product to update if it changes
 
-    // Update the selected attributes state with default values
-    setSelectedAttributes((prevAttributes) => {
-      // Create a new object for selected attributes
-      const newAttributes = { ...prevAttributes };
-
-      // Iterate over the attributes nodes to set the defaults
-      product.attributes.nodes.forEach((attributeNode) => {
-        const normalizedAttributeName = normalizeAttributeName(
-          attributeNode.name
-        );
-        // If the default attribute value exists, use it
-        if (defaultAttrValues[normalizedAttributeName] !== undefined) {
-          newAttributes[attributeNode.name] =
-            defaultAttrValues[normalizedAttributeName];
-        } else {
-          // Otherwise, use the first option as the default
-          newAttributes[attributeNode.name] = attributeNode.options[0];
-        }
-      });
-
-      return newAttributes;
-    });
-  }, [product.defaultAttributes.nodes, product.attributes.nodes]);
-
-  // Log the default attributes and selected variation
-
-  useEffect(() => {}, [selectedAttributes, selectedVariation]);
-
-  function normalizeAttributeName(name) {
-    return name.toLowerCase().replace(/[-_\s]+/g, "");
-  }
-
-  // Event handler for when an attribute is selected
-  // Inside handleSelectAttribute or wherever you call findMatchingVariation
-  const handleSelectAttribute = (attrName: string, value: string) => {
-    // We assume attrName is provided in the correct format
-    setSelectedAttributes((prevAttributes) => ({
-      ...prevAttributes,
-      [attrName]: value,
-    }));
+  const getDefaultAttributeValues = () => {
+    return product.defaultAttributes.nodes.reduce((defaults, attr) => {
+      defaults[normalizeAttributeName(attr.name)] = attr.value;
+      return defaults;
+    }, {} as Record<string, string>);
   };
 
-  // Function to find the matching variation based on selected attributes
-  // Function to find the matching variation based on selected attributes
+  const findAndSetMatchingVariation = (attributes: Record<string, string>) => {
+    const matchingVariation = findMatchingVariation(attributes);
+    setSelectedVariation(matchingVariation);
+  };
 
-  const findMatchingVariation = (
-    attributes: Record<string, string>
-  ): Variation | null => {
+  const findMatchingVariation = (attributes: Record<string, string>) => {
     // Normalize the attributes to ensure a case-insensitive match
     const normalizedSelectedAttributes = Object.keys(attributes).reduce(
       (acc, key) => {
@@ -118,59 +78,42 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
       {}
     );
 
-    // Find a variation where every attribute matches the selected attribute
     return (
       product.variations.nodes.find((variation) => {
+        // Check if all attributes in a variation match the selected attributes
         return variation.attributes.nodes.every((variationAttr) => {
           const normalizedVariationAttrName = normalizeAttributeName(
             variationAttr.name
           );
-          // If the variation's attribute value is empty, it should match any value.
-          if (variationAttr.value === "") {
-            return true; // This attribute is a wildcard, ignore it in the matching process.
-          }
-          // If the selected attribute is not defined, or if it matches the variation's value, return true.
-          return (
-            !(normalizedVariationAttrName in normalizedSelectedAttributes) ||
-            normalizedSelectedAttributes[normalizedVariationAttrName] ===
+          // If the variation attribute is empty, it matches any value (wildcard).
+          if (variationAttr.value === "") return true;
+          // If the attribute is 'privacy-mesh-dva-required', ensure it matches exactly.
+          if (normalizedVariationAttrName === "privacy-mesh-dva-required") {
+            return (
+              normalizedSelectedAttributes[normalizedVariationAttrName] ===
               variationAttr.value
+            );
+          }
+          // For other attributes, match normally.
+          return (
+            normalizedSelectedAttributes[normalizedVariationAttrName] ===
+            variationAttr.value
           );
         });
       }) || null
     ); // Return null if no matching variation is found
   };
 
-  useEffect(() => {
-    const newVariation = findMatchingVariation(selectedAttributes);
-    setSelectedVariation(newVariation);
-  }, [selectedAttributes]); // Only re-run if selectedAttributes changes
+  const handleSelectAttribute = (name: string, value: string) => {
+    const normalizedAttrName = normalizeAttributeName(name);
+    const updatedAttributes = {
+      ...selectedAttributes,
+      [normalizedAttrName]: value,
+    };
 
-  // Effect for logging current attribute combination and price
-  useEffect(() => {
-    console.log("Current attribute combination:", selectedAttributes);
-    if (selectedVariation) {
-      console.log("Price for this combination:", selectedVariation.price);
-    }
-  }, [selectedAttributes, selectedVariation]);
-
-  // UseEffect hook to update the selected variation when the selected attributes change
-  useEffect(() => {
-    const matchingVariation = findMatchingVariation(selectedAttributes);
-    if (matchingVariation) {
-      setSelectedVariation(matchingVariation);
-    }
-  }, [selectedAttributes]);
-
-  useEffect(() => {
-    console.log("Current attribute combination:");
-    Object.entries(selectedAttributes).forEach(([key, value]) => {
-      console.log(`${key}: ${value}`);
-    });
-
-    if (selectedVariation) {
-      console.log(`Price for this combination: ${selectedVariation.price}`);
-    }
-  }, [selectedAttributes, selectedVariation]);
+    setSelectedAttributes(updatedAttributes);
+    findAndSetMatchingVariation(updatedAttributes);
+  };
 
   return (
     <div className="container mx-auto my-8 p-4">
@@ -179,11 +122,11 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
 
       <div className="md:flex">
         <div className="md:w-1/2">
-          {/* Image component */}
           <Image
             src={
               selectedVariation?.image.sourceUrl ||
-              product.variations.nodes[0].image.sourceUrl
+              product.variations.nodes[0]?.image.sourceUrl ||
+              "/default-image.jpg" // Fallback for a default image if neither is available
             }
             alt={`Image of ${product.name}`}
             width={500}
@@ -192,7 +135,6 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
           />
         </div>
         <div className="md:w-1/2 md:pl-8">
-          {/* Render options */}
           {product.attributes.nodes.map((attribute) => (
             <div key={attribute.name} className="mb-4">
               <h3 className="text-xl font-semibold capitalize">
@@ -203,7 +145,9 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
                   <button
                     key={option}
                     className={`m-1 px-4 py-2 border rounded ${
-                      selectedAttributes[attribute.name] == option
+                      selectedAttributes[
+                        normalizeAttributeName(attribute.name)
+                      ] === option
                         ? "bg-blue-500 text-white"
                         : "bg-white text-gray-700 border-gray-300"
                     }`}
@@ -217,14 +161,10 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
               </div>
             </div>
           ))}
-
-          {/* Render price */}
           <p className="text-2xl font-bold mt-4">
             Price:{" "}
             {selectedVariation ? selectedVariation.price : "Select options"}
           </p>
-
-          {/* Add to cart button */}
           <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
             Add to Cart
           </button>
@@ -233,5 +173,4 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
     </div>
   );
 };
-
 export default ProductDetails;

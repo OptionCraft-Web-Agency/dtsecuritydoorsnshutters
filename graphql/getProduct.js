@@ -1,5 +1,5 @@
 // graphql/queries.js
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_PRODUCT_QUERY = gql`
   query GetProduct($id: ID!) {
@@ -11,7 +11,7 @@ export const GET_PRODUCT_QUERY = gql`
         description
       }
       ... on VariableProduct {
-        variations {
+        variations(first: 200) {
           nodes {
             id
             price

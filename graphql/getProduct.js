@@ -1,9 +1,9 @@
-// fetchProduct.js (or you could name it queries.js or something similar)
+// graphql/queries.js
 import { gql } from '@apollo/client';
 
 export const GET_PRODUCT_QUERY = gql`
   query GetProduct($id: ID!) {
-    product(id: $id, idType: DATABASE_ID) {
+    product(id: $id) {
       id
       name
       ... on SimpleProduct {
@@ -24,6 +24,18 @@ export const GET_PRODUCT_QUERY = gql`
             image {
               sourceUrl
             }
+          }
+        }
+        defaultAttributes {
+          nodes {
+            name
+            value
+          }
+        }
+        attributes {
+          nodes {
+            name
+            options
           }
         }
       }

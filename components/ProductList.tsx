@@ -18,10 +18,10 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
       {products.map((product) => (
         <ProductCard
           key={product.id}
+          id={product.id}
           name={product.name}
           imageUrl={product.image.sourceUrl} // Use the direct source URL for the image
           price={product.price}
-          productUrl={product.link}
         />
       ))}
     </div>

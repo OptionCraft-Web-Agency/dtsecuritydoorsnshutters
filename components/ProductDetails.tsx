@@ -86,21 +86,91 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
   }, [product.defaultAttributes.nodes, product.attributes.nodes]);
 
   // Log the default attributes and selected variation
-  console.log("Default attributes: ", selectedAttributes);
 
   useEffect(() => {}, [selectedAttributes, selectedVariation]);
 
   function normalizeAttributeName(name) {
-    return name.toLowerCase().replace(/-+/g, "");
+    return name.toLowerCase().replace(/[-_\s]+/g, "");
   }
 
   // Event handler for when an attribute is selected
+  // Inside handleSelectAttribute or wherever you call findMatchingVariation
   const handleSelectAttribute = (attrName: string, value: string) => {
+    // We assume attrName is provided in the correct format
     setSelectedAttributes((prevAttributes) => ({
       ...prevAttributes,
       [attrName]: value,
     }));
   };
+
+  // Function to find the matching variation based on selected attributes
+  // Function to find the matching variation based on selected attributes
+
+  const findMatchingVariation = (
+    attributes: Record<string, string>
+  ): Variation | null => {
+    // Normalize the attributes to ensure a case-insensitive match
+    const normalizedSelectedAttributes = Object.keys(attributes).reduce(
+      (acc, key) => {
+        acc[normalizeAttributeName(key)] = attributes[key];
+        return acc;
+      },
+      {}
+    );
+
+    // Find a variation where every attribute matches the selected attribute
+    return (
+      product.variations.nodes.find((variation) => {
+        return variation.attributes.nodes.every((variationAttr) => {
+          const normalizedVariationAttrName = normalizeAttributeName(
+            variationAttr.name
+          );
+          // If the variation's attribute value is empty, it should match any value.
+          if (variationAttr.value === "") {
+            return true; // This attribute is a wildcard, ignore it in the matching process.
+          }
+          // If the selected attribute is not defined, or if it matches the variation's value, return true.
+          return (
+            !(normalizedVariationAttrName in normalizedSelectedAttributes) ||
+            normalizedSelectedAttributes[normalizedVariationAttrName] ===
+              variationAttr.value
+          );
+        });
+      }) || null
+    ); // Return null if no matching variation is found
+  };
+
+  useEffect(() => {
+    const newVariation = findMatchingVariation(selectedAttributes);
+    setSelectedVariation(newVariation);
+  }, [selectedAttributes]); // Only re-run if selectedAttributes changes
+
+  // Effect for logging current attribute combination and price
+  useEffect(() => {
+    console.log("Current attribute combination:", selectedAttributes);
+    if (selectedVariation) {
+      console.log("Price for this combination:", selectedVariation.price);
+    }
+  }, [selectedAttributes, selectedVariation]);
+
+  // UseEffect hook to update the selected variation when the selected attributes change
+  useEffect(() => {
+    const matchingVariation = findMatchingVariation(selectedAttributes);
+    if (matchingVariation) {
+      setSelectedVariation(matchingVariation);
+    }
+  }, [selectedAttributes]);
+
+  useEffect(() => {
+    console.log("Current attribute combination:");
+    Object.entries(selectedAttributes).forEach(([key, value]) => {
+      console.log(`${key}: ${value}`);
+    });
+
+    if (selectedVariation) {
+      console.log(`Price for this combination: ${selectedVariation.price}`);
+    }
+  }, [selectedAttributes, selectedVariation]);
 
   return (
     <div className="container mx-auto my-8 p-4">

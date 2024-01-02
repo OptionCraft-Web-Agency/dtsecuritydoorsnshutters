@@ -44,27 +44,55 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
     Record<string, string>
   >({});
 
+  // State for the selected variation
+  const [selectedVariation, setSelectedVariation] = useState<Variation | null>(
+    product.variations.nodes[0] as Variation
+  );
+
   // Effect hook to set the default attributes when the component mounts
   useEffect(() => {
-    const defaultAttributes = product.defaultAttributes.nodes.reduce(
-      (acc, attribute) => {
-        acc[attribute.name] = attribute.value;
+    // Convert default attribute names to a normalized format
+    const defaultAttrValues = product.defaultAttributes.nodes.reduce(
+      (acc, attr) => {
+        const normalizedAttributeName = normalizeAttributeName(attr.name);
+        acc[normalizedAttributeName] = attr.value;
         return acc;
       },
       {} as Record<string, string>
     );
 
-    setSelectedAttributes(defaultAttributes);
-  }, [product.defaultAttributes]);
+    // Update the selected attributes state with default values
+    setSelectedAttributes((prevAttributes) => {
+      // Create a new object for selected attributes
+      const newAttributes = { ...prevAttributes };
 
-  // Find the selected variation based on the selected attributes
-  const selectedVariation = product.variations.nodes.find((variation) =>
-    Object.entries(selectedAttributes).every(([name, value]) =>
-      variation.attributes.nodes.some(
-        (attr) => attr.name === name && attr.value === value
-      )
-    )
-  );
+      // Iterate over the attributes nodes to set the defaults
+      product.attributes.nodes.forEach((attributeNode) => {
+        const normalizedAttributeName = normalizeAttributeName(
+          attributeNode.name
+        );
+        // If the default attribute value exists, use it
+        if (defaultAttrValues[normalizedAttributeName] !== undefined) {
+          newAttributes[attributeNode.name] =
+            defaultAttrValues[normalizedAttributeName];
+        } else {
+          // Otherwise, use the first option as the default
+          newAttributes[attributeNode.name] = attributeNode.options[0];
+        }
+      });
+
+      return newAttributes;
+    });
+  }, [product.defaultAttributes.nodes, product.attributes.nodes]);
+
+  // Log the default attributes and selected variation
+  console.log("Default attributes: ", selectedAttributes);
+
+  useEffect(() => {}, [selectedAttributes, selectedVariation]);
+
+  function normalizeAttributeName(name) {
+    return name.toLowerCase().replace(/-+/g, "");
+  }
 
   // Event handler for when an attribute is selected
   const handleSelectAttribute = (attrName: string, value: string) => {
@@ -105,7 +133,7 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
                   <button
                     key={option}
                     className={`m-1 px-4 py-2 border rounded ${
-                      selectedAttributes[attribute.name] === option
+                      selectedAttributes[attribute.name] == option
                         ? "bg-blue-500 text-white"
                         : "bg-white text-gray-700 border-gray-300"
                     }`}

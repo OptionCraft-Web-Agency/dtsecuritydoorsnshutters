@@ -1,4 +1,5 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
+import Image from "next/image";
 
 const Info2: React.FC = () => {
   const [windowWidth, setWindowWidth] = useState(0); // Initialize with 0
@@ -70,7 +71,7 @@ const Info2: React.FC = () => {
     <div style={containerStyle}>
       {/* left */}
       <div style={imageContainerStyle}>
-        <img src="/RollerDoor1.jpg" alt="Roller Door" style={{ width: '100%', height: 'auto' }} />
+        <Image src="/RollerDoor1.jpg" alt="Roller Door" style={{ width: '100%', height: 'auto' }} />
       </div>
 
       {/* right */}

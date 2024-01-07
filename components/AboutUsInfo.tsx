@@ -75,12 +75,12 @@ const AboutUsInfo: React.FC = () => {
         living space.
       </p>
       <div style={imageContainerStyle}>
-        <img
+        <Image
           style={imageStyle}
           src="/QualityLogo.png"
           alt="Quality Assurance Logo"
         />
-        <img
+        <Image
           style={imageStyle}
           src="/WarrantyLogo.png"
           alt="Warranty Logo"

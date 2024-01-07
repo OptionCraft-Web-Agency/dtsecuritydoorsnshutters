@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import Image from "next/image";
+
 interface IconProps {
   style?: CSSProperties;
   className?: string;
@@ -37,8 +39,8 @@ export default function MainHeader() {
       >
         <Link href="/" legacyBehavior>
           <a className="max-h-[10vh] flex">
-            <img src="/Logo1.png" alt="Logo 1" className="max-h-full" />
-            <img src="/Logo2.png" alt="Logo 2" className="max-h-full" />
+            <Image src="/Logo1.png" alt="Company Logo" width={100} height={100} />
+            <Image src="/Logo2.png" alt="Company Secondary Logo" width={100} height={100} />
           </a>
         </Link>
       </motion.div>

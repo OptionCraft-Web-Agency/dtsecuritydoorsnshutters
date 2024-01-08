@@ -1,16 +1,24 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 
 const HomeForm: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  // Initialize isMobile with a default value
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
+    // Function to update the state based on window size
+    const checkMobile = () => {
       setIsMobile(window.innerWidth < 600);
     };
 
-    window.addEventListener('resize', handleResize);
+    // Set the initial state based on the current window size
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
+    // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', checkMobile);
     };
   }, []);
 
@@ -89,8 +97,8 @@ const HomeForm: React.FC = () => {
             type="submit"
             style={buttonStyle}
             onMouseEnter={(e) => (e.currentTarget.style.cssText = Object.entries(hoverButtonStyle).map(([key, value]) => `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${value}`).join(';'))}
-            onMouseLeave={(e) => (e.currentTarget.style.cssText = Object.entries(hoverButtonStyle).map(([key, value]) => `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${value}`).join(';'))}
-            >
+            onMouseLeave={(e) => (e.currentTarget.style.cssText = Object.entries(buttonStyle).map(([key, value]) => `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${value}`).join(';'))}
+          >
             Send
           </button>
         </form>

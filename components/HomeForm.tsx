@@ -1,33 +1,47 @@
-import React, { CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 const HomeForm: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const containerStyle: CSSProperties = {
     height: '100vh',
     width: '100%',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: isMobile ? 'column' : 'row',
   };
 
   const formContainerStyle: CSSProperties = {
     height: 'calc(100vh - 80px)',
-    width: '50%',
+    width: isMobile ? '100%' : '50%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     padding: '5vw',
     boxSizing: 'border-box',
+    order: isMobile ? 2 : 0,
   };
 
   const inputStyle: CSSProperties = {
-    marginBottom: '2vw',
-    padding: '0.5vw',
-    borderRadius: '0.5vw',
+    marginBottom: isMobile ? '5%' : '2vw',
+    padding: isMobile ? '2%' : '0.5vw',
+    borderRadius: isMobile ? '5%' : '0.5vw',
     border: '1px solid black',
   };
 
   const buttonStyle: CSSProperties = {
-    padding: '1.5vw',
+    padding: isMobile ? '3%' : '1.5vw',
     border: 'none',
     borderRadius: '0.5vw',
     color: 'white',
@@ -44,8 +58,19 @@ const HomeForm: React.FC = () => {
     transform: 'scale(1.05)',
   };
 
+  const imageStyle: CSSProperties = {
+    height: 'calc(100vh - 80px)',
+    width: isMobile ? '100%' : '50%',
+    backgroundImage: 'url(/RollerDoor1.jpg)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    order: isMobile ? 1 : 0,
+  };
+
   return (
     <div style={containerStyle}>
+      <div style={imageStyle}></div>
       <div style={formContainerStyle}>
         <p style={{ fontSize: '2.5vw', marginBottom: '2vw', fontWeight: 'bold' }}>
           Inquiry
@@ -64,23 +89,12 @@ const HomeForm: React.FC = () => {
             type="submit"
             style={buttonStyle}
             onMouseEnter={(e) => (e.currentTarget.style.cssText = Object.entries(hoverButtonStyle).map(([key, value]) => `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${value}`).join(';'))}
-            onMouseLeave={(e) => (e.currentTarget.style.cssText = Object.entries(buttonStyle).map(([key, value]) => `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${value}`).join(';'))}
-          >
+            onMouseLeave={(e) => (e.currentTarget.style.cssText = Object.entries(hoverButtonStyle).map(([key, value]) => `${key.replace(/([A-Z])/g, '-$1').toLowerCase()}:${value}`).join(';'))}
+            >
             Send
           </button>
         </form>
       </div>
-
-      <div
-        style={{
-          height: 'calc(100vh - 80px)',
-          width: '50%',
-          backgroundImage: 'url(/RollerDoor1.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      ></div>
     </div>
   );
 };

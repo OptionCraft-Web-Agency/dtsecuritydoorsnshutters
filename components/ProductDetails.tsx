@@ -119,9 +119,10 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
     <div className="container mx-auto my-8 p-4">
       <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
       <div dangerouslySetInnerHTML={{ __html: product.description }} />
+      <div dangerouslySetInnerHTML={{ __html: product.shortDescription }} />
 
-      <div className="md:flex">
-        <div className="md:w-1/2">
+      <div className="md:flex md:justify-center md:items-start mx-auto">
+        <div className="relative w-full max-w-md mx-auto">
           <Image
             src={
               selectedVariation?.image.sourceUrl ||
@@ -129,12 +130,14 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
               "/default-image.jpg" // Fallback for a default image if neither is available
             }
             alt={`Image of ${product.name}`}
-            width={500}
-            height={500}
+            width={512} // The width you want for the image
+            height={1000} // The height to maintain the 1:2 aspect ratio (tall door)
             layout="responsive"
+            objectFit="cover" // Adjust this as needed
+            className="rounded-lg" // Add rounded corners if desired
           />
         </div>
-        <div className="md:w-1/2 md:pl-8">
+        <div className="md:w-1/2 lg:w-2/3 md:pl-8">
           {product.attributes.nodes.map((attribute) => (
             <div key={attribute.name} className="mb-4">
               <h3 className="text-xl font-semibold capitalize">

@@ -1,6 +1,6 @@
 // components/ProductList.tsx
 import React from "react";
-import ProductCard from "./productCard";
+import ProductCard from "./ProductCard";
 
 type ProductListProps = {
   products: Array<{

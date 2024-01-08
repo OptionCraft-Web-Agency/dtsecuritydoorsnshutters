@@ -36,12 +36,9 @@ const ProductCard: React.FC<ProductCardProps> = ({
       <div className="flex mt-4 space-x-2">
         <button
           onClick={viewProductDetails}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition"
+          className="inline-block px-4 py-2 border border-black bg-black text-white font-semibold text-sm leading-tight rounded text-center transition-colors hover:bg-opacity-90"
         >
           View Product
-        </button>
-        <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
-          Add to Cart
         </button>
       </div>
     </div>

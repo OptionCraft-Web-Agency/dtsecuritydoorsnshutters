@@ -46,6 +46,7 @@ const HomeForm: React.FC = () => {
     padding: isMobile ? '2%' : '0.5vw',
     borderRadius: isMobile ? '5%' : '0.5vw',
     border: '1px solid black',
+    fontSize:'2vw'
   };
 
   const buttonStyle: CSSProperties = {
@@ -80,7 +81,7 @@ const HomeForm: React.FC = () => {
     <div style={containerStyle}>
       <div style={imageStyle}></div>
       <div style={formContainerStyle}>
-        <p style={{ fontSize: '2.5vw', marginBottom: '2vw', fontWeight: 'bold' }}>
+        <p style={{ fontSize: '4vw', marginBottom: '2vw', fontWeight: 'bold' }}>
           Inquiry
         </p>
         <form style={{

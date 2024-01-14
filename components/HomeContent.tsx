@@ -123,7 +123,6 @@ const HomeContent: React.FC = () => {
                 gridTemplateRows: "repeat(5, 1fr)", // Six rows
                 gap: "1vw", // Spacing between images
                 padding: "1vw", // Padding around the grid
-                paddingRight: "10vw",
             }}
         >
             {/* Image 1 - Top left, taking up two columns and three rows */}

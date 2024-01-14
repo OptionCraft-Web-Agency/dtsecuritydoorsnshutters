@@ -3,14 +3,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const ContactUsInfo: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Check the window size initially and set the isMobile state
+    setIsMobile(window.innerWidth < 768);
+
+    // Function to update the state based on window resize
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
+    // Add event listener for window resize
     window.addEventListener('resize', handleResize);
+
+    // Clean-up function to remove the event listener
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 

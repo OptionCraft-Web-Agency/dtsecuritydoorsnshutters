@@ -1,9 +1,13 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
 
 const ContactUsForm: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 600);
+  // Initialize state without a value as it's unknown at server-side
+  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
 
   useEffect(() => {
+    // Now that we are client-side, set the state based on window width
+    setIsMobile(window.innerWidth < 600);
+
     const handleResize = () => {
       setIsMobile(window.innerWidth < 600);
     };

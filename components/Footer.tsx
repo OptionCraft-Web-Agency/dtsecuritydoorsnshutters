@@ -3,6 +3,8 @@ import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
+import ContactUsInfo from './ContactUsInfo';
+
 const Footer: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 

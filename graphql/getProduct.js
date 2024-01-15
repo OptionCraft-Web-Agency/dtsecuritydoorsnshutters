@@ -5,7 +5,9 @@ export const GET_PRODUCT_QUERY = gql`
   query GetProduct($id: ID!) {
     product(id: $id) {
       id
-      name
+      description
+      shortDescription
+      title
       ... on SimpleProduct {
         price
         description

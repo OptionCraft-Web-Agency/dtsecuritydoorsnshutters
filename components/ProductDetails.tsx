@@ -23,6 +23,8 @@ type ProductProps = {
     id: string;
     name: string;
     description: string;
+    shortDescription: string;
+    title: string;
     variations: {
       nodes: Array<Variation>;
     };
@@ -56,11 +58,14 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
     findAndSetMatchingVariation(defaultAttrValues);
   }, [product]); // Dependency on product to update if it changes
 
-  const getDefaultAttributeValues = () => {
-    return product.defaultAttributes.nodes.reduce((defaults, attr) => {
-      defaults[normalizeAttributeName(attr.name)] = attr.value;
-      return defaults;
-    }, {} as Record<string, string>);
+  const getDefaultAttributeValues = (): Record<string, string> => {
+    return product.defaultAttributes.nodes.reduce<Record<string, string>>(
+      (defaults, attr) => {
+        defaults[normalizeAttributeName(attr.name)] = attr.value;
+        return defaults;
+      },
+      {}
+    );
   };
 
   const findAndSetMatchingVariation = (attributes: Record<string, string>) => {
@@ -68,15 +73,15 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
     setSelectedVariation(matchingVariation);
   };
 
-  const findMatchingVariation = (attributes: Record<string, string>) => {
-    // Normalize the attributes to ensure a case-insensitive match
-    const normalizedSelectedAttributes = Object.keys(attributes).reduce(
-      (acc, key) => {
-        acc[normalizeAttributeName(key)] = attributes[key];
-        return acc;
-      },
-      {}
-    );
+  const findMatchingVariation = (
+    attributes: Record<string, string>
+  ): Variation | null => {
+    const normalizedSelectedAttributes = Object.keys(attributes).reduce<
+      Record<string, string>
+    >((acc, key) => {
+      acc[normalizeAttributeName(key)] = attributes[key];
+      return acc;
+    }, {});
 
     return (
       product.variations.nodes.find((variation) => {

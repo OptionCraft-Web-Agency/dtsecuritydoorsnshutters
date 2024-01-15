@@ -8,7 +8,6 @@ import ContactUsInfo from '@/components/ContactUsInfo';
 import ContactUsForm from '@/components/ContactUsForm';
 import Footer from '@/components/Footer';
 
-// Define the AboutUsSection component
 const ContactUsSection: React.FC = () => {
   const sectionStyle: CSSProperties = {
     position: 'relative',

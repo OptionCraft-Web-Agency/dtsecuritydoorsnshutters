@@ -12,7 +12,8 @@ const Store: React.FC = () => {
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    padding: '2vw 0',
+    padding: '5vw 0',
+    height: 'calc(100vh - 80px)',
   };
 
   const titleStyle: CSSProperties = {
@@ -30,7 +31,7 @@ const Store: React.FC = () => {
 
   return (
     <div style={containerStyle}>
-      <h2 style={titleStyle}>Our Services</h2>
+      <h2 style={titleStyle}>Seamless Security Meets Style with Custom Doors and Windows.</h2>
       <div style={gridStyle}>
         <ServiceItem imageUrl="/RollerDoor1.jpg" title="Roller Doors" />
         <ServiceItem imageUrl="/Blinds1.jpg" title="Blinds" />

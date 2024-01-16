@@ -1,17 +1,14 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
 import React, { CSSProperties } from 'react';
 
-import Header from '@/components/Header'
-import MainHeader from '@/components/MainHeader'
+import Header from '@/components/Header';
+import MainHeader from '@/components/MainHeader';
+import AboutUsInfo from '@/components/AboutUsInfo';
+import Footer from '@/components/Footer';
 
-import Store from '@/components/Store'
-
-import Footer from '@/components/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
-
-const ServicesSection: React.FC = () => {
+// Define the AboutUsSection component
+const AboutUsSection: React.FC = () => {
   const sectionStyle: CSSProperties = {
     position: 'relative',
     width: '100%',
@@ -20,7 +17,7 @@ const ServicesSection: React.FC = () => {
     justifyContent: 'center',
     alignItems: 'center',
     color: 'white',
-    fontSize: 'min(4vw, 7vw)', // Adjusted for better text scaling
+    fontSize: 'min(4vw, 7vw)',
     fontWeight: 'bold',
     textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
     background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
@@ -28,20 +25,21 @@ const ServicesSection: React.FC = () => {
 
   return (
     <div style={sectionStyle}>
-      Our Services
+      About Us
     </div>
   );
 };
 
-
-export default function Services() {
+export default function AboutUs() {
   return (
     <div>
       <Header />
       <MainHeader />
-      <ServicesSection />
-      <Store />
+      <AboutUsSection />
+      <div style={{margin:'80px 0px'}}>
+      <AboutUsInfo />
+      </div>
       <Footer />
     </div>
-  )
+  );
 }

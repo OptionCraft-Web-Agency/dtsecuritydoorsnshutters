@@ -1,4 +1,5 @@
 import React, { useState, useEffect, CSSProperties } from 'react';
+import Image from "next/image";
 
 const Info1: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -77,7 +78,7 @@ const Info1: React.FC = () => {
           }}
         >
           <div style={{ width: "10%", maxWidth: "4vw" }}>
-            <img
+            <Image
               src="/RollerDoor1.jpg"
               style={{ width: "100%", height: "auto" }}
               alt="Manual Strap Winch"
@@ -118,7 +119,7 @@ const Info1: React.FC = () => {
           }}
         >
           <div style={{ width: "10%", maxWidth: "4vw" }}>
-            <img
+            <Image
               src="/RollerDoor1.jpg"
               style={{ width: "100%", height: "auto" }}
               alt="Manual Strap Winch"
@@ -159,7 +160,7 @@ const Info1: React.FC = () => {
           }}
         >
           <div style={{ width: "10%", maxWidth: "4vw" }}>
-            <img
+            <Image
               src="/RollerDoor1.jpg"
               style={{ width: "100%", height: "auto" }}
               alt="Manual Strap Winch"
@@ -201,7 +202,7 @@ const Info1: React.FC = () => {
           }}
         >
           <div style={{ width: "10%", maxWidth: "4vw" }}>
-            <img
+            <Image
               src="/RollerDoor1.jpg"
               style={{ width: "100%", height: "auto" }}
               alt="Manual Strap Winch"

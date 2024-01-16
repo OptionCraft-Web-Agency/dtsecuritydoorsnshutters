@@ -1,46 +1,71 @@
-import React, { CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import Image from 'next/image';
 
 const AboutUsInfo: React.FC = () => {
+  // State to manage screen width
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Effect to update the state based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    // Set the initial value
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Style definitions
   const containerStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
     alignItems: 'center',
-    padding: '0 4vw',
+    padding: isMobile ? '0 10%' : '0 4vw', // Adjust padding for mobile
   };
 
-  const paragraphStyle: CSSProperties = {     
-    fontSize: '2.5vw',
+  const paragraphStyle: CSSProperties = {
+    fontSize: isMobile ? '6vw' : '2.5vw', // Adjust font size for mobile
     marginBottom: '2vw',
     fontWeight: 'bold',
   };
 
-  const descriptionStyle: CSSProperties = { marginBottom: '1vw' };
+  const descriptionStyle: CSSProperties = {
+    marginBottom: '1vw',
+    fontSize: isMobile ? '4vw' : '1.25vw', // Adjust font size for mobile
+  };
+
   const imageContainerStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center',
     marginBottom: '1vw',
   };
-  const imageStyle: CSSProperties = { width: '10vw', height: '10vw' };
+
+  // Adjust image dimensions for mobile
+  const imageWidth = isMobile ? 80 : 100;
+  const imageHeight = isMobile ? 80 : 100;
+
   const buttonStyle: CSSProperties = {
     borderRadius: '4px',
     border: '1px solid rgba(0, 87, 255)',
     background: 'white',
     boxShadow: '2px 2px 4px 0px rgba(22, 110, 187, 0.32)',
     color: 'rgba(0, 87, 255)',
-    fontSize: '1vw',
+    fontSize: isMobile ? '4vw' : '1vw', // Adjust font size for mobile
     fontStyle: 'normal',
-    lineHeight: '12px',
+    lineHeight: isMobile ? '5vw' : '1.2vw', // Adjust line height for mobile
     textTransform: 'capitalize',
-    padding: '1vw',
-    width: '10vw',
-    margin: '2vw 0vw',
+    padding: isMobile ? '3vw' : '1vw', // Adjust padding for mobile
+    width: isMobile ? '50vw' : '10vw', // Adjust width for mobile
+    margin: '2vw 0',
     transition: 'background-color 0.3s, color 0.3s',
     cursor: 'pointer',
   };
+
   const hoverButtonStyle: CSSProperties = {
     ...buttonStyle,
     background: 'rgba(0, 87, 255)',
@@ -57,17 +82,16 @@ const AboutUsInfo: React.FC = () => {
   return (
     <div style={containerStyle}>
       <p style={paragraphStyle}>
-        Discover the DT Security Doors & Shutters Difference: Committed to
-        Excellence
+        About Us
       </p>
       <p style={descriptionStyle}>
         At DT Security Doors & Shutters, client satisfaction is at the heart
         of everything we do. We understand that true client happiness goes
-        beyond just offering a product; it&apos;s about providing a solution
+        beyond just offering a product; it's about providing a solution
         that brings security and elegance to your home. With a dedication to
         exceptional craftsmanship and personalized service, we ensure every
         product from security doors to plantation shutters meets your
-        specific needs. Reflecting on our journey, we&apos;ve evolved from
+        specific needs. Reflecting on our journey, we've evolved from
         focusing solely on steel doors to offering a comprehensive range of
         home safety solutions in Melbourne. Our expanded offerings include
         premium quality security doors, versatile blinds, fly screens, and
@@ -75,15 +99,19 @@ const AboutUsInfo: React.FC = () => {
         living space.
       </p>
       <div style={imageContainerStyle}>
-        <img
-          style={imageStyle}
+        <Image
           src="/QualityLogo.png"
           alt="Quality Assurance Logo"
+          width={imageWidth}
+          height={imageHeight}
+          layout="fixed"
         />
-        <img
-          style={imageStyle}
+        <Image
           src="/WarrantyLogo.png"
           alt="Warranty Logo"
+          width={imageWidth}
+          height={imageHeight}
+          layout="fixed"
         />
       </div>
       <button

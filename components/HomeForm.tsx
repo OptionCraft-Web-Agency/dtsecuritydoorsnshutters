@@ -1,37 +1,60 @@
-import React, { CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 const HomeForm: React.FC = () => {
+  // Initialize isMobile with a default value
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Function to update the state based on window size
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    // Set the initial state based on the current window size
+    checkMobile();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('resize', checkMobile);
+    };
+  }, []);
+
   const containerStyle: CSSProperties = {
     height: '100vh',
     width: '100%',
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: isMobile ? 'column' : 'row',
   };
 
   const formContainerStyle: CSSProperties = {
     height: 'calc(100vh - 80px)',
-    width: '50%',
+    width: isMobile ? '100%' : '50%',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     padding: '5vw',
     boxSizing: 'border-box',
+    order: isMobile ? 2 : 0,
   };
 
   const inputStyle: CSSProperties = {
-    marginBottom: '2vw',
-    padding: '0.5vw',
-    borderRadius: '0.5vw',
+    marginBottom: isMobile ? '5%' : '2vw',
+    padding: isMobile ? '2%' : '0.5vw',
+    borderRadius: isMobile ? '5%' : '0.5vw',
     border: '1px solid black',
+    fontSize: isMobile ? '0.5rem' : '1.5vw', // Use rem units for mobile for better scalability
   };
 
   const buttonStyle: CSSProperties = {
-    padding: '1.5vw',
+    padding: isMobile ? '3%' : '1vw',
     border: 'none',
     borderRadius: '0.5vw',
     color: 'white',
-    fontSize: 'min(1.2vw, 14px)',
+    fontSize: isMobile ? '0.5rem' : '1.5vw', // Use rem units for mobile for better scalability
     cursor: 'pointer',
     backgroundColor: 'rgba(0, 87, 255)',
     boxShadow: '2px 2px 4px 0px rgba(22, 110, 187, 0.32)',
@@ -44,10 +67,27 @@ const HomeForm: React.FC = () => {
     transform: 'scale(1.05)',
   };
 
+  const imageStyle: CSSProperties = {
+    height: 'calc(100vh - 80px)',
+    width: isMobile ? '100%' : '50%',
+    backgroundImage: 'url(/RollerDoor1.jpg)',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    order: isMobile ? 1 : 0,
+  };
+
+  const inquiryStyle: CSSProperties = {
+    fontSize: isMobile ? '1rem' : '3vw', // Use rem units for mobile for better scalability
+    marginBottom: '2vw',
+    fontWeight: 'bold',
+  };
+
   return (
     <div style={containerStyle}>
+      <div style={imageStyle}></div>
       <div style={formContainerStyle}>
-        <p style={{ fontSize: '2.5vw', marginBottom: '2vw', fontWeight: 'bold' }}>
+        <p style={inquiryStyle}>
           Inquiry
         </p>
         <form style={{
@@ -70,17 +110,6 @@ const HomeForm: React.FC = () => {
           </button>
         </form>
       </div>
-
-      <div
-        style={{
-          height: 'calc(100vh - 80px)',
-          width: '50%',
-          backgroundImage: 'url(/RollerDoor1.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      ></div>
     </div>
   );
 };

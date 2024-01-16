@@ -1,48 +1,80 @@
-import React, { CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMap, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const ContactUsInfo: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check the window size initially and set the isMobile state
+    setIsMobile(window.innerWidth < 768);
+
+    // Function to update the state based on window resize
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener('resize', handleResize);
+
+    // Clean-up function to remove the event listener
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const containerStyle: CSSProperties = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: isMobile ? 'column' : 'row',
     backgroundColor: 'white',
     color: 'black',
-    padding: '20px',
+    padding: isMobile ? '10px' : '20px',
     fontFamily: 'Arial, sans-serif',
   };
 
-  const columnStyle: CSSProperties = {
-    width: '50%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'flex-start',
-    padding: '20px',
-  };
-
-  const titleStyle: CSSProperties = { fontWeight: 'bold', fontSize: '2vw' };
   const infoRowStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'space-between',
+    fontSize: isMobile ? '4vw' : '1vw',
   };
 
-  const iconStyle: CSSProperties = { marginRight: '10px' };
+  const columnStyle: CSSProperties = {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: isMobile ? '10px' : '20px',
+  };
+
+  const titleStyle: CSSProperties = {
+    fontWeight: 'bold',
+    fontSize: isMobile ? '4vw' : '2vw',
+  };
+
+  const textStyle: CSSProperties = {
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: isMobile ? '3.5vw' : '1vw',
+  };
+
+  const iconStyle: CSSProperties = {
+    marginRight: '10px',
+    fontSize: isMobile ? '3.5vw' : '1vw',
+  };
 
   return (
     <div style={containerStyle}>
       <div style={columnStyle}>
         <p style={titleStyle}>Contact Details</p>
-        <p style={{ display: 'flex', alignItems: 'center' }}>
+        <p style={textStyle}>
           <FontAwesomeIcon icon={faMap} style={iconStyle} />
           30 Ralston Ave, Sunshine North VIC 3020
         </p>
-        <p style={{ display: 'flex', alignItems: 'center' }}>
+        <p style={textStyle}>
           <FontAwesomeIcon icon={faPhone} style={iconStyle} />
           0434 227 688
         </p>
-        <p style={{ display: 'flex', alignItems: 'center' }}>
+        <p style={textStyle}>
           <FontAwesomeIcon icon={faEnvelope} style={iconStyle} />
           dt.windowsndoors@gmail.com
         </p>

@@ -1,17 +1,14 @@
-import Image from 'next/image'
-import { Inter } from 'next/font/google'
+import Image from 'next/image';
+import { Inter } from 'next/font/google';
 import React, { CSSProperties } from 'react';
 
-import Header from '@/components/Header'
-import MainHeader from '@/components/MainHeader'
+import Header from '@/components/Header';
+import MainHeader from '@/components/MainHeader';
+import ContactUsInfo from '@/components/ContactUsInfo';
+import ContactUsForm from '@/components/ContactUsForm';
+import Footer from '@/components/Footer';
 
-import Store from '@/components/Store'
-
-import Footer from '@/components/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
-
-const ServicesSection: React.FC = () => {
+const ContactUsSection: React.FC = () => {
   const sectionStyle: CSSProperties = {
     position: 'relative',
     width: '100%',
@@ -28,20 +25,20 @@ const ServicesSection: React.FC = () => {
 
   return (
     <div style={sectionStyle}>
-      Our Services
+      Contact Us
     </div>
   );
 };
 
-
-export default function Services() {
+export default function ContactUs() {
   return (
     <div>
       <Header />
       <MainHeader />
-      <ServicesSection />
-      <Store />
+      <ContactUsSection />
+      <ContactUsInfo />
+      <ContactUsForm />
       <Footer />
     </div>
-  )
+  );
 }

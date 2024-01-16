@@ -22,7 +22,7 @@ export default function MainHeader() {
 
   const menuItems = [
     { Text: "Home", link: "/" },
-    { Text: "Products", link: "/Product" },
+    // { Text: "Products", link: "/Product" },
     { Text: "Our Services", link: "/Services" },
     { Text: "About Us", link: "AboutUs" },
     { Text: "Contact Us", link: "ContactUs" },

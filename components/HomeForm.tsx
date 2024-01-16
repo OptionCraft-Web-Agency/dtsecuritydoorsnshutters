@@ -46,7 +46,7 @@ const HomeForm: React.FC = () => {
     padding: isMobile ? '2%' : '0.5vw',
     borderRadius: isMobile ? '5%' : '0.5vw',
     border: '1px solid black',
-    fontSize:'2vw'
+    fontSize: isMobile ? '0.5rem' : '2vw', // Use rem units for mobile for better scalability
   };
 
   const buttonStyle: CSSProperties = {
@@ -54,7 +54,7 @@ const HomeForm: React.FC = () => {
     border: 'none',
     borderRadius: '0.5vw',
     color: 'white',
-    fontSize: 'min(1.2vw, 14px)',
+    fontSize: isMobile ? '0.5rem' : '2vw', // Use rem units for mobile for better scalability
     cursor: 'pointer',
     backgroundColor: 'rgba(0, 87, 255)',
     boxShadow: '2px 2px 4px 0px rgba(22, 110, 187, 0.32)',
@@ -77,11 +77,17 @@ const HomeForm: React.FC = () => {
     order: isMobile ? 1 : 0,
   };
 
+  const inquiryStyle: CSSProperties = {
+    fontSize: isMobile ? '1rem' : '3vw', // Use rem units for mobile for better scalability
+    marginBottom: '2vw',
+    fontWeight: 'bold',
+  };
+
   return (
     <div style={containerStyle}>
       <div style={imageStyle}></div>
       <div style={formContainerStyle}>
-        <p style={{ fontSize: '4vw', marginBottom: '2vw', fontWeight: 'bold' }}>
+        <p style={inquiryStyle}>
           Inquiry
         </p>
         <form style={{

@@ -1,9 +1,15 @@
 import Image from 'next/image';
 import React, { CSSProperties } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShieldAlt, faBolt, faVolumeDown, faPalette } from '@fortawesome/free-solid-svg-icons';
+
 import Header from '@/components/Header';
 import MainHeader from '@/components/MainHeader';
 import Footer from '@/components/Footer';
+
+import Info1 from "@/components/Info1";
+
 
 const RollerShuttersTitle: React.FC = () => {
   const sectionStyle: CSSProperties = {
@@ -29,91 +35,91 @@ const RollerShuttersTitle: React.FC = () => {
 
 const WhyRollerShutters: React.FC = () => {
     const sectionStyle: CSSProperties = {
-      fontFamily: '"Inter", sans-serif', // Use the Inter font family or a similar sans-serif font
-      backgroundColor: '#f4f4f4', // Use a light background color
-      color: '#333', // Use a darker color for text for readability
+      fontFamily: '"Inter", sans-serif',
+      color: '#333',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '3rem', // Use rem units for padding for consistent scaling
-      textAlign: 'center', // Center align the text
+      padding: '3rem',
+      textAlign: 'center',
     };
   
     const titleStyle: CSSProperties = {
-      fontSize: '2.5rem', // Larger font size for titles
+      fontSize: '2.5rem',
       fontWeight: 'bold',
-      marginBottom: '1rem', // Margin bottom for spacing
+      marginBottom: '1rem',
     };
   
     const descriptionStyle: CSSProperties = {
-      marginBottom: '2rem', // Margin bottom for spacing after the description
-      fontSize: '1rem', // Standard font size for description
-      maxWidth: '600px', // Max-width to control the line length for readability
+      marginBottom: '2rem',
+      fontSize: '1rem',
+      maxWidth: '600px',
     };
   
     const listStyle: CSSProperties = {
-      listStyle: 'none', // Remove list styling
-      padding: 0, // Remove padding
-      display: 'grid', // Use grid for layout
-      gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', // Create a responsive grid layout
-      gap: '1rem', // Gap between grid items
-      maxWidth: '800px', // Max-width for the entire grid
+      listStyle: 'none',
+      padding: 0,
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+      gap: '1rem',
+      maxWidth: '800px',
     };
   
     const listItemStyle: CSSProperties = {
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'center', // Center align the items
-      fontSize: '1rem', // Font size for list items
+      alignItems: 'center',
+      fontSize: '1rem',
     };
   
     const iconStyle: CSSProperties = {
-      backgroundColor: '#eeeeee', // Icon background color
-      borderRadius: '50%', // Make it circular
-      width: '3rem', // Width of the icon area
-      height: '3rem', // Height of the icon area
+      backgroundColor: '#eeeeee',
+      borderRadius: '50%',
+      width: '3rem',
+      height: '3rem',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      marginBottom: '0.5rem', // Space between icon and text
+      marginBottom: '0.5rem',
+      fontSize: '1.5rem', // Font size for FontAwesome icons
     };
-      
-    // Icons can be replaced with actual image tags or SVGs
-    const icons = {
-      safe: "🔒", // placeholder icon
-      efficient: "⚡", // placeholder icon
-      noiseReduction: "🔇", // placeholder icon
-      customization: "🎨", // placeholder icon
-    };
-      
+  
     return (
-        <div style={sectionStyle}>
-            <h2 style={titleStyle}>Why Roller Shutters?</h2>
-            <p style={descriptionStyle}>
-            Discover the benefits of roller shutters for security, energy efficiency, and more:
-            </p>
-            <ul style={listStyle}>
-                <li style={listItemStyle}>
-                    <div style={iconStyle}>{icons.safe}</div>
-                    <strong>Enhanced Security</strong> Robust construction deters break-ins.
-                </li>
-                <li style={listItemStyle}>
-                    <div style={iconStyle}>{icons.efficient}</div>
-                    <strong>Energy Efficiency</strong> Insulates against heat and cold.
-                </li>
-                <li style={listItemStyle}>
-                    <div style={iconStyle}>{icons.noiseReduction}</div>
-                    <strong>Noise Reduction</strong> Cuts down external noise effectively.
-                </li>
-                <li style={listItemStyle}>
-                    <div style={iconStyle}>{icons.customization}</div>
-                    <strong>Customization</strong> Variety of styles to complement your home.
-                </li>
-            </ul>
-        </div>
+      <div style={sectionStyle}>
+        <h2 style={titleStyle}>Why Roller Shutters?</h2>
+        <p style={descriptionStyle}>
+          Discover the benefits of roller shutters for security, energy efficiency, and more:
+        </p>
+        <ul style={listStyle}>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={faShieldAlt} />
+            </div>
+            <strong>Enhanced Security</strong> Robust construction deters break-ins.
+          </li>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={faBolt} />
+            </div>
+            <strong>Energy Efficiency</strong> Insulates against heat and cold.
+          </li>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={faVolumeDown} />
+            </div>
+            <strong>Noise Reduction</strong> Cuts down external noise effectively.
+          </li>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={faPalette} />
+            </div>
+            <strong>Customization</strong> Variety of styles to complement your home.
+          </li>
+        </ul>
+      </div>
     );
-};
+  };
   
 export default function RollerShutters() {
   return (
@@ -122,6 +128,7 @@ export default function RollerShutters() {
       <MainHeader />
       <RollerShuttersTitle />
     <WhyRollerShutters/>
+    <Info1/>
       <Footer />
     </div>
   );

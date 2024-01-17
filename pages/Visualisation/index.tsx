@@ -16,6 +16,9 @@ import CurtainRoller from "@/components/vis/CurtainRoller";
 import Inside from "@/components/vis/inside";
 import InsideCurtain from "@/components/vis/insideCurtain";
 import MainHeader from "@/components/MainHeader";
+import React, { CSSProperties } from 'react';
+import Header from '@/components/Header';
+
 
 interface ColorSetters {
   [key: string]: Dispatch<SetStateAction<string>>;
@@ -375,6 +378,28 @@ export default function Home() {
     { name: "Woodland Grey", code: "#5E5C57" },
   ];
 
+  const ColorVisualisationTitle: React.FC = () => {
+    const sectionStyle: CSSProperties = {
+      position: 'relative',
+      width: '100%',
+      height: 'calc(100vh - 80px)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      color: 'white',
+      fontSize: 'min(4vw, 7vw)', // Adjusted for better text scaling
+      fontWeight: 'bold',
+      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+      background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
+    };
+  
+    return (
+      <div style={sectionStyle}>
+        Color Visulisation
+      </div>
+    );
+  };
+
   const handleColorSelection = (section: string, color: Color) => {
     const setColor = colorSetters[section];
     if (setColor) {
@@ -433,7 +458,10 @@ export default function Home() {
 
   return (
     <>
+      <Header />
       <MainHeader />
+      <ColorVisualisationTitle/>
+
       <div className="bg-[#F6F4EB]">
         <div className="container mx-auto ">
           <div className="flex  flex-col-reverse lg:flex-row ">

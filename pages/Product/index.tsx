@@ -6,7 +6,6 @@ import ProductList from "@/components/ProductList";
 import ProductSkeletons from "@/components/ProductSkeletons"; // Use this instead of LoadingSpinner
 import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
-import HomeForm from "@/components/HomeForm";
 import Footer from "@/components/Footer";
 import ProductSkeleton from '@/components/ProductSkeleton';
 
@@ -35,7 +34,7 @@ const ProductsPage = () => {
   
     return (
       <div style={sectionStyle}>
-        Products
+        Security Doors
       </div>
     );
   };
@@ -60,7 +59,6 @@ const ProductsPage = () => {
         )}
 
         </div>
-
 
         <Footer />
       </div>

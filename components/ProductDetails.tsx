@@ -122,9 +122,7 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="container mx-auto my-8 p-4">
-      <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-      <div dangerouslySetInnerHTML={{ __html: product.description }} />
-      <div dangerouslySetInnerHTML={{ __html: product.shortDescription }} />
+
 
       <div className="md:flex md:justify-center md:items-start mx-auto">
         <div className="relative w-full max-w-md mx-auto">
@@ -143,6 +141,10 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
           />
         </div>
         <div className="md:w-1/2 lg:w-2/3 md:pl-8">
+          <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+          <div dangerouslySetInnerHTML={{ __html: product.description }} />
+          <div dangerouslySetInnerHTML={{ __html: product.shortDescription }} />
+          
           {product.attributes.nodes.map((attribute) => (
             <div key={attribute.name} className="mb-4">
               <h3 className="text-xl font-semibold capitalize">

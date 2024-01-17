@@ -1,5 +1,6 @@
 import React, { useState, CSSProperties } from 'react';
 import Image from 'next/image';
+import Link from "next/link";
 
 type ServiceItemProps = {
   imageUrl: string;
@@ -70,21 +71,23 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title }) => {
   };
 
   return (
-    <div
-      style={itemStyle}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div style={imageContainerStyle}>
-        <Image
-          src={imageUrl}
-          alt={title}
-          layout="fill"
-          objectFit="cover"
-        />
+    <Link href={title === "Security Doors" ? "/Product" : "#"}>
+      <div
+        style={itemStyle}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <div style={imageContainerStyle}>
+          <Image
+            src={imageUrl}
+            alt={title}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+        <p style={titleStyle}>{title}</p>
       </div>
-      <p style={titleStyle}>{title}</p>
-    </div>
+    </Link>
   );
 };
 

@@ -34,7 +34,7 @@ const Store: React.FC = () => {
     <div style={containerStyle}>
       <h2 style={titleStyle}>Seamless Security Meets Style with Custom Doors and Windows.</h2>
       <div style={gridStyle}>
-        <ServiceItem imageUrl="/RollerDoor1.jpg" title="Roller Doors" />
+        <ServiceItem imageUrl="/RollerDoor1.jpg" title="Roller Shutters" />
         <ServiceItem imageUrl="/Blinds1.jpg" title="Blinds" />
         <ServiceItem imageUrl="/SecurityDoor1.jpg" title="Security Doors" />
         <ServiceItem imageUrl="/Window1.jpg" title="Windows" />
@@ -71,7 +71,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title }) => {
   };
 
   return (
-    <Link href={title === "Security Doors" ? "/Product" : "#"}>
+    <Link href={title === "Security Doors" ? "/Product" : title === "Roller Shutters" ? "/RollerShutters" : "#"}>
       <div
         style={itemStyle}
         onMouseEnter={() => setIsHovered(true)}

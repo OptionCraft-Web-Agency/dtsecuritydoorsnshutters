@@ -17,7 +17,7 @@ const ProductsPage = () => {
   // Determine the number of skeleton loaders to show, this can be based on your design/grid
   const skeletonCount = 10; // Adjust this number as needed
 
-  const ProductsSection: React.FC = () => {
+  const SecurityDoorTitle: React.FC = () => {
     const sectionStyle: CSSProperties = {
       position: 'relative',
       width: '100%',
@@ -39,13 +39,101 @@ const ProductsPage = () => {
     );
   };
 
+  const WhySecurityDoors: React.FC = () => {
+    const sectionStyle: CSSProperties = {
+      fontFamily: '"Inter", sans-serif',
+      color: '#333',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '3rem',
+      textAlign: 'center',
+    };
+
+    const titleStyle: CSSProperties = {
+      fontSize: '2.5rem',
+      fontWeight: 'bold',
+      marginBottom: '1rem',
+    };
+
+    const descriptionStyle: CSSProperties = {
+      marginBottom: '2rem',
+      fontSize: '1rem',
+      maxWidth: '600px',
+    };
+
+    const listStyle: CSSProperties = {
+      listStyle: 'none',
+      padding: 0,
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+      gap: '1rem',
+      maxWidth: '800px',
+    };
+
+    const listItemStyle: CSSProperties = {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      fontSize: '1rem',
+    };
+
+    const iconStyle: CSSProperties = {
+      backgroundColor: '#eeeeee',
+      borderRadius: '50%',
+      width: '3rem',
+      height: '3rem',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginBottom: '0.5rem',
+    };
+    
+    const icons = {
+      security: "🛡️", // placeholder icon
+      design: "🎨", // placeholder icon
+      durability: "⚙️", // placeholder icon
+      value: "💰", // placeholder icon
+    };
+
+    return (
+      <div style={sectionStyle}>
+        <h2 style={titleStyle}>Why Security Doors?</h2>
+        <p style={descriptionStyle}>
+          Explore the advantages of installing security doors to enhance your home's safety and aesthetics:
+        </p>
+        <ul style={listStyle}>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>{icons.security}</div>
+            <strong>Enhanced Protection:</strong> Durable materials and locks provide superior security.
+          </li>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>{icons.design}</div>
+            <strong>Custom Designs:</strong> Tailored to match your home's style and character.
+          </li>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>{icons.durability}</div>
+            <strong>Built to Last:</strong> High-quality construction ensures long-term durability.
+          </li>
+          <li style={listItemStyle}>
+            <div style={iconStyle}>{icons.value}</div>
+            <strong>Added Value:</strong> Increases property value with improved curb appeal.
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <>
       <Header />
       <div className="bg-[#FFFCF8] w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
         <MainHeader />
 
-        <ProductsSection/>
+        <SecurityDoorTitle/>
+
+        <WhySecurityDoors/>
 
         <div style={{margin:'5vw'}}>
 

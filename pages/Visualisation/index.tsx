@@ -18,6 +18,7 @@ import InsideCurtain from "@/components/vis/insideCurtain";
 import MainHeader from "@/components/MainHeader";
 import React, { CSSProperties } from 'react';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 
 interface ColorSetters {
@@ -710,6 +711,8 @@ export default function Home() {
         </div>
         <CostCalc />
       </div>
+
+      <Footer />
     </>
   );
 }

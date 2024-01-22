@@ -32,6 +32,8 @@ import Image from "next/image";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMap, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import FacebookMessenger from "@/components/FacebookMessenger";
+import DefaultFacebookChat from "@/components/DefaultFacebookChat";
 
 //images
 export default function Home() {
@@ -66,7 +68,7 @@ export default function Home() {
         <Info1 />
 
         <Info2 /> */}
-
+        <DefaultFacebookChat />
       </div>
     </>
   );

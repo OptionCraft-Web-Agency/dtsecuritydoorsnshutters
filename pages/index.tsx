@@ -68,7 +68,7 @@ export default function Home() {
         <Info1 />
 
         <Info2 /> */}
-        <DefaultFacebookChat />
+        <FacebookMessenger />
       </div>
     </>
   );

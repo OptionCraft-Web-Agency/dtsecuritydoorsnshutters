@@ -5,6 +5,14 @@ const CallToAction: React.FC = () => {
   const [isHoveredLearnMore, setIsHoveredLearnMore] = useState(false);
   const [isHoveredContactUs, setIsHoveredContactUs] = useState(false);
 
+  const navigateToServices = () => {
+    window.location.href = '/Services'; 
+  };
+
+  const navigateToContacts = () => {
+    window.location.href = '/ContactUs'; 
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -80,6 +88,7 @@ const CallToAction: React.FC = () => {
             style={isHoveredLearnMore ? hoverStyle : buttonStyle}
             onMouseEnter={() => setIsHoveredLearnMore(true)}
             onMouseLeave={() => setIsHoveredLearnMore(false)}
+            onClick={navigateToServices}
           >
             Learn More
           </button>
@@ -88,6 +97,7 @@ const CallToAction: React.FC = () => {
             style={isHoveredContactUs ? { ...hoverStyle, background: 'white', color: '#0056b3' } : { ...buttonStyle, background: 'white', color: 'rgba(0, 87, 255)' }}
             onMouseEnter={() => setIsHoveredContactUs(true)}
             onMouseLeave={() => setIsHoveredContactUs(false)}
+            onClick={navigateToContacts}
           >
             Contact Us
           </button>

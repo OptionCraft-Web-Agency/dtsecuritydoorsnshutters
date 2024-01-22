@@ -7,15 +7,10 @@ import MainHeader from "../components/MainHeader";
 import HomePage from "../components/HomePage";
 
 import OurServices from "@/components/OurServices";
-
 import HomeContent from "@/components/HomeContent";
-
 import CallToAction from "@/components/CallToAction";
-
 import CustomerReview from "../components/CustomerReview";
-
 import HomeForm from "@/components/HomeForm";
-
 import Footer from "../components/Footer";
 
 import ContactUsInfo from "../components/ContactUsInfo";

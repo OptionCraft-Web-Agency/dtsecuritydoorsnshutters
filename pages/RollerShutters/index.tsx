@@ -253,7 +253,6 @@ export default function RollerShutters() {
         <RollerShuttersTitle />
         <WhyRollerShutters/>
         <AccessToolsSection /> {/* Added this line */}
-
         <Info1/>
         <Footer />
     </div>

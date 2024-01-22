@@ -19,7 +19,8 @@ const Store: React.FC = () => {
 
   const titleStyle: CSSProperties = {
     fontSize: '2.5vw',
-    marginBottom: '2vw',
+    marginBottom: '1.5vw',
+    fontWeight: 'bold'
   };
 
   const gridStyle: CSSProperties = {
@@ -30,9 +31,20 @@ const Store: React.FC = () => {
     margin: '0 auto',
   };
 
+  const descriptionStyle: CSSProperties = {
+    textAlign: 'center',
+    fontSize: '1.5vw',
+    padding: '0 5%', // Adjust padding for text alignment
+    margin: '1vw 0 3vw 0', // Margin for spacing
+    color: '#333', // Adjust color for readability
+  };
+
   return (
     <div style={containerStyle}>
       <h2 style={titleStyle}>Seamless Security Meets Style with Custom Doors and Windows.</h2>
+      <p style={descriptionStyle}>
+        Our custom doors and windows are the epitome of elegance and security, meticulously crafted to enhance your home's aesthetic and safety. With a focus on innovative design and durability, we offer a wide range of styles and finishes to perfectly match your architectural needs. Each product is designed with precision engineering, ensuring optimal functionality without compromising on style. From advanced security features to energy-efficient materials, our doors and windows offer a perfect blend of form and function for the modern homeowner.
+      </p>
       <div style={gridStyle}>
         <ServiceItem imageUrl="/RollerDoor1.jpg" title="Roller Shutters" />
         <ServiceItem imageUrl="/Blinds1.jpg" title="Blinds" />
@@ -68,6 +80,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title }) => {
 
   const titleStyle: CSSProperties = {
     fontSize: '1.2vw',
+    // fontWeight: 'bold'
   };
 
   return (

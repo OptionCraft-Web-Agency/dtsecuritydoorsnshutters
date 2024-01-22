@@ -7,31 +7,11 @@ import MainHeader from "../components/MainHeader";
 import HomePage from "../components/HomePage";
 
 import OurServices from "@/components/OurServices";
-
 import HomeContent from "@/components/HomeContent";
-
 import CallToAction from "@/components/CallToAction";
-
 import CustomerReview from "../components/CustomerReview";
-
 import HomeForm from "@/components/HomeForm";
-
 import Footer from "../components/Footer";
-
-import ContactUsInfo from "../components/ContactUsInfo";
-import ContactUsForm from "../components/ContactUsForm";
-
-import AboutUsInfo from "../components/AboutUsInfo";
-
-import Store from "../components/Store";
-
-import Info1 from "../components/Info1";
-import Info2 from "../components/Info2";
-
-import Image from "next/image";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMap, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 //images
 export default function Home() {

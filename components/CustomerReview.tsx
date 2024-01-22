@@ -26,7 +26,7 @@ const CustomerReview: React.FC = () => {
   return (
     <div
       style={{
-        backgroundColor: "rgba(0, 87, 255, 0.64)",
+        background: 'linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))', 
         textAlign: "center",
         padding: "4vw 0",
         width: "100%",

@@ -1,5 +1,4 @@
 // pages/products.js
-import React, { CSSProperties } from 'react';
 import { useQuery } from "@apollo/client";
 import { GET_PRODUCTS_QUERY } from "@/graphql/allProduct";
 import ProductList from "@/components/ProductList";
@@ -8,6 +7,11 @@ import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 import ProductSkeleton from '@/components/ProductSkeleton';
+
+
+import React, { useState, useEffect, CSSProperties } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShieldAlt, faPaintBrush, faCogs, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 const ProductsPage = () => {
   const { data, loading, error } = useQuery(GET_PRODUCTS_QUERY, {
@@ -40,6 +44,17 @@ const ProductsPage = () => {
   };
 
   const WhySecurityDoors: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
     const sectionStyle: CSSProperties = {
       fontFamily: '"Inter", sans-serif',
       color: '#333',
@@ -47,38 +62,40 @@ const ProductsPage = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '3rem',
+      padding: isMobile ? '2rem' : '3rem',
       textAlign: 'center',
     };
-
+  
     const titleStyle: CSSProperties = {
-      fontSize: '2.5rem',
+      fontSize: isMobile ? '1.5rem' : '2.5rem',
       fontWeight: 'bold',
       marginBottom: '1rem',
     };
-
+  
     const descriptionStyle: CSSProperties = {
       marginBottom: '2rem',
-      fontSize: '1rem',
+      fontSize: isMobile ? '0.9rem' : '1rem',
       maxWidth: '600px',
+      padding: isMobile ? '0 1rem' : '0',
     };
-
+  
     const listStyle: CSSProperties = {
       listStyle: 'none',
       padding: 0,
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(140px, 1fr))',
       gap: '1rem',
       maxWidth: '800px',
     };
-
+  
     const listItemStyle: CSSProperties = {
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       fontSize: '1rem',
+      marginBottom: isMobile ? '1rem' : '0',
     };
-
+  
     const iconStyle: CSSProperties = {
       backgroundColor: '#eeeeee',
       borderRadius: '50%',
@@ -88,13 +105,14 @@ const ProductsPage = () => {
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: '0.5rem',
+      fontSize: isMobile ? '1.5rem' : '1.8rem', // Adjust font size for icons on mobile
     };
     
     const icons = {
-      security: "🛡️", // placeholder icon
-      design: "🎨", // placeholder icon
-      durability: "⚙️", // placeholder icon
-      value: "💰", // placeholder icon
+      security: faShieldAlt,
+      design: faPaintBrush,
+      durability: faCogs,
+      value: faDollarSign,
     };
 
     return (
@@ -105,19 +123,27 @@ const ProductsPage = () => {
         </p>
         <ul style={listStyle}>
           <li style={listItemStyle}>
-            <div style={iconStyle}>{icons.security}</div>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={icons.security} />
+            </div>
             <strong>Enhanced Protection:</strong> Durable materials and locks provide superior security.
           </li>
           <li style={listItemStyle}>
-            <div style={iconStyle}>{icons.design}</div>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={icons.design} />
+            </div>
             <strong>Custom Designs:</strong> Tailored to match your home's style and character.
           </li>
           <li style={listItemStyle}>
-            <div style={iconStyle}>{icons.durability}</div>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={icons.durability} />
+            </div>
             <strong>Built to Last:</strong> High-quality construction ensures long-term durability.
           </li>
           <li style={listItemStyle}>
-            <div style={iconStyle}>{icons.value}</div>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={icons.value} />
+            </div>
             <strong>Added Value:</strong> Increases property value with improved curb appeal.
           </li>
         </ul>

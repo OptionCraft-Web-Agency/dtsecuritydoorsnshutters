@@ -1,13 +1,12 @@
 import Image from 'next/image';
-import React, { CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShieldAlt, faBolt, faVolumeDown, faPalette } from '@fortawesome/free-solid-svg-icons';
+import { faShieldAlt, faBolt, faVolumeDown, faPalette, faCalculator } from '@fortawesome/free-solid-svg-icons';
 
 import Header from '@/components/Header';
 import MainHeader from '@/components/MainHeader';
 import Footer from '@/components/Footer';
-
 import Info1 from "@/components/Info1";
 
 
@@ -34,6 +33,17 @@ const RollerShuttersTitle: React.FC = () => {
 };
 
 const WhyRollerShutters: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(false);
+  
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+  
     const sectionStyle: CSSProperties = {
       fontFamily: '"Inter", sans-serif',
       color: '#333',
@@ -41,27 +51,28 @@ const WhyRollerShutters: React.FC = () => {
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '3rem',
+      padding: isMobile ? '2rem' : '3rem',
       textAlign: 'center',
     };
   
     const titleStyle: CSSProperties = {
-      fontSize: '2.5rem',
+      fontSize: isMobile ? '1.5rem' : '2.5rem',
       fontWeight: 'bold',
       marginBottom: '1rem',
     };
   
     const descriptionStyle: CSSProperties = {
       marginBottom: '2rem',
-      fontSize: '1rem',
+      fontSize: isMobile ? '0.9rem' : '1rem',
       maxWidth: '600px',
+      padding: isMobile ? '0 1rem' : '0',
     };
   
     const listStyle: CSSProperties = {
       listStyle: 'none',
       padding: 0,
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))',
+      gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(140px, 1fr))',
       gap: '1rem',
       maxWidth: '800px',
     };
@@ -71,6 +82,7 @@ const WhyRollerShutters: React.FC = () => {
       flexDirection: 'column',
       alignItems: 'center',
       fontSize: '1rem',
+      marginBottom: isMobile ? '1rem' : '0',
     };
   
     const iconStyle: CSSProperties = {
@@ -82,7 +94,7 @@ const WhyRollerShutters: React.FC = () => {
       alignItems: 'center',
       justifyContent: 'center',
       marginBottom: '0.5rem',
-      fontSize: '1.5rem', // Font size for FontAwesome icons
+      fontSize: '1.5rem',
     };
   
     return (
@@ -119,17 +131,131 @@ const WhyRollerShutters: React.FC = () => {
         </ul>
       </div>
     );
-  };
+};
   
+const AccessToolsSection: React.FC = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth <= 768);
+      };
+  
+      handleResize();
+  
+      window.addEventListener('resize', handleResize);
+  
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const sectionStyle: CSSProperties = {
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row', // Stack cards vertically on mobile
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: isMobile ? '1rem' : '2rem', // Smaller padding on mobile
+        background: 'linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))', 
+        color: 'white',
+        textAlign: isMobile ? 'center' : 'left', // Center text on mobile
+    };
+
+    const headerStyle: CSSProperties = {
+        flex: 1,
+        fontSize: '2.5rem',
+        fontWeight: 'bold',
+        textAlign: 'left',
+        margin: '0 2rem',
+    };
+
+    const cardContainerStyle: CSSProperties = {
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row', // Stack cards vertically on mobile
+        justifyContent: 'center',
+        gap: isMobile ? '1rem' : '1rem', // Adjust gap on mobile
+        width: isMobile ? '100%' : 'auto', // Full width on mobile
+    };
+
+    const cardStyle: CSSProperties = {
+        textAlign: 'center',
+        padding: '1rem',
+        borderRadius: '8px',
+        backgroundColor: '#ffffff',
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+        position: 'relative',
+        overflow: 'hidden',
+        color: '#333',
+        transition: 'transform 0.2s ease-in-out',
+        width: isMobile ? '90%' : '250px', // Adjust width on mobile
+        margin: isMobile ? '0 auto' : '1rem', // Center cards on mobile
+    };
+
+    const iconStyle: CSSProperties = {
+        fontSize: '3rem',
+        color: 'rgb(0, 87, 255)',
+    };
+
+    const buttonStyle: CSSProperties = {
+        display: 'flex', // Enables flexbox
+        alignItems: 'center', // Centers items vertically in the container
+        justifyContent: 'center', // Centers items horizontally in the container
+        padding: '0.5rem 1rem',
+        fontSize: '1rem',
+        fontWeight: 'bold',
+        color: 'rgb(0, 87, 255)', 
+        border: '2px solid white',
+        borderRadius: '5px',
+        cursor: 'pointer',
+        textDecoration: 'none',
+        backgroundColor: 'transparent',
+        transition: 'all 0.2s',
+        gap: '0.5rem', // Adds space between the icon and the text
+      };
+
+    // Handlers
+    const handleCardMouseOver = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e.currentTarget.style.transform = 'scale(1.05)';
+    };
+
+    const handleCardMouseOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e.currentTarget.style.transform = 'scale(1)';
+    };
+
+    // Component
+    return (
+        <div style={sectionStyle}>
+            <div style={headerStyle}>
+                Design & Secure Your Space
+            </div>
+            <div style={cardContainerStyle}>
+                <div style={cardStyle} onMouseEnter={handleCardMouseOver} onMouseLeave={handleCardMouseOut}>
+                    <a href="/Visualisation" style={buttonStyle}>
+                        <FontAwesomeIcon icon={faCalculator} style={iconStyle} />
+                        <span>Cost Calculator</span>
+                    </a>
+                </div>
+                <div style={cardStyle} onMouseEnter={handleCardMouseOver} onMouseLeave={handleCardMouseOut}>
+                    <a href="/Visualisation" style={buttonStyle}>
+                        <FontAwesomeIcon icon={faPalette} style={iconStyle} />
+                        <span>Color Visualization</span>
+                    </a>
+                </div>
+                {/* Add more cards as needed */}
+            </div>
+        </div>
+    );
+};
+
 export default function RollerShutters() {
   return (
     <div>
-      <Header />
-      <MainHeader />
-      <RollerShuttersTitle />
-    <WhyRollerShutters/>
-    <Info1/>
-      <Footer />
+        <Header />
+        <MainHeader />
+        <RollerShuttersTitle />
+        <WhyRollerShutters/>
+        <AccessToolsSection /> {/* Added this line */}
+
+        <Info1/>
+        <Footer />
     </div>
   );
 }

@@ -13,6 +13,23 @@ import CustomerReview from "../components/CustomerReview";
 import HomeForm from "@/components/HomeForm";
 import Footer from "../components/Footer";
 
+import ContactUsInfo from "../components/ContactUsInfo";
+import ContactUsForm from "../components/ContactUsForm";
+
+import AboutUsInfo from "../components/AboutUsInfo";
+
+import Store from "../components/Store";
+
+import Info1 from "../components/Info1";
+import Info2 from "../components/Info2";
+
+import Image from "next/image";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMap, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import FacebookMessenger from "@/components/FacebookMessenger";
+import DefaultFacebookChat from "@/components/DefaultFacebookChat";
+
 //images
 export default function Home() {
   return (
@@ -46,7 +63,7 @@ export default function Home() {
         <Info1 />
 
         <Info2 /> */}
-
+        <FacebookMessenger />
       </div>
     </>
   );

@@ -47,12 +47,18 @@ const ProductsPage = () => {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   
     useEffect(() => {
-      const handleResize = () => {
-        setIsMobile(window.innerWidth <= 768);
-      };
+      // Ensure window is defined (i.e., running in the browser)
+      if (typeof window !== 'undefined') {
+        const handleResize = () => {
+          setIsMobile(window.innerWidth <= 768);
+        };
   
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
+        // Set the initial value based on the current window width
+        handleResize();
+  
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+      }
     }, []);
   
     const sectionStyle: CSSProperties = {

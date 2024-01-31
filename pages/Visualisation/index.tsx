@@ -449,12 +449,14 @@ export default function Home() {
       selectedIndex,
       selectedColor,
     };
-    fetch("/api/send-to-visualization", {
+    fetch("/api/sent-to-facebook", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ image, colorData }),
+      body: JSON.stringify({
+        /* your data here */
+      }),
     })
       .then((response) => {
         if (!response.ok) {

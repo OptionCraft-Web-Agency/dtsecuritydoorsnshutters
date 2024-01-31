@@ -449,16 +449,25 @@ export default function Home() {
       selectedIndex,
       selectedColor,
     };
-    fetch("/api/send-to-facebook", {
+    fetch("/api/send-to-visualization", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ image, colorData }),
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch((error) => console.error("Error:", error));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
   useEffect(() => {
     let intervalId: number | undefined;

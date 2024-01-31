@@ -20,6 +20,7 @@ import React, { CSSProperties } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface ColorSetters {
   [key: string]: Dispatch<SetStateAction<string>>;
@@ -421,55 +422,67 @@ export default function Home() {
   const movingRef = useRef<HTMLDivElement>(null);
 
   const captureVisualization = async () => {
-    const houseVisElement = document.getElementById("HouseVis");
-    if (houseVisElement) {
-      const canvas = await html2canvas(houseVisElement);
-      return canvas.toDataURL("image/png");
+    const element = document.getElementById("HouseVis");
+    if (!element) {
+      console.error("Element #HouseVis not found");
+      return ""; // Return an empty string or a default image data URL
     }
+    const canvas = await html2canvas(element);
+    return canvas.toDataURL("image/png");
   };
 
-  const sendData = async () => {
+  const generatePDF = async () => {
     const image = await captureVisualization();
-    const colorData = {
-      roofMainColor,
-      lowerRoofColor,
-      facia,
-      leftWallColor,
-      pillarsColor,
-      frontWall,
-      rightWallColor,
-      doorColor,
-      customColor,
-      selectedSection,
-      bottom,
-      rail,
-      headBox,
-      slat,
-      curtainsColor,
-      selectedIndex,
-      selectedColor,
-    };
-    fetch("/api/sent-to-facebook", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        /* your data here */
-      }),
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log("Success:", data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    const doc = new jsPDF({
+      orientation: "portrait",
+    });
+
+    // Check if image is not empty before adding it
+    if (image) {
+      doc.addImage(image, "PNG", 15, 40, 180, 160);
+    } else {
+      // Handle the case where image is empty - maybe log an error or set a default image
+    }
+
+    // Add text for color selection
+    const colorsText = `Roof Main Color: ${roofMainColor}
+Lower Roof Color: ${lowerRoofColor}
+Facia Color: ${facia}
+Left Wall Color: ${leftWallColor}
+Pillars Color: ${pillarsColor}
+Front Wall Color: ${frontWall}
+Right Wall Color: ${rightWallColor}
+Door Color: ${doorColor}
+----------
+Rail>
+----------
+Bottom Color: ${bottom}
+Rail Color: ${rail}
+HeadBox Color: ${headBox}
+Slat Color: ${slat}
+Curtains Color: ${curtainsColor}
+
+  
+  `;
+
+    const maxWidth = 180;
+    const lineHeight = 7;
+    const startX = 15;
+    let startY = 210; // Adjust based on where your text starts
+
+    const lines = doc.splitTextToSize(colorsText, maxWidth);
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    lines.forEach((line) => {
+      if (startY + lineHeight > pageHeight - 10) {
+        doc.addPage();
+        startY = 10; // Or your preferred top margin for new pages
+      }
+      doc.text(line, startX, startY);
+      startY += lineHeight;
+    });
+
+    doc.save("DT-Visualisation.pdf");
   };
   useEffect(() => {
     let intervalId: number | undefined;
@@ -761,10 +774,17 @@ export default function Home() {
       {/* Add the Send Data button */}
       <div className="text-center my-4">
         <button
-          className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300"
-          onClick={sendData}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center"
+          onClick={generatePDF}
         >
-          Send to Facebook
+          <svg
+            className="fill-current w-4 h-4 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path d="M13 8V0H7v8H0l10 12 10-12h-7z" />
+          </svg>
+          <span>Download Visualisation For Attachment</span>
         </button>
       </div>
       <Footer />

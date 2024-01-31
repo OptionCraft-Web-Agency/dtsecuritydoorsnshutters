@@ -16,10 +16,10 @@ import CurtainRoller from "@/components/vis/CurtainRoller";
 import Inside from "@/components/vis/inside";
 import InsideCurtain from "@/components/vis/insideCurtain";
 import MainHeader from "@/components/MainHeader";
-import React, { CSSProperties } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-
+import React, { CSSProperties } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import html2canvas from "html2canvas";
 
 interface ColorSetters {
   [key: string]: Dispatch<SetStateAction<string>>;
@@ -381,24 +381,20 @@ export default function Home() {
 
   const ColorVisualisationTitle: React.FC = () => {
     const sectionStyle: CSSProperties = {
-      position: 'relative',
-      width: '100%',
-      height: 'calc(100vh - 80px)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      color: 'white',
-      fontSize: 'min(4vw, 7vw)', // Adjusted for better text scaling
-      fontWeight: 'bold',
-      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+      position: "relative",
+      width: "100%",
+      height: "calc(100vh - 80px)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      color: "white",
+      fontSize: "min(4vw, 7vw)", // Adjusted for better text scaling
+      fontWeight: "bold",
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
       background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
     };
-  
-    return (
-      <div style={sectionStyle}>
-        Color Visulisation
-      </div>
-    );
+
+    return <div style={sectionStyle}>Color Visulisation</div>;
   };
 
   const handleColorSelection = (section: string, color: Color) => {
@@ -424,6 +420,46 @@ export default function Home() {
   };
   const movingRef = useRef<HTMLDivElement>(null);
 
+  const captureVisualization = async () => {
+    const houseVisElement = document.getElementById("HouseVis");
+    if (houseVisElement) {
+      const canvas = await html2canvas(houseVisElement);
+      return canvas.toDataURL("image/png");
+    }
+  };
+
+  const sendData = async () => {
+    const image = await captureVisualization();
+    const colorData = {
+      roofMainColor,
+      lowerRoofColor,
+      facia,
+      leftWallColor,
+      pillarsColor,
+      frontWall,
+      rightWallColor,
+      doorColor,
+      customColor,
+      selectedSection,
+      bottom,
+      rail,
+      headBox,
+      slat,
+      curtainsColor,
+      selectedIndex,
+      selectedColor,
+    };
+    fetch("/api/send-to-facebook", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ image, colorData }),
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch((error) => console.error("Error:", error));
+  };
   useEffect(() => {
     let intervalId: number | undefined;
 
@@ -461,7 +497,7 @@ export default function Home() {
     <>
       <Header />
       <MainHeader />
-      <ColorVisualisationTitle/>
+      <ColorVisualisationTitle />
 
       <div className="bg-[#F6F4EB]">
         <div className="container mx-auto ">
@@ -654,6 +690,7 @@ export default function Home() {
             <div
               className="w-full  lg:max-h-[1000px] lg:w-1/2 2xl:w-2/3 wide:w-7/10 mx-auto"
               ref={movingRef}
+              id="HouseVis"
             >
               <div className="w-full h-[400px] md:h-[550px] xl:h-full">
                 <div
@@ -709,9 +746,16 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <CostCalc />
       </div>
-
+      {/* Add the Send Data button */}
+      <div className="text-center my-4">
+        <button
+          className="px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300"
+          onClick={sendData}
+        >
+          Send to Facebook
+        </button>
+      </div>
       <Footer />
     </>
   );

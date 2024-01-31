@@ -473,7 +473,7 @@ Curtains Color: ${curtainsColor}
     const lines = doc.splitTextToSize(colorsText, maxWidth);
     const pageHeight = doc.internal.pageSize.getHeight();
 
-    lines.forEach((line) => {
+    lines.forEach((line: string) => {
       if (startY + lineHeight > pageHeight - 10) {
         doc.addPage();
         startY = 10; // Or your preferred top margin for new pages

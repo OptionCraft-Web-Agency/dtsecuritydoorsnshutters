@@ -6,7 +6,7 @@ const FacebookMessenger = () => {
   return (
     <FacebookProvider appId="390037466724849" chatSupport>
       <CustomChat
-        pageId="176279788911063"
+        pageId="202813109587848"
         minimized={false ? true : undefined}
       />
     </FacebookProvider>

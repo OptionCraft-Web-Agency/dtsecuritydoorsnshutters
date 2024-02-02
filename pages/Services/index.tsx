@@ -1,13 +1,10 @@
-import React, { useState, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from "next/link";
-import { Inter } from 'next/font/google';
 
 import Header from '@/components/Header'
 import MainHeader from '@/components/MainHeader'
 import Footer from '@/components/Footer'
-
-const inter = Inter({ subsets: ['latin'] })
 
 type ServiceItemProps = {
   imageUrl: string;
@@ -16,10 +13,28 @@ type ServiceItemProps = {
 
 const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [viewportWidth, setViewportWidth] = useState<number>(0);
 
+  useEffect(() => {
+    // Handler to call on window resize
+    function handleResize() {
+      setViewportWidth(window.innerWidth);
+    }
+    
+    // Set initial size on mount
+    handleResize();
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Adjust styles based on viewport width for responsiveness
   const itemStyle: CSSProperties = {
     textAlign: 'center',
-    paddingBottom: '1vw',
+    paddingBottom: viewportWidth < 768 ? '5%' : '1vw', // Increase padding on small screens
     color: 'black',
     backgroundColor: 'white',
     transition: 'transform 0.3s ease, box-shadow 0.3s ease',
@@ -33,12 +48,12 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title }) => {
   const imageContainerStyle: CSSProperties = {
     position: 'relative',
     width: '100%',
-    height: '10vw',
+    height: viewportWidth < 768 ? '50vw' : '10vw', // Adjust height for mobile view
     marginBottom: '1vw',
   };
 
   const titleStyle: CSSProperties = {
-    fontSize: '1.2vw',
+    fontSize: viewportWidth < 768 ? '5vw' : '1.2vw', // Increase font size for better readability on mobile
   };
 
   return (
@@ -84,33 +99,34 @@ const ServicesSection: React.FC = () => {
   );
 };
 
-const Store: React.FC = () => {
+const ProductShowcase: React.FC = () => {
   const containerStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
     padding: '5vw 0',
-    height: 'calc(100vh - 80px)',
+    height: 'auto', // Adjusted for mobile responsiveness
   };
 
   const titleStyle: CSSProperties = {
-    fontSize: '2.5vw',
+    fontSize: '2.5vw', // Significantly reduced for better readability on mobile
     marginBottom: '1.5vw',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center', // Ensure title is centered on small screens
   };
 
   const gridStyle: CSSProperties = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr)',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', // Responsive grid layout
     gap: '1vw',
-    width: '80%',
+    width: '90%', // Adjusted for smaller screens
     margin: '0 auto',
   };
 
   const descriptionStyle: CSSProperties = {
     textAlign: 'center',
-    fontSize: '1.5vw',
+    fontSize: '2vw', // Further reduced for better fitting on mobile screens
     padding: '0 5%', // Adjust padding for text alignment
     margin: '1vw 0 3vw 0', // Margin for spacing
     color: '#333', // Adjust color for readability
@@ -138,7 +154,7 @@ export default function Services() {
       <Header />
       <MainHeader />
       <ServicesSection />
-      <Store />
+      <ProductShowcase />
       <Footer />
     </div>
   )

@@ -71,7 +71,7 @@ const PriceGuaranteeSection: React.FC = () => {
             textAlign: 'center',
           }}
         >
-          Experience unparalleled value with our roller shutter cost estimator. Empower yourself with an instant preliminary quote and feel at ease to compare it with others. We stand by the superior quality and affordability of our offerings – confident that we're unmatched in both. If you find a better price for comparable quality, we’re ready to discuss it. Your satisfaction is our benchmark, and we're committed to delivering excellence without compromise.
+            Experience unparalleled value with our roller shutter cost estimator. Empower yourself with an instant preliminary quote and feel at ease to compare it with others. We stand by the superior quality and affordability of our offerings – confident that we&apos;re unmatched in both. If you find a better price for comparable quality, we’re ready to discuss it. Your satisfaction is our benchmark, and we&apos;re committed to delivering excellence without compromise.
         </p>
       </section>
     );

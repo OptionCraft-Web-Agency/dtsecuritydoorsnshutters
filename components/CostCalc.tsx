@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 // First, define a type for your selection object
 
@@ -51,11 +51,10 @@ const calculateAreaCost = (
 
 // Function to calculate additional floor charge
 export default function CostCalc() {
-
   const handleDeleteSelection = (id: number) => {
-    setSelections(selections.filter(selection => selection.id !== id));
+    setSelections(selections.filter((selection) => selection.id !== id));
   };
-  
+
   const [selections, setSelections] = useState<Selection[]>([
     {
       id: 1,
@@ -166,15 +165,19 @@ export default function CostCalc() {
     return selections.reduce((acc, selection) => acc + selection.cost, 0);
   };
 
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Correctly set isMobile based on the window size after mount
     const handleResize = () => {
       setIsMobile(window.innerWidth < 640);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Set the initial value based on the current window size
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
@@ -184,11 +187,18 @@ export default function CostCalc() {
           <div key={selection.id} className="bg-white rounded-lg shadow-md p-4">
             <div className="grid grid-cols-2 gap-4 mb-4 items-end">
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-sm font-medium mb-1" style={{fontWeight:'bold'}}>Units</label>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Units
+                </label>
                 <select
                   className="form-select block w-full p-2 border border-gray-300 rounded-md"
                   value={selection.unit}
-                  onChange={(e) => handleInputChange(selection.id, "unit", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "unit", e.target.value)
+                  }
                 >
                   <option value="mm">mm</option>
                   <option value="cm">cm</option>
@@ -196,63 +206,111 @@ export default function CostCalc() {
                 </select>
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-sm font-medium mb-1" style={{fontWeight:'bold'}}>Product</label>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Product
+                </label>
                 <select
                   className="form-select block w-full p-2 border border-gray-300 rounded-md"
                   value={selection.product}
-                  onChange={(e) => handleInputChange(selection.id, "product", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "product", e.target.value)
+                  }
                 >
                   {products.map((product) => (
-                    <option key={product.name} value={product.name}>{product.name}</option>
+                    <option key={product.name} value={product.name}>
+                      {product.name}
+                    </option>
                   ))}
                 </select>
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-sm font-medium mb-1" style={{fontWeight:'bold'}}>Width</label>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Width
+                </label>
                 <input
                   type="number"
                   className="form-input block w-full p-2 border border-gray-300 rounded-md"
                   placeholder="Width"
                   value={selection.width}
-                  onChange={(e) => handleInputChange(selection.id, "width", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "width", e.target.value)
+                  }
                 />
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-sm font-medium mb-1" style={{fontWeight:'bold'}}>Height</label>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Height
+                </label>
                 <input
                   type="number"
                   className="form-input block w-full p-2 border border-gray-300 rounded-md"
                   placeholder="Height"
                   value={selection.height}
-                  onChange={(e) => handleInputChange(selection.id, "height", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "height", e.target.value)
+                  }
                 />
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-sm font-medium mb-1" style={{fontWeight:'bold'}}>Operation Type</label>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Operation Type
+                </label>
                 <select
                   className="form-select block w-full p-2 border border-gray-300 rounded-md"
                   value={selection.operationType}
-                  onChange={(e) => handleInputChange(selection.id, "operationType", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(
+                      selection.id,
+                      "operationType",
+                      e.target.value
+                    )
+                  }
                 >
                   {operationTypes.map((type) => (
-                    <option key={type} value={type}>{type}</option>
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
                   ))}
                 </select>
               </div>
               <div className="col-span-2 sm:col-span-1">
-                <label className="block text-sm font-medium mb-1" style={{fontWeight:'bold'}}>Location</label>
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Location
+                </label>
                 <select
                   className="form-select block w-full p-2 border border-gray-300 rounded-md"
                   value={selection.location}
-                  onChange={(e) => handleInputChange(selection.id, "location", e.target.value)}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "location", e.target.value)
+                  }
                 >
                   {locations.map((location) => (
-                    <option key={location} value={location}>{location}</option>
+                    <option key={location} value={location}>
+                      {location}
+                    </option>
                   ))}
                 </select>
               </div>
             </div>
-            <div className="flex items-center justify-between" style={{fontWeight:'bold'}}>
+            <div
+              className="flex items-center justify-between"
+              style={{ fontWeight: "bold" }}
+            >
               <span className="text-xl font-bold">RRP: ${selection.cost}</span>
               <button
                 onClick={() => handleDeleteSelection(selection.id)}
@@ -277,5 +335,4 @@ export default function CostCalc() {
       </div>
     </div>
   );
-  
 }

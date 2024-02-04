@@ -55,9 +55,7 @@ const OurServices: React.FC = () => {
       padding: isMobile ? '1vw 0' : '2vw 0',
     }}>
       <p style={{
-        fontSize: isMobile ? '4vw' : '2.5vw',
-        marginBottom: '2vw',
-        fontWeight: 'bold',
+        fontSize: isMobile ? '6vw' : '2.5rem', marginBottom: '1rem', fontWeight:'bold'
       }}>
         Our Services
       </p>

@@ -28,7 +28,7 @@ const AboutUsInfo: React.FC = () => {
   };
 
   const paragraphStyle: CSSProperties = {
-    fontSize: isMobile ? '6vw' : '2.5vw', // Adjust font size for mobile
+    fontSize: isMobile ? '6vw' : '2.5rem', // Adjust font size for mobile
     marginBottom: '2vw',
     fontWeight: 'bold',
   };

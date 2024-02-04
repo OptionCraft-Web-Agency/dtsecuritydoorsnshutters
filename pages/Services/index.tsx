@@ -100,6 +100,22 @@ const ServicesSection: React.FC = () => {
 };
 
 const ProductShowcase: React.FC = () => {
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Effect to update the state based on screen width
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 600);
+    };
+
+    // Set the initial value
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  
   const containerStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
@@ -126,7 +142,7 @@ const ProductShowcase: React.FC = () => {
 
   const descriptionStyle: CSSProperties = {
     textAlign: 'center',
-    fontSize: '2vw', // Further reduced for better fitting on mobile screens
+    fontSize: isMobile ? '4vw' : '1.25vw', // Adjust font size for mobile
     padding: '0 5%', // Adjust padding for text alignment
     margin: '1vw 0 3vw 0', // Margin for spacing
     color: '#333', // Adjust color for readability

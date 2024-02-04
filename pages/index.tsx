@@ -9,19 +9,12 @@ import HomePage from "../components/HomePage";
 import OurServices from "@/components/OurServices";
 import HomeContent from "@/components/HomeContent";
 import CallToAction from "@/components/CallToAction";
+import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import CustomerReview from "../components/CustomerReview";
 import HomeForm from "@/components/HomeForm";
 import Footer from "../components/Footer";
 
-import ContactUsInfo from "../components/ContactUsInfo";
-import ContactUsForm from "../components/ContactUsForm";
 
-import AboutUsInfo from "../components/AboutUsInfo";
-
-import Store from "../components/Store";
-
-import Info1 from "../components/Info1";
-import Info2 from "../components/Info2";
 
 import Image from "next/image";
 
@@ -46,23 +39,14 @@ export default function Home() {
 
         <CallToAction />
 
+        <WhyChooseUsSection />
+
         <CustomerReview />
 
         <HomeForm />
 
         <Footer />
 
-        {/* <ContactUsForm />
-
-        <ContactUsInfo />
-
-        <AboutUsInfo />
-
-        <Store />
-
-        <Info1 />
-
-        <Info2 /> */}
         <FacebookMessenger />
       </div>
     </>

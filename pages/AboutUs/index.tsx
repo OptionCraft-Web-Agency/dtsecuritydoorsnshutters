@@ -7,6 +7,7 @@ import MainHeader from '@/components/MainHeader';
 import AboutUsInfo from '@/components/AboutUsInfo';
 import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import Footer from '@/components/Footer';
+import FAQSection from '@/components/FAQ';
 
 // Define the AboutUsSection component
 const AboutUsSection: React.FC = () => {
@@ -41,6 +42,7 @@ export default function AboutUs() {
       <AboutUsInfo />
       </div>
       <WhyChooseUsSection />
+      <FAQSection />
       <Footer />
     </div>
   );

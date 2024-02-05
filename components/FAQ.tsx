@@ -25,15 +25,17 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
   const questionStyle: CSSProperties = {
     fontWeight: 'bold',
     flexGrow: 1,
+    fontSize: 'clamp(0.6rem, 2.5vw, 1rem)', // Further reduced minimum font size for mobile
   };
-
+  
   const answerStyle: CSSProperties = {
     lineHeight: '1.5',
     transition: 'max-height 0.3s ease',
     maxHeight: isOpen ? '500px' : '0',
     overflow: 'hidden',
     padding: isOpen ? '1rem' : '0 1rem',
-  };
+    fontSize: 'clamp(0.6rem, 2vw, 0.875rem)', // Further reduced minimum font size for mobile
+  };  
 
   const iconStyle: CSSProperties = {
     transition: 'transform 0.3s ease',
@@ -52,8 +54,20 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 };
 
 const FAQSection: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const faqSectionStyle: CSSProperties = {
-    maxWidth: '80vw',
+    maxWidth: isMobile ? '90vw' : '80vw',
     margin: '2rem auto',
     boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
     borderRadius: '8px',
@@ -64,12 +78,11 @@ const FAQSection: React.FC = () => {
     background: '#f7f7f7',
     textAlign: 'center',
     padding: '1rem',
-    fontSize: '1.5rem',
+    fontSize: 'clamp(0.85rem, 5vw, 1.5rem)', // Further reduced minimum font size for mobile
     fontWeight: 'bold',
     borderBottom: '1px solid #ccc',
   };
 
-  // Additional FAQs can be added here
   const faqs = [
     {
       question: "What factors should I consider when purchasing security doors?",
@@ -109,7 +122,6 @@ const FAQSection: React.FC = () => {
     },
     // ... more FAQs
   ];
-  
 
   return (
     <div style={faqSectionStyle}>

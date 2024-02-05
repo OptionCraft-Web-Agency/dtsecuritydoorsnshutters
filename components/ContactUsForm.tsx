@@ -74,7 +74,7 @@ const ContactUsForm: React.FC = () => {
         alignItems: 'center',
         height: '100%',
       }}>
-        <p style={{fontSize: isMobile ? '6vw' : '2.5rem', marginBottom: '1rem', fontWeight:'bold'}}>
+        <p style={{fontSize: isMobile ? '6vw' : '2.5rem', margin: '1rem 0', fontWeight:'bold'}}>
           Enquire Form
         </p>
 

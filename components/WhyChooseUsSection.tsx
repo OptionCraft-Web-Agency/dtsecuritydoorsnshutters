@@ -10,14 +10,21 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const WhyChooseUsSection: React.FC = () => {
-    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+      // This code runs after the component is mounted, so it's safe to use window here
       const handleResize = () => {
         setIsMobile(window.innerWidth < 768);
       };
   
+      // Set the initial value based on the current window size
+      handleResize();
+  
+      // Add event listener for window resize
       window.addEventListener('resize', handleResize);
+  
+      // Clean up event listener when the component is unmounted
       return () => window.removeEventListener('resize', handleResize);
     }, []);
   

@@ -11,6 +11,7 @@ import HomeContent from "@/components/HomeContent";
 import CallToAction from "@/components/CallToAction";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import CustomerReview from "../components/CustomerReview";
+import FAQsComponent from "@/components/FAQ";
 import HomeForm from "@/components/HomeForm";
 import Footer from "../components/Footer";
 
@@ -42,6 +43,8 @@ export default function Home() {
         <WhyChooseUsSection />
 
         <CustomerReview />
+
+        <FAQsComponent />
 
         <HomeForm />
 

@@ -5,27 +5,29 @@ import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
 type FAQItemProps = {
   question: string;
   answer: string;
+  isLastItem?: boolean; // optional prop to indicate if it is the last item
 };
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
+const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isLastItem }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleOpen = () => setIsOpen(!isOpen);
 
   const faqItemStyle: CSSProperties = {
     background: 'none',
-    borderBottom: '1px solid #ccc',
     padding: '1rem',
     cursor: 'pointer',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-  };
+    borderTop: '1px solid #ccc', // top border for separating items
+    borderBottom: isLastItem ? 'none' : '1px solid #ccc', // conditional bottom border based on isLastItem
+    margin: '0', // reset any default margins
+  };  
 
   const questionStyle: CSSProperties = {
     fontWeight: 'bold',
     flexGrow: 1,
-    fontSize: 'clamp(0.6rem, 2.5vw, 1rem)', // Further reduced minimum font size for mobile
   };
   
   const answerStyle: CSSProperties = {
@@ -34,24 +36,27 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
     maxHeight: isOpen ? '500px' : '0',
     overflow: 'hidden',
     padding: isOpen ? '1rem' : '0 1rem',
-    fontSize: 'clamp(0.6rem, 2vw, 0.875rem)', // Further reduced minimum font size for mobile
+    borderTop: isOpen && !isLastItem ? '1px solid #ccc' : 'none',
   };  
 
   const iconStyle: CSSProperties = {
     transition: 'transform 0.3s ease',
-    transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+    transform: isOpen ? 'rotate(180deg)' : 'none',
   };
 
   return (
-    <div style={faqItemStyle} onClick={toggleOpen}>
-      <div style={questionStyle}>{question}</div>
-      <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} style={iconStyle} />
+    <div style={{  }}>
+      <div style={faqItemStyle} onClick={toggleOpen}>
+        <div style={questionStyle}>{question}</div>
+        <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} style={iconStyle} />
+      </div>
       <div style={answerStyle}>
         {isOpen && <p>{answer}</p>}
       </div>
     </div>
   );
 };
+
 
 const FAQSection: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -130,7 +135,8 @@ const FAQSection: React.FC = () => {
         <FAQItem 
           key={index}
           question={faq.question} 
-          answer={faq.answer} 
+          answer={faq.answer}
+          isLastItem={index === faqs.length - 1} // Pass this prop to the FAQItem
         />
       ))}
     </div>

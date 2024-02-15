@@ -21,12 +21,24 @@ const Info1: React.FC = () => {
 
     const debouncedHandleResize = debounce(handleResize, 100);
     window.addEventListener('resize', debouncedHandleResize);
+
     return () => window.removeEventListener('resize', debouncedHandleResize);
   }, []);
 
-  const containerStyle: CSSProperties = { textAlign: 'center', maxWidth: '100vw', padding: '2rem 0' };
-  const titleStyle: CSSProperties = { fontWeight: 'bold', fontSize: 'min(1.8vw, 24px)' };
-  const subtitleStyle: CSSProperties = { marginBottom: '20px', fontSize: 'min(1.2vw, 18px)' };
+  const containerStyle: CSSProperties = {
+    textAlign: 'center',
+    maxWidth: '100vw',
+    padding: '4rem 0',
+    backgroundColor: '#FAFAFA',
+    color: '#333',
+  };
+
+  const titleStyle: CSSProperties = {
+    fontWeight: 'bold',
+    fontSize: 'min(1.8vw, 24px)',
+  };
+
+
   const flexContainerStyle: CSSProperties = {
     display: 'flex',
     flexDirection: isMobile ? 'column' : 'row',
@@ -35,6 +47,7 @@ const Info1: React.FC = () => {
     marginTop: '20px',
     flexWrap: 'wrap',
   };
+
   const itemStyle: CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
@@ -43,17 +56,35 @@ const Info1: React.FC = () => {
     marginBottom: '20px',
     padding: '1rem',
     borderRadius: '8px',
+    backgroundColor: '#FFFFFF',
+    boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)',
+    minHeight: '250px', // Ensure a minimum height for each item for consistency
   };
-  const imageContainerStyle: CSSProperties = { width: '60px', height: '60px', marginBottom: '20px' };
-  const textStyle: CSSProperties = { fontWeight: 'bold', fontSize: 'min(1vw, 18px)', marginBottom: '0.5rem' };
-  const descriptionStyle: CSSProperties = { fontSize: 'min(1vw, 16px)' };
+
+  const imageContainerStyle: CSSProperties = {
+    width: '80px',
+    height: '80px',
+    marginBottom: '1.5rem',
+  };
+
+  const textStyle: CSSProperties = {
+    fontWeight: 600,
+    fontSize: isMobile ? '5vw' : '1rem',
+    marginBottom: '1rem',
+  };
+
+  const descriptionStyle: CSSProperties = {
+    fontSize: isMobile ? '4vw' : '0.9rem',
+    textAlign: 'justify',
+    lineHeight: '1.5',
+    minHeight: '80px', // Set a minimum height for the description to align items vertically
+  };
 
   return (
     <div style={containerStyle}>
       <p style={titleStyle}>Maximize Comfort and Security with Diverse Roller Shutters Operation Modes</p>
-      <p style={subtitleStyle}>Choose an operation style that aligns with your home's design and your convenience needs</p>
       <div style={flexContainerStyle}>
-        <div style={itemStyle}>
+      <div style={itemStyle}>
           <div style={imageContainerStyle}>
             <Image
               src="/RollerDoor1.jpg"

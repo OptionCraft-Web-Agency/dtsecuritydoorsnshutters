@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useState, useEffect, CSSProperties } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShieldAlt, faBolt, faVolumeDown, faPalette, faCalculator } from '@fortawesome/free-solid-svg-icons';
+import { faShieldAlt, faBolt, faVolumeDown, faPalette, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 import Header from '@/components/Header';
 import MainHeader from '@/components/MainHeader';
@@ -141,111 +141,100 @@ const AccessToolsSection: React.FC = () => {
     };
 
     handleResize();
-
     window.addEventListener('resize', handleResize);
-
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const sectionStyle: CSSProperties = {
-      display: 'flex',
-      flexDirection: isMobile ? 'column' : 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      padding: isMobile ? '1rem' : '2rem',
-      background: 'linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))', 
-      color: 'white',
-      textAlign: isMobile ? 'center' : 'left',
-  };
-
-  const headerStyle: CSSProperties = {
-      flex: 1,
-      fontSize: isMobile ? '1.5rem' : '2.5rem', // Smaller font size for mobile
-      fontWeight: 'bold',
-      textAlign: 'left',
-      margin: isMobile ? '0 1rem' : '0 2rem', // Adjust margin for mobile
-  };
-
-  const cardContainerStyle: CSSProperties = {
-      display: 'flex',
-      flexDirection: isMobile ? 'column' : 'row',
-      justifyContent: 'center',
-      gap: '1rem',
-      width: isMobile ? '100%' : 'auto',
-      marginTop: isMobile ? '5vw' : '0'
-  };
-
-  const cardStyle: CSSProperties = {
-      textAlign: 'center',
-      padding: '1rem',
-      borderRadius: '8px',
-      backgroundColor: '#ffffff',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-      position: 'relative',
-      overflow: 'hidden',
-      color: '#333',
-      transition: 'transform 0.2s ease-in-out',
-      width: isMobile ? '90%' : '250px',
-      margin: isMobile ? '0 auto' : '1rem',
-  };
-
-  const iconStyle: CSSProperties = {
-      fontSize: isMobile ? '2rem' : '3rem', // Smaller icon size for mobile
-      color: 'rgb(0, 87, 255)',
-  };
-
-  const buttonStyle: CSSProperties = {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: '0.5rem 1rem',
-      fontSize: isMobile ? '0.8rem' : '1rem', // Smaller font size for mobile
-      fontWeight: 'bold',
-      color: 'rgb(0, 87, 255)', 
-      border: '2px solid white',
-      borderRadius: '5px',
-      cursor: 'pointer',
-      textDecoration: 'none',
-      backgroundColor: 'transparent',
-      transition: 'all 0.2s',
-      gap: '0.5rem',
-  };
-
-  // Handlers
   const handleCardMouseOver = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      e.currentTarget.style.transform = 'scale(1.05)';
+    e.currentTarget.style.transform = 'scale(1.05)';
   };
 
   const handleCardMouseOut = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-      e.currentTarget.style.transform = 'scale(1)';
+    e.currentTarget.style.transform = 'scale(1)';
   };
 
-  // Component
+  const sectionStyle: CSSProperties = {
+    display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: isMobile ? '1rem' : '2rem',
+    background: 'linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))', 
+    color: 'white',
+    textAlign: isMobile ? 'center' : 'left',
+  };
+
+  const headerStyle: CSSProperties = {
+    flex: 1,
+    fontSize: isMobile ? '4vw' : '2rem', // Adjusted for more dynamic resizing
+    fontWeight: 'bold',
+    textAlign: 'left',
+    margin: '1rem', // Simplified, adjust as needed
+  };
+
+  const cardContainerStyle: CSSProperties = {
+    display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
+    justifyContent: 'center',
+    gap: '1rem',
+    width: isMobile ? '100%' : 'auto',
+    marginTop: isMobile ? '5vw' : '0'
+  };
+
+  const cardStyle: CSSProperties = {
+    textAlign: 'center',
+    padding: '1rem',
+    borderRadius: '8px',
+    backgroundColor: '#ffffff',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+    width: isMobile ? '90%' : '250px', // Adjust width based on screen size
+    margin: '0 auto', // Automatically adjust margin to center cards
+    transition: 'transform 0.2s ease-in-out',
+  };
+
+  const iconStyle: CSSProperties = {
+    fontSize: isMobile ? '6vw' : '3rem', // Adjust icon size for better visibility
+  };
+
+  const buttonStyle: CSSProperties = {
+    display: 'inline-flex', // Use inline-flex to ensure button text and icon align correctly
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '0.5rem 1rem',
+    fontSize: isMobile ? '3.5vw' : '1rem',
+    fontWeight: 'bold',
+    color: 'rgb(0, 87, 255)',
+    border: '2px solid white',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    textDecoration: 'none',
+    backgroundColor: 'transparent',
+    transition: 'all 0.2s',
+    gap: '0.5rem',
+  };
+
   return (
-      <div style={sectionStyle}>
-          <div style={headerStyle}>
-              Design & Secure Your Space
-          </div>
-          <div style={cardContainerStyle}>
-              <div style={cardStyle} onMouseEnter={handleCardMouseOver} onMouseLeave={handleCardMouseOut}>
-                  <a href="/Visualisation" style={buttonStyle}>
-                      {/* FontAwesomeIcon component */}
-                      <FontAwesomeIcon icon={faCalculator} style={iconStyle} />
-                      <span>Cost Calculator</span>
-                  </a>
-              </div>
-              <div style={cardStyle} onMouseEnter={handleCardMouseOver} onMouseLeave={handleCardMouseOut}>
-                  <a href="/Visualisation" style={buttonStyle}>
-                      <FontAwesomeIcon icon={faPalette} style={iconStyle} />
-                      {/* FontAwesomeIcon component */}
-                      <span>Color Visualization</span>
-                  </a>
-              </div>
-          </div>
+    <div style={sectionStyle}>
+      <div style={headerStyle}>Design & Secure Your Space</div>
+      <div style={cardContainerStyle}>
+        {/* Contact Us card */}
+        <div style={cardStyle} onMouseEnter={handleCardMouseOver} onMouseLeave={handleCardMouseOut}>
+          <a href="/Contact" style={buttonStyle}>
+            <FontAwesomeIcon icon={faInfoCircle} style={iconStyle} />
+            <span>Contact Us</span>
+          </a>
+        </div>
+        {/* Color Visualization card */}
+        <div style={cardStyle} onMouseEnter={handleCardMouseOver} onMouseLeave={handleCardMouseOut}>
+          <a href="/Visualisation" style={buttonStyle}>
+            <FontAwesomeIcon icon={faPalette} style={iconStyle} />
+            <span>Color Visualization</span>
+          </a>
+        </div>
       </div>
+    </div>
   );
 };
-
 
 export default function RollerShutters() {
   return (

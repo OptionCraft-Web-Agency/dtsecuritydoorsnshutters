@@ -35,6 +35,7 @@ const ProductPage = () => {
         >
           Go Back
         </button>
+        
         <div>{data?.product && <ProductDetails product={data.product} />}</div>
 
         <Footer />

@@ -5,7 +5,9 @@ import React, { CSSProperties } from 'react';
 import Header from '@/components/Header';
 import MainHeader from '@/components/MainHeader';
 import AboutUsInfo from '@/components/AboutUsInfo';
+import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import Footer from '@/components/Footer';
+import FAQSection from '@/components/FAQ';
 
 // Define the AboutUsSection component
 const AboutUsSection: React.FC = () => {
@@ -39,6 +41,8 @@ export default function AboutUs() {
       <div style={{margin:'80px 0px'}}>
       <AboutUsInfo />
       </div>
+      <WhyChooseUsSection />
+      <FAQSection />
       <Footer />
     </div>
   );

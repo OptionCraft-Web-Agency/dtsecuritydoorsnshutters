@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 // First, define a type for your selection object
 
@@ -49,6 +51,10 @@ const calculateAreaCost = (
 
 // Function to calculate additional floor charge
 export default function CostCalc() {
+  const handleDeleteSelection = (id: number) => {
+    setSelections(selections.filter((selection) => selection.id !== id));
+  };
+
   const [selections, setSelections] = useState<Selection[]>([
     {
       id: 1,
@@ -126,6 +132,7 @@ export default function CostCalc() {
     }
     return 0;
   };
+
   // Function to calculate area cost based on unit
   const calculateAreaCost = (
     width: number,
@@ -158,134 +165,173 @@ export default function CostCalc() {
     return selections.reduce((acc, selection) => acc + selection.cost, 0);
   };
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Correctly set isMobile based on the window size after mount
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+
+    // Set the initial value based on the current window size
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="bg-[#F0EDD4] p-4">
-      <div className="overflow-x-auto">
-        {selections.map((selection) => (
-          <div key={selection.id} className="mb-3 p-1 rounded shadow">
-            <div className="flex flex-col xl:flex-row ">
-              <div className="w-full md:w-auto px-2 mb-2 flex flex-col xl:flex-row items-center justify-between xl:w-[80%] xl:w-[85%] ">
-                <div className="flex flex-row   w-full justify-evenly mb-1 xl:mb-0 xl:mr-2">
-                  <span className="font-bold text-gray-70 w-[20%] text-center mx-auto my-auto bg-[#8E8B82] text-yellow-100">
-                    {selection.id}
-                  </span>
-                  <select
-                    className="p-1 bg-[#F9FBE7] border border-yellow-300 w-[20%] mx-2 my-auto text-center "
-                    value={selection.unit}
-                    onChange={(e) =>
-                      handleInputChange(selection.id, "unit", e.target.value)
-                    }
-                  >
-                    <option value="mm">mm</option>
-                    <option value="cm">cm</option>
-                    <option value="m">m</option>
-                  </select>
-                  <select
-                    className="p-1 bg-[#F9FBE7] border border-yellow-300 w-[60%] mx-auto my-auto text-center "
-                    value={selection.product}
-                    onChange={(e) =>
-                      handleInputChange(selection.id, "product", e.target.value)
-                    }
-                  >
-                    {" "}
-                    {products.map((product) => (
-                      <option key={product.name} value={product.name}>
-                        {product.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div className="flex flex-row w-full justify-evenly mb-1  xl:mb-0 xl:mr-2">
-                  <div className="w-1/2 mr-1  ">
-                    <input
-                      type="number"
-                      className="form-input block w-full p-1 bg-[#F9FBE7] border border-yellow-300 text-center "
-                      placeholder="Width"
-                      value={selection.width}
-                      onChange={(e) =>
-                        handleInputChange(selection.id, "width", e.target.value)
-                      }
-                    />
-                  </div>
-                  <span className="my-auto invisible hidden lg:visible lg:inline">
-                    x
-                  </span>
-                  <div className="w-1/2 ml-1">
-                    <input
-                      type="number"
-                      className="form-input block w-full p-1 bg-[#F9FBE7] border border-yellow-300 text-center "
-                      placeholder="Height"
-                      value={selection.height}
-                      onChange={(e) =>
-                        handleInputChange(
-                          selection.id,
-                          "height",
-                          e.target.value
-                        )
-                      }
-                    />
-                  </div>
-                </div>
-                <div className="flex flex-row w-full justify-evenly ">
-                  <div className="w-full mr-1">
-                    <select
-                      className="form-select block w-full p-1 bg-[#F9FBE7] border border-yellow-300"
-                      value={selection.operationType}
-                      onChange={(e) =>
-                        handleInputChange(
-                          selection.id,
-                          "operationType",
-                          e.target.value
-                        )
-                      }
-                    >
-                      {operationTypes.map((type) => (
-                        <option key={type} value={type}>
-                          {type}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                  <div className="w-full  ml-1">
-                    <select
-                      className="form-select block w-full p-1 bg-[#F9FBE7] border border-yellow-300"
-                      value={selection.location}
-                      onChange={(e) =>
-                        handleInputChange(
-                          selection.id,
-                          "location",
-                          e.target.value
-                        )
-                      }
-                    >
-                      {locations.map((location) => (
-                        <option key={location} value={location}>
-                          {location}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
+    <div className="bg-[rgb(179,179,179)] p-4">
+      <div className="space-y-4" style={{padding: isMobile ? '0' : '1vw 10vw'}}>
+        {selections.map((selection, index) => (
+          <div key={selection.id} className="bg-white rounded-lg shadow-md p-4">
+            <div className="grid grid-cols-2 gap-4 mb-4 items-end">
+              <div className="col-span-2 sm:col-span-1">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Units
+                </label>
+                <select
+                  className="form-select block w-full p-2 border border-gray-300 rounded-md"
+                  value={selection.unit}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "unit", e.target.value)
+                  }
+                >
+                  <option value="mm">mm</option>
+                  <option value="cm">cm</option>
+                  <option value="m">m</option>
+                </select>
               </div>
-              <div className="w-full flex justify-end xl:w-[15%]">
-                <span className="text-[#494949] font-bold">
-                  RRP: ${selection.cost}
-                </span>
+              <div className="col-span-2 sm:col-span-1">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Product
+                </label>
+                <select
+                  className="form-select block w-full p-2 border border-gray-300 rounded-md"
+                  value={selection.product}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "product", e.target.value)
+                  }
+                >
+                  {products.map((product) => (
+                    <option key={product.name} value={product.name}>
+                      {product.name}
+                    </option>
+                  ))}
+                </select>
               </div>
+              <div className="col-span-2 sm:col-span-1">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Width
+                </label>
+                <input
+                  type="number"
+                  className="form-input block w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="Width"
+                  value={selection.width}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "width", e.target.value)
+                  }
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-1">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Height
+                </label>
+                <input
+                  type="number"
+                  className="form-input block w-full p-2 border border-gray-300 rounded-md"
+                  placeholder="Height"
+                  value={selection.height}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "height", e.target.value)
+                  }
+                />
+              </div>
+              <div className="col-span-2 sm:col-span-1">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Operation Type
+                </label>
+                <select
+                  className="form-select block w-full p-2 border border-gray-300 rounded-md"
+                  value={selection.operationType}
+                  onChange={(e) =>
+                    handleInputChange(
+                      selection.id,
+                      "operationType",
+                      e.target.value
+                    )
+                  }
+                >
+                  {operationTypes.map((type) => (
+                    <option key={type} value={type}>
+                      {type}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="col-span-2 sm:col-span-1">
+                <label
+                  className="block text-sm font-medium mb-1"
+                  style={{ fontWeight: "bold" }}
+                >
+                  Location
+                </label>
+                <select
+                  className="form-select block w-full p-2 border border-gray-300 rounded-md"
+                  value={selection.location}
+                  onChange={(e) =>
+                    handleInputChange(selection.id, "location", e.target.value)
+                  }
+                >
+                  {locations.map((location) => (
+                    <option key={location} value={location}>
+                      {location}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div
+              className="flex items-center justify-between"
+              style={{ fontWeight: "bold" }}
+            >
+              <span className="text-xl font-bold">RRP: ${selection.cost}</span>
+              <button
+                onClick={() => handleDeleteSelection(selection.id)}
+                className="text-blue-600 hover:text-blue-800"
+              >
+                <FontAwesomeIcon icon={faTrash} size="lg" />
+              </button>
             </div>
           </div>
         ))}
-        <div className="flex justify-center mt-4">
-          <button
-            className="text-white bg-[#DC8686] hover:bg-[#EA7659] font-bold py-2 px-4 rounded"
-            onClick={addSelection}
-          >
-            + ADD MORE SHUTTERS
-          </button>
-        </div>
-        <div className="text-right font-bold text-lg mt-6">
-          Total Cost: ${calculateTotalCost()}
-        </div>
+      </div>
+      <div className="mt-6 flex justify-center">
+        <button
+          className="bg-blue-600 hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-full"
+          onClick={addSelection}
+        >
+          + Add More Shutters
+        </button>
+      </div>
+      <div className="text-right font-bold text-xl mt-6">
+        Total Cost: ${calculateTotalCost()}
       </div>
     </div>
   );

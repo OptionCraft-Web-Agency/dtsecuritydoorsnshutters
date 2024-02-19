@@ -7,31 +7,22 @@ import MainHeader from "../components/MainHeader";
 import HomePage from "../components/HomePage";
 
 import OurServices from "@/components/OurServices";
-
 import HomeContent from "@/components/HomeContent";
-
 import CallToAction from "@/components/CallToAction";
-
+import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import CustomerReview from "../components/CustomerReview";
-
+import FAQsComponent from "@/components/FAQ";
 import HomeForm from "@/components/HomeForm";
-
 import Footer from "../components/Footer";
 
-import ContactUsInfo from "../components/ContactUsInfo";
-import ContactUsForm from "../components/ContactUsForm";
 
-import AboutUsInfo from "../components/AboutUsInfo";
-
-import Store from "../components/Store";
-
-import Info1 from "../components/Info1";
-import Info2 from "../components/Info2";
 
 import Image from "next/image";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMap, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import FacebookMessenger from "@/components/FacebookMessenger";
+import DefaultFacebookChat from "@/components/DefaultFacebookChat";
 
 //images
 export default function Home() {
@@ -49,24 +40,17 @@ export default function Home() {
 
         <CallToAction />
 
+        <WhyChooseUsSection />
+
         <CustomerReview />
+
+        <FAQsComponent />
 
         <HomeForm />
 
         <Footer />
 
-        {/* <ContactUsForm />
-
-        <ContactUsInfo />
-
-        <AboutUsInfo />
-
-        <Store />
-
-        <Info1 />
-
-        <Info2 /> */}
-
+        <FacebookMessenger />
       </div>
     </>
   );

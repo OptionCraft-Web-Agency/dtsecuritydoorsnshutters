@@ -3,6 +3,55 @@ import Image from 'next/image';
 
 const HomeContent: React.FC = () => {
 
+    const navigateToServices = () => {
+        window.location.href = '/Services'; 
+    };
+
+    const navigateToContacts = () => {
+        window.location.href = '/ContactUs'; 
+    };
+
+    const buttonStyle: React.CSSProperties = {
+        borderRadius: '4px',
+        border: '1px solid #C9E2F9',
+        background: 'rgba(0, 87, 255)',
+        boxShadow: '2px 2px 4px 0px rgba(22, 110, 187, 0.32)',
+        color: '#FFF',
+        fontSize: '1vw',
+        padding: '1vw',
+        textTransform: 'capitalize',
+        transition: 'all 0.3s ease-in-out', // Transition for smooth hover effect
+        cursor: 'pointer',
+    };
+
+    const buttonHoverStyle: React.CSSProperties = {
+        ...buttonStyle,
+        background: 'rgba(0, 44, 128)', // Darker shade on hover
+        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)', // Different shadow on hover
+    };
+
+    const applyHoverStyle = (e: React.MouseEvent<HTMLButtonElement>, hoverStyle: React.CSSProperties) => {
+        Object.assign(e.currentTarget.style, hoverStyle);
+    };
+
+    const removeHoverStyle = (e: React.MouseEvent<HTMLButtonElement>, defaultStyle: React.CSSProperties) => {
+        Object.assign(e.currentTarget.style, defaultStyle);
+    };
+
+    const secondButtonStyle: React.CSSProperties = {
+        ...buttonStyle,
+        background: 'white',
+        color: 'rgba(0, 87, 255)',
+        border: '1px solid rgba(0, 87, 255)',
+    };
+
+    const secondButtonHoverStyle: React.CSSProperties = {
+        ...secondButtonStyle,
+        background: 'rgba(0, 87, 255)',
+        color: '#FFF',
+        border: '1px solid #C9E2F9',
+    };
+
   return (
     <div
         style={{
@@ -77,37 +126,19 @@ const HomeContent: React.FC = () => {
                 }}
             >
                 <button
-                    style={{
-                        borderRadius: "4px",
-                        border: "1px solid #C9E2F9",
-                        background: "rgba(0, 87, 255)",
-                        boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
-                        color: "#FFF",
-                        fontSize: "1vw",
-                        fontStyle: "normal",
-                        fontWeight: 500,
-                        lineHeight: "12px",
-                        textTransform: "capitalize",
-                        padding: "1vw",
-                    }}
+                    style={buttonStyle}
+                    onMouseEnter={(e) => applyHoverStyle(e, buttonHoverStyle)}
+                    onMouseLeave={(e) => removeHoverStyle(e, buttonStyle)}
+                    onClick={navigateToServices}
                 >
                     Discover More
                 </button>
 
                 <button
-                    style={{
-                        borderRadius: "4px",
-                        border: "1px solid rgba(0, 87, 255)",
-                        background: "transparent",
-                        boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
-                        color: "rgba(0, 87, 255)",
-                        fontSize: "1vw",
-                        fontStyle: "normal",
-                        fontWeight: 500,
-                        lineHeight: "12px",
-                        textTransform: "capitalize",
-                        padding: "1vw",
-                    }}
+                    style={secondButtonStyle}
+                    onMouseEnter={(e) => applyHoverStyle(e, secondButtonHoverStyle)}
+                    onMouseLeave={(e) => removeHoverStyle(e, secondButtonStyle)}
+                    onClick={navigateToContacts}
                 >
                     Get in Touch
                 </button>

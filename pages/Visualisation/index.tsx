@@ -16,6 +16,11 @@ import CurtainRoller from "@/components/vis/CurtainRoller";
 import Inside from "@/components/vis/inside";
 import InsideCurtain from "@/components/vis/insideCurtain";
 import MainHeader from "@/components/MainHeader";
+import React, { CSSProperties } from "react";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface ColorSetters {
   [key: string]: Dispatch<SetStateAction<string>>;
@@ -375,6 +380,24 @@ export default function Home() {
     { name: "Woodland Grey", code: "#5E5C57" },
   ];
 
+  const ColorVisualisationTitle: React.FC = () => {
+    const sectionStyle: CSSProperties = {
+      position: "relative",
+      width: "100%",
+      height: "calc(100vh - 80px)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      color: "white",
+      fontSize: "min(4vw, 7vw)", // Adjusted for better text scaling
+      fontWeight: "bold",
+      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+      background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
+    };
+
+    return <div style={sectionStyle}>Color Visulisation</div>;
+  };
+
   const handleColorSelection = (section: string, color: Color) => {
     const setColor = colorSetters[section];
     if (setColor) {
@@ -398,6 +421,69 @@ export default function Home() {
   };
   const movingRef = useRef<HTMLDivElement>(null);
 
+  const captureVisualization = async () => {
+    const element = document.getElementById("HouseVis");
+    if (!element) {
+      console.error("Element #HouseVis not found");
+      return ""; // Return an empty string or a default image data URL
+    }
+    const canvas = await html2canvas(element);
+    return canvas.toDataURL("image/png");
+  };
+
+  const generatePDF = async () => {
+    const image = await captureVisualization();
+    const doc = new jsPDF({
+      orientation: "portrait",
+    });
+
+    // Check if image is not empty before adding it
+    if (image) {
+      doc.addImage(image, "PNG", 15, 40, 180, 160);
+    } else {
+      // Handle the case where image is empty - maybe log an error or set a default image
+    }
+
+    // Add text for color selection
+    const colorsText = `Roof Main Color: ${roofMainColor}
+Lower Roof Color: ${lowerRoofColor}
+Facia Color: ${facia}
+Left Wall Color: ${leftWallColor}
+Pillars Color: ${pillarsColor}
+Front Wall Color: ${frontWall}
+Right Wall Color: ${rightWallColor}
+Door Color: ${doorColor}
+----------
+Rail>
+----------
+Bottom Color: ${bottom}
+Rail Color: ${rail}
+HeadBox Color: ${headBox}
+Slat Color: ${slat}
+Curtains Color: ${curtainsColor}
+
+  
+  `;
+
+    const maxWidth = 180;
+    const lineHeight = 7;
+    const startX = 15;
+    let startY = 210; // Adjust based on where your text starts
+
+    const lines = doc.splitTextToSize(colorsText, maxWidth);
+    const pageHeight = doc.internal.pageSize.getHeight();
+
+    lines.forEach((line: string) => {
+      if (startY + lineHeight > pageHeight - 10) {
+        doc.addPage();
+        startY = 10; // Or your preferred top margin for new pages
+      }
+      doc.text(line, startX, startY);
+      startY += lineHeight;
+    });
+
+    doc.save("DT-Visualisation.pdf");
+  };
   useEffect(() => {
     let intervalId: number | undefined;
 
@@ -433,7 +519,10 @@ export default function Home() {
 
   return (
     <>
+      <Header />
       <MainHeader />
+      <ColorVisualisationTitle />
+
       <div className="bg-[#F6F4EB]">
         <div className="container mx-auto ">
           <div className="flex  flex-col-reverse lg:flex-row ">
@@ -625,6 +714,7 @@ export default function Home() {
             <div
               className="w-full  lg:max-h-[1000px] lg:w-1/2 2xl:w-2/3 wide:w-7/10 mx-auto"
               ref={movingRef}
+              id="HouseVis"
             >
               <div className="w-full h-[400px] md:h-[550px] xl:h-full">
                 <div
@@ -680,8 +770,24 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <CostCalc />
       </div>
+      {/* Add the Send Data button */}
+      <div className="text-center my-4">
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center"
+          onClick={generatePDF}
+        >
+          <svg
+            className="fill-current w-4 h-4 mr-2"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <path d="M13 8V0H7v8H0l10 12 10-12h-7z" />
+          </svg>
+          <span>Download Visualisation For Attachment</span>
+        </button>
+      </div>
+      <Footer />
     </>
   );
 }

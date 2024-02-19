@@ -122,8 +122,6 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
 
   return (
     <div className="container mx-auto my-8 p-4">
-
-
       <div className="md:flex md:justify-center md:items-start mx-auto">
         <div className="relative w-full max-w-md mx-auto">
           <Image
@@ -144,7 +142,7 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
           <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
           <div dangerouslySetInnerHTML={{ __html: product.description }} />
           <div dangerouslySetInnerHTML={{ __html: product.shortDescription }} />
-          
+
           {product.attributes.nodes.map((attribute) => (
             <div key={attribute.name} className="mb-4">
               <h3 className="text-xl font-semibold capitalize">
@@ -171,13 +169,6 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
               </div>
             </div>
           ))}
-          <p className="text-2xl font-bold mt-4">
-            Price:{" "}
-            {selectedVariation ? selectedVariation.price : "Select options"}
-          </p>
-          <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
-            Add to Cart
-          </button>
         </div>
       </div>
     </div>

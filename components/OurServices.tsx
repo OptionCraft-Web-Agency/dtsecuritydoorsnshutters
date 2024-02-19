@@ -92,7 +92,7 @@ const OurServices: React.FC = () => {
       image: '/Blinds1.jpg',
       name: 'Curtins',
       description: 'Stylish and functional curtins to enhance your privacy and control natural lighting.',
-      link: '/curtins',
+      link: '/Curtins',
     },
     {
       image: '/SecurityDoor1.jpg',
@@ -104,13 +104,13 @@ const OurServices: React.FC = () => {
       image: '/Window1.jpg',
       name: 'Windows',
       description: 'Custom-designed windows that bring natural beauty right into your home.',
-      link: '/windows',
+      link: '/Windows',
     },
     {
       image: '/RollerDoor1.jpg',
       name: 'Fly Screen',
       description: 'High-quality roller shutters designed for smooth operation and robust security.',
-      link: '/flyscreen',
+      link: '/FlyScreens',
     },
   ];  
 

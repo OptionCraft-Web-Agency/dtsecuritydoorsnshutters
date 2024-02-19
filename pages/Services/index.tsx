@@ -6,77 +6,6 @@ import Header from '@/components/Header'
 import MainHeader from '@/components/MainHeader'
 import Footer from '@/components/Footer'
 
-type ServiceItemProps = {
-  imageUrl: string;
-  title: string;
-};
-
-const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [viewportWidth, setViewportWidth] = useState<number>(0);
-
-  useEffect(() => {
-    // Handler to call on window resize
-    function handleResize() {
-      setViewportWidth(window.innerWidth);
-    }
-    
-    // Set initial size on mount
-    handleResize();
-
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Adjust styles based on viewport width for responsiveness
-  const itemStyle: CSSProperties = {
-    textAlign: 'center',
-    paddingBottom: viewportWidth < 768 ? '5%' : '1vw', // Increase padding on small screens
-    color: 'black',
-    backgroundColor: 'white',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-    cursor: 'pointer',
-    transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-    boxShadow: isHovered
-      ? '0 4px 8px rgba(22, 110, 187, 0.5)'
-      : '2px 2px 4px 0px rgba(22, 110, 187, 0.32)',
-  };
-
-  const imageContainerStyle: CSSProperties = {
-    position: 'relative',
-    width: '100%',
-    height: viewportWidth < 768 ? '50vw' : '10vw', // Adjust height for mobile view
-    marginBottom: '1vw',
-  };
-
-  const titleStyle: CSSProperties = {
-    fontSize: viewportWidth < 768 ? '5vw' : '1.2vw', // Increase font size for better readability on mobile
-  };
-
-  return (
-    <Link href={title === "Security Doors" ? "/Product" : title === "Roller Shutters" ? "/RollerShutters" : title === "Curtins" ? "/Curtins" : title === "Windows" ? "/Windows" : title === "Fly Screens" ? "/FlyScreens" : "#"}>
-      <div
-        style={itemStyle}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
-        <div style={imageContainerStyle}>
-          <Image
-            src={imageUrl}
-            alt={title}
-            layout="fill"
-            objectFit="cover"
-          />
-        </div>
-        <p style={titleStyle}>{title}</p>
-      </div>
-    </Link>
-  );
-};
-
 const ServicesSection: React.FC = () => {
   const sectionStyle: CSSProperties = {
     position: 'relative',
@@ -99,30 +28,30 @@ const ServicesSection: React.FC = () => {
   );
 };
 
-const ProductShowcase: React.FC = () => {
+const OurServices: React.FC = () => {
+  const [isMobile, setIsMobile] = useState<boolean>(false);
+  // Correcting the state declaration here
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Ensure this matches throughout
 
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Effect to update the state based on screen width
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 600);
+      setIsMobile(window.innerWidth <= 768);
     };
 
-    // Set the initial value
-    handleResize();
+    if (typeof window !== 'undefined') {
+      handleResize();
+      window.addEventListener('resize', handleResize);
+    }
 
-    window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
-  
-  const containerStyle: CSSProperties = {
+
+  const containerStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    padding: '5vw 0',
-    height: 'auto', // Adjusted for mobile responsiveness
+    padding: isMobile ? '4vw 0' : '4vw 0',
   };
 
   const titleStyle: CSSProperties = {
@@ -130,14 +59,6 @@ const ProductShowcase: React.FC = () => {
     marginBottom: '1.5vw',
     fontWeight: 'bold',
     textAlign: 'center', // Ensure title is centered on small screens
-  };
-
-  const gridStyle: CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', // Responsive grid layout
-    gap: '1vw',
-    width: '90%', // Adjusted for smaller screens
-    margin: '0 auto',
   };
 
   const descriptionStyle: CSSProperties = {
@@ -148,18 +69,112 @@ const ProductShowcase: React.FC = () => {
     color: '#333', // Adjust color for readability
   };
 
+  const gridStyle: React.CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
+    gap: isMobile ? '2vw' : '2vw',
+    width: '90%',
+    margin: '0 auto',
+  };
+
+  const itemStyle: React.CSSProperties = {
+    position: 'relative',
+    textAlign: 'center',
+    overflow: 'hidden',
+    borderRadius: '10px',
+    cursor: 'pointer',
+    backgroundColor: '#fff',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    transition: 'box-shadow 0.3s ease-in-out',
+  };
+
+  const textContainerStyle: React.CSSProperties = {
+    padding: '1vw',
+  };
+
+  const overlayTextStyle: React.CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    color: '#ffffff',
+    opacity: 0,
+    transition: 'opacity 0.5s ease-in-out',
+  };
+
+  const serviceNameStyle: React.CSSProperties = {
+    fontWeight: 'bold', // Example style, adjust as needed
+    fontSize: isMobile ? '4vw' : '1.2rem', // Responsive font size
+    marginBottom: '0.5vw', // Space between name and description
+  };
+
+  const services = [
+    {
+      image: '/RollerDoor1.jpg',
+      name: 'Roller Shutters',
+      description: 'High-quality roller shutters designed for smooth operation and robust security.',
+      link: '/RollerShutters',
+    },
+    {
+      image: '/Blinds1.jpg',
+      name: 'Curtins',
+      description: 'Stylish and functional curtins to enhance your privacy and control natural lighting.',
+      link: '/Curtins',
+    },
+    {
+      image: '/SecurityDoor1.jpg',
+      name: 'Security Doors',
+      description: 'Durable security doors that provide peace of mind with enhanced protection.',
+      link: '/Product',
+    },
+    {
+      image: '/Window1.jpg',
+      name: 'Windows',
+      description: 'Custom-designed windows that bring natural beauty right into your home.',
+      link: '/Windows',
+    },
+    {
+      image: '/RollerDoor1.jpg',
+      name: 'Fly Screen',
+      description: 'High-quality roller shutters designed for smooth operation and robust security.',
+      link: '/FlyScreens',
+    },
+  ];  
+
   return (
     <div style={containerStyle}>
       <h2 style={titleStyle}>Seamless Security Meets Style with Custom Doors and Windows.</h2>
       <p style={descriptionStyle}>
         Our custom doors and windows are the epitome of elegance and security, meticulously crafted to enhance your home's aesthetic and safety. With a focus on innovative design and durability, we offer a wide range of styles and finishes to perfectly match your architectural needs. Each product is designed with precision engineering, ensuring optimal functionality without compromising on style. From advanced security features to energy-efficient materials, our doors and windows offer a perfect blend of form and function for the modern homeowner.
-      </p>
+      </p>      
+      
       <div style={gridStyle}>
-        <ServiceItem imageUrl="/RollerDoor1.jpg" title="Roller Shutters" />
-        <ServiceItem imageUrl="/Blinds1.jpg" title="Curtins" />
-        <ServiceItem imageUrl="/SecurityDoor1.jpg" title="Security Doors" />
-        <ServiceItem imageUrl="/Window1.jpg" title="Windows" />
-        <ServiceItem imageUrl="/Window1.jpg" title="Fly Screens" />
+        {services.map((service, index) => (
+          <Link key={index} href={service.link} passHref>
+              <div
+                style={itemStyle}
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                <div style={{ width: '100%', height: '200px', position: 'relative' }}>
+                  <Image src={service.image} alt={service.name} layout="fill" objectFit="cover" />
+                </div>
+                <div style={textContainerStyle}>
+                <p style={serviceNameStyle}>{service.name}</p>
+                </div>
+                <div style={{ ...overlayTextStyle, opacity: hoveredIndex === index ? 1 : 0 }}>
+                <p style={serviceNameStyle}>{service.name}</p>
+                  <p>{service.description}</p>                
+                </div>
+              </div>
+          </Link>
+        ))}
       </div>
     </div>
   );
@@ -171,7 +186,7 @@ export default function Services() {
       <Header />
       <MainHeader />
       <ServicesSection />
-      <ProductShowcase />
+      <OurServices />
       <Footer />
     </div>
   )

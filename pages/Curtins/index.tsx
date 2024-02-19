@@ -35,9 +35,20 @@ type ProductInfoProps = {
 const ProductInfo: React.FC<ProductInfoProps> = ({ colorOptions, onColorOptionSelect, selectedColorOption }) => {
   const [selectedImage, setSelectedImage] = useState<ColorOption | null>(null);
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const containerStyle: CSSProperties = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: isMobile ? 'column' : 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     padding: '20px',
@@ -46,18 +57,23 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ colorOptions, onColorOptionSe
 
   const colorListStyle: CSSProperties = {
     display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
+    gridTemplateColumns: isMobile ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(100px, 1fr))',
     gap: '10px',
     cursor: 'pointer',
-    maxWidth: '50%',
+    maxWidth: isMobile ? '100%' : '50%',
   };
 
   const selectedImageStyle: CSSProperties = {
-    maxWidth: '50%',
+    maxWidth: isMobile ? '100%' : '50%',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
+  };
+
+  const textStyle: CSSProperties = {
+    fontWeight: 'bold',
+    textAlign: isMobile ? 'center' : 'left',
   };
 
   return (
@@ -72,7 +88,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ colorOptions, onColorOptionSe
               height={100} 
               objectFit="cover"
             />
-            <p>{colorOption.name}</p>
+            {/* Apply the textStyle to the paragraph */}
+            <p style={textStyle}>{colorOption.name}</p> 
           </div>
         ))}
       </div>
@@ -85,7 +102,8 @@ const ProductInfo: React.FC<ProductInfoProps> = ({ colorOptions, onColorOptionSe
             height={500} 
             objectFit="cover"
           />
-          <p>{selectedImage.name}</p>
+          {/* Optionally, apply the textStyle to this paragraph as well if needed */}
+          <p style={textStyle}>{selectedImage.name}</p>
         </div>
       )}
     </div>
@@ -100,32 +118,68 @@ type CategoryInfo = {
 
 const categoryDetails: { [key: string]: CategoryInfo } = {
   "Sheerweave 4300": {
-    description: "Sheerweave 4300 is a revolutionary half basketweave (2x1) sunscreen manufactured using DOW ECOLIBRIUM bio-based plasticizers, rather than fossil fuel-based plasticizers. DOW Ecolibrium does not detract from the sunscreen’s appearance or performance, and provides a sustainable green alternative to traditional sunscreens, without the PVC smell.",
+    description: "Sheerweave 4300, with its revolutionary half basketweave (2x1) design, leverages DOW ECOLIBRIUM bio-based plasticizers, offering a sustainable, high-performance sunscreen solution. It significantly reduces environmental impact without compromising on quality or aesthetics, free from the traditional PVC smell.",
     benefits: [
-      "Uses bio-based plasticizers for a more sustainable product",
-      "Maintains performance and appearance without the PVC smell",
-      "Offers a green alternative to traditional sunscreens"
+      "Eco-friendly DOW ECOLIBRIUM bio-based plasticizers enhance sustainability.",
+      "Preserves fabric performance and aesthetic appeal, free from PVC odor.",
+      "High UV blockage of approximately 97%, ensuring effective sun protection."
     ],
-    careInstructions: "Care instructions specific to Sheerweave 4300...",
+    careInstructions: "Regular dusting or vacuuming is recommended. For spot cleaning, use water and mild detergent. Ensure the fabric is dry before rolling up.",
   },
   "Sheerweave 4500": {
-    description: "Sheerweave 4500 is a revolutionary half basketweave (2x2) sunscreen manufactured using DOW ECOLIBRIUM bio-based plasticizers, rather than fossil fuel-based plasticizers. DOW Ecolibrium does not detract from the sunscreens appearance or performance, and provides a sustainable green alternative to traditional sunscreens, without the PVC smell.",
+    description: "Sheerweave 4500 presents an innovative half basketweave (2x2) sunscreen crafted with DOW ECOLIBRIUM bio-based plasticizers. This product stands out as a green alternative to conventional sunscreens by maintaining excellent performance and appearance while eliminating the PVC smell.",
     benefits: [
-      "Innovative use of bio-based plasticizers",
-      "Eco-friendly solution without compromising quality",
-      "Free from the traditional PVC smell found in other sunscreens"
+      "Utilizes bio-based plasticizers for a greener environmental footprint.",
+      "Retains fabric's functional and visual quality without PVC emissions.",
+      "Achieves substantial UV blockage, offering robust sun protection."
     ],
-    careInstructions: "Care instructions specific to Sheerweave 4500...",
+    careInstructions: "Dust or vacuum regularly. Clean with water and mild detergent for stains. Do not roll up damp fabric.",
   },
   "Sheerweave 4510": {
-    description: "Sheerweave 4510 is a revolutionary 2x2 sunscreen manufactured using DOW ECOLIBRIUM bio-based plasticizers, rather than fossil fuel-based plasticizers. DOW Ecolibrium does not detract from the sunscreen’s appearance or performance, and provides a sustainable green alternative to traditional sunscreens, without the PVC smell.",
+    description: "Sheerweave 4510 is a groundbreaking 2x2 sunscreen integrating DOW ECOLIBRIUM bio-based plasticizers. This evolution in sunscreen technology delivers unmatched performance and sustainability, all while offering an appealing aesthetic without the odor commonly associated with PVC materials.",
     benefits: [
-      "Features DOW ECOLIBRIUM bio-based plasticizers",
-      "Sustainable alternative with excellent performance",
-      "Eliminates the PVC smell for a better user experience"
+      "Incorporates sustainable bio-based plasticizers, reducing reliance on fossil fuels.",
+      "Maintains superior sunscreen efficacy and visual appeal without PVC smell.",
+      "Provides excellent UV protection with a blockage rate of 95%."
     ],
-    careInstructions: "Care instructions specific to Sheerweave 4510...",
+    careInstructions: "Maintain by regular dusting or vacuuming. For spots, use water and a mild detergent. Avoid rolling up when wet.",
   },
+  "Duo Screen": {
+    description: "Duo Screen fabrics offer a versatile solution for window coverings, blending functionality with aesthetic appeal. These fabrics are designed for dual light control, allowing for transparency or privacy depending on the need, with a unique layering of fabrics for optimal sunlight management.",
+    benefits: [
+      "Versatile light control for both transparency and privacy",
+      "Optimal sunlight management through unique fabric layering",
+      "Aesthetic appeal with a range of textures and colors"
+    ],
+    careInstructions: "Regular dusting and gentle cleaning with a damp cloth; avoid harsh chemicals."
+  },
+  "Aventus 3%": {
+    description: "Aventus 3% fabric is designed for roller and panel window blinds, suitable for wide width windows. It features a 2x2 basketweave composition with PVC coated polyester base, highlighting an openness factor of approximately 3%. The fabric is notable for its use of DOW ECOLIBRIUM bio-based plasticizers, offering a sustainable alternative without compromising on quality or performance.",
+    benefits: [
+      "Sustainable material choice with bio-based plasticizers",
+      "High performance with approximately 97% UV blockage",
+      "Accredited for low chemical emissions, suitable for sensitive areas"
+    ],
+    careInstructions: "Regular dusting or vacuuming as appropriate, with mild detergent cleaning."
+  },
+  "Aventus 5%": {
+    description: "Similar to the 3% variant, the Aventus 5% fabric extends the openness to approximately 5%, balancing light control and visibility. It maintains the same high standards of eco-friendliness and user safety, incorporating bio-based plasticizers and ensuring minimal environmental impact.",
+    benefits: [
+      "Enhanced light filtration with a slightly higher openness factor",
+      "Maintains eco-friendly characteristics and user safety standards",
+      "Suitable for larger window installations with its wide-width capability"
+    ],
+    careInstructions: "Similar care instructions as the 3% variant, focusing on gentle cleaning and proper maintenance."
+  },
+  "Aventus 10%": {
+    description: "Offering the highest openness factor among the series, Aventus 10% fabric allows more light while still providing effective sun protection. This variant is ideal for spaces requiring more natural light without sacrificing the benefits of solar shading.",
+    benefits: [
+      "Maximum natural light penetration with effective UV protection",
+      "Stays true to the sustainable and health-conscious approach of the Aventus series",
+      "Ideal for wide-width window applications, providing both aesthetic and functional advantages"
+    ],
+    careInstructions: "Care involves regular dusting and mild detergent cleaning, ensuring the fabric is dry before rolling up."
+  }
 };
 
 type ColorOption = {
@@ -248,44 +302,55 @@ type TabsComponentProps = {
   activeTab: string;
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
   tabColors: { [key: string]: ColorOption[] };
-  onSelectCategory: (category: CategoryInfo) => void; // New callback prop
+  onSelectCategory: (category: CategoryInfo) => void; 
 };
 
 const TabsComponent: React.FC<TabsComponentProps> = ({ activeTab, setActiveTab, tabColors, onSelectCategory }) => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const tabsContainerStyle: CSSProperties = {
-    overflowX: 'auto',
+    overflowX: isMobile ? 'scroll' : 'auto',
     whiteSpace: 'nowrap',
+    scrollbarWidth: 'none',  // for Firefox
+    msOverflowStyle: 'none',  // for Internet Explorer and Edge
   };
 
   const tabListStyle: CSSProperties = {
-    display: 'inline-flex',
+    display: 'flex',
+    flexDirection: isMobile ? 'row' : 'row',
     justifyContent: 'flex-start',
     listStyleType: 'none',
     padding: '10px',
     margin: 0,
+    backgroundColor:'rgb(0, 87, 255)'
   };
 
   const tabStyle: CSSProperties = {
     cursor: 'pointer',
-    display: 'inline-block',
     padding: '10px 20px',
-    margin: '0 10px',
+    margin: isMobile ? '0 5px' : '0 10px', // smaller margins on mobile
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderBottom: '3px solid transparent',
+    fontWeight: 'bold',
+    color:'white'
   };
 
   const activeTabStyle: CSSProperties = {
     ...tabStyle,
-    borderBottom: '3px solid #000',
+    borderBottom: '3px solid white',
+    fontWeight: 'bold', // Ensure the active tab text is also bold
   };
-
-  const colorSquareStyle = (colorOption: ColorOption): CSSProperties => ({
-    width: '100px',
-    height: '100px',
-    backgroundImage: `url(${colorOption.image})`,
-    backgroundSize: 'cover',
-    display: 'inline-block',
-    margin: '10px',
-  });
 
   return (
     <div>
@@ -309,6 +374,54 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeTab, setActiveTab, 
   );
 };
 
+const images = [
+  '/path/to/image1.jpg',
+  '/path/to/image2.jpg',
+  // Add more images as needed
+];
+
+const Gallery: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const galleryStyle: CSSProperties = {
+    display: 'grid',
+    gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
+    gap: '10px',
+    padding: isMobile ? '10px' : '20px',
+  };
+
+  const titleStyle: CSSProperties = {
+    textAlign: 'center',
+    margin: '0 0 20px',
+    color: '#333',
+    fontSize: isMobile ? '8vw' : '3rem',
+    fontWeight: 'bold',
+    marginTop: '5vw',
+  };
+
+  return (
+    <div>
+      <h2 style={titleStyle}>Fly Screen Gallery</h2>
+      <div style={galleryStyle}>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image} alt={`Fly Screen ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 export default function Curtains() {
   const [activeTab, setActiveTab] = useState<string>(Object.keys(tabColors)[0]);
   const [selectedColorOption, setSelectedColorOption] = useState<ColorOption | null>(null);
@@ -317,27 +430,37 @@ export default function Curtains() {
   const handleSelectColorOption = (colorOption: ColorOption) => setSelectedColorOption(colorOption);
   const handleSelectCategory = (categoryInfo: CategoryInfo) => setSelectedCategoryInfo(categoryInfo);
 
-  // Enhanced styles with boldness
+  const [isMobile, setIsMobile] = useState(false); // State to track if the device is mobile
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+  
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initialize on component mount
+  
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const descriptionSectionStyle: CSSProperties = {
     backgroundColor: '#F5F5F5',
     borderRadius: '8px',
     boxShadow: '0 2px 5px rgba(0,0,0,0.1)',
-    padding: '20px',
-    margin: '20px auto',
-    maxWidth: '800px',
     lineHeight: '1.6',
+    padding: isMobile ? '10px' : '20px', // Apply conditional padding
   };
 
   const titleStyle: CSSProperties = {
     color: '#333',
     marginBottom: '16px',
-    fontSize: '22px',
-    fontWeight: 'bold', // Added boldness here
+    fontSize: isMobile ? '18px' : '22px',
+    fontWeight: 'bold',
   };
 
   const listStyle: CSSProperties = {
     listStyleType: 'disc',
-    paddingLeft: '20px',
+    paddingLeft: isMobile ? '15px' : '20px',
   };
 
   const itemStyle: CSSProperties = {
@@ -374,6 +497,7 @@ export default function Curtains() {
           <p>{selectedCategoryInfo.careInstructions}</p>
         </div>
       )}
+      <Gallery />
       <Footer />
     </div>
   );

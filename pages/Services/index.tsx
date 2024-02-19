@@ -57,7 +57,7 @@ const ServiceItem: React.FC<ServiceItemProps> = ({ imageUrl, title }) => {
   };
 
   return (
-    <Link href={title === "Security Doors" ? "/Product" : title === "Roller Shutters" ? "/RollerShutters" : title === "Curtins" ? "/Curtins" : "#"}>
+    <Link href={title === "Security Doors" ? "/Product" : title === "Roller Shutters" ? "/RollerShutters" : title === "Curtins" ? "/Curtins" : title === "Windows" ? "/Windows" : title === "Fly Screens" ? "/FlyScreens" : "#"}>
       <div
         style={itemStyle}
         onMouseEnter={() => setIsHovered(true)}
@@ -159,7 +159,7 @@ const ProductShowcase: React.FC = () => {
         <ServiceItem imageUrl="/Blinds1.jpg" title="Curtins" />
         <ServiceItem imageUrl="/SecurityDoor1.jpg" title="Security Doors" />
         <ServiceItem imageUrl="/Window1.jpg" title="Windows" />
-        <ServiceItem imageUrl="/Window1.jpg" title="Fly Screen" />
+        <ServiceItem imageUrl="/Window1.jpg" title="Fly Screens" />
       </div>
     </div>
   );

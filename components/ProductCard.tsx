@@ -32,7 +32,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
         objectFit="cover"
       />
       <h3 className="text-lg font-bold mt-2">{name}</h3>
-      <p className="text-gray-700">{price}</p>
       <div className="flex mt-4 space-x-2">
         <button
           onClick={viewProductDetails}

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { SocialIcon } from "react-social-icons";
+import Link from "next/link";
 
 interface IconProps {
   style?: CSSProperties;
@@ -44,13 +45,15 @@ export default function Header({}: Props) {
         transition={{
           duration: 0.8,
         }}
-        className="flex flex-row items-center"
+        className="flex flex-row items-center cursor-pointer"
       >
         <PhoneIcon
           className="text-xl pr-1 text-white md:text-3xl"
           link="tel:0434 227 688"
         />
-        <p className="text-white ml-2 md:text-xl">0434 227 688</p>
+        <Link href={"tel:0434 227 688"}>
+          <p className="text-white ml-2 md:text-xl">0434 227 688</p>
+        </Link>
       </motion.div>
       <motion.div
         initial={{

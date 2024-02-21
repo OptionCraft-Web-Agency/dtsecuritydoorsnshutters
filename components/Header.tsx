@@ -3,7 +3,6 @@ import { color, motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
-import { SocialIcon } from "react-social-icons";
 import Link from "next/link";
 
 interface IconProps {
@@ -30,31 +29,62 @@ type Props = {};
 
 export default function Header({}: Props) {
   return (
-    <header className="sticky top-0 py-1 md:py-5 px-10 flex justify-between justify-center mx-auto z-20 bg-[#B3B3B3] w-screen text-base   ultraWide: px-[5%] wide:text-3xl ">
-      <motion.div
-        initial={{
-          x: -500,
-          opacity: 0,
-          scale: 0.5,
-        }}
-        animate={{
-          x: 0,
-          opacity: 1,
-          scale: 1,
-        }}
-        transition={{
-          duration: 0.8,
-        }}
-        className="flex flex-row items-center cursor-pointer"
-      >
-        <PhoneIcon
-          className="text-xl pr-1 text-white md:text-3xl"
-          link="tel:0434 227 688"
-        />
-        <Link href={"tel:0434 227 688"}>
-          <p className="text-white ml-2 md:text-xl">0434 227 688</p>
-        </Link>
-      </motion.div>
+    <header className="sticky top-0 py-1 md:py-5 px-10 flex justify-between items-center mx-auto z-20 bg-[#B3B3B3] w-screen text-base ultraWide:px-[5%] wide:text-3xl">
+      <div style={{display:'flex', flexDirection:'row'}}> 
+        {/* Existing phone number and icon */}
+        <motion.div
+          initial={{
+            x: -500,
+            opacity: 0,
+            scale: 0.5,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.8,
+          }}
+          className="flex flex-row items-center cursor-pointer mr-4" // Added margin-right of 4 (1rem) here
+        >
+          <PhoneIcon
+            className="text-xl pr-1 text-white md:text-3xl"
+            link="tel:0434 227 688"
+          />
+          <Link href={"tel:0434 227 688"}>
+            <p className="text-white ml-2 md:text-xl">0434 227 688</p>
+          </Link>
+        </motion.div>
+
+        {/* Add your new phone number here */}
+        <motion.div
+          initial={{
+            x: -100,
+            opacity: 0,
+            scale: 0.5,
+          }}
+          animate={{
+            x: 0,
+            opacity: 1,
+            scale: 1,
+          }}
+          transition={{
+            duration: 0.8,
+          }}
+          className="flex flex-row items-center cursor-pointer"
+        >
+          <PhoneIcon
+            className="text-xl pr-1 text-white md:text-3xl"
+            link="tel:0401 086 636"
+          />
+          <Link href={"tel:0401 086 636"}>
+            <p className="text-white ml-2 md:text-xl">0401 086 636</p>
+          </Link>
+        </motion.div>
+      </div>
+
+      {/* Contact and social media links */}
       <motion.div
         initial={{
           x: 500,
@@ -71,16 +101,20 @@ export default function Header({}: Props) {
         }}
         className="flex flex-row items-center cursor-pointer"
       >
-        <p className="uppercase hidden md:inline-flex text-white mr-2 pr-4 md:text-xl">
-          Contact With Us
-        </p>
-        <div className="rounded-lg cursor-pointer border border-white border-2 ">
-          <FacebookIcon
-            className="text-white px-2 py-1 text-center justify-center flex text-xl md:text-3xl"
-            link="https://www.facebook.com/"
-          ></FacebookIcon>
-        </div>
+        {/* Wrap the text and icon in an anchor tag to open the link in a new tab */}
+        <a href="https://www.facebook.com/profile.php?id=61555458406932" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center">
+          <p className="uppercase hidden md:inline-flex text-white mr-2 pr-4 md:text-xl">
+            Contact With Us
+          </p>
+          <div className="rounded-lg cursor-pointer border border-white border-2">
+            {/* FacebookIcon does not need the link prop since the enclosing <a> tag handles navigation */}
+            <FacebookIcon
+              className="text-white px-2 py-1 text-center justify-center flex text-xl md:text-3xl"
+            />
+          </div>
+        </a>
       </motion.div>
+
     </header>
   );
 }

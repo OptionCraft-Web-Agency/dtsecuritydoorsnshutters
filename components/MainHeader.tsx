@@ -24,8 +24,8 @@ export default function MainHeader() {
     { Text: "Home", link: "/" },
     // { Text: "Products", link: "/Product" },
     { Text: "Our Services", link: "/Services" },
-    { Text: "About", link: "AboutUs" },
-    { Text: "Contact", link: "ContactUs" },
+    { Text: "About Us", link: "AboutUs" },
+    { Text: "Contact Us", link: "ContactUs" },
     //{ Text: "Cost Calculator", link: "/CostCalculator" },
     { Text: "Color Visualization", link: "/Visualisation" },
   ];

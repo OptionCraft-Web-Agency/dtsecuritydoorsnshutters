@@ -236,6 +236,88 @@ const AccessToolsSection: React.FC = () => {
   );
 };
 
+const images = [
+  '/image/RollerShuttersImage/RollerShuttersImage1.jpg',
+  '/image/RollerShuttersImage/RollerShuttersImage2.jpg',
+  '/image/RollerShuttersImage/RollerShuttersImage3.jpg',
+  '/image/RollerShuttersImage/RollerShuttersImage4.jpg',
+  '/image/RollerShuttersImage/RollerShuttersImage5.jpg',
+];
+
+const Gallery: React.FC = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const galleryStyle = {
+    display: 'grid',
+    gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
+    gap: '10px',
+    padding: isMobile ? '10px' : '20px',
+  };
+
+  const galleryImageStyle: React.CSSProperties = {
+    width: '100%',
+    height: '200px', // Set a fixed height for all images
+    objectFit: 'cover', // This will cover the area without stretching the image
+    opacity: 1,
+    transition: 'opacity 0.3s ease',
+  };
+
+  const titleStyle: React.CSSProperties = {
+    textAlign: 'center',
+    margin: '0 0 20px',
+    color: '#333',
+    fontSize: isMobile ? '8vw' : '3rem',
+    fontWeight: 'bold',
+    marginTop: '2vw',
+  };
+
+  const handleClick = (image: string) => {
+    setSelectedImage(image);
+  };
+
+  const handleClose = () => {
+    setSelectedImage(null);
+  };
+
+  return (
+    <div>
+      <h2 style={titleStyle}>Fly Screen Gallery</h2>
+      <div style={galleryStyle}>
+        {images.map((image, index) => (
+          <div key={index}
+               onMouseEnter={() => setHoverIndex(index)}
+               onMouseLeave={() => setHoverIndex(null)}
+               onClick={() => handleClick(image)}
+               style={{ cursor: 'pointer' }}>
+            <img src={image}
+                 alt={`Fly Screen ${index + 1}`}
+                 style={{
+                   ...galleryImageStyle,
+                   opacity: hoverIndex === index ? 0.7 : 1,
+                 }} />
+          </div>
+        ))}
+      </div>
+      {selectedImage && (
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
+          <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function RollerShutters() {
   return (
     <div>
@@ -243,8 +325,9 @@ export default function RollerShutters() {
         <MainHeader />
         <RollerShuttersTitle />
         <WhyRollerShutters/>
-        <AccessToolsSection /> {/* Added this line */}
+        <AccessToolsSection />
         <Info1/>
+        <Gallery />
         <Footer />
     </div>
   );

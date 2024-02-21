@@ -6,82 +6,98 @@ import Footer from '@/components/Footer';
 import { faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTerminal, faLock, faPaintBrush, faCloudRain, faHandshake } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faPaintBrush, faCloudRain, faHandshake, faThermometerHalf, faSun, faFan, faLeaf } from '@fortawesome/free-solid-svg-icons';
 
 const InfoSection: React.FC = () => {
-  const sectionContainer: CSSProperties = {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    gap: '2rem',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: '4rem 1rem',
-  };
+    const [isMobile, setIsMobile] = useState(false);
+  
+    useEffect(() => {
+      const updateMedia = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+  
+      window.addEventListener('resize', updateMedia);
+      updateMedia();
+  
+      return () => window.removeEventListener('resize', updateMedia);
+    }, []);
+  
+    const sectionStyles: CSSProperties = {
+        backgroundColor: '#f8f9fa',
+        padding: '2rem',
+        borderRadius: '8px',
+        boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        maxWidth: '800px',
+        margin: '2rem auto',
+    };
+      
+    const textSectionStyle: CSSProperties = {
+        color: '#333',
+        textAlign: 'center',
+        marginBottom: '1rem',
+    };
+  
+    const featuresGridStyle: CSSProperties = {
+      display: 'grid',
+      gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
+      gap: '20px',
+      padding: '20px',
+    };
+  
+    const featureItemStyle: CSSProperties = {
+      display: 'flex',
+      alignItems: 'center',
+      gap: '10px',
+      padding: '10px',
+      backgroundColor: '#f4f4f4',
+      borderRadius: '5px',
+    };
 
-  const infoSectionStyle: CSSProperties = {
-    textAlign: 'center',
-    backgroundColor: 'white',
-    padding: '2rem',
-    borderRadius: '8px',
-  };
-
-  const headingStyle: CSSProperties = {
-    fontSize: '2.4rem',
-    color: '#0a3f5e',
-    margin: '0 0 2rem',
-    fontWeight: '600',
-  };
-
-  const paragraphStyle: CSSProperties = {
-    fontSize: '1rem',
-    color: '#555',
-    lineHeight: '1.6',
-  };
-
-  const featureListStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: '2rem 0',
-  };
-
-  const featureItemStyle: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: '1rem',
-    margin: '0.5rem 0',
-  };
-
-  const iconStyle: CSSProperties = {
-    marginRight: '10px',
-    color: '#0a3f5e',
-    fontSize: '1.25rem',
-  };
-
-  return (
-    <div style={sectionContainer}>
-      <div style={infoSectionStyle}>
-        <h2 style={headingStyle}>Our Windows Collection</h2>
-        <p style={paragraphStyle}>
-          Discover our range of high-quality windows designed for style, comfort, and security. Our windows provide excellent insulation, enhance natural lighting, and add elegance to your space.
-        </p>
-        <div style={featureListStyle}>
-          {[faTerminal, faLock, faPaintBrush, faCloudRain, faHandshake].map((icon, index) => (
-            <div key={index} style={featureItemStyle}>
-              <FontAwesomeIcon icon={icon} style={iconStyle} />
-              <span>Feature description related to the icon above.</span>
+    const headingStyle: CSSProperties = {
+        fontSize: '1.75rem', // Larger font size for the heading
+        fontWeight: '600', // Semi-bold for emphasis
+        margin: '0.5rem 0', // Margin around the heading for spacing
+    };
+    
+    const paragraphStyle: CSSProperties = {
+        fontSize: '1rem', // Standard font size for body text
+        lineHeight: '1.6', // Line height for improved readability
+        maxWidth: '600px', // Max width to maintain comfortable reading lines
+        margin: 'auto', // Auto margins to center the paragraph
+    };
+  
+    const features = [
+      { icon: faThermometerHalf, description: "Optimal thermal performance reducing heating and cooling costs." },
+      { icon: faLock, description: "State-of-the-art security features for peace of mind." },
+      { icon: faSun, description: "Maximized natural light intake with energy-efficient glass." },
+      { icon: faFan, description: "Superior air flow regulation for comfortable living environments." },
+      { icon: faLeaf, description: "Eco-friendly materials supporting sustainable living." },
+    ];
+  
+    return (
+        <div style={sectionStyles}>
+            <div style={textSectionStyle}>
+                <h2 style={headingStyle}>Enhancing Your Home with Our Windows Collection</h2>
+                <p style={paragraphStyle}>
+                    Explore our diverse range of window solutions designed for aesthetic harmony and functional excellence. Each window is crafted for superior performance, offering unparalleled insulation, security, and style.
+                </p>
             </div>
-          ))}
+            <div style={featuresGridStyle}>
+            {features.map((feature, index) => (
+                <div key={index} style={featureItemStyle}>
+                <FontAwesomeIcon icon={feature.icon} size="lg" />
+                <span>{feature.description}</span>
+                </div>
+            ))}
+            </div>
         </div>
-        <p style={paragraphStyle}>
-          Enhance the value and comfort of your home with our premium window solutions. Contact us today for a consultation and quote.
-        </p>
-      </div>
-    </div>
-  );
-};
-
+    );
+}; 
+  
 const WindowsTitle: React.FC = () => {
     const sectionStyle: CSSProperties = {
         position: 'relative',
@@ -105,14 +121,8 @@ const WindowsTitle: React.FC = () => {
 };
 
 const galleryImages = [
-    '/Window1.jpg',
-    '/SecurityDoor1.jpg',
-    '/Blinds1.jpg',
-    '/Window1.jpg',
-    '/Blinds1.jpg',
-    '/Window1.jpg',
-    '/SecurityDoor1.jpg',
-  ];
+    '/image/WindowImage/WindowImage1.jpg'
+];
   
 const GallerySlideshow: React.FC = () => {
     const [currentStartIndex, setCurrentStartIndex] = useState(0);
@@ -180,7 +190,6 @@ const GallerySlideshow: React.FC = () => {
         </div>
     );
 };
-
 
 export default function Windows() {
   return (

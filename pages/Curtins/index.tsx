@@ -375,13 +375,22 @@ const TabsComponent: React.FC<TabsComponentProps> = ({ activeTab, setActiveTab, 
 };
 
 const images = [
-  '/path/to/image1.jpg',
-  '/path/to/image2.jpg',
-  // Add more images as needed
+  '/image/CurtinImage/CurtinImage1.jpg',
+  '/image/CurtinImage/CurtinImage2.jpg',
+  '/image/CurtinImage/CurtinImage3.jpg',
+  '/image/CurtinImage/CurtinImage4.jpg',
+  '/image/CurtinImage/CurtinImage5.jpg',
+  '/image/CurtinImage/CurtinImage6.jpg',
+  '/image/CurtinImage/CurtinImage7.jpg',
+  '/image/CurtinImage/CurtinImage8.jpg',
+  '/image/CurtinImage/CurtinImage9.jpg',
+  // Add more images if needed
 ];
 
 const Gallery: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -392,20 +401,36 @@ const Gallery: React.FC = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const galleryStyle: CSSProperties = {
+  const galleryStyle = {
     display: 'grid',
     gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
     gap: '10px',
     padding: isMobile ? '10px' : '20px',
   };
 
-  const titleStyle: CSSProperties = {
+  const galleryImageStyle: React.CSSProperties = {
+    width: '100%',
+    height: '200px', // Set a fixed height for all images
+    objectFit: 'cover', // This will cover the area without stretching the image
+    opacity: 1,
+    transition: 'opacity 0.3s ease',
+  };
+
+  const titleStyle: React.CSSProperties = {
     textAlign: 'center',
     margin: '0 0 20px',
     color: '#333',
     fontSize: isMobile ? '8vw' : '3rem',
     fontWeight: 'bold',
-    marginTop: '5vw',
+    marginTop: '2vw',
+  };
+
+  const handleClick = (image: string) => {
+    setSelectedImage(image);
+  };
+
+  const handleClose = () => {
+    setSelectedImage(null);
   };
 
   return (
@@ -413,11 +438,25 @@ const Gallery: React.FC = () => {
       <h2 style={titleStyle}>Fly Screen Gallery</h2>
       <div style={galleryStyle}>
         {images.map((image, index) => (
-          <div key={index}>
-            <img src={image} alt={`Fly Screen ${index + 1}`} style={{ width: '100%', height: 'auto' }} />
+          <div key={index}
+               onMouseEnter={() => setHoverIndex(index)}
+               onMouseLeave={() => setHoverIndex(null)}
+               onClick={() => handleClick(image)}
+               style={{ cursor: 'pointer' }}>
+            <img src={image}
+                 alt={`Fly Screen ${index + 1}`}
+                 style={{
+                   ...galleryImageStyle,
+                   opacity: hoverIndex === index ? 0.7 : 1,
+                 }} />
           </div>
         ))}
       </div>
+      {selectedImage && (
+        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
+          <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
+        </div>
+      )}
     </div>
   );
 };

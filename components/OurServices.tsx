@@ -89,27 +89,27 @@ const OurServices: React.FC = () => {
       link: '/RollerShutters',
     },
     {
-      image: '/Blinds1.jpg',
+      image: '/image/CurtinImage/CurtinImage1.jpg',
       name: 'Curtins',
       description: 'Stylish and functional curtins to enhance your privacy and control natural lighting.',
       link: '/Curtins',
     },
     {
-      image: '/SecurityDoor1.jpg',
+      image: '/image/SecurityDoorImage/SecurityDoorImage13.jpg',
       name: 'Security Doors',
       description: 'Durable security doors that provide peace of mind with enhanced protection.',
       link: '/Product',
     },
     {
-      image: '/Window1.jpg',
+      image: '/image/WindowImage/WindowImage1.jpg',
       name: 'Windows',
       description: 'Custom-designed windows that bring natural beauty right into your home.',
       link: '/Windows',
     },
     {
-      image: '/RollerDoor1.jpg',
+      image: '/image/FlyScreenImage/FlyScreenImage2.jpg',
       name: 'Fly Screen',
-      description: 'High-quality roller shutters designed for smooth operation and robust security.',
+      description: 'Durable fly screens for effective insect protection and easy integration with any window style.',
       link: '/FlyScreens',
     },
   ];  

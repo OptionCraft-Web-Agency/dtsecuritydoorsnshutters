@@ -122,37 +122,37 @@ const OurServices: React.FC = () => {
       link: '/RollerShutters',
     },
     {
-      image: '/Blinds1.jpg',
+      image: '/image/CurtinImage/CurtinImage1.jpg',
       name: 'Curtins',
       description: 'Stylish and functional curtins to enhance your privacy and control natural lighting.',
       link: '/Curtins',
     },
     {
-      image: '/SecurityDoor1.jpg',
+      image: '/image/SecurityDoorImage/SecurityDoorImage13.jpg',
       name: 'Security Doors',
       description: 'Durable security doors that provide peace of mind with enhanced protection.',
       link: '/Product',
     },
     {
-      image: '/Window1.jpg',
+      image: '/image/WindowImage/WindowImage1.jpg',
       name: 'Windows',
       description: 'Custom-designed windows that bring natural beauty right into your home.',
       link: '/Windows',
     },
     {
-      image: '/RollerDoor1.jpg',
+      image: '/image/FlyScreenImage/FlyScreenImage2.jpg',
       name: 'Fly Screen',
-      description: 'High-quality roller shutters designed for smooth operation and robust security.',
+      description: 'Durable fly screens for effective insect protection and easy integration with any window style.',
       link: '/FlyScreens',
     },
   ];  
 
   return (
     <div style={containerStyle}>
-      <h2 style={titleStyle}>Seamless Security Meets Style with Custom Doors and Windows.</h2>
+      <h2 style={titleStyle}>Explore Our Premium Security and Aesthetic Solutions</h2>
       <p style={descriptionStyle}>
-        Our custom doors and windows are the epitome of elegance and security, meticulously crafted to enhance your home's aesthetic and safety. With a focus on innovative design and durability, we offer a wide range of styles and finishes to perfectly match your architectural needs. Each product is designed with precision engineering, ensuring optimal functionality without compromising on style. From advanced security features to energy-efficient materials, our doors and windows offer a perfect blend of form and function for the modern homeowner.
-      </p>      
+        Elevate your space with our bespoke security and design solutions. From state-of-the-art roller shutters to elegant window dressings, our tailored products blend seamlessly with any architectural style, offering unmatched protection and sophistication. Discover the perfect blend of functionality and design, crafted to meet your unique needs and preferences.
+      </p>    
       
       <div style={gridStyle}>
         {services.map((service, index) => (

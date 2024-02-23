@@ -50,17 +50,13 @@ const FlyscreenSection: React.FC = () => {
     };
 
     const imageContainerStyle: CSSProperties = {
-        display: 'flex',
-        justifyContent: 'center',
-        flexWrap: 'wrap',
-        gap: '20px',
-        marginBottom: '20px',
-    };
-
-    const imageStyle: CSSProperties = {
+        position: 'relative',
+        width: '200px',
+        height: '200px',
         borderRadius: '8px',
         overflow: 'hidden',
         boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+        margin: '0 20px', // Adjusted margin for bottom spacing
     };
 
     const buttonStyle: CSSProperties = {
@@ -84,10 +80,14 @@ const FlyscreenSection: React.FC = () => {
             <h2 style={{ fontSize: isMobile ? '8vw' : '3rem', marginBottom: '20px', fontWeight: 'bold', color: '#333' }}>
                 Premium Flyscreens: Comfort & Protection Redefined
             </h2>
-            <div style={imageContainerStyle}>
-                {/* Example images */}
-                <div style={imageStyle}><Image src="/path-to-your-flyscreen-image1.jpg" alt="Flyscreen 1" width={200} height={200} objectFit="cover" /></div>
-                <div style={imageStyle}><Image src="/path-to-your-flyscreen-image2.jpg" alt="Flyscreen 2" width={200} height={200} objectFit="cover" /></div>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '5px', flexWrap: 'wrap', marginBottom:'20px' }}>
+                {/* Wrap each Image in its own container with imageContainerStyle */}
+                <div style={imageContainerStyle}>
+                    <Image src="/image/FlyScreenImage/FlyScreenImage1.jpg" alt="Flyscreen 1" layout="fill" objectFit="cover" />
+                </div>
+                <div style={imageContainerStyle}>
+                    <Image src="/image/FlyScreenImage/FlyScreenImage2.jpg" alt="Flyscreen 2" layout="fill" objectFit="cover" />
+                </div>
             </div>
             <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#666', marginBottom: '20px' }}>
                 Elevate your home's comfort and security with our premium flyscreens, available in durable materials including fibre glass, aluminum, and stainless steel. Designed for resilience and superior protection, our flyscreens ensure a seamless blend of functionality and style.

@@ -26,7 +26,6 @@ const OurServices: React.FC = () => {
     alignItems: 'center',
     width: '100%',
     padding: isMobile ? '4vw 0' : '4vw 0',
-    backgroundColor: '#F0F2F5',
   };
 
   const headingStyle: React.CSSProperties = {

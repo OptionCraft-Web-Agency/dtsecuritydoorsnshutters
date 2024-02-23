@@ -29,7 +29,6 @@ const WhyChooseUsSection: React.FC = () => {
     }, []);
   
     const sectionStyle: CSSProperties = {
-      backgroundColor: 'white',
       padding: isMobile ? '20px' : ' 2vw 4vw',
       display: 'flex',
       flexDirection: 'column',

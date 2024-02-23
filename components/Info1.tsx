@@ -35,9 +35,8 @@ const Info1: React.FC = () => {
 
   const titleStyle: CSSProperties = {
     fontWeight: 'bold',
-    fontSize: 'min(1.8vw, 24px)',
+    fontSize: isMobile ? '1rem' : '2rem',
   };
-
 
   const flexContainerStyle: CSSProperties = {
     display: 'flex',

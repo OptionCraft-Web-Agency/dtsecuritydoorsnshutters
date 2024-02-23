@@ -254,7 +254,7 @@ const Gallery: React.FC = () => {
         )}
       </div>
     );
-  };
+};
 
 export default function FlyScreens() {
     return (

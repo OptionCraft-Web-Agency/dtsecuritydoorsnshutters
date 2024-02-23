@@ -55,7 +55,7 @@ const OurServices: React.FC = () => {
   };
 
   const titleStyle: CSSProperties = {
-    fontSize: '2.5vw', // Significantly reduced for better readability on mobile
+    fontSize: isMobile ? '1.5rem' : '2.5rem',
     marginBottom: '1.5vw',
     fontWeight: 'bold',
     textAlign: 'center', // Ensure title is centered on small screens

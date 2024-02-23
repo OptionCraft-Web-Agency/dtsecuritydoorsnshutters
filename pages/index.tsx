@@ -29,14 +29,14 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="bg-[#FFFCF8] w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
+      <div className="w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
         <MainHeader />
 
         <HomePage />
 
         <OurServices />
 
-        <HomeContent />
+        {/* <HomeContent /> */}
 
         <CallToAction />
 

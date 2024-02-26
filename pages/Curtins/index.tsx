@@ -461,23 +461,18 @@ const Gallery: React.FC = () => {
 };
 
 export default function Curtains() {
-  const [activeTab, setActiveTab] = useState<string>(Object.keys(tabColors)[0]);
-  const [selectedColorOption, setSelectedColorOption] = useState<ColorOption | null>(null);
-  const [selectedCategoryInfo, setSelectedCategoryInfo] = useState<CategoryInfo | null>(null);
-
-  const handleSelectColorOption = (colorOption: ColorOption) => setSelectedColorOption(colorOption);
-  const handleSelectCategory = (categoryInfo: CategoryInfo) => setSelectedCategoryInfo(categoryInfo);
-
-  const [isMobile, setIsMobile] = useState(false); // State to track if the device is mobile
+  const initialActiveTab = "Sheerweave 4300";
+  const [activeTab, setActiveTab] = useState<string>(initialActiveTab);
+  const [selectedColorOption, setSelectedColorOption] = useState<ColorOption | null>(tabColors[initialActiveTab][0] || null);
+  const [selectedCategoryInfo, setSelectedCategoryInfo] = useState<CategoryInfo | null>(categoryDetails[initialActiveTab]);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-  
     window.addEventListener('resize', handleResize);
     handleResize(); // Initialize on component mount
-  
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -512,14 +507,14 @@ export default function Curtains() {
       <CurtinsTitle />
       <ProductInfo 
         colorOptions={tabColors[activeTab]} 
-        onColorOptionSelect={handleSelectColorOption} 
+        onColorOptionSelect={setSelectedColorOption} 
         selectedColorOption={selectedColorOption}
       />
       <TabsComponent
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         tabColors={tabColors}
-        onSelectCategory={handleSelectCategory}
+        onSelectCategory={setSelectedCategoryInfo}
       />
       {selectedCategoryInfo && (
         <div style={descriptionSectionStyle}>

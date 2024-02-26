@@ -205,7 +205,6 @@ const colorPalette: { [key: string]: ColorOption[] } = {
       { name: 'Linen', image: '/image/curtin/Sheerweave4500/linen.jpeg' },
       { name: 'White Grey', image: '/image/curtin/Sheerweave4500/white-grey.jpeg' },
       { name: 'Charcoal Grey', image: '/image/curtin/Sheerweave4500/charcoal-grey.jpeg' },
-      { name: 'Denim', image: '/image/curtin/Sheerweave4500/denim.jpeg' },
       { name: 'Charcoal Gold', image: '/image/curtin/Sheerweave4500/charcoal-gold.jpeg' },
       { name: 'Charcoal Bronze', image: '/image/curtin/Sheerweave4500/charcoal-bronze.jpeg' },
       { name: 'Charcoal', image: '/image/curtin/Sheerweave4500/charcoal.jpeg' },

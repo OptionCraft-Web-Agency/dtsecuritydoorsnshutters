@@ -1,7 +1,9 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBug, faWind, faDollarSign, faHeart, faHome, faShieldAlt, faSprayCan } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/router';
+
+import useOnScreen from '@/components/useOnScreen';
 
 import Image from 'next/image';
 import Header from '@/components/Header';
@@ -22,11 +24,21 @@ const FlyScreensTitle: React.FC = () => {
         textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
         background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
     };
+
+    const ref = useRef<HTMLDivElement>(null);
+    const isVisible = useOnScreen(ref, '0px');
     
     return (
-    <div style={sectionStyle}>
-        Fly Screens
-    </div>
+        <div
+            ref={ref}
+            style={{
+                ...sectionStyle,
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 2s ease-in-out',
+            }}
+        >
+            Fly Screens
+        </div>
     );
 };
 
@@ -34,6 +46,8 @@ const FlyscreenSection: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [hover, setHover] = useState(false); // State to handle hover effect
     const router = useRouter();
+    const ref = useRef<HTMLDivElement>(null);
+    const isVisible = useOnScreen(ref);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -76,7 +90,14 @@ const FlyscreenSection: React.FC = () => {
     };
 
     return (
-        <div style={sectionStyle}>
+        <div
+            ref={ref}
+            style={{
+                ...sectionStyle,
+                opacity: isVisible ? 1 : 0,
+                transition: 'opacity 2s ease-in-out', 
+            }}
+        >
             <h2 style={{ fontSize: isMobile ? '8vw' : '3rem', marginBottom: '20px', fontWeight: 'bold', color: '#333' }}>
                 Premium Flyscreens: Comfort & Protection Redefined
             </h2>
@@ -106,6 +127,8 @@ const FlyscreenSection: React.FC = () => {
 
 const BenefitsOfFlyScreens: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    const isVisible = useOnScreen(ref);
 
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth < 768);
@@ -158,7 +181,14 @@ const BenefitsOfFlyScreens: React.FC = () => {
     ];
 
     return (
-        <div style={benefitsSectionStyle}>
+        <div
+            ref={ref}
+            style={{
+                ...benefitsSectionStyle,
+                opacity: isVisible ? 1 : 0, // Apply dynamic opacity
+                transition: 'opacity 2s ease-in-out', // Smooth transition for the fade-in effect
+            }}
+        >
             <h2 style={titleStyle}>Benefits of Fly Screens</h2>
             <ul style={{ listStyleType: 'none', padding: 0 }}>
                 {benefits.map((benefit, index) => {
@@ -186,6 +216,9 @@ const Gallery: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
+    const ref = useRef<HTMLDivElement>(null);
+    const isVisible = useOnScreen(ref);
   
     useEffect(() => {
       const handleResize = () => {
@@ -229,29 +262,34 @@ const Gallery: React.FC = () => {
     };
   
     return (
-      <div>
-        <h2 style={titleStyle}>Fly Screen Gallery</h2>
-        <div style={galleryStyle}>
-          {images.map((image, index) => (
-            <div key={index}
-                 onMouseEnter={() => setHoverIndex(index)}
-                 onMouseLeave={() => setHoverIndex(null)}
-                 onClick={() => handleClick(image)}
-                 style={{ cursor: 'pointer' }}>
-              <img src={image}
-                   alt={`Fly Screen ${index + 1}`}
-                   style={{
-                     ...galleryImageStyle,
-                     opacity: hoverIndex === index ? 0.7 : 1,
-                   }} />
+        <div 
+            ref={ref}       
+            style={{
+            opacity: isVisible ? 1 : 0,
+            transition: 'opacity 2s ease-in-out'}}
+        >
+            <h2 style={titleStyle}>Fly Screen Gallery</h2>
+            <div style={galleryStyle}>
+                {images.map((image, index) => (
+                    <div key={index}
+                        onMouseEnter={() => setHoverIndex(index)}
+                        onMouseLeave={() => setHoverIndex(null)}
+                        onClick={() => handleClick(image)}
+                        style={{ cursor: 'pointer' }}>
+                    <img src={image}
+                        alt={`Fly Screen ${index + 1}`}
+                        style={{
+                            ...galleryImageStyle,
+                            opacity: hoverIndex === index ? 0.7 : 1,
+                        }} />
+                    </div>
+                ))}
             </div>
-          ))}
-        </div>
-        {selectedImage && (
-          <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
-            <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
-          </div>
-        )}
+            {selectedImage && (
+                <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
+                    <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
+                </div>
+            )}
       </div>
     );
 };

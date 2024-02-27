@@ -6,6 +6,9 @@ import Header from "../components/Header";
 import MainHeader from "../components/MainHeader";
 import HomePage from "../components/HomePage";
 
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 import OurServices from "@/components/OurServices";
 import HomeContent from "@/components/HomeContent";
 import CallToAction from "@/components/CallToAction";
@@ -15,12 +18,6 @@ import FAQsComponent from "@/components/FAQ";
 import HomeForm from "@/components/HomeForm";
 import Footer from "../components/Footer";
 
-
-
-import Image from "next/image";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMap, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import FacebookMessenger from "@/components/FacebookMessenger";
 import DefaultFacebookChat from "@/components/DefaultFacebookChat";
 

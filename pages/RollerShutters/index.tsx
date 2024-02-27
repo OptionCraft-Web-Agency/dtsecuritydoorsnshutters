@@ -1,5 +1,5 @@
-import Image from 'next/image';
-import React, { useState, useEffect, CSSProperties } from 'react';
+import React, { useState, useEffect, CSSProperties, useRef } from 'react';
+import useOnScreen from '@/components/useOnScreen';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShieldAlt, faBolt, faVolumeDown, faPalette, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,9 @@ import Footer from '@/components/Footer';
 import Info1 from "@/components/Info1";
 
 const RollerShuttersTitle: React.FC = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(ref, '0px');
+
   const sectionStyle: CSSProperties = {
     position: 'relative',
     width: '100%',
@@ -25,7 +28,14 @@ const RollerShuttersTitle: React.FC = () => {
   };
 
   return (
-    <div style={sectionStyle}>
+    <div 
+      ref={ref}
+      style={{
+          ...sectionStyle,
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 2s ease-in-out',
+      }}
+    >
       Roller Shutters
     </div>
   );
@@ -33,6 +43,8 @@ const RollerShuttersTitle: React.FC = () => {
 
 const WhyRollerShutters: React.FC = () => {
     const [isMobile, setIsMobile] = useState(false);
+    const ref = useRef<HTMLDivElement>(null);
+    const isVisible = useOnScreen(ref);
   
     useEffect(() => {
       const handleResize = () => {
@@ -97,7 +109,14 @@ const WhyRollerShutters: React.FC = () => {
     };
   
     return (
-      <div style={sectionStyle}>
+      <div
+        ref={ref}
+        style={{
+            ...sectionStyle,
+            opacity: isVisible ? 1 : 0,
+            transition: 'opacity 2s ease-in-out', 
+        }}
+      >
         <h2 style={titleStyle}>Why Roller Shutters?</h2>
         <p style={descriptionStyle}>
           Discover the benefits of roller shutters for security, energy efficiency, and more:
@@ -134,6 +153,8 @@ const WhyRollerShutters: React.FC = () => {
   
 const AccessToolsSection: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(ref);
 
   useEffect(() => {
     const handleResize = () => {
@@ -214,7 +235,14 @@ const AccessToolsSection: React.FC = () => {
   };
 
   return (
-    <div style={sectionStyle}>
+    <div
+      ref={ref}
+      style={{
+          ...sectionStyle,
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 2s ease-in-out', 
+      }}
+    >      
       <div style={headerStyle}>Design & Secure Your Space</div>
       <div style={cardContainerStyle}>
         {/* Contact Us card */}
@@ -248,6 +276,9 @@ const Gallery: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
+
+  const ref = useRef<HTMLDivElement>(null);
+  const isVisible = useOnScreen(ref);
 
   useEffect(() => {
     const handleResize = () => {
@@ -291,29 +322,34 @@ const Gallery: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2 style={titleStyle}>Fly Screen Gallery</h2>
-      <div style={galleryStyle}>
-        {images.map((image, index) => (
-          <div key={index}
-               onMouseEnter={() => setHoverIndex(index)}
-               onMouseLeave={() => setHoverIndex(null)}
-               onClick={() => handleClick(image)}
-               style={{ cursor: 'pointer' }}>
-            <img src={image}
-                 alt={`Fly Screen ${index + 1}`}
-                 style={{
-                   ...galleryImageStyle,
-                   opacity: hoverIndex === index ? 0.7 : 1,
-                 }} />
+      <div 
+          ref={ref}       
+          style={{
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 2s ease-in-out'}}
+      >
+          <h2 style={titleStyle}>Fly Screen Gallery</h2>
+          <div style={galleryStyle}>
+              {images.map((image, index) => (
+                  <div key={index}
+                      onMouseEnter={() => setHoverIndex(index)}
+                      onMouseLeave={() => setHoverIndex(null)}
+                      onClick={() => handleClick(image)}
+                      style={{ cursor: 'pointer' }}>
+                  <img src={image}
+                      alt={`Fly Screen ${index + 1}`}
+                      style={{
+                          ...galleryImageStyle,
+                          opacity: hoverIndex === index ? 0.7 : 1,
+                      }} />
+                  </div>
+              ))}
           </div>
-        ))}
-      </div>
-      {selectedImage && (
-        <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
-          <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
-        </div>
-      )}
+          {selectedImage && (
+              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
+                  <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
+              </div>
+          )}
     </div>
   );
 };
@@ -326,7 +362,7 @@ export default function RollerShutters() {
         <RollerShuttersTitle />
         <WhyRollerShutters/>
         <AccessToolsSection />
-        <Info1/>
+        {/* <Info1/> */}
         <Gallery />
         <Footer />
     </div>

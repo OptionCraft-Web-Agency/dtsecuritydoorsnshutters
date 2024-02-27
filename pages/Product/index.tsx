@@ -8,8 +8,11 @@ import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 import ProductSkeleton from "@/components/ProductSkeleton";
 
-import React, { useState, useEffect, CSSProperties } from "react";
+import React, { useState, useEffect, CSSProperties, useRef } from 'react';
+import useOnScreen from '@/components/useOnScreen';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faShieldAlt,
   faPaintBrush,

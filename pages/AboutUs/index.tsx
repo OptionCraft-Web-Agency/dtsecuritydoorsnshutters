@@ -1,6 +1,6 @@
-import Image from 'next/image';
-import { Inter } from 'next/font/google';
 import React, { CSSProperties } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 import Header from '@/components/Header';
 import MainHeader from '@/components/MainHeader';
@@ -9,8 +9,13 @@ import WhyChooseUsSection from '@/components/WhyChooseUsSection';
 import Footer from '@/components/Footer';
 import FAQSection from '@/components/FAQ';
 
-// Define the AboutUsSection component
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 const AboutUsSection: React.FC = () => {
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const sectionStyle: CSSProperties = {
     position: 'relative',
     width: '100%',
@@ -26,9 +31,15 @@ const AboutUsSection: React.FC = () => {
   };
 
   return (
-    <div style={sectionStyle}>
+    <motion.div
+      ref={ref}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      variants={fadeInUp}
+      style={sectionStyle}
+    >
       About Us
-    </div>
+    </motion.div>
   );
 };
 
@@ -39,7 +50,9 @@ export default function AboutUs() {
       <MainHeader />
       <AboutUsSection />
       <div style={{margin:'80px 0px'}}>
-      <AboutUsInfo />
+        <AnimatePresence>
+          <AboutUsInfo />
+        </AnimatePresence>
       </div>
       <WhyChooseUsSection />
       <FAQSection />

@@ -2,11 +2,21 @@ import React, { useState, useEffect, CSSProperties } from 'react';
 import Image from 'next/image';
 import Link from "next/link";
 
+import { motion, useAnimation } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 import Header from '@/components/Header'
 import MainHeader from '@/components/MainHeader'
 import Footer from '@/components/Footer'
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 const ServicesSection: React.FC = () => {
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
   const sectionStyle: CSSProperties = {
     position: 'relative',
     width: '100%',
@@ -22,16 +32,35 @@ const ServicesSection: React.FC = () => {
   };
 
   return (
-    <div style={sectionStyle}>
+    <motion.div
+      ref={ref}
+      variants={fadeInUp}
+      initial="hidden"
+      animate={inView ? 'visible' : 'hidden'}
+      style={sectionStyle}
+    >
       Our Services
-    </div>
+    </motion.div>
   );
 };
 
 const OurServices: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  // Correcting the state declaration here
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Ensure this matches throughout
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const controls = useAnimation();
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start("visible");
+    }
+  }, [controls, inView]);
+
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -149,12 +178,30 @@ const OurServices: React.FC = () => {
 
   return (
     <div style={containerStyle}>
-      <h2 style={titleStyle}>Explore Our Premium Security and Aesthetic Solutions</h2>
-      <p style={descriptionStyle}>
+      <motion.h2
+        variants={fadeInUp}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        style={titleStyle}
+      >
+        Explore Our Premium Security and Aesthetic Solutions
+      </motion.h2>
+      <motion.p
+        variants={fadeInUp}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        style={descriptionStyle}
+      >
         Elevate your space with our bespoke security and design solutions. From state-of-the-art roller shutters to elegant window dressings, our tailored products blend seamlessly with any architectural style, offering unmatched protection and sophistication. Discover the perfect blend of functionality and design, crafted to meet your unique needs and preferences.
-      </p>    
+      </motion.p>  
       
-      <div style={gridStyle}>
+      <motion.div
+        ref={ref}
+        variants={fadeInUp}
+        initial="hidden"
+        animate={inView ? 'visible' : 'hidden'}
+        style={gridStyle}
+      >
         {services.map((service, index) => (
           <Link key={index} href={service.link} passHref>
               <div
@@ -175,7 +222,7 @@ const OurServices: React.FC = () => {
               </div>
           </Link>
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

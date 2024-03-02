@@ -478,7 +478,13 @@ const images = [
   "/image/CurtinImage/CurtinImage7.jpg",
   "/image/CurtinImage/CurtinImage8.jpg",
   "/image/CurtinImage/CurtinImage9.jpg",
-  // Add more images if needed
+  "/image/CurtinImage/CurtinImage10.jpg",
+  "/image/CurtinImage/CurtinImage11.jpg",
+  "/image/CurtinImage/CurtinImage12.jpg",
+  "/image/CurtinImage/CurtinImage13.jpg",
+  "/image/CurtinImage/CurtinImage14.jpg",
+  "/image/CurtinImage/CurtinImage15.jpg",
+  "/image/CurtinImage/CurtinImage16.jpg",
 ];
 
 const Gallery: React.FC = () => {

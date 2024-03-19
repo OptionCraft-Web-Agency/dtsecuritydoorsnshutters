@@ -39,9 +39,8 @@ export default function MainHeader() {
         className="flex items-center"
       >
         <Link href="/" legacyBehavior>
-          <a className="max-h-[10vh] flex">
-            <Image src="/Logo1.png" alt="Company Logo" width={100} height={100} />
-            <Image src="/Logo2.png" alt="Company Secondary Logo" width={100} height={100} />
+          <a className="flex">
+            <Image src="/logo3.jpg" alt="Company Logo" width={150} height={50} />
           </a>
         </Link>
       </motion.div>

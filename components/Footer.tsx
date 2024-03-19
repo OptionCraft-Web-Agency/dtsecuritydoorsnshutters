@@ -92,10 +92,10 @@ const Footer: React.FC = () => {
     <footer style={footerStyle}>
       <div className="footer-header" style={footerHeaderStyle}>
         {/* Logo */}
-        <Link href="/">
-          <div style={logoStyle}>
-            <Image src="/Logo1.png" alt="Company Logo" width={80} height={80} layout="fixed" />
-          </div>
+        <Link href="/" legacyBehavior>
+          <a className="flex">
+            <Image src="/logo3.jpg" alt="Company Logo" width={150} height={50} />
+          </a>
         </Link>
 
         {/* Navigation Links */}

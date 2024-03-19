@@ -8,8 +8,8 @@ import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 import ProductSkeleton from "@/components/ProductSkeleton";
 
-import React, { useState, useEffect, CSSProperties, useRef } from 'react';
-import useOnScreen from '@/components/useOnScreen';
+import React, { useState, useEffect, CSSProperties, useRef } from "react";
+import useOnScreen from "@/components/useOnScreen";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -130,7 +130,7 @@ const ProductsPage = () => {
         <h2 style={titleStyle}>Why Security Doors?</h2>
         <p style={descriptionStyle}>
           Explore the advantages of installing security doors to enhance your
-          home's safety and aesthetics:
+          home&apos;s safety and aesthetics:
         </p>
         <ul style={listStyle}>
           <li style={listItemStyle}>
@@ -144,8 +144,8 @@ const ProductsPage = () => {
             <div style={iconStyle}>
               <FontAwesomeIcon icon={icons.design} />
             </div>
-            <strong>Custom Designs:</strong> Tailored to match your home's style
-            and character.
+            <strong>Custom Designs:</strong> Tailored to match your home&apos;s
+            style and character.
           </li>
           <li style={listItemStyle}>
             <div style={iconStyle}>

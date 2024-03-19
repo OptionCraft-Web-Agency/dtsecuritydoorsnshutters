@@ -6,8 +6,8 @@ import Header from "../components/Header";
 import MainHeader from "../components/MainHeader";
 import HomePage from "../components/HomePage";
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
 
 import OurServices from "@/components/OurServices";
 import HomeContent from "@/components/HomeContent";
@@ -47,7 +47,6 @@ export default function Home() {
 
         <Footer />
 
-        <FacebookMessenger />
       </div>
     </>
   );

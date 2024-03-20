@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const reviews = [
   {
@@ -16,6 +16,15 @@ const reviews = [
 
 const CustomerReview: React.FC = () => {
   const [currentReviewIndex, setCurrentReviewIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleDotClick = (index: number) => {
     setCurrentReviewIndex(index);
@@ -31,52 +40,123 @@ const CustomerReview: React.FC = () => {
 
   const review = reviews[currentReviewIndex];
 
-  return (
-    <div
-      style={{
-        background: 'linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))', 
-        textAlign: "center",
-        padding: "4vw 0",
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        margin: "30px 0px",
-      }}
-    >
-      <h2 style={{ color: "white", fontSize: "2vw", margin: "0 0 1vw 0", fontWeight: 'bold' }}>
-        What Our Customers Are Saying
-      </h2>
+  const styles = {
+    container: {
+      background: 'linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))',
+      textAlign: "center" as const, // No change needed, just an example for explicit casting
+      padding: isMobile ? "10vw 0" : "4vw 0",
+      width: "100%",
+      display: "flex",
+      flexDirection: "column" as 'column', // Correcting the type
+      alignItems: "center",
+      margin: "30px 0",
+    },  
+    header: {
+      color: "white",
+      fontSize: isMobile ? "6vw" : "2vw",
+      margin: "0 0 1vw 0",
+      fontWeight: 'bold',
+    },
+    text: {
+      color: "white",
+      fontSize: isMobile ? "5vw" : "1.25vw",
+      maxWidth: "70%",
+      margin: "0 auto 4vw",
+    },
+    reviewBox: {
+      backgroundColor: "white",
+      fontSize: isMobile ? "4vw" : "1.25vw",
+      padding: isMobile ? "5vw" : "2vw",
+      borderRadius: "12px",
+      boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+      width: "70%",
+      position: "relative" as 'relative', // Correcting the type
+      transition: 'all 0.5s ease-in-out',
+    },
+    navigationSpanLeft: {
+      left: '5%',
+      cursor: 'pointer',
+      fontSize: isMobile ? '5vw' : '2vw',
+      userSelect: 'none' as 'none', // Explicitly typed as 'none'
+      position: 'absolute' as 'absolute', // Explicitly typed as 'absolute'
+      color: 'white',
+    },
+    navigationSpanRight: {
+      right: '5%',
+      cursor: 'pointer',
+      fontSize: isMobile ? '5vw' : '2vw',
+      userSelect: 'none' as 'none', // Explicitly typed as 'none'
+      position: 'absolute' as 'absolute', // Explicitly typed as 'absolute'
+      color: 'white',
+    },
+    author: {
+      fontSize: isMobile ? "3.5vw" : "1.5vw",
+      position: "absolute" as 'absolute', // Making sure position is set correctly
+      bottom: "-3vw",
+      left: "50%",
+      transform: "translateX(-50%)",
+      color: "white",
+    },
+    rating: {
+      fontSize: isMobile ? "4vw" : "1.5vw",
+      color: "black",
+      padding: "1vw 0",
+    },
+    dots: {
+      fontSize: isMobile ? "4vw" : "1.5vw",
+      color: "white",
+      marginTop: "3vw",
+      display: "flex",
+      gap: "0.5vw",
+      justifyContent: "center",
+    },
+  };
 
-      <p style={{ color: "white", fontSize: "1.25vw", maxWidth: "70%", margin: "0 auto 4vw" }}>
+  return (
+    <div style={styles.container}>
+      <h2 style={styles.header}>What Our Customers Are Saying</h2>
+      <p style={styles.text}>
         We guarantee our professional services. Our objective is the satisfaction of our clients.
       </p>
-
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
-        <span onClick={prevReview} style={{ cursor: 'pointer', fontSize: '2vw', userSelect: 'none', position: 'absolute', left: '5%', color: 'white' }}>&#9664;</span>
+        <span onClick={prevReview} style={{...styles.navigationSpanLeft}}>&#9664;</span>
         
-        <div style={{ backgroundColor: "white", fontSize: "1.25vw", padding: "2vw", borderRadius: "12px", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)", width: "70%", position: "relative", transition: 'all 0.5s ease-in-out' }}>
-          <div style={{ fontSize: "1.5vw", color: "black", padding: "1vw 0" }}>
+        <div style={styles.reviewBox}>
+          <div style={styles.rating}>
             {review.rating}
           </div>
 
-          <p>{review.text}</p>
+          <p style={{ fontSize: isMobile ? "3.5vw" : "1.25vw" }}>{review.text}</p>
+          
+          <div style={{
+            position: "absolute",
+            bottom: "-1vw",
+            left: "50%",
+            width: "0",
+            height: "0",
+            borderLeft: "1vw solid transparent",
+            borderRight: "1vw solid transparent",
+            borderTop: "1vw solid white",
+            transform: "translateX(-50%)",
+          }}></div>
 
-          <div style={{ position: "absolute", bottom: "-1vw", left: "50%", width: "0", height: "0", borderLeft: "1vw solid transparent", borderRight: "1vw solid transparent", borderTop: "1vw solid white", transform: "translateX(-50%)" }}></div>
-
-          <p style={{ fontSize: "1.5vw", position: "absolute", bottom: "-3vw", left: "50%", transform: "translateX(-50%)", color: "white" }}>
+          <p style={styles.author}>
             {review.author}
           </p>
         </div>
 
-        <span onClick={nextReview} style={{ cursor: 'pointer', fontSize: '2vw', userSelect: 'none', position: 'absolute', right: '5%', color: 'white' }}>&#9654;</span>
+        <span onClick={nextReview} style={{...styles.navigationSpanRight}}>&#9654;</span>
       </div>
 
-      <div style={{ fontSize: "1.5vw", color: "white", marginTop: "3vw", display: "flex", gap: "0.5vw", justifyContent: "center" }}>
+      <div style={styles.dots}>
         {reviews.map((_, index) => (
           <span
             key={index}
-            style={{ cursor: 'pointer', color: currentReviewIndex === index ? 'white' : 'rgba(255, 255, 255, 0.5)' }}
+            style={{
+              cursor: 'pointer',
+              color: currentReviewIndex === index ? 'white' : 'rgba(255, 255, 255, 0.5)',
+              fontSize: isMobile ? "4vw" : "1.5vw",
+            }}
             onClick={() => handleDotClick(index)}
           >
             &#9679;
@@ -88,3 +168,4 @@ const CustomerReview: React.FC = () => {
 };
 
 export default CustomerReview;
+

@@ -209,7 +209,15 @@ const BenefitsOfFlyScreens: React.FC = () => {
 
 const images = [
     '/image/FlyScreenImage/FlyScreenImage1.jpg',
-    '/image/FlyScreenImage/FlyScreenImage2.jpg'
+    '/image/FlyScreenImage/FlyScreenImage2.jpg',
+    '/image/FlyScreenImage/FlyScreenImage3.jpg',
+    '/image/FlyScreenImage/FlyScreenImage4.jpg',
+    '/image/FlyScreenImage/FlyScreenImage5.jpg',
+    '/image/FlyScreenImage/FlyScreenImage6.jpg',
+    '/image/FlyScreenImage/FlyScreenImage7.jpg',
+    '/image/FlyScreenImage/FlyScreenImage8.jpg',
+    '/image/FlyScreenImage/FlyScreenImage9.jpg',
+    '/image/FlyScreenImage/FlyScreenImage10.jpg',
 ];
   
 const Gallery: React.FC = () => {

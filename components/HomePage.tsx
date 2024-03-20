@@ -8,6 +8,10 @@ const HomePage: React.FC = () => {
     window.location.href = '/Services'; 
   };
 
+  const navigateToContact = () => {
+    window.location.href = '/ContactUs'; 
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -157,6 +161,7 @@ const HomePage: React.FC = () => {
             style={getButtonStyle('estimate')}
             onMouseEnter={() => handleMouseEnter('estimate')}
             onMouseLeave={handleMouseLeave}
+            onClick={navigateToContact}
           >
             Request a Free Estimate
           </button>

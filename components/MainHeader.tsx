@@ -43,8 +43,8 @@ export default function MainHeader() {
             <Image 
               src="/logo3.jpg" 
               alt="Company Logo" 
-              width={150} 
-              height={50} 
+              width={200} 
+              height={100} 
               className="w-full h-auto"
             />
           </a>

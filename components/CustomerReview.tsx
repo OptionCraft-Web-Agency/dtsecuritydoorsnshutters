@@ -11,7 +11,6 @@ const reviews = [
     author: "Emily Johnson",
     rating: "★★★★★"
   },
-  // Add more reviews as needed
 ];
 
 const CustomerReview: React.FC = () => {
@@ -117,7 +116,7 @@ const CustomerReview: React.FC = () => {
       <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
         <span onClick={prevReview} style={{ ...navigationSpanStyle, left: '5%' }}>&#9664;</span>
         <div style={reviewBoxStyle}>
-          <div style={ratingStyle}>{review.rating          }</div>
+          <div style={ratingStyle}>{review.rating}</div>
           <p style={{ fontSize: isMobile ? "3.5vw" : "1.25vw" }}>{review.text}</p>
           
           <div style={{

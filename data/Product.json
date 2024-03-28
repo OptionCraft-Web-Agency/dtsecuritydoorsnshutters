@@ -1,0 +1,3345 @@
+{
+  "products": [
+    {
+      "id": "product-1",
+      "name": "Single Diamond",
+      "description": "Standard Diamond Grille Insert ( 7 mm Thickness ) Security Door with Insect Screen Mesh.",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-1.jpg"
+        },
+        
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-2",
+      "name": "Decorative Diamond",
+      "description": "Decorative Diamond Grille Insert Security Door with Insect Screen Mesh.",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-2.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/CloserLookProduct-2.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-3",
+      "name": "Stainless Steel Mesh Door",
+      "description": "Ultimate Security Door with Marine Grade 316 Stainless Steel Mesh",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-3.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/CloserLookProduct-3.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-4",
+      "name": "Vision Guard",
+      "description": "Privacy Door with Great Looks & Strength",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-4.jpg"
+        }, 
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-5",
+      "name": "Perforated Alumesh",
+      "description": "Thick Aluminium Sheet with 2 mm Holes",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-5.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+
+    {
+      "id": "product-6",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-6.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-7",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-7.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-8",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-8.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-9",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-9.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-10",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-10.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-11",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-11.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-12",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-12.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-13",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-13.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-14",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-14.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-15",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-15.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-16",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-16.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-17",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-17.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-18",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-18.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-19",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-19.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-20",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-20.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-21",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-21.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-22",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-22.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-23",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-23.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    },
+    {
+      "id": "product-24",
+      "name": "Styled Frame",
+      "description": "Colonial Cast Aluminium Doors with a touch of style and colour",
+      "content": [
+        "Our Standard is Others’ Extra",
+        "Complimentary Installation: Expert setup included with every purchase.",
+        "Premium Austral Lock: Superior security comes standard.",
+        "Austral Door Closer: Automatically included for enhanced convenience.",
+        "Tailored to Your Needs: Custom sizing options to perfectly fit your space.",
+        "Insect Screen Feature: Every door comes with a Fiberglass Flyscreen, ensuring a bug-free environment.",
+        "Bug-Strip Addition: Added protection included in every installation."
+      ],
+      "image": [
+        {
+          "sourceUrl": "/ProductImg/product-24.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Lock.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Closer.jpg"
+        },
+        {
+          "sourceUrl": "/ProductImg/Brush.jpg"
+        }
+      ],
+      "color": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ],
+      "width": ["Up to 870mm", "870mm to 1024mm", "More than 1024mm"],
+      "height": ["Up to 2010mm", "2010mm to 2400mm"],
+      "DVA": ["Yes", "No"],
+      "DVAColor": [
+        {
+          "name": "White",
+          "hex": "#FFFFFF"
+        },
+        {
+          "name": "Black",
+          "hex": "#000000"
+        },
+        {
+          "name": "Classic Cream",
+          "hex": "#E7E1C1"
+        },
+        {
+          "name": "Sand",
+          "hex": "#CEC2AB"
+        },
+        {
+          "name": "Brown",
+          "hex": "#5E3A2A"
+        },
+        {
+          "name": "Manor Red",
+          "hex": "#793F31"
+        },
+        {
+          "name": "Green",
+          "hex": "#00524A"
+        },
+        {
+          "name": "Shale Grey",
+          "hex": "#BFBEBD"
+        },
+        {
+          "name": "Woodland Grey",
+          "hex": "#5E5C56"
+        },
+        {
+          "name": "Deep Ocean Blue",
+          "hex": "#475161"
+        },
+        {
+          "name": "Jasper",
+          "hex": "#806E5C"
+        },
+        {
+          "name": "Monument",
+          "hex": "#424146"
+        },
+        {
+          "name": "Beige",
+          "hex": "#C88C75"
+        }
+      ]
+    }
+  ]
+}

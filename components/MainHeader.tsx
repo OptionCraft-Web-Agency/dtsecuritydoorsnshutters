@@ -39,6 +39,7 @@ export default function MainHeader() {
         className="flex items-center"
       >
         <Link href="/" legacyBehavior>
+
           <a className="flex justify-center items-center w-full sm:max-w-xs">
             <Image 
               src="/logo3.jpg" 

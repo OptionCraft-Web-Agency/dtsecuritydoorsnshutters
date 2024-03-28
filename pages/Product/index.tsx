@@ -10,7 +10,7 @@ import ProductSkeleton from "@/components/ProductSkeleton";
 
 import React, { useState, useEffect, CSSProperties, useRef } from "react";
 import useOnScreen from "@/components/useOnScreen";
-
+import productsData from "../../data/Product.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
@@ -21,12 +21,16 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const ProductsPage = () => {
-  const { data, loading, error } = useQuery(GET_PRODUCTS_QUERY, {
-    fetchPolicy: "cache-and-network",
-  });
+  const transformedProducts = productsData.products.map((product) => ({
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    image: { sourceUrl: product.image[0].sourceUrl }, // Assuming the first image is the main one
+    link: `/Product/${product.id}`, // This constructs the link for the product detail page
+  }));
 
   // Determine the number of skeleton loaders to show, this can be based on your design/grid
-  const skeletonCount = 10; // Adjust this number as needed
+  const skeletonCount = 26; // Adjust this number as needed
 
   const SecurityDoorTitle: React.FC = () => {
     const sectionStyle: CSSProperties = {
@@ -177,14 +181,7 @@ const ProductsPage = () => {
         <WhySecurityDoors />
 
         <div style={{ margin: "5vw" }}>
-          {/* Show the ProductSkeletons or the error message in place of the product list */}
-          {loading ? (
-            <ProductSkeletons count={skeletonCount} />
-          ) : error ? (
-            <p>Error: {error.message}</p>
-          ) : (
-            <ProductList products={data?.products.nodes || []} />
-          )}
+          <ProductList products={transformedProducts} />
         </div>
 
         <Footer />

@@ -1,42 +1,59 @@
-// ProductPage.tsx
 import React from "react";
 import { useRouter } from "next/router";
-import { useQuery } from "@apollo/client";
-import { GET_PRODUCT_QUERY } from "@/graphql/getProduct";
-import ProductDetails from "@/components/ProductDetails";
+import productsData from "../../data/Product.json";
+import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
-import Footer from "@/components/Footer";
-import Link from "next/link";
+import ProductDetails from "@/components/ProductDetails";
 
-const ProductPage = () => {
+type Image = {
+  sourceUrl: string;
+};
+
+type Color = {
+  name: string;
+  hex: string;
+};
+
+type Product = {
+  id: string;
+  name: string;
+  description: string;
+  content: string[];
+  image: Image[];
+  color: Color[];
+  width: string[];
+  height: string[];
+  DVA: string[];
+  DVAColor: Color[];
+};
+
+type ProductsData = {
+  products: Product[];
+};
+
+// Simulating import of JSON data
+const allProducts: ProductsData = productsData;
+
+const ProductPage: React.FC = () => {
   const router = useRouter();
   const { productId } = router.query;
 
-  const { data, loading, error } = useQuery(GET_PRODUCT_QUERY, {
-    variables: { id: productId },
-    skip: !productId,
-  });
+  // Find the product by ID using the productId from the URL
+  const product = allProducts.products.find((p) => p.id === productId);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-  const goBack = () => {
-    router.push("/Product"); // Assuming your products page is at '/products'
-  };
+  if (!product) {
+    return <div>Product not found</div>;
+  }
 
   return (
     <>
       <Header />
       <div className="bg-[#FFFCF8] w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
         <MainHeader />
-        <button
-          onClick={goBack}
-          className="my-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700 transition duration-300"
-        >
-          Go Back
-        </button>
-        
-        <div>{data?.product && <ProductDetails product={data.product} />}</div>
+
+        {/* Render the product details component with the found product */}
+        <ProductDetails product={product} />
 
         <Footer />
       </div>

@@ -1,15 +1,10 @@
-// pages/products.js
-import { useQuery } from "@apollo/client";
-import { GET_PRODUCTS_QUERY } from "@/graphql/allProduct";
+
 import ProductList from "@/components/ProductList";
-import ProductSkeletons from "@/components/ProductSkeletons"; // Use this instead of LoadingSpinner
 import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
-import ProductSkeleton from "@/components/ProductSkeleton";
 
 import React, { useState, useEffect, CSSProperties, useRef } from "react";
-import useOnScreen from "@/components/useOnScreen";
 import productsData from "../../data/Product.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

@@ -140,7 +140,11 @@ const WindowsTitle: React.FC = () => {
 };
 
 const images = [
-    '/image/WindowImage/WindowImage1.jpg'
+    '/image/WindowImage/WindowImage1.jpg',
+    '/image/WindowImage/WindowImage2.jpg',
+    '/image/WindowImage/WindowImage3.jpg',
+    '/image/WindowImage/WindowImage4.jpg'
+
 ];
   
 const Gallery: React.FC = () => {

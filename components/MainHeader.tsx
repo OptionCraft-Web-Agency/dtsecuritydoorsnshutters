@@ -40,7 +40,12 @@ export default function MainHeader() {
       >
         <Link href="/" legacyBehavior>
           <a className="flex">
-            <Image src="/logo3.jpg" alt="Company Logo" width={150} height={50} />
+            <Image
+              src="/logo3.jpg"
+              alt="Company Logo"
+              width={150}
+              height={50}
+            />
           </a>
         </Link>
       </motion.div>

@@ -1,10 +1,11 @@
-import React, { useState, useEffect, CSSProperties, useRef } from 'react';
+import Head from "next/head";
+import React, { useState, useEffect, CSSProperties, useRef } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 
-import useOnScreen from '@/components/useOnScreen';
+import useOnScreen from "@/components/useOnScreen";
 
 const CurtinsTitle: React.FC = () => {
   const sectionStyle: CSSProperties = {
@@ -500,32 +501,34 @@ const Gallery: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const galleryStyle = {
-    display: 'grid',
-    gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
-    gap: '10px',
-    padding: isMobile ? '10px' : '20px',
+    display: "grid",
+    gridTemplateColumns: isMobile
+      ? "repeat(auto-fit, minmax(150px, 1fr))"
+      : "repeat(4, 1fr)",
+    gap: "10px",
+    padding: isMobile ? "10px" : "20px",
   };
 
   const galleryImageStyle: React.CSSProperties = {
-    width: '100%',
-    height: '200px', // Set a fixed height for all images
-    objectFit: 'cover', // This will cover the area without stretching the image
+    width: "100%",
+    height: "200px", // Set a fixed height for all images
+    objectFit: "cover", // This will cover the area without stretching the image
     opacity: 1,
-    transition: 'opacity 0.3s ease',
+    transition: "opacity 0.3s ease",
   };
 
   const titleStyle: React.CSSProperties = {
-    textAlign: 'center',
-    margin: '0 0 20px',
-    color: '#333',
-    fontSize: isMobile ? '8vw' : '3rem',
-    fontWeight: 'bold',
-    marginTop: '2vw',
+    textAlign: "center",
+    margin: "0 0 20px",
+    color: "#333",
+    fontSize: isMobile ? "8vw" : "3rem",
+    fontWeight: "bold",
+    marginTop: "2vw",
   };
 
   const handleClick = (image: string) => {
@@ -537,34 +540,57 @@ const Gallery: React.FC = () => {
   };
 
   return (
-      <div 
-          ref={ref}       
-          style={{
-          opacity: isVisible ? 1 : 0,
-          transition: 'opacity 2s ease-in-out'}}
-      >
-          <h2 style={titleStyle}>Fly Screen Gallery</h2>
-          <div style={galleryStyle}>
-              {images.map((image, index) => (
-                  <div key={index}
-                      onMouseEnter={() => setHoverIndex(index)}
-                      onMouseLeave={() => setHoverIndex(null)}
-                      onClick={() => handleClick(image)}
-                      style={{ cursor: 'pointer' }}>
-                  <img src={image}
-                      alt={`Fly Screen ${index + 1}`}
-                      style={{
-                          ...galleryImageStyle,
-                          opacity: hoverIndex === index ? 0.7 : 1,
-                      }} />
-                  </div>
-              ))}
+    <div
+      ref={ref}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 2s ease-in-out",
+      }}
+    >
+      <h2 style={titleStyle}>Fly Screen Gallery</h2>
+      <div style={galleryStyle}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            onMouseEnter={() => setHoverIndex(index)}
+            onMouseLeave={() => setHoverIndex(null)}
+            onClick={() => handleClick(image)}
+            style={{ cursor: "pointer" }}
+          >
+            <Image
+              src={image}
+              alt={`Fly Screen ${index + 1}`}
+              style={{
+                ...galleryImageStyle,
+                opacity: hoverIndex === index ? 0.7 : 1,
+              }}
+            />
           </div>
-          {selectedImage && (
-              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
-                  <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
-              </div>
-          )}
+        ))}
+      </div>
+      {selectedImage && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={handleClose}
+        >
+          <Image
+            src={selectedImage}
+            alt="Enlarged view"
+            style={{ maxWidth: "90%", maxHeight: "90%" }}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -612,7 +638,36 @@ export default function Curtains() {
   };
 
   return (
-    <div>
+    <>
+      <Head>
+        <title>
+          Stylish Curtains & Sheerweaves - DT Security Doors & Shutters
+        </title>
+        <meta
+          name="description"
+          content="Explore our wide selection of curtains and sheerweaves, designed to complement any interior with elegance and style."
+        />
+        <link
+          rel="canonical"
+          href="https://dtsecuritydoorsandshutters.com.au/Curtins"
+        />
+        <meta
+          property="og:title"
+          content="DT Security Doors & Shutters - Curtains Collection"
+        />
+        <meta
+          property="og:description"
+          content="Discover the latest trends in curtain designs and materials at DT Security Doors & Shutters."
+        />
+        <meta
+          property="og:url"
+          content="https://dtsecuritydoorsandshutters.com.au/Curtins"
+        />
+        <meta
+          property="og:image"
+          content="https://dtsecuritydoorsandshutters.com.au/Logo1.png"
+        />
+      </Head>
       <Header />
       <MainHeader />
       <CurtinsTitle />
@@ -645,6 +700,6 @@ export default function Curtains() {
       )}
       <Gallery />
       <Footer />
-    </div>
+    </>
   );
 }

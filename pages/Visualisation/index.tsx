@@ -1,3 +1,4 @@
+import Head from "next/head";
 import {
   ChangeEvent,
   Dispatch,
@@ -511,6 +512,47 @@ Curtains Color: ${curtainsColor}
 
   return (
     <>
+      <Head>
+        <title>DT Security Doors & Shutters - Visualize Your Home</title>
+        <meta
+          name="description"
+          content="Visualize and customize security doors, roller shutters, and curtains for your home with our advanced visualization tool. Design your perfect home exterior today."
+        />
+        <link
+          rel="canonical"
+          href="https://dtsecuritydoorsandshutters.com.au/Visualisation"
+        />
+        <meta
+          property="og:title"
+          content="DT Security Doors & Shutters - Home Visualization Tool"
+        />
+        <meta
+          property="og:description"
+          content="Use our visualization tool to customize and visualize how our security solutions can enhance your home's safety and aesthetics."
+        />
+        <meta
+          property="og:image"
+          content="https://dtsecuritydoorsandshutters.com.au/Logo1.png"
+        />
+        <meta
+          property="og:url"
+          content="https://dtsecuritydoorsandshutters.com.au/Visualisation"
+        />
+        <meta
+          name="twitter:title"
+          content="Visualize Your Home with DT Security Doors & Shutters"
+        />
+        <meta
+          name="twitter:description"
+          content="Design and visualize your home's new look with our security doors, roller shutters, and curtains. Start creating now."
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="DT Security Doors & Shutters" />
+        <meta
+          name="copyright"
+          content="&copy; 2024 DT Security Doors & Shutters"
+        />
+      </Head>
       <Header />
       <MainHeader />
       <ColorVisualisationTitle />
@@ -776,7 +818,7 @@ Curtains Color: ${curtainsColor}
           >
             <path d="M13 8V0H7v8H0l10 12 10-12h-7z" />
           </svg>
-          <span>Download Visualisation For Attachment</span>
+          <span>Download Visualization For Attachment</span>
         </button>
       </div>
       <Footer />

@@ -1,6 +1,7 @@
+import Head from "next/head";
 import React, { useState, useEffect, CSSProperties, useRef } from "react";
 import useOnScreen from "@/components/useOnScreen";
-
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faShieldAlt,
@@ -367,7 +368,7 @@ const Gallery: React.FC = () => {
             onClick={() => handleClick(image)}
             style={{ cursor: "pointer" }}
           >
-            <img
+            <Image
               src={image}
               alt={`Fly Screen ${index + 1}`}
               style={{
@@ -394,7 +395,7 @@ const Gallery: React.FC = () => {
           }}
           onClick={handleClose}
         >
-          <img
+          <Image
             src={selectedImage}
             alt="Enlarged view"
             style={{ maxWidth: "90%", maxHeight: "90%" }}
@@ -407,7 +408,44 @@ const Gallery: React.FC = () => {
 
 export default function RollerShutters() {
   return (
-    <div>
+    <>
+      <Head>
+        <title>
+          DT Security Doors & Shutters - Roller Shutters in Melbourne
+        </title>
+        <meta
+          name="description"
+          content="Enhance your home's security and energy efficiency with our custom-designed roller shutters. Discover the benefits of our roller shutters in Melbourne today."
+        />
+        <link
+          rel="canonical"
+          href="https://dtsecuritydoorsandshutters.com.au/RollerShutters"
+        />
+        <meta
+          property="og:title"
+          content="Roller Shutters - DT Security Doors & Shutters"
+        />
+        <meta
+          property="og:description"
+          content="Secure and beautify your home with our top-quality roller shutters, designed for Melbourne homes. Learn more about our energy-efficient roller shutters now."
+        />
+        <meta
+          property="og:image"
+          content="https://dtsecuritydoorsandshutters.com.au/Logo1.png"
+        />
+        <meta
+          property="og:url"
+          content="https://dtsecuritydoorsandshutters.com.au/RollerShutters"
+        />
+        <meta
+          name="twitter:title"
+          content="Roller Shutters by DT Security Doors & Shutters"
+        />
+        <meta
+          name="twitter:description"
+          content="Maximize your home's security and style with our custom roller shutters in Melbourne. Click to find out more."
+        />
+      </Head>
       <Header />
       <MainHeader />
       <RollerShuttersTitle />
@@ -416,6 +454,6 @@ export default function RollerShutters() {
       {/* <Info1/> */}
       <Gallery />
       <Footer />
-    </div>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import productsData from "../../data/Product.json";
@@ -41,13 +42,22 @@ const ProductPage: React.FC = () => {
 
   // Find the product by ID using the productId from the URL
   const product = allProducts.products.find((p) => p.id === productId);
-
+  let title = "Product Not Found | DT Security Doors & Shutters";
+  let description = "The requested product was not found in our catalog.";
+  if (product) {
+    title = `${product.name} | DT Security Doors & Shutters`;
+    description = product.description; // Assuming 'product.description' is a concise summary of the product.
+  }
   if (!product) {
     return <div>Product not found</div>;
   }
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+        <meta name="description" content={description} />
+      </Head>
       <Header />
       <div className="bg-[#FFFCF8] w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
         <MainHeader />

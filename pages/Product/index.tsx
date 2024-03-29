@@ -1,4 +1,4 @@
-
+import Head from "next/head";
 import ProductList from "@/components/ProductList";
 import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
@@ -167,6 +167,37 @@ const ProductsPage = () => {
 
   return (
     <>
+      <Head>
+        <title>
+          Security Doors - Enhance Home Safety | DT Security Doors & Shutters
+        </title>
+        <meta
+          name="description"
+          content="Discover our premium range of security doors designed to enhance your home's safety and aesthetic appeal. Custom designs available to match any home style."
+        />
+        <link
+          rel="canonical"
+          href="https://dtsecuritydoorsandshutters.com.au/Product"
+        />
+        <meta
+          property="og:title"
+          content="Security Doors - Enhance Home Safety | DT Security Doors & Shutters"
+        />
+        <meta
+          property="og:description"
+          content="Explore our selection of security doors that offer both safety and style for your home. Contact us for custom designs."
+        />
+        <meta
+          property="og:image"
+          content="https://dtsecuritydoorsandshutters.com.au/Logo1.png"
+        />
+        <meta
+          property="og:url"
+          content="https://dtsecuritydoorsandshutters.com.au/Product"
+        />
+        <meta property="og:type" content="website" />
+        {/* Additional meta tags for Twitter and other social media platforms */}
+      </Head>
       <Header />
       <div className="bg-[#FFFCF8] w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
         <MainHeader />

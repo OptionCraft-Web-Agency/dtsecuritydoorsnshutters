@@ -16,8 +16,8 @@ async function sendEmail(req, res) {
   });
 
   const mailOptions = {
-    from: process.env.USER_EMAIL, // This should be the same email as your auth.user email
-    to: "haizzzchic@gmail.com", // The email that will receive the contact form data
+    from: `DTMDGROUP@outlook.com.au`, // This should be the same email as your auth.user email
+    to: `${email}`, // The email that will receive the contact form data
     subject: "Customer Inquiry from Website",
     text: `You have a new contact form submission from:\n\nName: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`,
     html: `

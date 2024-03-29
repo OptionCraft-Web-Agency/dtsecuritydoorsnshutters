@@ -259,10 +259,7 @@ export default function Services() {
           name="description"
           content="Discover our wide range of home security and aesthetic solutions. From roller shutters to custom-designed windows, DT Security Doors & Shutters offers products to enhance your home's safety and style."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/Services"
-        />
+        
         <meta
           property="og:title"
           content="Explore Our Premium Security and Aesthetic Solutions"

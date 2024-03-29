@@ -647,10 +647,7 @@ export default function Curtains() {
           name="description"
           content="Explore our wide selection of curtains and sheerweaves, designed to complement any interior with elegance and style."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/Curtins"
-        />
+        
         <meta
           property="og:title"
           content="DT Security Doors & Shutters - Curtains Collection"

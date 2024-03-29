@@ -518,10 +518,7 @@ Curtains Color: ${curtainsColor}
           name="description"
           content="Visualize and customize security doors, roller shutters, and curtains for your home with our advanced visualization tool. Design your perfect home exterior today."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/Visualisation"
-        />
+          
         <meta
           property="og:title"
           content="DT Security Doors & Shutters - Home Visualization Tool"

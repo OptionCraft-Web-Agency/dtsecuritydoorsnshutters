@@ -56,10 +56,7 @@ export default function AboutUs() {
           name="description"
           content="At DT Security Doors & Shutters, we prioritize client satisfaction with top-notch security doors, blinds, fly screens, and awnings, crafted to ensure safety and elegance for your home in Melbourne."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/"
-        />
+        
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           property="og:title"

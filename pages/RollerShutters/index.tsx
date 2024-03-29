@@ -417,10 +417,7 @@ export default function RollerShutters() {
           name="description"
           content="Enhance your home's security and energy efficiency with our custom-designed roller shutters. Discover the benefits of our roller shutters in Melbourne today."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/RollerShutters"
-        />
+        
         <meta
           property="og:title"
           content="Roller Shutters - DT Security Doors & Shutters"

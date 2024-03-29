@@ -37,10 +37,7 @@ export default function ContactUs() {
           name="description"
           content="Reach out to DT Security Doors & Shutters for bespoke security solutions in Melbourne. Contact us today for a consultation to enhance the safety and elegance of your home."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/contact"
-        />
+        
         <meta
           property="og:title"
           content="Get in Touch with DT Security Doors & Shutters"

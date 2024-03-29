@@ -404,10 +404,7 @@ export default function FlyScreens() {
           name="description"
           content="Premium fly screens to keep pests out and allow fresh air in, providing comfort and protection for your home."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/FlyScreens"
-        />
+
         <meta
           property="og:title"
           content="High-Quality Fly Screens - DT Security Doors & Shutters"

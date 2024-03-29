@@ -26,10 +26,6 @@ export default function Home() {
           name="description"
           content="Explore high-quality security doors, roller shutters, and window solutions with DT Security Doors & Shutters. Enhance the safety and style of your Melbourne home today."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/"
-        />
         <meta
           property="og:title"
           content="DT Security Doors & Shutters - Secure Your Home in Style"
@@ -54,7 +50,7 @@ export default function Home() {
           name="twitter:description"
           content="Premium security doors and window solutions tailored for your Melbourne home. Explore our products and services."
         />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
         <meta name="author" content="DT Security Doors & Shutters" />
         <meta
           name="copyright"

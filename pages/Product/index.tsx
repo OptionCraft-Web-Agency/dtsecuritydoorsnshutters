@@ -175,10 +175,7 @@ const ProductsPage = () => {
           name="description"
           content="Discover our premium range of security doors designed to enhance your home's safety and aesthetic appeal. Custom designs available to match any home style."
         />
-        <link
-          rel="canonical"
-          href="https://dtsecuritydoorsandshutters.com.au/Product"
-        />
+        
         <meta
           property="og:title"
           content="Security Doors - Enhance Home Safety | DT Security Doors & Shutters"

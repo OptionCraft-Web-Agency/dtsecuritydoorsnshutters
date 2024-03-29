@@ -34,6 +34,13 @@ const ContactUsForm: React.FC = () => {
       // Reset form or show success message
       alert("Your message has been sent successfully!");
       // Optionally reset form state here
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        message: "",
+      });
     } else {
       // Handle error
       alert("There was an error sending your message. Please try again.");

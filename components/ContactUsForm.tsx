@@ -31,9 +31,8 @@ const ContactUsForm: React.FC = () => {
     });
 
     if (response.ok) {
-      // Reset form or show success message
-      alert("Your message has been sent successfully!");
       // Optionally reset form state here
+      //reset ContactUsForm form
       setFormData({
         name: "",
         email: "",
@@ -41,6 +40,9 @@ const ContactUsForm: React.FC = () => {
         address: "",
         message: "",
       });
+
+      // Reset form or show success message
+      alert("Your message has been sent successfully!");
     } else {
       // Handle error
       alert("There was an error sending your message. Please try again.");
@@ -128,7 +130,7 @@ const ContactUsForm: React.FC = () => {
           Enquire Form
         </p>
 
-        <form style={formStyle} onSubmit={handleSubmit}>
+        <form id="ContactUsForm" style={formStyle} onSubmit={handleSubmit}>
           <div
             style={{
               width: "100%",

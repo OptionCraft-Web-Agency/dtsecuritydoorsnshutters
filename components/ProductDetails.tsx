@@ -43,10 +43,7 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
     };
   });
   // Assuming you're using the first image in the array for the main display.
-  const mainImageUrl =
-    product.image.length > 0
-      ? product.image[0].sourceUrl
-      : "/default-image.jpg";
+
   const copyToClipboard = async () => {
     const productDetails = `
           Name: ${product.name}
@@ -109,28 +106,31 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
     </div>
   );
   return (
-    <div className="container mx-auto my-8 p-4">
-      <div className="md:flex md:justify-center md:items-start mx-auto">
+    <div className="container mx-auto my-8 px-4 md:px-8">
+      <div className="flex flex-col md:flex-row justify-center md:items-start mx-auto">
         {/* Container with fixed width and height */}
-        <div className="w-full max-w-xs mx-auto h-[200px]">
+        <div className="w-full max-w-full  md:max-w-xs lg:h-72 mx-auto">
           {/* ImageGallery component */}
-          <div className="h-full w-full">
-            <ImageGallery
-              items={images}
-              showPlayButton={false}
-              additionalClass="h-full w-full"
-              useBrowserFullscreen={false}
-              showNav={false}
-            />
-          </div>
+          <ImageGallery
+            items={images}
+            showPlayButton={false}
+            useBrowserFullscreen={true} // Assuming you want the fullscreen icon to appear
+            showNav={true}
+            showThumbnails={false}
+            showFullscreenButton={true} // To show the fullscreen button
+            showBullets={true}
+            infinite={true}
+            slideDuration={450}
+            slideInterval={2000}
+          />
         </div>
 
-        <div className="md:w-1/2 lg:w-2/3 md:pl-8">
-          <div className="flex justify-between items-center">
-            <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
+        <div className="w-full md:max-w-1/2 lg:max-w-2/3">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-4">
+            <h1 className="text-xl md:text-3xl font-bold">Product Name</h1>
             <button
               onClick={copyToClipboard}
-              className="px-4 py-2 bg-blue-500 text-white font-semibold rounded"
+              className="mt-4 md:mt-0 text-sm md:text-base bg-blue-500 text-white font-semibold rounded px-4 py-2"
             >
               Copy to Clipboard
             </button>

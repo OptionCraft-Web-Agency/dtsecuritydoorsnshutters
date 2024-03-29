@@ -122,7 +122,7 @@ const Info1: React.FC = () => {
           </div>
           <p style={textStyle}>Electric Switch</p>
           <p style={descriptionStyle}>
-            Our electrically operated shutters feature an integrated switch, seamlessly blending with your home's interior.
+            Our electrically operated shutters feature an integrated switch, seamlessly blending with your home&apos;s interior.
           </p>
         </div>
         <div style={itemStyle}>

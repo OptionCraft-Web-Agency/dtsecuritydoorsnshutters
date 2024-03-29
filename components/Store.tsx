@@ -43,7 +43,7 @@ const Store: React.FC = () => {
     <div style={containerStyle}>
       <h2 style={titleStyle}>Seamless Security Meets Style with Custom Doors and Windows.</h2>
       <p style={descriptionStyle}>
-        Our custom doors and windows are the epitome of elegance and security, meticulously crafted to enhance your home's aesthetic and safety. With a focus on innovative design and durability, we offer a wide range of styles and finishes to perfectly match your architectural needs. Each product is designed with precision engineering, ensuring optimal functionality without compromising on style. From advanced security features to energy-efficient materials, our doors and windows offer a perfect blend of form and function for the modern homeowner.
+        Our custom doors and windows are the epitome of elegance and security, meticulously crafted to enhance your home&apos;s aesthetic and safety. With a focus on innovative design and durability, we offer a wide range of styles and finishes to perfectly match your architectural needs. Each product is designed with precision engineering, ensuring optimal functionality without compromising on style. From advanced security features to energy-efficient materials, our doors and windows offer a perfect blend of form and function for the modern homeowner.
       </p>
       <div style={gridStyle}>
         <ServiceItem imageUrl="/RollerDoor1.jpg" title="Roller Shutters" />

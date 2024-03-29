@@ -27,10 +27,17 @@ const FacebookIcon: React.FC<IconProps> = ({ style, className, link }) => {
 };
 type Props = {};
 
+const handleFacebookClick = () => {
+  window.open(
+    "https://www.facebook.com/profile.php?id=61555458406932",
+    "_blank"
+  );
+};
+
 export default function Header({}: Props) {
   return (
     <header className="sticky top-0 py-1 md:py-5 px-10 flex justify-between items-center mx-auto z-20 bg-[#B3B3B3] w-screen text-base ultraWide:px-[5%] wide:text-3xl">
-      <div style={{display:'flex', flexDirection:'row'}}> 
+      <div style={{ display: "flex", flexDirection: "row" }}>
         {/* Existing phone number and icon */}
         <motion.div
           initial={{
@@ -102,19 +109,17 @@ export default function Header({}: Props) {
         className="flex flex-row items-center cursor-pointer"
       >
         {/* Wrap the text and icon in an anchor tag to open the link in a new tab */}
-        <a href="https://www.facebook.com/profile.php?id=61555458406932" target="_blank" rel="noopener noreferrer" className="flex flex-row items-center">
+
+        <div
+          className="flex items-center cursor-pointer"
+          onClick={handleFacebookClick}
+        >
           <p className="uppercase hidden md:inline-flex text-white mr-2 pr-4 md:text-xl">
             Contact With Us
           </p>
-          <div className="rounded-lg cursor-pointer border border-white border-2">
-            {/* FacebookIcon does not need the link prop since the enclosing <a> tag handles navigation */}
-            <FacebookIcon
-              className="text-white px-2 py-1 text-center justify-center flex text-xl md:text-3xl"
-            />
-          </div>
-        </a>
+          <FacebookIcon className="rounded-lg border border-white border-2 text-white px-2 py-1 text-xl md:text-3xl" />
+        </div>
       </motion.div>
-
     </header>
   );
 }

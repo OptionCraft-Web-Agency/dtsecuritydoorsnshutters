@@ -85,7 +85,7 @@ const WhyChooseUsSection: React.FC = () => {
                 <div style={cardStyle}>
                     <FontAwesomeIcon icon={faShieldAlt} size="3x" style={iconStyle} />
                     <h3 style={headingStyle}>Comprehensive Warranty</h3>
-                    <p style={paragraphStyle}>Relax with the assurance of a full 15-year manufacturer's warranty on our entire product range.</p>
+                    <p style={paragraphStyle}>Relax with the assurance of a full 15-year manufacturer&apos;s warranty on our entire product range.</p>
                 </div>
 
                 {/* Technician Expertise */}

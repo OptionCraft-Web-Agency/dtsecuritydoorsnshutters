@@ -111,7 +111,7 @@ const FlyscreenSection: React.FC = () => {
                 </div>
             </div>
             <p style={{ fontSize: '1rem', lineHeight: '1.6', color: '#666', marginBottom: '20px' }}>
-                Elevate your home's comfort and security with our premium flyscreens, available in durable materials including fibre glass, aluminum, and stainless steel. Designed for resilience and superior protection, our flyscreens ensure a seamless blend of functionality and style.
+                Elevate your home&apos;s comfort and security with our premium flyscreens, available in durable materials including fibre glass, aluminum, and stainless steel. Designed for resilience and superior protection, our flyscreens ensure a seamless blend of functionality and style.
             </p>
             <button
                 style={buttonStyle}

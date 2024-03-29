@@ -47,6 +47,7 @@ export default function Home() {
 
         <Footer />
 
+        <FacebookMessenger />
       </div>
     </>
   );

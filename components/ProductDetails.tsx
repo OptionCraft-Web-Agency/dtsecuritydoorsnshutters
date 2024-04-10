@@ -125,9 +125,9 @@ const ProductDetails: React.FC<ProductProps> = ({ product }) => {
           />
         </div>
 
-        <div className="w-full md:max-w-1/2 lg:max-w-2/3">
+        <div className="w-full md:max-w-1/2 lg:max-w-2/3 pl-5">
           <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-            <h1 className="text-xl md:text-3xl font-bold">Product Name</h1>
+            <h1 className="text-xl md:text-3xl font-bold">{product.name}</h1>
             <button
               onClick={copyToClipboard}
               className="mt-4 md:mt-0 text-sm md:text-base bg-blue-500 text-white font-semibold rounded px-4 py-2"

@@ -547,7 +547,7 @@ const Gallery: React.FC = () => {
         transition: "opacity 2s ease-in-out",
       }}
     >
-      <h2 style={titleStyle}>Fly Screen Gallery</h2>
+      <h2 style={titleStyle}>Curtin Gallery</h2>
       <div style={galleryStyle}>
         {images.map((image, index) => (
           <div

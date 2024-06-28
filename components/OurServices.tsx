@@ -4,8 +4,7 @@ import Link from 'next/link';
 
 const OurServices: React.FC = () => {
   const [isMobile, setIsMobile] = useState<boolean>(false);
-  // Correcting the state declaration here
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null); // Ensure this matches throughout
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleResize = () => {
@@ -25,7 +24,7 @@ const OurServices: React.FC = () => {
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    padding: isMobile ? '4vw 0' : '4vw 0',
+    padding: '4vw 0',
   };
 
   const headingStyle: React.CSSProperties = {
@@ -38,7 +37,7 @@ const OurServices: React.FC = () => {
   const gridStyle: React.CSSProperties = {
     display: 'grid',
     gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
-    gap: isMobile ? '2vw' : '2vw',
+    gap: '2vw',
     width: '90%',
     margin: '0 auto',
   };
@@ -75,9 +74,9 @@ const OurServices: React.FC = () => {
   };
 
   const serviceNameStyle: React.CSSProperties = {
-    fontWeight: 'bold', // Example style, adjust as needed
-    fontSize: isMobile ? '4vw' : '1.2rem', // Responsive font size
-    marginBottom: '0.5vw', // Space between name and description
+    fontWeight: 'bold',
+    fontSize: isMobile ? '4vw' : '1.2rem',
+    marginBottom: '0.5vw',
   };
 
   const services = [
@@ -89,9 +88,9 @@ const OurServices: React.FC = () => {
     },
     {
       image: '/image/CurtinImage/CurtinImage1.jpg',
-      name: 'Curtins',
-      description: 'Stylish and functional curtins to enhance your privacy and control natural lighting.',
-      link: '/Curtins',
+      name: 'Curtains',
+      description: 'Stylish and functional curtains to enhance your privacy and control natural lighting.',
+      link: '/Curtains',
     },
     {
       image: '/image/SecurityDoorImage/SecurityDoorImage13.jpg',
@@ -111,7 +110,7 @@ const OurServices: React.FC = () => {
       description: 'Durable fly screens for effective insect protection and easy integration with any window style.',
       link: '/FlyScreens',
     },
-  ];  
+  ];
 
   return (
     <div style={containerStyle}>
@@ -119,23 +118,29 @@ const OurServices: React.FC = () => {
       <div style={gridStyle}>
         {services.map((service, index) => (
           <Link key={index} href={service.link} passHref>
-              <div
-                style={itemStyle}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-              >
-                <div style={{ width: '100%', height: '200px', position: 'relative' }}>
-                  <Image src={service.image} alt={service.name} layout="fill" objectFit="cover" />
-                </div>
-                <div style={textContainerStyle}>
-                <p style={serviceNameStyle}>{service.name}</p> {/* Apply the new style here */}
-                  {/* <p>{service.description}</p> */}
-                </div>
-                <div style={{ ...overlayTextStyle, opacity: hoveredIndex === index ? 1 : 0 }}>
-                <p style={serviceNameStyle}>{service.name}</p> {/* Apply the new style here */}
-                  <p>{service.description}</p>                
-                </div>
+            <div
+              style={itemStyle}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+            >
+              <div style={{ width: '100%', height: '200px', position: 'relative' }}>
+                <Image 
+                  src={service.image} 
+                  alt={service.name} 
+                  layout="fill" 
+                  objectFit="cover" 
+                  placeholder="blur" 
+                  blurDataURL="/placeholder.png" // Placeholder image
+                />
               </div>
+              <div style={textContainerStyle}>
+                <p style={serviceNameStyle}>{service.name}</p>
+              </div>
+              <div style={{ ...overlayTextStyle, opacity: hoveredIndex === index ? 1 : 0 }}>
+                <p style={serviceNameStyle}>{service.name}</p>
+                <p>{service.description}</p>
+              </div>
+            </div>
           </Link>
         ))}
       </div>

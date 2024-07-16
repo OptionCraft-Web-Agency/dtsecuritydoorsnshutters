@@ -10,8 +10,8 @@ import {
   faShieldAlt,
   faSprayCan,
 } from "@fortawesome/free-solid-svg-icons";
-import { useRouter } from "next/router";
 
+import { useRouter } from "next/router";
 import useOnScreen from "@/components/useOnScreen";
 
 import Image from "next/image";
@@ -19,7 +19,17 @@ import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 const FlyScreensTitle: React.FC = () => {
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
   const sectionStyle: CSSProperties = {
     position: "relative",
     width: "100%",
@@ -28,26 +38,29 @@ const FlyScreensTitle: React.FC = () => {
     justifyContent: "center",
     alignItems: "center",
     color: "white",
-    fontSize: "min(4vw, 7vw)",
     fontWeight: "bold",
     textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
     background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
   };
 
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref, "0px");
+  const textStyle: CSSProperties = {
+    fontSize: "clamp(2rem, 4vw, 7vw)", // Ensures a minimum font size of 2rem, scales with viewport width, max 7vw
+  };
 
   return (
-    <div
+    <motion.div
       ref={ref}
-      style={{
-        ...sectionStyle,
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 2s ease-in-out",
-      }}
+      variants={fadeInUp}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      style={sectionStyle}
     >
-      Fly Screens
-    </div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
+        <span style={textStyle}>
+          Fly Screens
+        </span>
+      </div>
+    </motion.div>
   );
 };
 
@@ -83,19 +96,26 @@ const FlyscreenSection: React.FC = () => {
   };
 
   const buttonStyle: CSSProperties = {
-    padding: "10px 20px",
-    backgroundColor: hover ? "#0056b3" : "#007BFF", // Change color on hover
-    color: "white",
+    padding: isMobile ? "2%" : "1vw",
     border: "none",
     borderRadius: "5px",
+    color: "white",
+    fontSize: isMobile ? "5vw" : "1.5vw",
     cursor: "pointer",
-    fontSize: "1rem",
-    fontWeight: "bold",
-    transition: "background-color 0.2s",
+    backgroundColor: "rgba(0, 87, 255)",
+    boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
+    transition: "background-color 0.3s, transform 0.3s",
+    width: "50%",
   };
 
   const navigateToContactUs = () => {
     router.push("/ContactUs"); // Use the useRouter hook for navigation
+  };
+
+  const hoverButtonStyle: CSSProperties = {
+    ...buttonStyle,
+    backgroundColor: "rgba(0, 77, 255)",
+    transform: "scale(1.05)",
   };
 
   return (
@@ -109,10 +129,9 @@ const FlyscreenSection: React.FC = () => {
     >
       <h2
         style={{
-          fontSize: isMobile ? "8vw" : "3rem",
-          marginBottom: "20px",
+          fontSize: isMobile ? "1.5rem" : "2.5rem",
           fontWeight: "bold",
-          color: "#333",
+          marginBottom: "1rem",
         }}
       >
         Premium Flyscreens: Comfort & Protection Redefined
@@ -146,10 +165,10 @@ const FlyscreenSection: React.FC = () => {
       </div>
       <p
         style={{
-          fontSize: "1rem",
-          lineHeight: "1.6",
-          color: "#666",
-          marginBottom: "20px",
+          marginBottom: '2rem',
+          fontSize: isMobile ? '0.9rem' : '1rem',
+          padding: isMobile ? '0 1rem' : '0',
+          width: '100%', // Ensure full width
         }}
       >
         Elevate your home&apos;s comfort and security with our premium
@@ -160,8 +179,22 @@ const FlyscreenSection: React.FC = () => {
       </p>
       <button
         style={buttonStyle}
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
+        onMouseEnter={(e) =>
+          (e.currentTarget.style.cssText = Object.entries(hoverButtonStyle)
+            .map(
+              ([key, value]) =>
+                `${key.replace(/([A-Z])/g, "-$1").toLowerCase()}:${value}`
+            )
+            .join(";"))
+        }
+        onMouseLeave={(e) =>
+          (e.currentTarget.style.cssText = Object.entries(buttonStyle)
+            .map(
+              ([key, value]) =>
+                `${key.replace(/([A-Z])/g, "-$1").toLowerCase()}:${value}`
+            )
+            .join(";"))
+        }
         onClick={navigateToContactUs}
       >
         Contact Us for a Customized Solution
@@ -181,93 +214,100 @@ const BenefitsOfFlyScreens: React.FC = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const benefitsSectionStyle: CSSProperties = {
-    padding: "40px 20px",
-    backgroundColor: "#fff",
-    borderRadius: "8px",
-    margin: "40px auto",
-    maxWidth: "960px",
+  const sectionStyles: CSSProperties = {
+    fontFamily: '"Inter", sans-serif',
+    color: "#333",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: isMobile ? "2rem" : "3rem",
     textAlign: "center",
   };
 
-  const titleStyle: CSSProperties = {
-    fontSize: isMobile ? "8vw" : "3rem",
-    fontWeight: "bold",
-    marginBottom: "20px",
-    color: "#333",
+  const textSectionStyle: CSSProperties = {
+    marginBottom: "1rem",
   };
 
-  const listItemStyle: CSSProperties = {
-    marginBottom: "10px",
+  const titleStyle: CSSProperties = {
+    fontSize: isMobile ? "1.5rem" : "2.5rem",
+    fontWeight: "bold",
+    marginBottom: "1rem",
+  };
+
+  const paragraphStyle: CSSProperties = {
+    marginBottom: "2rem",
+    fontSize: isMobile ? "0.9rem" : "1rem",
+    padding: isMobile ? "0 1rem" : "0",
+    width: "100%", // Ensure full width
+  };
+
+  const featuresGridStyle: CSSProperties = {
+    listStyle: "none",
+    padding: 0,
+    display: "grid",
+    gridTemplateColumns: isMobile
+      ? "1fr"
+      : "repeat(3, 1fr)",
+    gap: "1rem",
+    maxWidth: "800px",
+  };
+
+  const featureItemStyle: CSSProperties = {
     display: "flex",
-    alignItems: "center", // Aligns icon and text vertically in the center
-    gap: "10px",
+    flexDirection: "column",
+    alignItems: "center",
+    fontSize: "1rem",
+    marginBottom: isMobile ? "1rem" : "0",
+    textAlign: "center",
   };
 
   const iconStyle: CSSProperties = {
-    minWidth: "30px", // Ensure all icons have the same width for alignment
-    textAlign: "center", // Center the icons in their grid area
+    backgroundColor: "#eeeeee",
+    borderRadius: "50%",
+    width: "3rem",
+    height: "3rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: "0.5rem",
     fontSize: "1.5rem",
   };
 
-  const textContainerStyle: CSSProperties = {
-    textAlign: "left", // Aligns the text to the left
-    flex: "1", // Takes up the remaining space for alignment
-  };
-
   const benefits = [
-    {
-      icon: faBug,
-      text: "Protection Against Pests: Keep mosquitoes, flies, and other pests out while letting fresh air in.",
-    },
-    {
-      icon: faWind,
-      text: "Enhanced Air Quality: Promote better ventilation and air quality inside your home without worrying about insects.",
-    },
-    {
-      icon: faDollarSign,
-      text: "Energy Savings: Reduce the need for air conditioning by allowing cooler air to circulate naturally through your home.",
-    },
-    {
-      icon: faHeart,
-      text: "Improved Health: Reduce the risk of diseases transmitted by pests and insects.",
-    },
-    {
-      icon: faHome,
-      text: "Aesthetic Appeal: Available in various materials and designs that can complement your home decor.",
-    },
-    {
-      icon: faShieldAlt,
-      text: "Added Security: Some fly screens come with additional security features to prevent unauthorized access.",
-    },
-    {
-      icon: faSprayCan,
-      text: "Easy Maintenance: Designed for easy cleaning and durability, ensuring long-lasting protection.",
-    },
+    { icon: faBug, title: "Protection Against Pests", description: "Keep mosquitoes, flies, and other pests out while letting fresh air in." },
+    { icon: faWind, title: "Enhanced Air Quality", description: "Promote better ventilation and air quality inside your home without worrying about insects." },
+    { icon: faDollarSign, title: "Energy Savings", description: "Reduce the need for air conditioning by allowing cooler air to circulate naturally through your home." },
+    { icon: faHome, title: "Aesthetic Appeal", description: "Available in various materials and designs that can complement your home decor." },
+    { icon: faShieldAlt, title: "Added Security", description: "Some fly screens come with additional security features to prevent unauthorized access." },
+    { icon: faSprayCan, title: "Easy Maintenance", description: "Designed for easy cleaning and durability, ensuring long-lasting protection." },
   ];
 
   return (
     <div
       ref={ref}
       style={{
-        ...benefitsSectionStyle,
-        opacity: isVisible ? 1 : 0, // Apply dynamic opacity
-        transition: "opacity 2s ease-in-out", // Smooth transition for the fade-in effect
+        ...sectionStyles,
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 2s ease-in-out",
       }}
     >
-      <h2 style={titleStyle}>Benefits of Fly Screens</h2>
-      <ul style={{ listStyleType: "none", padding: 0 }}>
-        {benefits.map((benefit, index) => {
-          const [title, description] = benefit.text.split(": ");
-          return (
-            <li key={index} style={listItemStyle}>
-              <FontAwesomeIcon style={iconStyle} icon={benefit.icon} />
-              <div style={textContainerStyle}>
-                <strong>{title}:</strong> {description}
-              </div>
-            </li>
-          );
-        })}
+      <div style={textSectionStyle}>
+        <h2 style={titleStyle}>Benefits of Fly Screens</h2>
+        <p style={paragraphStyle}>
+          Discover the advantages of installing fly screens in your home, offering both comfort and protection.
+        </p>
+      </div>
+      <ul style={featuresGridStyle}>
+        {benefits.map((benefit, index) => (
+          <li key={index} style={featureItemStyle}>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={benefit.icon} />
+            </div>
+            <strong>{benefit.title}</strong>
+            <span>{benefit.description}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );
@@ -358,6 +398,8 @@ const Gallery: React.FC = () => {
             <Image
               src={image}
               alt={`Fly Screen ${index + 1}`}
+              width={150}
+              height={200}
               style={{
                 ...galleryImageStyle,
                 opacity: hoverIndex === index ? 0.7 : 1,
@@ -385,6 +427,8 @@ const Gallery: React.FC = () => {
           <Image
             src={selectedImage}
             alt="Enlarged view"
+            width={800}
+            height={600}
             style={{ maxWidth: "90%", maxHeight: "90%" }}
           />
         </div>

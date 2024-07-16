@@ -6,108 +6,144 @@ const ContactUsInfo: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check the window size initially and set the isMobile state
-    setIsMobile(window.innerWidth < 768);
-
-    // Function to update the state based on window resize
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    // Add event listener for window resize
-    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check
 
-    // Clean-up function to remove the event listener
+    window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const containerStyle: CSSProperties = {
     display: 'flex',
-    flexDirection: isMobile ? 'column' : 'row',
+    flexDirection: 'column',
+    alignItems: 'center',
     color: 'black',
-    padding: isMobile ? '2vw' : '20px',
+    padding: '40px 20px',
     fontFamily: 'Arial, sans-serif',
     width: '100%',
+    gap: '20px',
   };
 
-  const columnStyle: CSSProperties = {
+  const gridStyle: CSSProperties = {
+    display: 'flex',
+    flexDirection: isMobile ? 'column' : 'row',
+    justifyContent: 'center',
+    alignItems: 'stretch',
     width: '100%',
+    gap: '20px',
+  };
+
+  const cardStyle: CSSProperties = {
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'flex-start',
-    padding: "20px",
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: '20px',
+    backgroundColor: 'white',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    minHeight: '200px',
+    textAlign: 'center',
   };
 
   const titleStyle: CSSProperties = {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     fontWeight: 'bold',
-    fontSize: isMobile ? '3.5vw' : '2vw',
+    fontSize: '1.5rem',
+    marginBottom: '10px',
   };
 
   const textStyle: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: isMobile ? '3.5vw' : 'inherit', // Adjusted fontSize to use 'inherit' for non-mobile sizes
-    marginBottom: '10px', // Added to space out the contact details
-  };
-
-  const timeTextStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between', // Keeps items spaced apart but within their container
-    width: '100%', // Ensures the container fills its parent
-    fontSize: isMobile ? '3.5vw' : 'inherit',
+    fontSize: '1rem',
     marginBottom: '10px',
-  }
+  };
 
   const iconStyle: CSSProperties = {
     marginRight: '10px',
-    fontSize: isMobile ? '3.5vw' : 'inherit', // Adjusted fontSize to match text
+    fontSize: '1.2rem',
+    color: 'rgb(0, 87, 255)',
   };
 
   return (
     <div style={containerStyle}>
-      <div style={columnStyle}>
-        <p style={titleStyle}>Contact Details</p>
-        <div style={textStyle}>
-          <FontAwesomeIcon icon={faMap} style={iconStyle} aria-hidden="true" />
-          <span>3/48 Barretta Rd, Ravenhall, VIC 3023, Australia</span>
-        </div>
-        <p style={textStyle}>
-            <FontAwesomeIcon icon={faPhone} style={iconStyle} />
-            0434 227 688{'\u00A0'}-{'\u00A0'}<strong>Steven Vo</strong>
-          </p>
-          <p style={textStyle}>
-            <FontAwesomeIcon icon={faPhone} style={iconStyle} />
-            0401 086 636{'\u00A0'}-{'\u00A0'}<strong>Michael Tran</strong>
-          </p>
-        <p style={textStyle}>
-          <FontAwesomeIcon icon={faEnvelope} style={iconStyle} />
-          DTMDGROUP@outlook.com.au
+      <div>
+        <h2 
+          style={{
+            fontSize: isMobile ? "1.5rem" : "2rem",
+            marginBottom: "1.5vw",
+            fontWeight: "bold",
+            textAlign: "center", 
+          }}
+        >
+          Get in Touch
+        </h2>
+        <p 
+          style={{     
+            textAlign: "center",
+            fontSize: isMobile ? "4vw" : "1.25vw",
+            padding: "0 5%",
+            margin: "1vw 0 3vw 0",
+            color: "#333", 
+          }}
+        >
+          Need more information about our insurance solutions? Contact us today to find the right coverage for your needs.
         </p>
-        <div style={{ width: '100%', height: '200px', marginTop: '20px' }}>
-          <iframe
-            title="DT Security Doors & Shutters Location"
-            width="100%"
-            height="100%"
-            frameBorder="0"
-            style={{ border: '0' }}
-            loading="lazy"
-            allowFullScreen
-            src="https://maps.google.com/maps?q=3%2F48%20Barretta%20Rd%20Ravenhall%20VIC%203023%20Australia&t=&z=13&ie=UTF8&iwloc=&output=embed"
-          ></iframe>
+      </div>
+      <div style={gridStyle}>
+        <div style={cardStyle}>
+          <div style={titleStyle}>
+            <FontAwesomeIcon icon={faMap} style={iconStyle} aria-hidden="true" />
+            <p>Our Location</p>
+          </div>
+          <div style={textStyle}>
+            <a href="https://www.google.com/maps/search/?api=1&query=3/48+Barretta+Rd,+Ravenhall,+VIC+3023,+Australia" target="_blank" rel="noopener noreferrer">
+              3/48 Barretta Rd, Ravenhall, VIC 3023, Australia
+            </a>
+          </div>
+        </div>
+
+        <div style={cardStyle}>
+          <div style={titleStyle}>
+            <FontAwesomeIcon icon={faPhone} style={iconStyle} />
+            <p>Call Us On</p>
+          </div>
+          <div style={textStyle}>
+            <a href="tel:0434227688">0434 227 688</a> - <strong>Steven Vo</strong>
+          </div>
+          <div style={textStyle}>
+            <a href="tel:0401086636">0401 086 636</a> - <strong>Michael Tran</strong>
+          </div>
+        </div>
+
+        <div style={cardStyle}>
+          <div style={titleStyle}>
+            <FontAwesomeIcon icon={faEnvelope} style={iconStyle} />
+            <p>Email us</p>
+          </div>
+          <div style={textStyle}>
+            <a href="mailto:DTMDGROUP@outlook.com.au">DTMDGROUP@outlook.com.au</a>
+          </div>
         </div>
       </div>
 
-      <div style={columnStyle}>
-        <p style={titleStyle}>Opening Hours</p>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', height: '100%', width: '100%', justifyContent: 'space-evenly' }}>
-          <p style={timeTextStyle}><strong>Monday:</strong> 8:30am-5:30pm</p>
-          <p style={timeTextStyle}><strong>Tuesday:</strong> 8:30am-5:30pm</p>
-          <p style={timeTextStyle}><strong>Wednesday:</strong> 8:30am-5:30pm</p>
-          <p style={timeTextStyle}><strong>Thursday:</strong> 8:30am-5:30pm</p>
-          <p style={timeTextStyle}><strong>Friday:</strong> 8:30am-5:30pm</p>
-          <p style={timeTextStyle}><strong>Saturday:</strong> 8:30am-2:30pm</p>
-          <p style={timeTextStyle}><strong>Sunday:</strong> Closed</p>
-        </div>
+      <div style={{ width: '100%', height: isMobile ? '300px' : '400px', marginTop: '20px' }}>
+        <iframe
+          title="DT Security Doors & Shutters Location"
+          width="100%"
+          height="100%"
+          frameBorder="0"
+          style={{ border: '0' }}
+          loading="lazy"
+          allowFullScreen
+          src="https://maps.google.com/maps?q=3%2F48%20Barretta%20Rd%20Ravenhall%20VIC%203023%20Australia&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        ></iframe>
       </div>
     </div>
   );

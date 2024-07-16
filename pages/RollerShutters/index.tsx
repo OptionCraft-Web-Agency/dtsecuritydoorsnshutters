@@ -11,15 +11,21 @@ import {
   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
 import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
-import Info1 from "@/components/Info1";
 import Link from "next/link";
 
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 const RollerShuttersTitle: React.FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref, "0px");
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   const sectionStyle: CSSProperties = {
     position: "relative",
@@ -29,23 +35,29 @@ const RollerShuttersTitle: React.FC = () => {
     justifyContent: "center",
     alignItems: "center",
     color: "white",
-    fontSize: "min(4vw, 7vw)",
     fontWeight: "bold",
     textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
     background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
   };
 
+  const textStyle: CSSProperties = {
+    fontSize: "clamp(2rem, 4vw, 7vw)", // Ensures a minimum font size of 2rem, scales with viewport width, max 7vw
+  };
+
   return (
-    <div
+    <motion.div
       ref={ref}
-      style={{
-        ...sectionStyle,
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 2s ease-in-out",
-      }}
+      variants={fadeInUp}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      style={sectionStyle}
     >
-      Roller Shutters
-    </div>
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
+        <span style={textStyle}>
+          Roller Shutters
+        </span>
+      </div>
+    </motion.div>
   );
 };
 
@@ -196,18 +208,20 @@ const AccessToolsSection: React.FC = () => {
     flexDirection: isMobile ? "column" : "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: isMobile ? "1rem" : "2rem",
+    padding: "2rem",
     background: "linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))",
     color: "white",
     textAlign: isMobile ? "center" : "left",
+    marginTop: "5rem",
+    marginBottom: "5rem"
   };
 
   const headerStyle: CSSProperties = {
     flex: 1,
-    fontSize: isMobile ? "4vw" : "2rem", // Adjusted for more dynamic resizing
+    fontSize: isMobile ? "6vw" : "2rem",
     fontWeight: "bold",
     textAlign: "left",
-    margin: "1rem", // Simplified, adjust as needed
+    margin: isMobile ? "0" : "1rem",
   };
 
   const cardContainerStyle: CSSProperties = {
@@ -263,29 +277,31 @@ const AccessToolsSection: React.FC = () => {
       <div style={headerStyle}>Design & Secure Your Space</div>
       <div style={cardContainerStyle}>
         {/* Contact Us card */}
-        <div
-          style={cardStyle}
-          onMouseEnter={handleCardMouseOver}
-          onMouseLeave={handleCardMouseOut}
-        >
-          <a href="/Contact" style={buttonStyle}>
-            <FontAwesomeIcon icon={faInfoCircle} style={iconStyle} />
-            <span>Contact Us</span>
+        <Link href="/Contact" passHref legacyBehavior>
+          <a
+            style={cardStyle}
+            onMouseEnter={(e) => handleCardMouseOver(e as any)}
+            onMouseLeave={(e) => handleCardMouseOut(e as any)}
+          >
+            <div style={buttonStyle}>
+              <FontAwesomeIcon icon={faInfoCircle} style={iconStyle} />
+              <span>Contact Us</span>
+            </div>
           </a>
-        </div>
+        </Link>
         {/* Color Visualization card */}
-        <div
-          style={cardStyle}
-          onMouseEnter={handleCardMouseOver}
-          onMouseLeave={handleCardMouseOut}
-        >
-          <Link href="/Visualisation" passHref>
-            <a style={buttonStyle}>
+        <Link href="/Visualisation" passHref legacyBehavior>
+          <a
+            style={cardStyle}
+            onMouseEnter={(e) => handleCardMouseOver(e as any)}
+            onMouseLeave={(e) => handleCardMouseOut(e as any)}
+          >
+            <div style={buttonStyle}>
               <FontAwesomeIcon icon={faPalette} style={iconStyle} />
               <span>Color Visualization</span>
-            </a>
-          </Link>
-        </div>
+            </div>
+          </a>
+        </Link>
       </div>
     </div>
   );
@@ -370,7 +386,9 @@ const Gallery: React.FC = () => {
           >
             <Image
               src={image}
-              alt={`Fly Screen ${index + 1}`}
+              alt={`Roller Shutter ${index + 1}`}
+              width={500}
+              height={500}
               style={{
                 ...galleryImageStyle,
                 opacity: hoverIndex === index ? 0.7 : 1,
@@ -398,6 +416,8 @@ const Gallery: React.FC = () => {
           <Image
             src={selectedImage}
             alt="Enlarged view"
+            width={1000}
+            height={1000}
             style={{ maxWidth: "90%", maxHeight: "90%" }}
           />
         </div>
@@ -448,7 +468,6 @@ export default function RollerShutters() {
       <RollerShuttersTitle />
       <WhyRollerShutters />
       <AccessToolsSection />
-      {/* <Info1/> */}
       <Gallery />
       <Footer />
     </>

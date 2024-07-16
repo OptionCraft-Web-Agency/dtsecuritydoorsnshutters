@@ -10,114 +10,100 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 const WhyChooseUsSection: React.FC = () => {
-    const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-    useEffect(() => {
-      // This code runs after the component is mounted, so it's safe to use window here
-      const handleResize = () => {
-        setIsMobile(window.innerWidth < 768);
-      };
-  
-      // Set the initial value based on the current window size
-      handleResize();
-  
-      // Add event listener for window resize
-      window.addEventListener('resize', handleResize);
-  
-      // Clean up event listener when the component is unmounted
-      return () => window.removeEventListener('resize', handleResize);
-    }, []);
-  
-    const sectionStyle: CSSProperties = {
-      padding: isMobile ? '20px' : ' 2vw 4vw',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      justifyContent: 'center',
-    };
-  
-    const cardContainerStyle: CSSProperties = {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      gap: isMobile ? '10px' : '2vw',
-      marginTop: isMobile ? '10px' : '2vw',
-    };
-  
-    const cardStyle: CSSProperties = {
-      width: isMobile ? '90%' : '300px',
-      padding: isMobile ? '10px' : '2vw',
-      borderRadius: '10px',
-      backgroundColor: 'rgba(255, 255, 255, 0.9)',
-      backdropFilter: 'blur(8px)',
-      textAlign: 'center',
-      margin: isMobile ? '10px' : '1vw',
-      color: 'black',
-    };
-  
-    const iconStyle: CSSProperties = {
-      marginBottom: '1vw',
-      color: 'rgb(0, 87, 255)',
-    };
-  
-    const headingStyle: CSSProperties = {
-      fontSize: isMobile ? '4vw' : '2vw',
-      margin: '0.5rem 0',
-      fontWeight: 'bold',
-    };
-  
-    const paragraphStyle: CSSProperties = {
-      fontSize: isMobile ? '3.5vw' : '1vw',
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
     };
 
-    return (
-        <section style={sectionStyle}>
-            <h2 style={{ fontSize: isMobile ? '6vw' : '2.5rem', marginBottom: '1rem', fontWeight:'bold' }}>Why Choose Us?</h2>
-            <div style={cardContainerStyle}>
-                {/* Transparent Pricing */}
-                <div style={cardStyle}>
-                    <FontAwesomeIcon icon={faMoneyBillWave} size="3x" style={iconStyle} />
-                    <h3 style={headingStyle}>Competitive Pricing</h3>
-                    <p style={paragraphStyle}>Our pricing strategy is designed to be transparent and give you the best value for our products and services.</p>
-                </div>
+    handleResize();
 
-                {/* Warranty */}
-                <div style={cardStyle}>
-                    <FontAwesomeIcon icon={faShieldAlt} size="3x" style={iconStyle} />
-                    <h3 style={headingStyle}>Satisfaction Guarantee</h3>
-                    <p style={paragraphStyle}>Rest easy with our satisfaction guarantee, ensuring your peace of mind with every purchase.</p>
-                </div>
+    window.addEventListener('resize', handleResize);
 
-                {/* Technician Expertise */}
-                <div style={cardStyle}>
-                    <FontAwesomeIcon icon={faCogs} size="3x" style={iconStyle} />
-                    <h3 style={headingStyle}>Skilled Craftsmanship</h3>
-                    <p style={paragraphStyle}>Our expert technicians ensure the highest standards of installation with a wealth of industry experience.</p>
-                </div>
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
-                {/* Australian Owned */}
-                <div style={cardStyle}>
-                    <FontAwesomeIcon icon={faGlobeAsia} size="3x" style={iconStyle} />
-                    <h3 style={headingStyle}>Locally Owned</h3>
-                    <p style={paragraphStyle}>Dedicated to supporting the local economy, our business is proudly Australian owned and operated.</p>
-                </div>
+  const sectionStyle: CSSProperties = {
+    padding: '20px',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  };
 
-                {/* Quality Assurance */}
-                <div style={cardStyle}>
-                    <FontAwesomeIcon icon={faStar} size="3x" style={iconStyle} />
-                    <h3 style={headingStyle}>Assured Quality</h3>
-                    <p style={paragraphStyle}>We stand behind the excellence of our products, which are extensively tested and certified to meet Australian standards.</p>
-                </div>
+  const cardContainerStyle: CSSProperties = {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: '10px',
+    marginTop: '10px',
+  };
 
-                {/* Customer Service */}
-                <div style={cardStyle}>
-                    <FontAwesomeIcon icon={faHeadset} size="3x" style={iconStyle} />
-                    <h3 style={headingStyle}>Superior Service</h3>
-                    <p style={paragraphStyle}>Our customer service is second to none, with a dedicated team ready to support you at every step.</p>
-                </div>
-            </div>
-        </section>
-    );
+  const cardStyle: CSSProperties = {
+    width: '90%',
+    maxWidth: '300px',
+    padding: '20px',
+    borderRadius: '10px',
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+    backdropFilter: 'blur(8px)',
+    textAlign: 'center',
+    margin: '10px',
+    color: 'black',
+  };
+
+  const iconStyle: CSSProperties = {
+    marginBottom: '10px',
+    color: 'rgb(0, 87, 255)',
+  };
+
+  const headingStyle: CSSProperties = {
+    fontSize: '1.5rem',
+    margin: '0.5rem 0',
+    fontWeight: 'bold',
+  };
+
+  const paragraphStyle: CSSProperties = {
+    fontSize: '1rem',
+  };
+
+  return (
+    <section style={sectionStyle}>
+      <h2 style={{ fontSize: '2rem', marginBottom: '1rem', fontWeight: 'bold' }}>Why Choose Us?</h2>
+      <div style={cardContainerStyle}>
+        <div style={cardStyle}>
+          <FontAwesomeIcon icon={faMoneyBillWave} size="3x" style={iconStyle} />
+          <h3 style={headingStyle}>Competitive Pricing</h3>
+          <p style={paragraphStyle}>Our pricing strategy is designed to be transparent and give you the best value for our products and services.</p>
+        </div>
+        <div style={cardStyle}>
+          <FontAwesomeIcon icon={faShieldAlt} size="3x" style={iconStyle} />
+          <h3 style={headingStyle}>Satisfaction Guarantee</h3>
+          <p style={paragraphStyle}>Rest easy with our satisfaction guarantee, ensuring your peace of mind with every purchase.</p>
+        </div>
+        <div style={cardStyle}>
+          <FontAwesomeIcon icon={faCogs} size="3x" style={iconStyle} />
+          <h3 style={headingStyle}>Skilled Craftsmanship</h3>
+          <p style={paragraphStyle}>Our expert technicians ensure the highest standards of installation with a wealth of industry experience.</p>
+        </div>
+        <div style={cardStyle}>
+          <FontAwesomeIcon icon={faGlobeAsia} size="3x" style={iconStyle} />
+          <h3 style={headingStyle}>Locally Owned</h3>
+          <p style={paragraphStyle}>Dedicated to supporting the local economy, our business is proudly Australian owned and operated.</p>
+        </div>
+        <div style={cardStyle}>
+          <FontAwesomeIcon icon={faStar} size="3x" style={iconStyle} />
+          <h3 style={headingStyle}>Assured Quality</h3>
+          <p style={paragraphStyle}>We stand behind the excellence of our products, which are extensively tested and certified to meet Australian standards.</p>
+        </div>
+        <div style={cardStyle}>
+          <FontAwesomeIcon icon={faHeadset} size="3x" style={iconStyle} />
+          <h3 style={headingStyle}>Superior Service</h3>
+          <p style={paragraphStyle}>Our customer service is second to none, with a dedicated team ready to support you at every step.</p>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default WhyChooseUsSection;

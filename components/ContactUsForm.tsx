@@ -2,7 +2,7 @@ import React, { useState, useEffect, CSSProperties } from "react";
 
 const ContactUsForm: React.FC = () => {
   // Initialize state without a value as it's unknown at server-side
-  const [isMobile, setIsMobile] = useState<boolean | undefined>(undefined);
+  const [isMobile, setIsMobile] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -77,12 +77,21 @@ const ContactUsForm: React.FC = () => {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    width: isMobile ? "90%" : "80vh",
+    width: isMobile ? "150%" : "80vh",
   };
 
   const inputStyle: CSSProperties = {
     width: "100%",
-    marginBottom: isMobile ? "4%" : "2vw",
+    marginBottom: isMobile ? "0" : "2vw",
+    padding: isMobile ? "3%" : "0.5vw",
+    borderRadius: "5px",
+    border: "1px solid black",
+    fontSize: isMobile ? "4vw" : "1.5vw",
+  };
+
+  const MessageinputStyle: CSSProperties = {
+    width: "100%",
+    marginBottom: "2vw",
     padding: isMobile ? "3%" : "0.5vw",
     borderRadius: "5px",
     border: "1px solid black",
@@ -114,7 +123,7 @@ const ContactUsForm: React.FC = () => {
         style={{
           display: "flex",
           flexDirection: "column",
-          marginBottom: "1rem",
+          margin: isMobile ? "1rem" : "0",
           justifyContent: "center",
           alignItems: "center",
           height: "100%",
@@ -137,6 +146,9 @@ const ContactUsForm: React.FC = () => {
               display: "flex",
               justifyContent: "space-between",
               fontSize: "min(1.5vw, 16px)",
+              flexDirection: isMobile ? "column" : "row",
+              gap: isMobile ? "10px" : "10px",
+              marginBottom: isMobile ? "10px" : "0px"
             }}
           >
             <input
@@ -165,6 +177,9 @@ const ContactUsForm: React.FC = () => {
               display: "flex",
               justifyContent: "space-between",
               fontSize: "min(1.5vw, 16px)",
+              flexDirection: isMobile ? "column" : "row",
+              gap: "10px",
+              marginBottom: isMobile ? "10px" : "0px"
             }}
           >
             <input
@@ -192,7 +207,7 @@ const ContactUsForm: React.FC = () => {
             name="message"
             placeholder="Message"
             rows={4}
-            style={inputStyle}
+            style={MessageinputStyle}
             value={formData.message}
             onChange={handleChange}
           />

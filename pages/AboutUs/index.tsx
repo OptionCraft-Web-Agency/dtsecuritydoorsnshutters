@@ -17,6 +17,7 @@ const fadeInUp = {
 
 const AboutUsSection: React.FC = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
   const sectionStyle: CSSProperties = {
     position: "relative",
     width: "100%",
@@ -25,10 +26,13 @@ const AboutUsSection: React.FC = () => {
     justifyContent: "center",
     alignItems: "center",
     color: "white",
-    fontSize: "min(4vw, 7vw)",
     fontWeight: "bold",
     textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
     background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
+  };
+
+  const textStyle: CSSProperties = {
+    fontSize: "clamp(2rem, 4vw, 7vw)", // Ensures a minimum font size of 2rem, scales with viewport width, max 7vw
   };
 
   return (
@@ -39,7 +43,11 @@ const AboutUsSection: React.FC = () => {
       variants={fadeInUp}
       style={sectionStyle}
     >
-      About Us
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
+        <span style={textStyle}>
+          About Us
+        </span>
+      </div>
     </motion.div>
   );
 };

@@ -22,6 +22,8 @@ const CustomerReview: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
+    handleResize(); // Initial check
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -86,11 +88,13 @@ const CustomerReview: React.FC = () => {
 
   const authorStyle: React.CSSProperties = {
     fontSize: isMobile ? "3.5vw" : "1.5vw",
-    position: "absolute",
-    bottom: "-3vw",
-    left: "50%",
-    transform: "translateX(-50%)",
+    marginTop: "1vw",
     color: "white",
+    position: "absolute",
+    top: isMobile ? "100%" : "82%",
+    left: "50%",
+    transform: "translateX(-50%) translateY(2vw)",
+    whiteSpace: "nowrap",
   };
 
   const ratingStyle: React.CSSProperties = {
@@ -102,7 +106,7 @@ const CustomerReview: React.FC = () => {
   const dotsStyle: React.CSSProperties = {
     fontSize: isMobile ? "4vw" : "1.5vw",
     color: "white",
-    marginTop: "3vw",
+    marginTop: isMobile ? "10vw" : "3.5vw",
     display: "flex",
     gap: "0.5vw",
     justifyContent: "center",
@@ -119,19 +123,19 @@ const CustomerReview: React.FC = () => {
         <div style={reviewBoxStyle}>
           <div style={ratingStyle}>{review.rating}</div>
           <p style={{ fontSize: isMobile ? "3.5vw" : "1.25vw" }}>{review.text}</p>
-          
-          <div style={{
-            position: "absolute",
-            bottom: "-1vw",
-            left: "50%",
-            width: "0",
-            height: "0",
-            borderLeft: "1vw solid transparent",
-            borderRight: "1vw solid transparent",
-            borderTop: "1vw solid white",
-            transform: "translateX(-50%)",
-          }}></div>
-
+          <div
+            style={{
+              position: "absolute",
+              bottom: isMobile ? "-2vw" : "-1vw",
+              left: "50%",
+              width: "0",
+              height: "0",
+              borderLeft: isMobile ? "2vw solid transparent" : "1vw solid transparent",
+              borderRight: isMobile ? "2vw solid transparent" : "1vw solid transparent",
+              borderTop: isMobile ? "2vw solid white" : "1vw solid white",
+              transform: "translateX(-50%)",
+            }}
+          ></div>
           <p style={authorStyle}>{review.author}</p>
         </div>
 
@@ -154,4 +158,3 @@ const CustomerReview: React.FC = () => {
 };
 
 export default CustomerReview;
-

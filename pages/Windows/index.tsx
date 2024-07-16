@@ -8,6 +8,51 @@ import Footer from '@/components/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock, faPaintBrush, faCloudRain, faHandshake, faThermometerHalf, faSun, faFan, faLeaf } from '@fortawesome/free-solid-svg-icons';
 
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
+const WindowsTitle: React.FC = () => {
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
+  const sectionStyle: CSSProperties = {
+    position: "relative",
+    width: "100%",
+    height: "calc(100vh - 80px)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    color: "white",
+    fontWeight: "bold",
+    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+    background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
+  };
+
+  const textStyle: CSSProperties = {
+    fontSize: "clamp(2rem, 4vw, 7vw)", // Ensures a minimum font size of 2rem, scales with viewport width, max 7vw
+  };
+  
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeInUp}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      style={sectionStyle}
+    >
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
+        <span style={textStyle}>
+          Windows
+        </span>
+      </div>
+    </motion.div>
+  );
+};
+
 const InfoSection: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -25,63 +70,73 @@ const InfoSection: React.FC = () => {
   }, []);
 
   const sectionStyles: CSSProperties = {
-    backgroundColor: '#f8f9fa',
-    padding: '2rem',
-    borderRadius: '8px',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+    fontFamily: '"Inter", sans-serif',
+    color: '#333',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    maxWidth: '800px',
-    margin: '2rem auto',
+    padding: isMobile ? '2rem' : '3rem',
+    textAlign: 'center',
   };
     
   const textSectionStyle: CSSProperties = {
-    color: '#333',
-    textAlign: 'center',
     marginBottom: '1rem',
   };
 
+  const titleStyle: CSSProperties = {
+    fontSize: isMobile ? '1.5rem' : '2.5rem',
+    fontWeight: 'bold',
+    marginBottom: '1rem',
+  };
+
+  const paragraphStyle: CSSProperties = {
+    marginBottom: '2rem',
+    fontSize: isMobile ? '0.9rem' : '1rem',
+    padding: isMobile ? '0 1rem' : '0',
+    width: '100%', // Ensure full width
+  };
+
   const featuresGridStyle: CSSProperties = {
+    listStyle: 'none',
+    padding: 0,
     display: 'grid',
-    gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
-    gap: '20px',
-    padding: '20px',
+    gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fit, minmax(140px, 1fr))',
+    gap: '1rem',
+    maxWidth: '800px',
   };
 
   const featureItemStyle: CSSProperties = {
     display: 'flex',
+    flexDirection: 'column',
     alignItems: 'center',
-    gap: '10px',
-    padding: '10px',
-    backgroundColor: '#f4f4f4',
-    borderRadius: '5px',
+    fontSize: '1rem',
+    marginBottom: isMobile ? '1rem' : '0',
+    textAlign: 'center',
   };
 
-  const headingStyle: CSSProperties = {
-    fontSize: '1.75rem', // Larger font size for the heading
-    fontWeight: '600', // Semi-bold for emphasis
-    margin: '0.5rem 0', // Margin around the heading for spacing
-  };
-  
-  const paragraphStyle: CSSProperties = {
-    fontSize: '1rem', // Standard font size for body text
-    lineHeight: '1.6', // Line height for improved readability
-    maxWidth: '600px', // Max width to maintain comfortable reading lines
-    margin: 'auto', // Auto margins to center the paragraph
+  const iconStyle: CSSProperties = {
+    backgroundColor: '#eeeeee',
+    borderRadius: '50%',
+    width: '3rem',
+    height: '3rem',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: '0.5rem',
+    fontSize: '1.5rem',
   };
 
   const features = [
-    { icon: faThermometerHalf, description: "Optimal thermal performance reducing heating and cooling costs." },
-    { icon: faLock, description: "State-of-the-art security features for peace of mind." },
-    { icon: faSun, description: "Maximized natural light intake with energy-efficient glass." },
-    { icon: faFan, description: "Superior air flow regulation for comfortable living environments." },
-    { icon: faLeaf, description: "Eco-friendly materials supporting sustainable living." },
+    { icon: faThermometerHalf, title: "Thermal Performance", description: "Optimal thermal performance reducing heating and cooling costs." },
+    { icon: faLock, title: "Enhanced Security", description: "State-of-the-art security features for peace of mind." },
+    { icon: faSun, title: "Natural Light", description: "Maximized natural light intake with energy-efficient glass." },
+    { icon: faFan, title: "Air Flow Regulation", description: "Superior air flow regulation for comfortable living environments." },
+    { icon: faLeaf, title: "Eco-Friendly", description: "Eco-friendly materials supporting sustainable living." },
   ];
 
   return (
-    <div 
+    <div
       ref={ref}
       style={{
         ...sectionStyles,
@@ -90,54 +145,25 @@ const InfoSection: React.FC = () => {
       }}
     >
       <div style={textSectionStyle}>
-        <h2 style={headingStyle}>Enhancing Your Home with Our Windows Collection</h2>
+        <h2 style={titleStyle}>Enhancing Your Home with Our Windows Collection</h2>
         <p style={paragraphStyle}>
-            Explore our diverse range of window solutions designed for aesthetic harmony and functional excellence. Each window is crafted for superior performance, offering unparalleled insulation, security, and style.
+          Explore our diverse range of window solutions designed for aesthetic harmony and functional excellence. Each window is crafted for superior performance, offering unparalleled insulation, security, and style.
         </p>
       </div>
-      <div style={featuresGridStyle}>
+      <ul style={featuresGridStyle}>
         {features.map((feature, index) => (
-            <div key={index} style={featureItemStyle}>
-            <FontAwesomeIcon icon={feature.icon} size="lg" />
-            <span>{feature.description}</span>
+          <li key={index} style={featureItemStyle}>
+            <div style={iconStyle}>
+              <FontAwesomeIcon icon={feature.icon} />
             </div>
+            <strong>{feature.title}</strong>
+            <span>{feature.description}</span>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 }; 
-  
-const WindowsTitle: React.FC = () => {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref, '0px');
-
-  const sectionStyle: CSSProperties = {
-    position: 'relative',
-    width: '100%',
-    height: 'calc(100vh - 80px)',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-    fontSize: 'min(4vw, 7vw)',
-    fontWeight: 'bold',
-    textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
-    background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
-  };
-  
-  return (
-    <div 
-      ref={ref}
-      style={{
-        ...sectionStyle,
-        opacity: isVisible ? 1 : 0,
-        transition: 'opacity 2s ease-in-out',
-      }}
-    >
-      Windows
-    </div>
-  );
-};
 
 const images = [
     '/image/WindowImage/WindowImage1.jpg',
@@ -228,73 +254,6 @@ const Gallery: React.FC = () => {
     </div>
   );
 };
-
-// const GallerySlideshow: React.FC = () => {
-//     const [currentStartIndex, setCurrentStartIndex] = useState(0);
-//     const numOfVisibleImages = 4; // Number of images to show at once
-//     const length = galleryImages.length;
-
-//     const nextSlide = () => {
-//         setCurrentStartIndex(prevIndex => {
-//             const nextIndex = prevIndex + 1;
-//             return nextIndex + numOfVisibleImages - 1 < length ? nextIndex : length - numOfVisibleImages < 0 ? 0 : length - numOfVisibleImages;
-//         });
-//     };
-
-//     const prevSlide = () => {
-//         setCurrentStartIndex(prevIndex => {
-//             // Corrected the variable name inside the function
-//             const newIndex = prevIndex - 1;
-//             return newIndex < 0 ? 0 : newIndex;
-//         });
-//     };
-
-//     const galleryStyle: CSSProperties = {
-//         display: 'flex',
-//         width: '100%',
-//         overflow: 'hidden',
-//         justifyContent: 'flex-start',
-//     };
-
-//     const slideStyle: CSSProperties = {
-//         minWidth: `calc(100% / ${numOfVisibleImages})`, 
-//         transition: 'transform 0.5s ease-in-out',
-//         position: 'relative', // Ensure this is here for layout="fill" to work correctly
-//     };
-    
-
-//     const arrowStyle: CSSProperties = {
-//         position: 'absolute',
-//         top: '50%',
-//         transform: 'translateY(-50%)',
-//         zIndex: 10,
-//         cursor: 'pointer',
-//         userSelect: 'none',
-//         background: 'rgba(0, 0, 0, 0.5)',
-//         borderRadius: '50%',
-//         padding: '0.5rem',
-//         color: 'white',
-//     };
-
-//     return (
-//         <div style={{ position: 'relative' }}>
-//             <FontAwesomeIcon icon={faChevronLeft} style={{ ...arrowStyle, left: '10px' }} onClick={prevSlide} />
-//             <FontAwesomeIcon icon={faChevronRight} style={{ ...arrowStyle, right: '10px' }} onClick={nextSlide} />
-//             <div style={galleryStyle}>
-//                 {galleryImages.slice(currentStartIndex, currentStartIndex + numOfVisibleImages).map((image, index) => (
-//                     <div key={index} style={slideStyle}>
-//                         <Image 
-//                             src={image} 
-//                             alt={`Slide ${index}`} 
-//                             layout="fill"
-//                             objectFit="cover" 
-//                         />
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// };
 
 export default function Windows() {
   return (

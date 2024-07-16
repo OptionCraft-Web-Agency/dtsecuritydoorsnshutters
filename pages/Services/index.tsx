@@ -26,10 +26,13 @@ const ServicesSection: React.FC = () => {
     justifyContent: "center",
     alignItems: "center",
     color: "white",
-    fontSize: "min(4vw, 7vw)", // Adjusted for better text scaling
     fontWeight: "bold",
     textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
     background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
+  };
+
+  const textStyle: CSSProperties = {
+    fontSize: "clamp(2rem, 4vw, 7vw)", // Ensures a minimum font size of 2rem, scales with viewport width, max 7vw
   };
 
   return (
@@ -40,7 +43,11 @@ const ServicesSection: React.FC = () => {
       animate={inView ? "visible" : "hidden"}
       style={sectionStyle}
     >
-      Our Services
+      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
+        <span style={textStyle}>
+          Our Services
+        </span>
+      </div>
     </motion.div>
   );
 };
@@ -57,11 +64,6 @@ const OurServices: React.FC = () => {
       controls.start("visible");
     }
   }, [controls, inView]);
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -84,8 +86,12 @@ const OurServices: React.FC = () => {
     padding: isMobile ? "4vw 0" : "4vw 0",
   };
 
+  const InnerContainerStyle: React.CSSProperties = {
+    margin: isMobile ? "2rem 0" : "0"
+  };
+
   const titleStyle: CSSProperties = {
-    fontSize: isMobile ? "1.5rem" : "2.5rem",
+    fontSize: isMobile ? "1.5rem" : "2rem",
     marginBottom: "1.5vw",
     fontWeight: "bold",
     textAlign: "center", // Ensure title is centered on small screens
@@ -102,7 +108,7 @@ const OurServices: React.FC = () => {
   const gridStyle: React.CSSProperties = {
     display: "grid",
     gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)",
-    gap: isMobile ? "2vw" : "2vw",
+    gap: isMobile ? "4vw" : "2vw",
     width: "90%",
     margin: "0 auto",
   };
@@ -184,27 +190,29 @@ const OurServices: React.FC = () => {
 
   return (
     <div style={containerStyle}>
-      <motion.h2
-        variants={fadeInUp}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        style={titleStyle}
-      >
-        Explore Our Premium Security and Aesthetic Solutions
-      </motion.h2>
-      <motion.p
-        variants={fadeInUp}
-        initial="hidden"
-        animate={inView ? "visible" : "hidden"}
-        style={descriptionStyle}
-      >
-        Elevate your space with our bespoke security and design solutions. From
-        state-of-the-art roller shutters to elegant window dressings, our
-        tailored products blend seamlessly with any architectural style,
-        offering unmatched protection and sophistication. Discover the perfect
-        blend of functionality and design, crafted to meet your unique needs and
-        preferences.
-      </motion.p>
+      <div style={InnerContainerStyle}>
+        <motion.h2
+          variants={fadeInUp}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          style={titleStyle}
+        >
+          Explore Our Premium Security and Aesthetic Solutions
+        </motion.h2>
+        <motion.p
+          variants={fadeInUp}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          style={descriptionStyle}
+        >
+          Elevate your space with our bespoke security and design solutions. From
+          state-of-the-art roller shutters to elegant window dressings, our
+          tailored products blend seamlessly with any architectural style,
+          offering unmatched protection and sophistication. Discover the perfect
+          blend of functionality and design, crafted to meet your unique needs and
+          preferences.
+        </motion.p>
+      </div>
 
       <motion.div
         ref={ref}

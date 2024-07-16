@@ -12,7 +12,7 @@ import CallToAction from "@/components/CallToAction";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import CustomerReview from "../components/CustomerReview";
 import FAQsComponent from "@/components/FAQ";
-import HomeForm from "@/components/HomeForm";
+import ContactUsForm from "@/components/ContactUsForm";
 import Footer from "../components/Footer";
 
 import FacebookMessenger from "@/components/FacebookMessenger";
@@ -65,8 +65,6 @@ export default function Home() {
 
         <OurServices />
 
-        {/* <HomeContent /> */}
-
         <CallToAction />
 
         <WhyChooseUsSection />
@@ -75,7 +73,7 @@ export default function Home() {
 
         <FAQsComponent />
 
-        <HomeForm />
+        <ContactUsForm />
 
         <Footer />
 

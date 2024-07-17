@@ -19,7 +19,7 @@ import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const fadeInUp = {
@@ -66,7 +66,6 @@ const FlyScreensTitle: React.FC = () => {
 
 const FlyscreenSection: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
-  const [hover, setHover] = useState(false); // State to handle hover effect
   const router = useRouter();
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
@@ -339,34 +338,32 @@ const Gallery: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const galleryStyle = {
-    display: "grid",
-    gridTemplateColumns: isMobile
-      ? "repeat(auto-fit, minmax(150px, 1fr))"
-      : "repeat(4, 1fr)",
-    gap: "10px",
-    padding: isMobile ? "10px" : "20px",
+    display: 'grid',
+    gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
+    gap: '10px',
+    padding: isMobile ? '10px' : '20px',
   };
 
   const galleryImageStyle: React.CSSProperties = {
-    width: "100%",
-    height: "200px", // Set a fixed height for all images
-    objectFit: "cover", // This will cover the area without stretching the image
+    width: '100%',
+    height: '200px', // Set a fixed height for all images
+    objectFit: 'cover', // This will cover the area without stretching the image
     opacity: 1,
-    transition: "opacity 0.3s ease",
+    transition: 'opacity 0.3s ease',
   };
 
   const titleStyle: React.CSSProperties = {
-    textAlign: "center",
-    margin: "0 0 20px",
-    color: "#333",
-    fontSize: isMobile ? "8vw" : "3rem",
-    fontWeight: "bold",
-    marginTop: "2vw",
+    textAlign: 'center',
+    margin: '0 0 20px',
+    color: '#333',
+    fontSize: isMobile ? '8vw' : '3rem',
+    fontWeight: 'bold',
+    marginTop: '2vw',
   };
 
   const handleClick = (image: string) => {
@@ -378,61 +375,34 @@ const Gallery: React.FC = () => {
   };
 
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 2s ease-in-out",
-      }}
-    >
-      <h2 style={titleStyle}>Fly Screen Gallery</h2>
-      <div style={galleryStyle}>
-        {images.map((image, index) => (
-          <div
-            key={index}
-            onMouseEnter={() => setHoverIndex(index)}
-            onMouseLeave={() => setHoverIndex(null)}
-            onClick={() => handleClick(image)}
-            style={{ cursor: "pointer" }}
-          >
-            <Image
-              src={image}
-              alt={`Fly Screen ${index + 1}`}
-              width={150}
-              height={200}
-              style={{
-                ...galleryImageStyle,
-                opacity: hoverIndex === index ? 0.7 : 1,
-              }}
-            />
-          </div>
-        ))}
-      </div>
-      {selectedImage && (
-        <div
+      <div 
+          ref={ref}       
           style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-          onClick={handleClose}
-        >
-          <Image
-            src={selectedImage}
-            alt="Enlarged view"
-            width={800}
-            height={600}
-            style={{ maxWidth: "90%", maxHeight: "90%" }}
-          />
-        </div>
-      )}
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 2s ease-in-out'}}
+      >
+          <h2 style={titleStyle}>Window Gallery</h2>
+          <div style={galleryStyle}>
+              {images.map((image, index) => (
+                  <div key={index}
+                      onMouseEnter={() => setHoverIndex(index)}
+                      onMouseLeave={() => setHoverIndex(null)}
+                      onClick={() => handleClick(image)}
+                      style={{ cursor: 'pointer' }}>
+                  <img src={image}
+                      alt={`Fly Screen ${index + 1}`}
+                      style={{
+                          ...galleryImageStyle,
+                          opacity: hoverIndex === index ? 0.7 : 1,
+                      }} />
+                  </div>
+              ))}
+          </div>
+          {selectedImage && (
+              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
+                  <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
+              </div>
+          )}
     </div>
   );
 };

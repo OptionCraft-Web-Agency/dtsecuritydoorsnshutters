@@ -6,7 +6,17 @@ import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
 import useOnScreen from "@/components/useOnScreen";
 
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+
 const CurtinsTitle: React.FC = () => {
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+
   const sectionStyle: CSSProperties = {
     position: "relative",
     width: "100%",
@@ -15,13 +25,36 @@ const CurtinsTitle: React.FC = () => {
     justifyContent: "center",
     alignItems: "center",
     color: "white",
-    fontSize: "min(4vw, 7vw)",
     fontWeight: "bold",
     textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
     background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
   };
 
-  return <div style={sectionStyle}>Curtins</div>;
+  const textStyle: CSSProperties = {
+    fontSize: "clamp(2rem, 4vw, 7vw)",
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      variants={fadeInUp}
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      style={sectionStyle}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <span style={textStyle}>Curtins</span>
+      </div>
+    </motion.div>
+  );
 };
 
 type ProductInfoProps = {
@@ -36,14 +69,12 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
   selectedColorOption,
 }) => {
   const [selectedImage, setSelectedImage] = useState<ColorOption | null>(null);
-
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -404,7 +435,6 @@ const TabsComponent: React.FC<TabsComponentProps> = ({
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -418,7 +448,6 @@ const TabsComponent: React.FC<TabsComponentProps> = ({
 
   const tabListStyle: CSSProperties = {
     display: "flex",
-    flexDirection: isMobile ? "row" : "row",
     justifyContent: "flex-start",
     listStyleType: "none",
     padding: "10px",
@@ -441,27 +470,24 @@ const TabsComponent: React.FC<TabsComponentProps> = ({
   const activeTabStyle: CSSProperties = {
     ...tabStyle,
     borderBottom: "3px solid white",
-    fontWeight: "bold", // Ensure the active tab text is also bold
   };
 
   return (
-    <div>
-      <div style={tabsContainerStyle}>
-        <ul style={tabListStyle}>
-          {Object.keys(tabColors).map((tab) => (
-            <li
-              key={tab}
-              style={activeTab === tab ? activeTabStyle : tabStyle}
-              onClick={() => {
-                setActiveTab(tab);
-                onSelectCategory(categoryDetails[tab]);
-              }}
-            >
-              {tab}
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div style={tabsContainerStyle}>
+      <ul style={tabListStyle}>
+        {Object.keys(tabColors).map((tab) => (
+          <li
+            key={tab}
+            style={activeTab === tab ? activeTabStyle : tabStyle}
+            onClick={() => {
+              setActiveTab(tab);
+              onSelectCategory(categoryDetails[tab]);
+            }}
+          >
+            {tab}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
@@ -498,34 +524,32 @@ const Gallery: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const galleryStyle = {
-    display: "grid",
-    gridTemplateColumns: isMobile
-      ? "repeat(auto-fit, minmax(150px, 1fr))"
-      : "repeat(4, 1fr)",
-    gap: "10px",
-    padding: isMobile ? "10px" : "20px",
+    display: 'grid',
+    gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
+    gap: '10px',
+    padding: isMobile ? '10px' : '20px',
   };
 
   const galleryImageStyle: React.CSSProperties = {
-    width: "100%",
-    height: "200px", // Set a fixed height for all images
-    objectFit: "cover", // This will cover the area without stretching the image
+    width: '100%',
+    height: '200px', // Set a fixed height for all images
+    objectFit: 'cover', // This will cover the area without stretching the image
     opacity: 1,
-    transition: "opacity 0.3s ease",
+    transition: 'opacity 0.3s ease',
   };
 
   const titleStyle: React.CSSProperties = {
-    textAlign: "center",
-    margin: "0 0 20px",
-    color: "#333",
-    fontSize: isMobile ? "8vw" : "3rem",
-    fontWeight: "bold",
-    marginTop: "2vw",
+    textAlign: 'center',
+    margin: '0 0 20px',
+    color: '#333',
+    fontSize: isMobile ? '8vw' : '3rem',
+    fontWeight: 'bold',
+    marginTop: '2vw',
   };
 
   const handleClick = (image: string) => {
@@ -537,61 +561,34 @@ const Gallery: React.FC = () => {
   };
 
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 2s ease-in-out",
-      }}
-    >
-      <h2 style={titleStyle}>Curtin Gallery</h2>
-      <div style={galleryStyle}>
-        {images.map((image, index) => (
-          <div
-            key={index}
-            onMouseEnter={() => setHoverIndex(index)}
-            onMouseLeave={() => setHoverIndex(null)}
-            onClick={() => handleClick(image)}
-            style={{ cursor: "pointer" }}
-          >
-            <Image
-              src={image}
-              alt={`Fly Screen ${index + 1}`}
-              width={200}
-              height={200}
-              style={{
-                ...galleryImageStyle,
-                opacity: hoverIndex === index ? 0.7 : 1,
-              }}
-            />
-          </div>
-        ))}
-      </div>
-      {selectedImage && (
-        <div
+      <div 
+          ref={ref}       
           style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-          onClick={handleClose}
-        >
-          <Image
-            src={selectedImage}
-            alt="Enlarged view"
-            width={800}
-            height={600}
-            style={{ maxWidth: "90%", maxHeight: "90%" }}
-          />
-        </div>
-      )}
+          opacity: isVisible ? 1 : 0,
+          transition: 'opacity 2s ease-in-out'}}
+      >
+          <h2 style={titleStyle}>Window Gallery</h2>
+          <div style={galleryStyle}>
+              {images.map((image, index) => (
+                  <div key={index}
+                      onMouseEnter={() => setHoverIndex(index)}
+                      onMouseLeave={() => setHoverIndex(null)}
+                      onClick={() => handleClick(image)}
+                      style={{ cursor: 'pointer' }}>
+                  <img src={image}
+                      alt={`Fly Screen ${index + 1}`}
+                      style={{
+                          ...galleryImageStyle,
+                          opacity: hoverIndex === index ? 0.7 : 1,
+                      }} />
+                  </div>
+              ))}
+          </div>
+          {selectedImage && (
+              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
+                  <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
+              </div>
+          )}
     </div>
   );
 };
@@ -617,9 +614,8 @@ export default function Curtains() {
   const descriptionSectionStyle: CSSProperties = {
     backgroundColor: "#F5F5F5",
     borderRadius: "8px",
-    boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
     lineHeight: "1.6",
-    padding: isMobile ? "10px" : "20px", // Apply conditional padding
+    padding: isMobile ? "10px" : "20px",
   };
 
   const titleStyle: CSSProperties = {
@@ -641,14 +637,11 @@ export default function Curtains() {
   return (
     <>
       <Head>
-        <title>
-          Stylish Curtains & Sheerweaves - DT Security Doors & Shutters
-        </title>
+        <title>Stylish Curtains & Sheerweaves - DT Security Doors & Shutters</title>
         <meta
           name="description"
           content="Explore our wide selection of curtains and sheerweaves, designed to complement any interior with elegance and style."
         />
-        
         <meta
           property="og:title"
           content="DT Security Doors & Shutters - Curtains Collection"

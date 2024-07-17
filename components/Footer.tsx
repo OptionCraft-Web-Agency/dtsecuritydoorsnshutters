@@ -1,97 +1,68 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapMarkerAlt, faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
 import Image from 'next/image';
-import { faMap, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const Footer: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const footerStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: isMobile ? '5vw' : '2vw 0',
-    backgroundColor: '#f0f0f0',
-    color: '#333',
-    fontSize: isMobile ? '4vw' : '1vw',
-    width: '100%',
+  const footerStyle: React.CSSProperties = {
+    backgroundColor: "rgb(240, 240, 240)",
+    color: "black",
+    padding: "40px 20px",
+    display: "flex",
+    justifyContent: "space-between",
+    flexWrap: "wrap",
+    textAlign: "left",
   };
 
-  const footerHeaderStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    gap: isMobile ? '20px' : '40px', // Adjust gap based on mobile or desktop view
-    width: '100%',
+  const sectionStyle: React.CSSProperties = {
+    flex: "1 1 200px",
+    margin: "10px",
   };
 
-  const logoStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'center',
+  const aboutSectionStyle: React.CSSProperties = {
+    ...sectionStyle,
+    minWidth: '30%',
   };
 
-  const navStyle: CSSProperties = {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: '10px', // Spacing between navigation links
-    fontWeight: 'bold', // Make navigation links bold
+  const openHourSectionStyle: React.CSSProperties = {
+    ...sectionStyle,
+    maxWidth: '20%',
   };
 
-  const navItemStyle: CSSProperties = {
-    cursor: 'pointer',
-    fontSize: isMobile ? '4vw' : '1.2vw', // Increased font size for both mobile and desktop
-    padding: '5px 0', // Optional: add some padding for better tap targets on mobile
+  const contactSectionStyle: React.CSSProperties = {
+    ...sectionStyle,
+    maxWidth: '30%',
   };
 
-  const contactSectionStyle: CSSProperties = {
-    display: 'flex',
-    flexDirection: isMobile ? 'column' : 'row',
-    padding: isMobile ? '2vw' : '20px',
-    fontFamily: 'Arial, sans-serif',
-    width: '100%',
-    paddingTop:'0px'
+  const linksSectionStyle: React.CSSProperties = {
+    ...sectionStyle,
+    maxWidth: '20%',
   };
 
-  const iconStyle: CSSProperties = {
-    marginRight: '10px',
-    fontSize: isMobile ? '3.5vw' : 'inherit',
+  const headingStyle: React.CSSProperties = {
+    fontSize: "1.25rem",
+    marginBottom: "10px",
+    fontWeight: "bold",
   };
 
-  const textStyle: CSSProperties = {
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: isMobile ? '3.5vw' : 'inherit',
-    marginBottom: '10px',
+  const textStyle: React.CSSProperties = {
+    margin: "5px 0",
   };
 
-  const timeTextStyle: CSSProperties = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    width: '100%',
-    fontSize: isMobile ? '3.5vw' : 'inherit',
-    marginBottom: '10px',
+  const linkStyle: React.CSSProperties = {
+    color: "black",
+    textDecoration: "none",
+    margin: "5px 0",
+  };
+
+  const iconStyle: React.CSSProperties = {
+    color: "rgb(0, 87, 255)",
   };
 
   return (
     <footer style={footerStyle}>
-      <div className="footer-header" style={footerHeaderStyle}>
-        {/* Logo */}
+      <div style={aboutSectionStyle} className="footer-section">
         <Link href="/" legacyBehavior>
           <a className="flex justify-center items-center w-full sm:max-w-xs">
             <Image 
@@ -102,66 +73,66 @@ const Footer: React.FC = () => {
               className="w-full h-auto"
             />
           </a>
-        </Link>
-
-        {/* Navigation Links */}
-        <nav className="footer-nav">
-          <ul style={navStyle}>
-            {/* Update these links as per your routing */}
-            <li style={navItemStyle}><Link href="/">Home</Link></li>
-            <li style={navItemStyle}><Link href="/Services">Our Services</Link></li>
-            <li style={navItemStyle}><Link href="/AboutUs">About Us</Link></li>
-            <li style={navItemStyle}><Link href="/ContactUs">Contact Us</Link></li>
-            <li style={navItemStyle}><Link href="/Visualisation">Color Visualization</Link></li>
-          </ul>
-        </nav>
+        </Link>        
+        <p style={textStyle}>
+          We provide high-quality security doors and shutters to protect your home and business.
+        </p>
       </div>
 
-      <div style={contactSectionStyle}>
-        <div style={{ width: isMobile ? '100%' : '65%', display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "20px" }}>
-          <p style={{ fontWeight: "bold", fontSize: isMobile ? '3.5vw' : '2vw' }}>Contact Details</p>
-          <div style={textStyle}>
-            <FontAwesomeIcon icon={faMap} style={iconStyle} aria-hidden="true" />
-            <span>3/48 Barretta Rd, Ravenhall, VIC 3023, Australia</span>
-          </div>
-          <p style={textStyle}>
-            <FontAwesomeIcon icon={faPhone} style={iconStyle} />
-            0434 227 688{'\u00A0'}-{'\u00A0'}<strong>Steven Vo</strong>
-          </p>
-          <p style={textStyle}>
-            <FontAwesomeIcon icon={faPhone} style={iconStyle} />
-            0401 086 636{'\u00A0'}-{'\u00A0'}<strong>Michael Tran</strong>
-          </p>
-          <p style={textStyle}>
-            <FontAwesomeIcon icon={faEnvelope} style={iconStyle} />
-            DTMDGROUP@outlook.com.au
-          </p>
-          <div style={{ width: "100%", height: "200px", marginTop: "20px" }}>
-            <iframe
-              title="DT Security Doors & Shutters Location"
-              width="100%"
-              height="100%"
-              frameBorder="0"
-              style={{ border: "0" }}
-              loading="lazy"
-              allowFullScreen
-              src="https://maps.google.com/maps?q=3%2F48%20Barretta%20Rd%20Ravenhall%20VIC%203023%20Australia&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            ></iframe>
-          </div>
-        </div>
-        <div style={{ width: isMobile ? '100%' : '35%', display: "flex", flexDirection: "column", alignItems: "flex-start", padding: "20px" }}>
-          <p style={{ fontWeight: "bold", fontSize: isMobile ? '3.5vw' : '2vw' }}>Opening Hours</p>
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", width: "100%" }}>
-            <p style={timeTextStyle}><strong>Monday:</strong> <span>8:30am-5:30pm</span></p>
-            <p style={timeTextStyle}><strong>Tuesday:</strong> <span>8:30am-5:30pm</span></p>
-            <p style={timeTextStyle}><strong>Wednesday:</strong> <span>8:30am-5:30pm</span></p>
-            <p style={timeTextStyle}><strong>Thursday:</strong> <span>8:30am-5:30pm</span></p>
-            <p style={timeTextStyle}><strong>Friday:</strong> <span>8:30am-5:30pm</span></p>
-            <p style={timeTextStyle}><strong>Saturday:</strong> <span>8:30am-2:30pm</span></p>
-            <p style={timeTextStyle}><strong>Sunday:</strong> <span>Closed</span></p>
-          </div>
-        </div>
+      <div style={openHourSectionStyle} className="footer-section">
+        <h2 style={headingStyle}>Opening Hours</h2>
+        <p style={textStyle}><strong>Mon - Fri</strong></p>
+        <p style={textStyle}>8.30am - 5.30pm</p>
+        <p style={textStyle}><strong>Sat</strong></p>
+        <p style={textStyle}>8.30pm - 2pm</p>
+        <p style={textStyle}><strong>Sun</strong></p>
+        <p style={textStyle}>Closed</p>
       </div>
+
+      <div style={contactSectionStyle} className="footer-section">
+        <h2 style={headingStyle}>Contact Us</h2>
+        <p style={textStyle}>
+          <FontAwesomeIcon icon={faMapMarkerAlt} style={iconStyle}/> 3/48 Barretta Rd, Ravenhall, VIC 3023, Australia
+        </p>
+        <p style={textStyle}>
+          <FontAwesomeIcon icon={faPhone} style={iconStyle}/> Phone: 0434 227 688 (Steven Vo)
+        </p>
+        <p style={textStyle}>
+          <FontAwesomeIcon icon={faPhone} style={iconStyle}/> Phone: 0401 086 636 (Michael Tran)
+        </p>
+        <p style={textStyle}>
+          <FontAwesomeIcon icon={faEnvelope} style={iconStyle}/><a href="mailto:DTMDGROUP@outlook.com.au" style={linkStyle}> DTMDGROUP@outlook.com.au</a>
+        </p>
+      </div>
+
+      <div style={linksSectionStyle} className="footer-section">
+        <h2 style={headingStyle}>Quick Links</h2>
+        <p style={textStyle}>
+          <Link href="/" style={linkStyle}>Home</Link>
+        </p>
+        <p style={textStyle}>
+          <Link href="/menu" style={linkStyle}>Menu</Link>
+        </p>
+        <p style={textStyle}>
+          <Link href="/about" style={linkStyle}>About Us</Link>
+        </p>
+        <p style={textStyle}>
+          <Link href="/contact" style={linkStyle}>Contact</Link>
+        </p>
+      </div>
+
+      <style jsx>{`
+        @media (max-width: 768px) {
+          .footer-section {
+            min-width: 100% !important;
+            max-width: 100% !important;
+            text-align: center;
+          }
+          .footer-section img {
+            margin: 0 auto;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

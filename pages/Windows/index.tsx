@@ -6,9 +6,9 @@ import MainHeader from '@/components/MainHeader';
 import Footer from '@/components/Footer';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock, faPaintBrush, faCloudRain, faHandshake, faThermometerHalf, faSun, faFan, faLeaf } from '@fortawesome/free-solid-svg-icons';
+import { faLock, faThermometerHalf, faSun, faFan, faLeaf } from '@fortawesome/free-solid-svg-icons';
 
-import { motion, useAnimation } from "framer-motion";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const fadeInUp = {
@@ -176,7 +176,6 @@ const images = [
 const Gallery: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
@@ -186,8 +185,11 @@ const Gallery: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Set initial state based on the window size
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const galleryStyle = {
@@ -197,7 +199,7 @@ const Gallery: React.FC = () => {
     padding: isMobile ? '10px' : '20px',
   };
 
-  const galleryImageStyle: React.CSSProperties = {
+  const galleryImageStyle: CSSProperties = {
     width: '100%',
     height: '200px', // Set a fixed height for all images
     objectFit: 'cover', // This will cover the area without stretching the image
@@ -205,7 +207,7 @@ const Gallery: React.FC = () => {
     transition: 'opacity 0.3s ease',
   };
 
-  const titleStyle: React.CSSProperties = {
+  const titleStyle: CSSProperties = {
     textAlign: 'center',
     margin: '0 0 20px',
     color: '#333',
@@ -223,34 +225,54 @@ const Gallery: React.FC = () => {
   };
 
   return (
-      <div 
-          ref={ref}       
-          style={{
-          opacity: isVisible ? 1 : 0,
-          transition: 'opacity 2s ease-in-out'}}
-      >
-          <h2 style={titleStyle}>Window Gallery</h2>
-          <div style={galleryStyle}>
-              {images.map((image, index) => (
-                  <div key={index}
-                      onMouseEnter={() => setHoverIndex(index)}
-                      onMouseLeave={() => setHoverIndex(null)}
-                      onClick={() => handleClick(image)}
-                      style={{ cursor: 'pointer' }}>
-                  <img src={image}
-                      alt={`Fly Screen ${index + 1}`}
-                      style={{
-                          ...galleryImageStyle,
-                          opacity: hoverIndex === index ? 0.7 : 1,
-                      }} />
-                  </div>
-              ))}
+    <div
+      ref={ref}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 2s ease-in-out',
+      }}
+    >
+      <h2 style={titleStyle}>Curtin Gallery</h2>
+      <div style={galleryStyle}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            onClick={() => handleClick(image)}
+            style={{ cursor: 'pointer' }}
+          >
+            <img
+              src={image}
+              alt={`Curtin ${index + 1}`}
+              style={galleryImageStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            />
           </div>
-          {selectedImage && (
-              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
-                  <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
-              </div>
-          )}
+        ))}
+      </div>
+      {selectedImage && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+          onClick={handleClose}
+        >
+          <img
+            src={selectedImage}
+            alt="Enlarged view"
+            style={{ maxWidth: '90%', maxHeight: '90%' }}
+          />
+        </div>
+      )}
     </div>
   );
 };

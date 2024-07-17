@@ -57,6 +57,11 @@ const CurtinsTitle: React.FC = () => {
   );
 };
 
+type ColorOption = {
+  name: string;
+  image: string; // The URL of the image
+};
+
 type ProductInfoProps = {
   colorOptions: ColorOption[];
   onColorOptionSelect: (colorOption: ColorOption) => void;
@@ -76,6 +81,7 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
       setIsMobile(window.innerWidth < 768);
     };
     window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize on component mount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -229,11 +235,6 @@ const categoryDetails: { [key: string]: CategoryInfo } = {
   },
 };
 
-type ColorOption = {
-  name: string;
-  image: string; // The URL of the image
-};
-
 const colorPalette: { [key: string]: ColorOption[] } = {
   sheerweave4300: [
     { name: "White", image: "/image/curtin/Sheerweave4300/white.jpeg" },
@@ -349,60 +350,60 @@ const colorPalette: { [key: string]: ColorOption[] } = {
     { name: "Charcoal", image: "/image/curtin/Aventus3/charcoal.jpeg" },
   ],
   aventus5: [
-    { name: "Ice", image: "/image/curtin/Aventus3/ice.jpeg" },
-    { name: "White", image: "/image/curtin/Aventus3/white.jpeg" },
-    { name: "White Linen", image: "/image/curtin/Aventus3/white-linen.jpeg" },
-    { name: "White Stone", image: "/image/curtin/Aventus3/white-stone.jpeg" },
-    { name: "White Grey", image: "/image/curtin/Aventus3/white-grey.jpeg" },
-    { name: "Concrete", image: "/image/curtin/Aventus3/concrete.jpeg" },
-    { name: "Dune Grey", image: "/image/curtin/Aventus3/dune-grey.jpeg" },
-    { name: "Platinum", image: "/image/curtin/Aventus3/platinum.jpeg" },
-    { name: "Gull", image: "/image/curtin/Aventus3/gull.jpeg" },
-    { name: "Domino", image: "/image/curtin/Aventus3/domino.jpeg" },
-    { name: "Wren", image: "/image/curtin/Aventus3/wren.jpeg" },
-    { name: "Pewter", image: "/image/curtin/Aventus3/pewter.jpeg" },
+    { name: "Ice", image: "/image/curtin/Aventus5/ice.jpeg" },
+    { name: "White", image: "/image/curtin/Aventus5/white.jpeg" },
+    { name: "White Linen", image: "/image/curtin/Aventus5/white-linen.jpeg" },
+    { name: "White Stone", image: "/image/curtin/Aventus5/white-stone.jpeg" },
+    { name: "White Grey", image: "/image/curtin/Aventus5/white-grey.jpeg" },
+    { name: "Concrete", image: "/image/curtin/Aventus5/concrete.jpeg" },
+    { name: "Dune Grey", image: "/image/curtin/Aventus5/dune-grey.jpeg" },
+    { name: "Platinum", image: "/image/curtin/Aventus5/platinum.jpeg" },
+    { name: "Gull", image: "/image/curtin/Aventus5/gull.jpeg" },
+    { name: "Domino", image: "/image/curtin/Aventus5/domino.jpeg" },
+    { name: "Wren", image: "/image/curtin/Aventus5/wren.jpeg" },
+    { name: "Pewter", image: "/image/curtin/Aventus5/pewter.jpeg" },
     {
       name: "Charcoal Grey",
-      image: "/image/curtin/Aventus3/charcoal-grey.jpeg",
+      image: "/image/curtin/Aventus5/charcoal-grey.jpeg",
     },
     {
       name: "Charcoal Denim",
-      image: "/image/curtin/Aventus3/charcoal-denim.jpeg",
+      image: "/image/curtin/Aventus5/charcoal-denim.jpeg",
     },
-    { name: "Graphite", image: "/image/curtin/Aventus3/graphite.jpeg" },
+    { name: "Graphite", image: "/image/curtin/Aventus5/graphite.jpeg" },
     {
       name: "Charcoal Bronze",
-      image: "/image/curtin/Aventus3/charcoal-bronze.jpeg",
+      image: "/image/curtin/Aventus5/charcoal-bronze.jpeg",
     },
-    { name: "Charcoal", image: "/image/curtin/Aventus3/charcoal.jpeg" },
+    { name: "Charcoal", image: "/image/curtin/Aventus5/charcoal.jpeg" },
   ],
   aventus10: [
-    { name: "Ice", image: "/image/curtin/Aventus3/ice.jpeg" },
-    { name: "White", image: "/image/curtin/Aventus3/white.jpeg" },
-    { name: "White Linen", image: "/image/curtin/Aventus3/white-linen.jpeg" },
-    { name: "White Stone", image: "/image/curtin/Aventus3/white-stone.jpeg" },
-    { name: "White Grey", image: "/image/curtin/Aventus3/white-grey.jpeg" },
-    { name: "Concrete", image: "/image/curtin/Aventus3/concrete.jpeg" },
-    { name: "Dune Grey", image: "/image/curtin/Aventus3/dune-grey.jpeg" },
-    { name: "Platinum", image: "/image/curtin/Aventus3/platinum.jpeg" },
-    { name: "Gull", image: "/image/curtin/Aventus3/gull.jpeg" },
-    { name: "Domino", image: "/image/curtin/Aventus3/domino.jpeg" },
-    { name: "Wren", image: "/image/curtin/Aventus3/wren.jpeg" },
-    { name: "Pewter", image: "/image/curtin/Aventus3/pewter.jpeg" },
+    { name: "Ice", image: "/image/curtin/Aventus10/ice.jpeg" },
+    { name: "White", image: "/image/curtin/Aventus10/white.jpeg" },
+    { name: "White Linen", image: "/image/curtin/Aventus10/white-linen.jpeg" },
+    { name: "White Stone", image: "/image/curtin/Aventus10/white-stone.jpeg" },
+    { name: "White Grey", image: "/image/curtin/Aventus10/white-grey.jpeg" },
+    { name: "Concrete", image: "/image/curtin/Aventus10/concrete.jpeg" },
+    { name: "Dune Grey", image: "/image/curtin/Aventus10/dune-grey.jpeg" },
+    { name: "Platinum", image: "/image/curtin/Aventus10/platinum.jpeg" },
+    { name: "Gull", image: "/image/curtin/Aventus10/gull.jpeg" },
+    { name: "Domino", image: "/image/curtin/Aventus10/domino.jpeg" },
+    { name: "Wren", image: "/image/curtin/Aventus10/wren.jpeg" },
+    { name: "Pewter", image: "/image/curtin/Aventus10/pewter.jpeg" },
     {
       name: "Charcoal Grey",
-      image: "/image/curtin/Aventus3/charcoal-grey.jpeg",
+      image: "/image/curtin/Aventus10/charcoal-grey.jpeg",
     },
     {
       name: "Charcoal Denim",
-      image: "/image/curtin/Aventus3/charcoal-denim.jpeg",
+      image: "/image/curtin/Aventus10/charcoal-denim.jpeg",
     },
-    { name: "Graphite", image: "/image/curtin/Aventus3/graphite.jpeg" },
+    { name: "Graphite", image: "/image/curtin/Aventus10/graphite.jpeg" },
     {
       name: "Charcoal Bronze",
-      image: "/image/curtin/Aventus3/charcoal-bronze.jpeg",
+      image: "/image/curtin/Aventus10/charcoal-bronze.jpeg",
     },
-    { name: "Charcoal", image: "/image/curtin/Aventus3/charcoal.jpeg" },
+    { name: "Charcoal", image: "/image/curtin/Aventus10/charcoal.jpeg" },
   ],
 };
 
@@ -436,6 +437,7 @@ const TabsComponent: React.FC<TabsComponentProps> = ({
       setIsMobile(window.innerWidth < 768);
     };
     window.addEventListener("resize", handleResize);
+    handleResize(); // Initialize on component mount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -514,7 +516,6 @@ const images = [
 const Gallery: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
@@ -524,8 +525,11 @@ const Gallery: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Set initial state based on the window size
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const galleryStyle = {
@@ -543,7 +547,7 @@ const Gallery: React.FC = () => {
     transition: 'opacity 0.3s ease',
   };
 
-  const titleStyle: React.CSSProperties = {
+  const titleStyle: CSSProperties = {
     textAlign: 'center',
     margin: '0 0 20px',
     color: '#333',
@@ -561,39 +565,59 @@ const Gallery: React.FC = () => {
   };
 
   return (
-      <div 
-          ref={ref}       
-          style={{
-          opacity: isVisible ? 1 : 0,
-          transition: 'opacity 2s ease-in-out'}}
-      >
-          <h2 style={titleStyle}>Window Gallery</h2>
-          <div style={galleryStyle}>
-              {images.map((image, index) => (
-                  <div key={index}
-                      onMouseEnter={() => setHoverIndex(index)}
-                      onMouseLeave={() => setHoverIndex(null)}
-                      onClick={() => handleClick(image)}
-                      style={{ cursor: 'pointer' }}>
-                  <img src={image}
-                      alt={`Fly Screen ${index + 1}`}
-                      style={{
-                          ...galleryImageStyle,
-                          opacity: hoverIndex === index ? 0.7 : 1,
-                      }} />
-                  </div>
-              ))}
+    <div
+      ref={ref}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: 'opacity 2s ease-in-out',
+      }}
+    >
+      <h2 style={titleStyle}>Curtin Gallery</h2>
+      <div style={galleryStyle}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            onClick={() => handleClick(image)}
+            style={{ cursor: 'pointer' }}
+          >
+            <img
+              src={image}
+              alt={`Curtin ${index + 1}`}
+              style={galleryImageStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+            />
           </div>
-          {selectedImage && (
-              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
-                  <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
-              </div>
-          )}
+        ))}
+      </div>
+      {selectedImage && (
+        <div
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            zIndex: 1000,
+          }}
+          onClick={handleClose}
+        >
+          <img
+            src={selectedImage}
+            alt="Enlarged view"
+            style={{ maxWidth: '90%', maxHeight: '90%' }}
+          />
+        </div>
+      )}
     </div>
   );
 };
 
-export default function Curtains() {
+export default function Curtins() {
   const initialActiveTab = "Sheerweave 4300";
   const [activeTab, setActiveTab] = useState<string>(initialActiveTab);
   const [selectedColorOption, setSelectedColorOption] =
@@ -637,18 +661,18 @@ export default function Curtains() {
   return (
     <>
       <Head>
-        <title>Stylish Curtains & Sheerweaves - DT Security Doors & Shutters</title>
+        <title>Stylish Curtins & Sheerweaves - DT Security Doors & Shutters</title>
         <meta
           name="description"
-          content="Explore our wide selection of curtains and sheerweaves, designed to complement any interior with elegance and style."
+          content="Explore our wide selection of Curtins and sheerweaves, designed to complement any interior with elegance and style."
         />
         <meta
           property="og:title"
-          content="DT Security Doors & Shutters - Curtains Collection"
+          content="DT Security Doors & Shutters - Curtins Collection"
         />
         <meta
           property="og:description"
-          content="Discover the latest trends in curtain designs and materials at DT Security Doors & Shutters."
+          content="Discover the latest trends in Curtin designs and materials at DT Security Doors & Shutters."
         />
         <meta
           property="og:url"
@@ -662,16 +686,16 @@ export default function Curtains() {
       <Header />
       <MainHeader />
       <CurtinsTitle />
-      <ProductInfo
-        colorOptions={tabColors[activeTab]}
-        onColorOptionSelect={setSelectedColorOption}
-        selectedColorOption={selectedColorOption}
-      />
       <TabsComponent
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         tabColors={tabColors}
         onSelectCategory={setSelectedCategoryInfo}
+      />
+      <ProductInfo
+        colorOptions={tabColors[activeTab]}
+        onColorOptionSelect={setSelectedColorOption}
+        selectedColorOption={selectedColorOption}
       />
       {selectedCategoryInfo && (
         <div style={descriptionSectionStyle}>

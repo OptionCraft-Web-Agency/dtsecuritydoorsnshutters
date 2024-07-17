@@ -80,9 +80,9 @@ const services = [
   },
   {
     image: '/image/CurtinImage/CurtinImage1.jpg',
-    name: 'Curtains',
+    name: 'Curtins',
     description: 'Stylish and functional curtains to enhance your privacy and control natural lighting.',
-    link: '/Curtains',
+    link: '/Curtins',
   },
   {
     image: '/image/SecurityDoorImage/SecurityDoorImage13.jpg',

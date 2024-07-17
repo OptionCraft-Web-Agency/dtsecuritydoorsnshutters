@@ -5,7 +5,6 @@ import {
   faBug,
   faWind,
   faDollarSign,
-  faHeart,
   faHome,
   faShieldAlt,
   faSprayCan,
@@ -55,10 +54,16 @@ const FlyScreensTitle: React.FC = () => {
       animate={inView ? "visible" : "hidden"}
       style={sectionStyle}
     >
-      <div style={{ display: "flex", justifyContent: "center", alignItems: "center", width: "100%", height: "100%" }}>
-        <span style={textStyle}>
-          Fly Screens
-        </span>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          width: "100%",
+          height: "100%",
+        }}
+      >
+        <span style={textStyle}>Fly Screens</span>
       </div>
     </motion.div>
   );
@@ -149,25 +154,25 @@ const FlyscreenSection: React.FC = () => {
           <Image
             src="/image/FlyScreenImage/FlyScreenImage1.jpg"
             alt="Flyscreen 1"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
           />
         </div>
         <div style={imageContainerStyle}>
           <Image
             src="/image/FlyScreenImage/FlyScreenImage2.jpg"
             alt="Flyscreen 2"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
           />
         </div>
       </div>
       <p
         style={{
-          marginBottom: '2rem',
-          fontSize: isMobile ? '0.9rem' : '1rem',
-          padding: isMobile ? '0 1rem' : '0',
-          width: '100%', // Ensure full width
+          marginBottom: "2rem",
+          fontSize: isMobile ? "0.9rem" : "1rem",
+          padding: isMobile ? "0 1rem" : "0",
+          width: "100%", // Ensure full width
         }}
       >
         Elevate your home&apos;s comfort and security with our premium
@@ -245,9 +250,7 @@ const BenefitsOfFlyScreens: React.FC = () => {
     listStyle: "none",
     padding: 0,
     display: "grid",
-    gridTemplateColumns: isMobile
-      ? "1fr"
-      : "repeat(3, 1fr)",
+    gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)",
     gap: "1rem",
     maxWidth: "800px",
   };
@@ -274,12 +277,42 @@ const BenefitsOfFlyScreens: React.FC = () => {
   };
 
   const benefits = [
-    { icon: faBug, title: "Protection Against Pests", description: "Keep mosquitoes, flies, and other pests out while letting fresh air in." },
-    { icon: faWind, title: "Enhanced Air Quality", description: "Promote better ventilation and air quality inside your home without worrying about insects." },
-    { icon: faDollarSign, title: "Energy Savings", description: "Reduce the need for air conditioning by allowing cooler air to circulate naturally through your home." },
-    { icon: faHome, title: "Aesthetic Appeal", description: "Available in various materials and designs that can complement your home decor." },
-    { icon: faShieldAlt, title: "Added Security", description: "Some fly screens come with additional security features to prevent unauthorized access." },
-    { icon: faSprayCan, title: "Easy Maintenance", description: "Designed for easy cleaning and durability, ensuring long-lasting protection." },
+    {
+      icon: faBug,
+      title: "Protection Against Pests",
+      description:
+        "Keep mosquitoes, flies, and other pests out while letting fresh air in.",
+    },
+    {
+      icon: faWind,
+      title: "Enhanced Air Quality",
+      description:
+        "Promote better ventilation and air quality inside your home without worrying about insects.",
+    },
+    {
+      icon: faDollarSign,
+      title: "Energy Savings",
+      description:
+        "Reduce the need for air conditioning by allowing cooler air to circulate naturally through your home.",
+    },
+    {
+      icon: faHome,
+      title: "Aesthetic Appeal",
+      description:
+        "Available in various materials and designs that can complement your home decor.",
+    },
+    {
+      icon: faShieldAlt,
+      title: "Added Security",
+      description:
+        "Some fly screens come with additional security features to prevent unauthorized access.",
+    },
+    {
+      icon: faSprayCan,
+      title: "Easy Maintenance",
+      description:
+        "Designed for easy cleaning and durability, ensuring long-lasting protection.",
+    },
   ];
 
   return (
@@ -294,7 +327,8 @@ const BenefitsOfFlyScreens: React.FC = () => {
       <div style={textSectionStyle}>
         <h2 style={titleStyle}>Benefits of Fly Screens</h2>
         <p style={paragraphStyle}>
-          Discover the advantages of installing fly screens in your home, offering both comfort and protection.
+          Discover the advantages of installing fly screens in your home,
+          offering both comfort and protection.
         </p>
       </div>
       <ul style={featuresGridStyle}>
@@ -328,7 +362,6 @@ const images = [
 const Gallery: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [hoverIndex, setHoverIndex] = useState<number | null>(null);
 
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
@@ -338,32 +371,37 @@ const Gallery: React.FC = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    // Set initial state based on the window size
+    handleResize();
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const galleryStyle = {
-    display: 'grid',
-    gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
-    gap: '10px',
-    padding: isMobile ? '10px' : '20px',
+    display: "grid",
+    gridTemplateColumns: isMobile
+      ? "repeat(auto-fit, minmax(150px, 1fr))"
+      : "repeat(4, 1fr)",
+    gap: "10px",
+    padding: isMobile ? "10px" : "20px",
   };
 
-  const galleryImageStyle: React.CSSProperties = {
-    width: '100%',
-    height: '200px', // Set a fixed height for all images
-    objectFit: 'cover', // This will cover the area without stretching the image
+  const galleryImageStyle: CSSProperties = {
+    width: "100%",
+    height: "200px", // Set a fixed height for all images
+    objectFit: "cover", // This will cover the area without stretching the image
     opacity: 1,
-    transition: 'opacity 0.3s ease',
+    transition: "opacity 0.3s ease",
   };
 
-  const titleStyle: React.CSSProperties = {
-    textAlign: 'center',
-    margin: '0 0 20px',
-    color: '#333',
-    fontSize: isMobile ? '8vw' : '3rem',
-    fontWeight: 'bold',
-    marginTop: '2vw',
+  const titleStyle: CSSProperties = {
+    textAlign: "center",
+    margin: "0 0 20px",
+    color: "#333",
+    fontSize: isMobile ? "8vw" : "3rem",
+    fontWeight: "bold",
+    marginTop: "2vw",
   };
 
   const handleClick = (image: string) => {
@@ -375,34 +413,54 @@ const Gallery: React.FC = () => {
   };
 
   return (
-      <div 
-          ref={ref}       
-          style={{
-          opacity: isVisible ? 1 : 0,
-          transition: 'opacity 2s ease-in-out'}}
-      >
-          <h2 style={titleStyle}>Window Gallery</h2>
-          <div style={galleryStyle}>
-              {images.map((image, index) => (
-                  <div key={index}
-                      onMouseEnter={() => setHoverIndex(index)}
-                      onMouseLeave={() => setHoverIndex(null)}
-                      onClick={() => handleClick(image)}
-                      style={{ cursor: 'pointer' }}>
-                  <img src={image}
-                      alt={`Fly Screen ${index + 1}`}
-                      style={{
-                          ...galleryImageStyle,
-                          opacity: hoverIndex === index ? 0.7 : 1,
-                      }} />
-                  </div>
-              ))}
+    <div
+      ref={ref}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transition: "opacity 2s ease-in-out",
+      }}
+    >
+      <h2 style={titleStyle}>Fly Screen Gallery</h2>
+      <div style={galleryStyle}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            onClick={() => handleClick(image)}
+            style={{ cursor: "pointer" }}
+          >
+            <img
+              src={image}
+              alt={`Fly Screen ${index + 1}`}
+              style={galleryImageStyle}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            />
           </div>
-          {selectedImage && (
-              <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', display: 'flex', justifyContent: 'center', alignItems: 'center', zIndex: 1000 }} onClick={handleClose}>
-                  <img src={selectedImage} alt="Enlarged view" style={{ maxWidth: '90%', maxHeight: '90%' }} />
-              </div>
-          )}
+        ))}
+      </div>
+      {selectedImage && (
+        <div
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundColor: "rgba(0,0,0,0.5)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: 1000,
+          }}
+          onClick={handleClose}
+        >
+          <img
+            src={selectedImage}
+            alt="Enlarged view"
+            style={{ maxWidth: "90%", maxHeight: "90%" }}
+          />
+        </div>
+      )}
     </div>
   );
 };

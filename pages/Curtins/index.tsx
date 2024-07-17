@@ -4,7 +4,6 @@ import Image from "next/image";
 import Header from "@/components/Header";
 import MainHeader from "@/components/MainHeader";
 import Footer from "@/components/Footer";
-
 import useOnScreen from "@/components/useOnScreen";
 
 const CurtinsTitle: React.FC = () => {
@@ -93,7 +92,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
               height={100}
               objectFit="cover"
             />
-            {/* Apply the textStyle to the paragraph */}
             <p style={textStyle}>{colorOption.name}</p>
           </div>
         ))}
@@ -107,7 +105,6 @@ const ProductInfo: React.FC<ProductInfoProps> = ({
             height={500}
             objectFit="cover"
           />
-          {/* Optionally, apply the textStyle to this paragraph as well if needed */}
           <p style={textStyle}>{selectedImage.name}</p>
         </div>
       )}
@@ -560,6 +557,8 @@ const Gallery: React.FC = () => {
             <Image
               src={image}
               alt={`Fly Screen ${index + 1}`}
+              width={200}
+              height={200}
               style={{
                 ...galleryImageStyle,
                 opacity: hoverIndex === index ? 0.7 : 1,
@@ -587,6 +586,8 @@ const Gallery: React.FC = () => {
           <Image
             src={selectedImage}
             alt="Enlarged view"
+            width={800}
+            height={600}
             style={{ maxWidth: "90%", maxHeight: "90%" }}
           />
         </div>

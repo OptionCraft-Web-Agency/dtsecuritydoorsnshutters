@@ -1,14 +1,17 @@
-#declare base image
-FROM node:18.11.0-alpine
+# Use a secure, specific Node version with fewer known CVEs
+FROM node:18.18.2-alpine3.18
 
-#create and change to the app directory
+# Set the working directory
 WORKDIR /usr/app
 
-#copy app dependency manifest to container image
+# Copy all files
 COPY . .
 
-RUN npm ci --only=production
+# Install only production dependencies
+RUN npm ci --omit=dev
 
+# Build the Next.js project
 RUN npm run build
 
-CMD [ "npm","start" ]
+# Start the app
+CMD ["npm", "start"]

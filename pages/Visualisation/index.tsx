@@ -1,31 +1,311 @@
-import Head from "next/head";
-import {
-  ChangeEvent,
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import Image from "next/image";
+"use client";
+
+import React, { useState, useRef, useEffect } from "react";
 import CanvasComponent from "@/components/Canvas";
-import RollerComponent from "@/components/Roller";
-import CostCalc from "@/components/CostCalc";
-// import RollerComponentTest from "@/components/Tests";
 import Static from "@/components/vis/StaticRoller";
-import CurtainRoller from "@/components/vis/CurtainRoller";
-import Inside from "@/components/vis/inside";
-import InsideCurtain from "@/components/vis/insideCurtain";
-import MainHeader from "@/components/MainHeader";
-import React, { CSSProperties } from "react";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import CurtinRoller from "@/components/vis/CurtinRoller";
+import InsideCurtin from "@/components/vis/insideCurtin";
+import ColorPickerSection from "@/components/CurtinComponent/ColorPickerSection";
+import CurtinPicker from "@/components/CurtinComponent/CurtinPicker";
+import SectionButtons from "@/components/CurtinComponent/SectionButtons";
+import RollerControls from "@/components/CurtinComponent/RollerControls";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
-interface ColorSetters {
-  [key: string]: Dispatch<SetStateAction<string>>;
-}
+import HeroSection from "@/components/HeroSection";
+
+type Color = {
+  name: string;
+  code: string;
+};
+
+const roller: Record<string, Color[]> = {
+  HeadBox: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+  Rail: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+  Slat: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+  Bottom: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+};
+
+const sections: Record<string, Color[]> = {
+  Roof: [
+    { name: "Woodland Grey", code: "#5E5C57" },
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Black", code: "#222222" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+  ],
+  LowerRoof: [
+    { name: "Woodland Grey", code: "#5E5C57" },
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Black", code: "#222222" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+  ],
+  Facia: [
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Black", code: "#222222" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+  ],
+  LeftWall: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+  RightWall: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+  FrontWall: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+  Pillars: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+  Door: [
+    { name: "Classic Cream", code: "#E7E1C1" },
+    { name: "Paperbark", code: "#CEC2AA" },
+    { name: "White", code: "#F9F9F9" },
+    { name: "Surfmist", code: "#E2E3E0" },
+    { name: "Windspray", code: "#929899" },
+    { name: "Blue Ridge", code: "#35434C" },
+    { name: "Deep Ocean", code: "#475161" },
+    { name: "Evening Haze", code: "#C4C0B0" },
+    { name: "Pale Eucalypt", code: "#7A8978" },
+    { name: "Wilderness", code: "#65796D" },
+    { name: "Cottage Green", code: "#335244" },
+    { name: "Shale Grey", code: "#BFBEBD" },
+    { name: "Sandbank", code: "#D1B988" },
+    { name: "Jasper", code: "#806E5C" },
+    { name: "Loft", code: "#44393D" },
+    { name: "Headland", code: "#975540" },
+    { name: "Dune", code: "#B7B2AC" },
+    { name: "Manor Red", code: "#793F30" },
+    { name: "Bushland", code: "#8A8A7F" },
+    { name: "Woodland Grey", code: "#5E5C57" },
+  ],
+};
+
+const curtin = [
+  { name: "Classic Cream", code: "#E7E1C1" },
+  { name: "Paperbark", code: "#CEC2AA" },
+  { name: "White", code: "#F9F9F9" },
+  { name: "Surfmist", code: "#E2E3E0" },
+  { name: "Deep Ocean", code: "#475161" },
+  { name: "Shale Grey", code: "#BFBEBD" },
+  { name: "Sandbank", code: "#D1B988" },
+  { name: "Jasper", code: "#806E5C" },
+  { name: "Dune", code: "#B7B2AC" },
+  { name: "Manor Red", code: "#793F30" },
+  { name: "Bushland", code: "#8A8A7F" },
+  { name: "Woodland Grey", code: "#5E5C57" },
+];
 
 export default function Home() {
   const [roofMainColor, setRoofMainColor] = useState("#ffffff");
@@ -36,22 +316,25 @@ export default function Home() {
   const [frontWall, setfrontWall] = useState("#ffffff");
   const [rightWallColor, setrightWallColor] = useState("#ffffff");
   const [doorColor, setdoorColor] = useState("#ffffff");
-  const [customColor, setcustomColor] = useState("#ffffff");
-  const [selectedSection, setSelectedSection] = useState("Roof");
+
   const [bottom, setbottom] = useState("#ffffff");
   const [rail, setrail] = useState("#ffffff");
   const [headBox, setheadBox] = useState("#ffffff");
   const [slat, setslat] = useState("#ffffff");
-  const [CurtinsColor, setCurtinsColor] = useState(Array(23).fill("#ffffff"));
+
+  const [curtinsColor, setCurtinsColor] = useState(Array(23).fill("#ffffff"));
+  const [selectedSection, setSelectedSection] = useState("Roof");
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [selectedColor, setSelectedColor] = useState("#ffffff");
-
   const [showRoller, setShowRoller] = useState(false);
-  const [curtainColor, showCurtainColor] = useState(false);
-  const [animationState, setAnimationState] = useState("paused");
-  const [translateY, setTranslateY] = useState(0);
+  const [curtinColor, setCurtinColor] = useState(false);
 
-  const colorSetters: ColorSetters = {
+  const [animationState, setAnimationState] = useState<"paused" | "up" | "down">("paused");
+  const [translateY, setTranslateY] = useState(0);
+  const movingRef = useRef<HTMLDivElement>(null);
+
+  const containerSize = { width: 800, height: 600 };
+
+  const colorSetters: Record<string, React.Dispatch<React.SetStateAction<string>>> = {
     Roof: setRoofMainColor,
     LowerRoof: setlowerRoofColor,
     Facia: setfacia,
@@ -61,764 +344,173 @@ export default function Home() {
     RightWall: setrightWallColor,
     Door: setdoorColor,
   };
-  const rollerSetters: ColorSetters = {
+
+  const rollerSetters: Record<string, React.Dispatch<React.SetStateAction<string>>> = {
     HeadBox: setheadBox,
     Rail: setrail,
     Slat: setslat,
     Bottom: setbottom,
   };
 
-  const [containerSize, setContainerSize] = useState({
-    width: 800,
-    height: 600,
-  });
+  const handleColorSelection = (section: string, color: Color) => {
+    const setColor = colorSetters[section];
+    if (setColor) setColor(color.code);
+  };
 
-  const updateCurtainColor = (index: number, color: string) => {
-    setCurtinsColor((prevColors) => {
-      const newColors = [...prevColors];
-      newColors[index] = color;
-      return newColors;
+  const handleRollerSelection = (section: string, color: Color) => {
+    const setColor = rollerSetters[section];
+    if (setColor) setColor(color.code);
+  };
+
+  const updateCurtinColor = (index: number, color: string) => {
+    setCurtinsColor((prev) => {
+      const updated = [...prev];
+      updated[index] = color;
+      return updated;
     });
   };
 
-  interface Color {
-    name: string;
-    code: string;
-  }
+  useEffect(() => {
+    let intervalId: number | undefined;
+    const getScrollLimit = () =>
+      movingRef.current?.offsetHeight ? -movingRef.current.offsetHeight / 4.2 : -100;
 
-  const roller: Record<string, Color[]> = {
-    HeadBox: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-    Rail: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-    Slat: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-    Bottom: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-  };
-  const sections: Record<string, Color[]> = {
-    Roof: [
-      { name: "Woodland Grey", code: "#5E5C57" },
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Black", code: "#222222" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-    ],
-    LowerRoof: [
-      { name: "Woodland Grey", code: "#5E5C57" },
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Black", code: "#222222" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-    ],
-    Facia: [
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Black", code: "#222222" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-    ],
-    LeftWall: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-    RightWall: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-    FrontWall: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-    Pillars: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-    Door: [
-      { name: "Classic Cream", code: "#E7E1C1" },
-      { name: "Paperbark", code: "#CEC2AA" },
-      { name: "White", code: "#F9F9F9" },
-      { name: "Surfmist", code: "#E2E3E0" },
-      { name: "Windspray", code: "#929899" },
-      { name: "Blue Ridge", code: "#35434C" },
-      { name: "Deep Ocean", code: "#475161" },
-      { name: "Evening Haze", code: "#C4C0B0" },
-      { name: "Pale Eucalypt", code: "#7A8978" },
-      { name: "Wilderness", code: "#65796D" },
-      { name: "Cottage Green", code: "#335244" },
-      { name: "Shale Grey", code: "#BFBEBD" },
-      { name: "Sandbank", code: "#D1B988" },
-      { name: "Jasper", code: "#806E5C" },
-      { name: "Loft", code: "#44393D" },
-      { name: "Headland", code: "#975540" },
-      { name: "Dune", code: "#B7B2AC" },
-      { name: "Manor Red", code: "#793F30" },
-      { name: "Bushland", code: "#8A8A7F" },
-      { name: "Woodland Grey", code: "#5E5C57" },
-    ],
-  };
-
-  const Curtain = [
-    { name: "Classic Cream", code: "#E7E1C1" },
-    { name: "Paperbark", code: "#CEC2AA" },
-    { name: "White", code: "#F9F9F9" },
-    { name: "Surfmist", code: "#E2E3E0" },
-    { name: "Deep Ocean", code: "#475161" },
-    { name: "Shale Grey", code: "#BFBEBD" },
-    { name: "Sandbank", code: "#D1B988" },
-    { name: "Jasper", code: "#806E5C" },
-    { name: "Dune", code: "#B7B2AC" },
-    { name: "Manor Red", code: "#793F30" },
-    { name: "Bushland", code: "#8A8A7F" },
-    { name: "Woodland Grey", code: "#5E5C57" },
-  ];
-
-  const ColorVisualisationTitle: React.FC = () => {
-    const sectionStyle: CSSProperties = {
-      position: "relative",
-      width: "100%",
-      height: "calc(100vh - 80px)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      color: "white",
-      fontSize: "min(4vw, 7vw)", // Adjusted for better text scaling
-      fontWeight: "bold",
-      textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-      background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
-    };
-
-    return <div style={sectionStyle}>Color Visulisation</div>;
-  };
-
-  const handleColorSelection = (section: string, color: Color) => {
-    const setColor = colorSetters[section];
-    if (setColor) {
-      setColor(color.code); // Set the new color using the setter function
-      console.log(`Color for ${section} set to ${color.name} (${color.code})`);
+    if (animationState !== "paused") {
+      intervalId = window.setInterval(() => {
+        const maxScroll = getScrollLimit();
+        setTranslateY((prev) =>
+          animationState === "up"
+            ? Math.max(prev - 2, maxScroll)
+            : animationState === "down"
+            ? Math.min(prev + 2, 0)
+            : prev
+        );
+      }, 50);
     }
-  };
-  const handleRollerSelection = (section: string, color: Color) => {
-    const setColor = rollerSetters[section];
-    if (setColor) {
-      setColor(color.code); // Set the new color using the setter function
-      console.log(`Color for ${section} set to ${color.name} (${color.code})`);
-    }
-  };
-  const handleIndexChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedIndex(Number(event.target.value));
-  };
 
-  const handleColorChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setSelectedColor(event.target.value);
-  };
-  const movingRef = useRef<HTMLDivElement>(null);
+    return () => clearInterval(intervalId);
+  }, [animationState]);
 
   const captureVisualization = async () => {
     const element = document.getElementById("HouseVis");
-    if (!element) {
-      console.error("Element #HouseVis not found");
-      return ""; // Return an empty string or a default image data URL
-    }
+    if (!element) return "";
     const canvas = await html2canvas(element);
     return canvas.toDataURL("image/png");
   };
 
   const generatePDF = async () => {
     const image = await captureVisualization();
-    const doc = new jsPDF({
-      orientation: "portrait",
-    });
+    const doc = new jsPDF();
+    if (image) doc.addImage(image, "PNG", 15, 40, 180, 160);
 
-    // Check if image is not empty before adding it
-    if (image) {
-      doc.addImage(image, "PNG", 15, 40, 180, 160);
-    } else {
-      // Handle the case where image is empty - maybe log an error or set a default image
-    }
-
-    // Add text for color selection
-    const colorsText = `Roof Main Color: ${roofMainColor}
-Lower Roof Color: ${lowerRoofColor}
-Facia Color: ${facia}
-Left Wall Color: ${leftWallColor}
-Pillars Color: ${pillarsColor}
-Front Wall Color: ${frontWall}
-Right Wall Color: ${rightWallColor}
-Door Color: ${doorColor}
-----------
-Rail>
-----------
-Bottom Color: ${bottom}
-Rail Color: ${rail}
-HeadBox Color: ${headBox}
-Slat Color: ${slat}
-Curtins Color: ${CurtinsColor}
-
-  
-  `;
-
-    const maxWidth = 180;
-    const lineHeight = 7;
-    const startX = 15;
-    let startY = 210; // Adjust based on where your text starts
-
-    const lines = doc.splitTextToSize(colorsText, maxWidth);
-    const pageHeight = doc.internal.pageSize.getHeight();
-
-    lines.forEach((line: string) => {
-      if (startY + lineHeight > pageHeight - 10) {
-        doc.addPage();
-        startY = 10; // Or your preferred top margin for new pages
-      }
-      doc.text(line, startX, startY);
-      startY += lineHeight;
-    });
-
+    const text = `
+      Roof Main: ${roofMainColor}
+      Lower Roof: ${lowerRoofColor}
+      Facia: ${facia}
+      Left Wall: ${leftWallColor}
+      Pillars: ${pillarsColor}
+      Front Wall: ${frontWall}
+      Right Wall: ${rightWallColor}
+      Door: ${doorColor}
+      Roller - Bottom: ${bottom}, Rail: ${rail}, HeadBox: ${headBox}, Slat: ${slat}
+      Curtins: ${curtinsColor.join(", ")}
+    `;
+    const lines = doc.splitTextToSize(text, 180);
+    doc.text(lines, 15, 210);
     doc.save("DT-Visualisation.pdf");
   };
-  useEffect(() => {
-    let intervalId: number | undefined;
-
-    const getScrollLimit = () => {
-      if (movingRef.current) {
-        return -movingRef.current.offsetHeight / 4.2; // Height of the element
-      }
-      return -100; // Default if the element is not available
-    };
-
-    if (animationState !== "paused") {
-      intervalId = window.setInterval(() => {
-        const maxScroll = getScrollLimit();
-        console.log(maxScroll);
-
-        setTranslateY((currentY) => {
-          if (animationState === "up") {
-            return Math.max(currentY - 2, maxScroll);
-          } else if (animationState === "down") {
-            return Math.min(currentY + 2, 0);
-          }
-          return currentY;
-        });
-      }, 50);
-    }
-
-    return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-    };
-  }, [animationState]);
 
   return (
-    <>
-      <Head>
-        <title>DT Security Doors & Shutters - Visualize Your Home</title>
-        <meta
-          name="description"
-          content="Visualize and customize security doors, roller shutters, and Curtins for your home with our advanced visualization tool. Design your perfect home exterior today."
-        />
-          
-        <meta
-          property="og:title"
-          content="DT Security Doors & Shutters - Home Visualization Tool"
-        />
-        <meta
-          property="og:description"
-          content="Use our visualization tool to customize and visualize how our security solutions can enhance your home's safety and aesthetics."
-        />
-        <meta
-          property="og:image"
-          content="https://dtsecuritydoorsandshutters.com.au/Logo1.png"
-        />
-        <meta
-          property="og:url"
-          content="https://dtsecuritydoorsandshutters.com.au/Visualisation"
-        />
-        <meta
-          name="twitter:title"
-          content="Visualize Your Home with DT Security Doors & Shutters"
-        />
-        <meta
-          name="twitter:description"
-          content="Design and visualize your home's new look with our security doors, roller shutters, and Curtins. Start creating now."
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="author" content="DT Security Doors & Shutters" />
-        <meta
-          name="copyright"
-          content="&copy; 2024 DT Security Doors & Shutters"
-        />
-      </Head>
-      <Header />
-      <MainHeader />
-      <ColorVisualisationTitle />
+    <div>
+      <HeroSection title="Color Visualization"/>
+      <div className="container mx-auto flex flex-col-reverse lg:flex-row my-10">
+        <div className="w-full lg:w-1/2 2xl:w-1/3">
+          <div className="flex flex-col-reverse lg:flex-row">
+            <div className="w-full overflow-auto">
+              <RollerControls
+                showRoller={showRoller}
+                animationState={animationState}
+                setAnimationState={setAnimationState}
+                setShowRoller={setShowRoller}
+                curtinColor={curtinColor}
+                setCurtinColor={setCurtinColor}
+                setSelectedSection={setSelectedSection}
+                selectedSection={selectedSection}
+              />
 
-      <div className="bg-[#F6F4EB]">
-        <div className="container mx-auto ">
-          <div className="flex  flex-col-reverse lg:flex-row ">
-            <div className="w-full lg:w-1/2 2xl:w-1/3 wide:w-3/10">
-              <div className="flex flex-row-reverse justify-evenly max-h-full lg:flex-row">
-                {/* Color Selection */}
-                <div className="overflow-auto w-full ">
-                  <div className="mx-auto my-auto ">
-                    {/* Section Picker for Roller*/}
-                    {showRoller && (
-                      <div className="flex flex-col justify-center w-full">
-                        <div className="flex flex-rol my-10 xl:my-auto pt-4 overflow-y-auto justify-between pb-2 scrollbar-thin scrollbar-track-[#F1DEC9] scrollbar-thumb-[#8D7B68]">
-                          {Object.keys(roller).map((section) => (
-                            <button
-                              key={section}
-                              className={`px-7 py-2 m-1 ${
-                                selectedSection === section
-                                  ? "bg-gray-200"
-                                  : "bg-white"
-                              } border border-gray-300 rounded shadow`}
-                              onClick={() => {
-                                setSelectedSection(section);
-                                showCurtainColor(false);
-                              }}
-                            >
-                              {section}
-                            </button>
-                          ))}
-                          <button
-                            className={`px-6 py-2 m-1 ${
-                              curtainColor ? "bg-gray-200" : "bg-white"
-                            } border border-gray-300 rounded shadow`}
-                            onClick={() => {
-                              showCurtainColor(!curtainColor);
-                              setSelectedSection("");
-                            }}
-                          >
-                            Curtins
-                          </button>
-                        </div>
-                        <div className="flex flex-row justify-evenly pt-1">
-                          <button
-                            className={`px-7 py-2 m-1 ${
-                              animationState === "up"
-                                ? "bg-gray-200"
-                                : "bg-white"
-                            } border border-gray-300 rounded shadow`}
-                            onClick={() => setAnimationState("up")}
-                          >
-                            Scroll Up
-                          </button>
-                          <button
-                            className={`px-7 py-2 m-1 ${
-                              animationState === "paused"
-                                ? "bg-gray-200"
-                                : "bg-white"
-                            } border border-gray-300 rounded shadow`}
-                            onClick={() => setAnimationState("paused")}
-                          >
-                            Pause
-                          </button>
-                          <button
-                            className={`px-7 py-2 m-1 ${
-                              animationState === "down"
-                                ? "bg-gray-200"
-                                : "bg-white"
-                            } border border-gray-300 rounded shadow`}
-                            onClick={() => setAnimationState("down")}
-                          >
-                            Scroll Down
-                          </button>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Color Picker For house*/}
-                    {!curtainColor && (
-                      <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
-                        {sections[selectedSection]?.map((color: Color) => (
-                          <div
-                            key={color.name}
-                            className="flex flex-col items-center"
-                          >
-                            <button
-                              className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
-                              style={{ backgroundColor: color.code }}
-                              onClick={() =>
-                                handleColorSelection(selectedSection, color)
-                              }
-                            ></button>
-                            <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
-                              {color.name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                    {/* Color Picker For Roller */}
-                    {!curtainColor && (
-                      <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
-                        {roller[selectedSection]?.map((color: Color) => (
-                          <div
-                            key={color.name}
-                            className="flex flex-col items-center"
-                          >
-                            <button
-                              className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
-                              style={{ backgroundColor: color.code }}
-                              onClick={() =>
-                                handleRollerSelection(selectedSection, color)
-                              }
-                            ></button>
-                            <span className="text-sm text-gray-700  sm:text-lg md:text-base 2xl:text-lg             ">
-                              {color.name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-
-                    {/* Color Picker For Curtain */}
-                    {curtainColor && (
-                      <div className="grid grid-cols-2 gap-2 my-10 flex-1 md:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ultraWide:grid-cols-5 wide:mb-20">
-                        {/* Dropdown to select curtain number */}
-                        <div className="pb-2 px-2 col-span-2 md:col-span-3 2xl:col-span-3 3xl:col-span-4 ultraWide:col-span-5">
-                          <select
-                            className="w-full h-10 pl-3 pr-6 text-base placeholder-gray-600 border rounded-lg appearance-none focus:shadow-outline text-center"
-                            value={selectedIndex}
-                            onChange={handleIndexChange}
-                          >
-                            {Array.from({ length: 23 }, (_, i) => (
-                              <option key={i} value={i}>
-                                Curtain {i + 1}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-
-                        {Curtain.map((color, index) => (
-                          <div
-                            key={index}
-                            className="flex flex-col items-center"
-                          >
-                            <button
-                              className="w-24 h-24 rounded-md border border-gray-200 shadow-md cursor-pointer mb-2"
-                              style={{ backgroundColor: color.code }}
-                              onClick={() => {
-                                updateCurtainColor(selectedIndex, color.code);
-                              }}
-                            ></button>
-                            <span className="text-sm text-gray-700 sm:text-lg md:text-base 2xl:text-lg">
-                              {color.name}
-                            </span>
-                          </div>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-                <div className="flex flex-col my-10 xl:my-auto px-2">
-                  {Object.keys(sections).map((section) => (
-                    <button
-                      key={section}
-                      className={`px-4 py-2 m-1 ${
-                        selectedSection === section ? "bg-gray-200" : "bg-white"
-                      } border border-gray-300 rounded shadow`}
-                      onClick={() => {
-                        setSelectedSection(section);
-                        showCurtainColor(false);
-                      }}
-                    >
-                      {section}
-                    </button>
-                  ))}
-                  <button
-                    className={`px-4 py-2 m-1 ${
-                      showRoller ? "bg-green-200" : "bg-slate-300"
-                    } border border-gray-300 rounded shadow`}
-                    onClick={() => {
-                      setShowRoller(!showRoller);
-                      showCurtainColor(false);
-                    }}
-                  >
-                    Roller Shutter
-                  </button>
-                </div>
-              </div>
+              {!curtinColor ? (
+                <ColorPickerSection
+                  selectedSection={selectedSection}
+                  data={showRoller ? roller : sections}
+                  handleSelection={showRoller ? handleRollerSelection : handleColorSelection}
+                />
+              ) : (
+                <CurtinPicker
+                  selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex}
+                  updateCurtinColor={updateCurtinColor}
+                  curtinsColor={curtinsColor}
+                />
+              )}
             </div>
-            <div
-              className="w-full  lg:max-h-[1000px] lg:w-1/2 2xl:w-2/3 wide:w-7/10 mx-auto"
-              ref={movingRef}
-              id="HouseVis"
-            >
-              <div className="w-full h-[400px] md:h-[550px] xl:h-full">
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "100%",
-                  }}
-                >
-                  <div>
-                    <InsideCurtain
-                      width={containerSize.width}
-                      height={containerSize.height}
-                    />
-                  </div>
 
-                  {showRoller && (
-                    <div id="Moving" className="z-0">
-                      <CurtainRoller
-                        CurtinsColor={CurtinsColor}
-                        slat={slat}
-                        width={containerSize.width}
-                        height={containerSize.height}
-                        translateY={translateY}
-                      />
-                    </div>
-                  )}
+            <SectionButtons
+              sections={sections}
+              selectedSection={selectedSection}
+              setSelectedSection={setSelectedSection}
+              setCurtinColor={setCurtinColor}
+              showRoller={showRoller}
+              setShowRoller={setShowRoller}
+              rollerKeys={Object.keys(roller)}
+            />
+          </div>
+        </div>
 
-                  <CanvasComponent
-                    door={doorColor}
-                    facia={facia}
-                    frontWall={frontWall}
-                    left={leftWallColor}
-                    lowerRoof={lowerRoofColor}
-                    pillars={pillarsColor}
-                    right={rightWallColor}
-                    roof={roofMainColor}
-                    width={containerSize.width}
-                    height={containerSize.height}
-                  />
-
-                  {showRoller && (
-                    <Static
-                      bottom={bottom}
-                      rail={rail}
-                      headBox={headBox}
-                      width={containerSize.width}
-                      height={containerSize.height}
-                    />
-                  )}
-                </div>
-              </div>
-            </div>
+        <div className="w-full lg:w-1/2 2xl:w-2/3" ref={movingRef} id="HouseVis">
+          <div className="w-full h-[400px] md:h-[550px] xl:h-full relative">
+            <InsideCurtin width={containerSize.width} height={containerSize.height} />
+            {showRoller && (
+              <CurtinRoller
+                CurtinsColor={curtinsColor}
+                slat={slat}
+                width={containerSize.width}
+                height={containerSize.height}
+                translateY={translateY}
+              />
+            )}
+            <CanvasComponent
+              door={doorColor}
+              facia={facia}
+              frontWall={frontWall}
+              left={leftWallColor}
+              lowerRoof={lowerRoofColor}
+              pillars={pillarsColor}
+              right={rightWallColor}
+              roof={roofMainColor}
+              width={containerSize.width}
+              height={containerSize.height}
+            />
+            {showRoller && (
+              <Static
+                bottom={bottom}
+                rail={rail}
+                headBox={headBox}
+                width={containerSize.width}
+                height={containerSize.height}
+              />
+            )}
           </div>
         </div>
       </div>
-      {/* Add the Send Data button */}
-      <div className="text-center my-4">
+
+      <div className="text-center my-10">
         <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded inline-flex items-center"
           onClick={generatePDF}
+          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg shadow transition"
         >
-          <svg
-            className="fill-current w-4 h-4 mr-2"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-          >
-            <path d="M13 8V0H7v8H0l10 12 10-12h-7z" />
-          </svg>
-          <span>Download Visualization For Attachment</span>
+          Download Visualization For Attachment
         </button>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }

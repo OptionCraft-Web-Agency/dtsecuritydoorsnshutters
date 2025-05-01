@@ -5,7 +5,7 @@ type CanvasComponentProps = {
   height: number;
 };
 
-const InsideCurtain: React.FC<CanvasComponentProps> = ({ width, height }) => {
+const InsideCurtin: React.FC<CanvasComponentProps> = ({ width, height }) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
@@ -68,4 +68,4 @@ const InsideCurtain: React.FC<CanvasComponentProps> = ({ width, height }) => {
   );
 };
 
-export default InsideCurtain;
+export default InsideCurtin;

@@ -38,13 +38,13 @@ const HomeHeroSection: React.FC = () => {
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <button
               onClick={navigateToServices}
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md shadow-lg transition-all duration-300"
+              className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-700 hover:shadow-xl ring-1 ring-transparent hover:ring-white"
             >
               Explore Our Products
             </button>
             <button
               onClick={navigateToContact}
-              className="px-8 py-3 bg-white text-blue-700 border border-blue-600 hover:bg-blue-50 font-semibold rounded-md shadow-lg transition-all duration-300"
+              className="px-8 py-3 bg-white text-blue-600 border border-blue-600 font-semibold rounded-md shadow-lg transition-all duration-300 transform hover:scale-105 hover:bg-blue-50 hover:shadow-xl ring-1 ring-transparent hover:ring-blue-600"
             >
               Request Free Estimate
             </button>

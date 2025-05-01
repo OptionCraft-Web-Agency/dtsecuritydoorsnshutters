@@ -14,16 +14,12 @@ const CallToAction: React.FC = () => {
 
   return (
     <section className="relative w-full h-[80vh] min-h-[400px] flex items-center justify-center overflow-hidden my-12">
-      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/RollerDoor2.png')" }}
       />
+      <div className="absolute inset-0 bg-black/20" />
 
-      {/* Background Overlay */}
-      <div className="absolute inset-0 bg-black/30" />
-
-      {/* Content */}
       <div className="relative z-10 text-center px-4">
         <h2 className="text-white text-3xl md:text-5xl font-extrabold mb-4 drop-shadow-lg">
           Secure Your Home With Us
@@ -32,17 +28,16 @@ const CallToAction: React.FC = () => {
           Contact us today to schedule a consultation or ask any questions.
         </p>
 
-        {/* Buttons */}
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
           <button
             onClick={navigateToServices}
-            className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+            className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-md shadow-md transition-all duration-300 transform hover:scale-105 hover:translate-y-[-2px] hover:bg-blue-700"
           >
             Learn More
           </button>
           <button
             onClick={navigateToContacts}
-            className="px-8 py-3 bg-white text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white font-semibold rounded-md shadow-md hover:shadow-lg transition-all duration-300"
+            className="px-8 py-3 bg-white text-blue-700 border border-blue-600 font-semibold rounded-md shadow-md transition-all duration-300 transform hover:scale-105 hover:translate-y-[-2px] hover:bg-blue-600 hover:text-white"
           >
             Contact Us
           </button>

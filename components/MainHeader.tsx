@@ -51,43 +51,39 @@ export default function MainHeader() {
       </button>
 
       {/* Desktop Menu */}
-      <ul className="hidden lg:flex gap-8 uppercase text-gray-700 text-base md:text-lg">
-        {/* Home */}
+      <ul className="hidden lg:flex items-center gap-8 uppercase text-gray-700 text-base md:text-lg">
         <Link href="/">
-          <li
-            className={`cursor-pointer px-2 py-1 transition-all rounded-md ${
-              router.pathname === "/" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
-            }`}
-          >
+          <li className={`cursor-pointer px-2 py-1 rounded-md transition-all ${
+            router.pathname === "/" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
+          }`}>
             Home
           </li>
         </Link>
 
-        {/* About Us */}
         <Link href="/AboutUs">
-          <li
-            className={`cursor-pointer px-2 py-1 transition-all rounded-md ${
-              router.pathname === "/AboutUs" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
-            }`}
-          >
+          <li className={`cursor-pointer px-2 py-1 rounded-md transition-all ${
+            router.pathname === "/AboutUs" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
+          }`}>
             About Us
           </li>
         </Link>
 
-        {/* Our Services Dropdown */}
         <div className="relative group">
-          <button className="uppercase text-base md:text-lg text-gray-700 px-2 py-1 hover:text-blue-600 hover:bg-gray-100 rounded-md transition-all">
+          <Link
+            href="/Services"
+            className={`uppercase text-base md:text-lg px-2 py-1 rounded-md transition-all ${
+              router.pathname === "/Services" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
+            }`}
+          >
             Our Services
-          </button>
+          </Link>
           <div className="absolute top-full left-0 mt-2 bg-white border rounded-md shadow-lg opacity-0 group-hover:opacity-100 group-hover:translate-y-0 translate-y-2 transition-all duration-200 z-50 min-w-[200px]">
             <ul className="flex flex-col p-2">
               {services.map(({ name, link }) => (
                 <Link key={name} href={link}>
-                  <li
-                    className={`px-4 py-2 text-sm hover:bg-gray-100 rounded-md transition ${
-                      router.pathname === link ? "text-blue-600 font-semibold" : "text-gray-700"
-                    }`}
-                  >
+                  <li className={`px-4 py-2 text-sm rounded-md transition ${
+                    router.pathname === link ? "text-blue-600 font-semibold" : "text-gray-700 hover:bg-gray-100"
+                  }`}>
                     {name}
                   </li>
                 </Link>
@@ -96,24 +92,18 @@ export default function MainHeader() {
           </div>
         </div>
 
-        {/* Contact Us */}
         <Link href="/ContactUs">
-          <li
-            className={`cursor-pointer px-2 py-1 transition-all rounded-md ${
-              router.pathname === "/ContactUs" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
-            }`}
-          >
+          <li className={`cursor-pointer px-2 py-1 rounded-md transition-all ${
+            router.pathname === "/ContactUs" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
+          }`}>
             Contact Us
           </li>
         </Link>
 
-        {/* Color Visualization */}
         <Link href="/Visualisation">
-          <li
-            className={`cursor-pointer px-2 py-1 transition-all rounded-md ${
-              router.pathname === "/Visualisation" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
-            }`}
-          >
+          <li className={`cursor-pointer px-2 py-1 rounded-md transition-all ${
+            router.pathname === "/Visualisation" ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
+          }`}>
             Color Visualization
           </li>
         </Link>
@@ -123,7 +113,6 @@ export default function MainHeader() {
       <AnimatePresence>
         {isMenuOpen && (
           <>
-            {/* Background Dim */}
             <motion.div
               className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
@@ -131,8 +120,6 @@ export default function MainHeader() {
               exit={{ opacity: 0 }}
               onClick={closeMenu}
             />
-
-            {/* Slide Menu */}
             <motion.ul
               className="fixed top-0 right-0 w-3/4 max-w-sm h-full bg-white flex flex-col gap-6 p-6 pt-24 text-lg font-semibold text-gray-800 z-50 shadow-lg"
               initial={{ x: "100%" }}
@@ -142,29 +129,20 @@ export default function MainHeader() {
             >
               {menuItems.map(({ text, link }) => (
                 <Link key={text} href={link} onClick={closeMenu}>
-                  <li
-                    className={`px-4 py-2 rounded-md transition ${
-                      router.pathname === link
-                        ? "text-blue-600 font-semibold underline underline-offset-4"
-                        : "hover:text-blue-600 hover:bg-gray-100"
-                    }`}
-                  >
+                  <li className={`px-4 py-2 rounded-md transition ${
+                    router.pathname === link ? "text-blue-600 font-semibold underline underline-offset-4" : "hover:text-blue-600 hover:bg-gray-100"
+                  }`}>
                     {text}
                   </li>
                 </Link>
               ))}
 
-              {/* Our Services (Mobile List) */}
               <li className="px-4 pt-2 text-gray-500 uppercase">Our Services</li>
               {services.map(({ name, link }) => (
                 <Link key={name} href={link} onClick={closeMenu}>
-                  <li
-                    className={`pl-6 pr-4 py-2 text-sm rounded-md transition ${
-                      router.pathname === link
-                        ? "text-blue-600 font-semibold underline"
-                        : "hover:bg-gray-100"
-                    }`}
-                  >
+                  <li className={`pl-6 pr-4 py-2 text-sm rounded-md transition ${
+                    router.pathname === link ? "text-blue-600 font-semibold underline" : "hover:bg-gray-100"
+                  }`}>
                     {name}
                   </li>
                 </Link>

@@ -1,29 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import { motion, Variants } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 interface GalleryProps {
   images: (StaticImageData | string)[];
 }
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, staggerChildren: 0.1 },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 20 },
+const fadeInVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 40, transition: { duration: 0.5 } },
 };
 
 const Gallery: React.FC<GalleryProps> = ({ images }) => {
   const [selected, setSelected] = useState<string | null>(null);
+  const sectionRef = useRef(null);
+  const sectionInView = useInView(sectionRef, { once: false, amount: 0.2 });
+  const sectionControls = useAnimation();
+
+  useEffect(() => {
+    if (sectionInView) {
+      sectionControls.start("visible");
+    } else {
+      sectionControls.start("hidden");
+    }
+  }, [sectionInView, sectionControls]);
 
   useEffect(() => {
     if (selected) {
@@ -31,7 +33,6 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
     } else {
       document.body.classList.remove("overflow-hidden");
     }
-
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
@@ -39,30 +40,43 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
 
   return (
     <motion.section
+      ref={sectionRef}
       className="my-16 px-4"
+      variants={fadeInVariants}
       initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }}
-      variants={containerVariants}
+      animate={sectionControls}
     >
       <motion.h2
         className="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-8"
-        variants={itemVariants}
+        variants={fadeInVariants}
       >
         Gallery
       </motion.h2>
 
-      <motion.div
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-        variants={containerVariants}
-      >
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {images.map((img, i) => {
+          const cardRef = useRef(null);
+          const inView = useInView(cardRef, { once: false, amount: 0.3 });
+          const controls = useAnimation();
+
+          useEffect(() => {
+            if (inView) {
+              controls.start("visible");
+            } else {
+              controls.start("hidden");
+            }
+          }, [inView, controls]);
+
           const src = typeof img === "string" ? img : img.src;
+
           return (
             <motion.div
               key={i}
-              variants={itemVariants}
+              ref={cardRef}
               className="group cursor-pointer overflow-hidden rounded-lg shadow-lg"
+              variants={fadeInVariants}
+              initial="hidden"
+              animate={controls}
               onClick={() => setSelected(src)}
               whileHover={{ scale: 1.05 }}
             >
@@ -76,11 +90,11 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
             </motion.div>
           );
         })}
-      </motion.div>
+      </div>
 
       {selected && (
         <motion.div
-          className="fixed inset-0 flex items-center justify-center z-50"
+          className="fixed inset-0 flex items-center justify-center z-50 bg-black/70"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -88,6 +102,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
         >
           <div
             className="relative w-[90vw] h-[90vh] max-w-screen max-h-screen"
+            onClick={(e) => e.stopPropagation()}
           >
             <button
               className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/40 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/60 transition"
@@ -106,7 +121,6 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
           </div>
         </motion.div>
       )}
-
     </motion.section>
   );
 };

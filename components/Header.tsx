@@ -17,7 +17,7 @@ const iconAnimation = {
 
 export default function Header() {
   return (
-    <header className="sticky top-0 w-full z-20 bg-[#B3B3B3] px-4 md:px-10 py-2 md:py-5 flex flex-wrap items-center justify-between text-white text-sm md:text-lg">
+    <header className="sticky top-0 w-full z-20 bg-blue-600 px-4 md:px-10 py-1 md:py-3 flex flex-wrap items-center justify-between text-white text-sm md:text-base">
       {/* Left: Phone Numbers */}
       <div className="flex flex-wrap items-center gap-4 md:gap-6">
         {phoneNumbers.map(({ number }, idx) => (
@@ -27,7 +27,7 @@ export default function Header() {
             {...iconAnimation}
             className="flex items-center gap-2 hover:opacity-80 transition"
           >
-            <FontAwesomeIcon icon={faPhone} className="text-lg md:text-2xl" />
+            <FontAwesomeIcon icon={faPhone} className="text-base md:text-lg" />
             <span>{number}</span>
           </motion.a>
         ))}
@@ -41,12 +41,12 @@ export default function Header() {
         {...iconAnimation}
         className="flex items-center gap-2 hover:opacity-80 transition mt-2 md:mt-0"
       >
-        <p className="hidden md:block uppercase text-sm md:text-lg">
+        <p className="hidden md:block uppercase text-xs md:text-base">
           Contact With Us
         </p>
         <FontAwesomeIcon
           icon={faFacebookF}
-          className="rounded-lg border border-white p-2 text-lg md:text-2xl"
+          className="rounded-lg border border-white p-2 text-base md:text-xl"
         />
       </motion.a>
     </header>

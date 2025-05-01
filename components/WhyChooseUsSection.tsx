@@ -1,128 +1,142 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faMoneyBillWave,
-  faShieldAlt,
-  faCogs,
-  faGlobeAsia,
-  faStar,
-  faHeadset,
+  faClock,
+  faRocket,
+  faShieldHeart,
+  faSmile,
 } from "@fortawesome/free-solid-svg-icons";
+import {
+  motion,
+  useAnimation,
+  useInView,
+} from "framer-motion";
 
-const features = [
+interface Feature {
+  icon: any;
+  color: string;
+  title: string;
+  description: string;
+}
+
+const features: Feature[] = [
   {
-    icon: faMoneyBillWave,
-    title: "Competitive Pricing",
+    icon: faShieldHeart,
+    color: "bg-blue-100 text-blue-600",
+    title: "Trusted Security Solutions",
     description:
-      "Our pricing strategy is transparent and offers you the best value for our products and services.",
+      "Our doors and shutters are crafted to meet Australian standards, ensuring maximum protection for your home or business.",
   },
   {
-    icon: faShieldAlt,
-    title: "Satisfaction Guarantee",
+    icon: faClock,
+    color: "bg-purple-100 text-purple-600",
+    title: "Fast, Reliable Installation",
     description:
-      "Rest easy with our satisfaction guarantee, ensuring peace of mind with every purchase.",
+      "We pride ourselves on efficient turnarounds without compromising quality — from consultation to completion.",
   },
   {
-    icon: faCogs,
-    title: "Skilled Craftsmanship",
+    icon: faRocket,
+    color: "bg-red-100 text-red-600",
+    title: "Modern & Durable Designs",
     description:
-      "Our expert technicians ensure the highest standards of installation with deep industry experience.",
+      "Built to last with high-grade materials, our products combine style, strength, and long-term performance.",
   },
   {
-    icon: faGlobeAsia,
-    title: "Locally Owned",
+    icon: faSmile,
+    color: "bg-green-100 text-green-600",
+    title: "Customer-Focused Service",
     description:
-      "Dedicated to supporting the local economy, proudly Australian owned and operated.",
-  },
-  {
-    icon: faStar,
-    title: "Assured Quality",
-    description:
-      "We stand behind the excellence of our products, extensively tested to meet Australian standards.",
-  },
-  {
-    icon: faHeadset,
-    title: "Superior Service",
-    description:
-      "Our customer service team is ready to support you every step of the way.",
+      "From the first quote to after-installation support, we prioritize your comfort, preferences, and satisfaction.",
   },
 ];
 
-// Animation Variants
-const fadeUpVariants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
-  },
-  exit: { opacity: 0, y: 50, transition: { duration: 0.6 } },
+// ✅ Animation Variant
+const fadeInUpVariant = {
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  hidden: { opacity: 0, y: 40, transition: { duration: 0.6 } },
 };
 
-const containerVariants = {
-  hidden: {},
-  visible: {
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-};
+// ✅ Card Component
+const FeatureCard: React.FC<{ feature: Feature }> = ({ feature }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { amount: 0.3 });
+  const controls = useAnimation();
 
-const WhyChooseUsSection: React.FC = () => {
+  useEffect(() => {
+    controls.start(inView ? "visible" : "hidden");
+  }, [inView, controls]);
+
   return (
-    <motion.section
+    <motion.div
+      ref={ref}
+      animate={controls}
       initial="hidden"
-      whileInView="visible"
-      exit="exit"
-      variants={fadeUpVariants}
-      viewport={{ once: false, amount: 0.2 }}
-      className="w-full py-20 px-6 bg-gradient-to-b from-white via-blue-50 to-white"
+      variants={fadeInUpVariant}
+      className="flex items-start bg-white/60 backdrop-blur-md border border-white rounded-xl p-5 shadow-xl hover:scale-[1.015] transition-transform duration-300"
     >
-      <div className="max-w-7xl mx-auto text-center">
+      <div
+        className={`w-14 h-14 flex items-center justify-center rounded-xl mr-4 ${feature.color} shadow-md`}
+      >
+        <FontAwesomeIcon icon={feature.icon} className="text-2xl" />
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold text-gray-800 mb-1">
+          {feature.title}
+        </h3>
+        <p className="text-sm text-gray-600">{feature.description}</p>
+      </div>
+    </motion.div>
+  );
+};
+
+const WhyChooseUsCardsSection = () => {
+  return (
+    <section className="py-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.h2
-          variants={fadeUpVariants}
-          className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-6"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ amount: 0.4 }}
+          variants={fadeInUpVariant}
+          className="text-4xl font-extrabold text-center text-gray-800 mb-16 tracking-tight"
         >
           Why Choose Us?
         </motion.h2>
 
-        <motion.p
-          variants={fadeUpVariants}
-          className="text-gray-500 text-lg md:text-xl mb-16 max-w-3xl mx-auto"
-        >
-          We deliver premium solutions with a customer-first approach to secure and enhance your home.
-        </motion.p>
+        <div className="flex flex-col lg:flex-row items-center gap-12">
+          {/* Left: Feature Cards */}
+          <div className="w-full lg:w-1/2 space-y-6">
+            {features.map((feature, idx) => (
+              <FeatureCard key={idx} feature={feature} />
+            ))}
+          </div>
 
-        <motion.div
-          variants={containerVariants}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {features.map((feature, index) => (
-            <motion.div
-              key={index}
-              variants={fadeUpVariants}
-              className="group p-8 bg-white rounded-2xl shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 text-center flex flex-col items-center justify-center"
-            >
-              <FontAwesomeIcon
-                icon={feature.icon}
-                size="3x"
-                className="text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-300"
+          {/* Right: Image */}
+          <motion.div
+            className="w-full lg:w-1/2"
+            initial="hidden"
+            whileInView="visible"
+            exit="hidden"
+            variants={fadeInUpVariant}
+            viewport={{ once: false, amount: 0.3 }}
+          >
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-[6px] border-white hover:scale-105 transition-transform duration-500">
+              <Image
+                src="/image/CurtinImage/CurtinImage1.jpg"
+                alt="Why Choose Us"
+                width={600}
+                height={500}
+                className="object-cover w-full h-full"
               />
-              <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-blue-600 transition-colors">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed">
-                {feature.description}
-              </p>
-            </motion.div>
-          ))}
-        </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </motion.section>
+    </section>
   );
 };
 
-export default WhyChooseUsSection;
+export default WhyChooseUsCardsSection;

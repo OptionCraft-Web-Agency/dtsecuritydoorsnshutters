@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useAnimation, useInView } from "framer-motion";
 
 const ContactUsForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -17,8 +18,8 @@ const ContactUsForm: React.FC = () => {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
@@ -29,34 +30,43 @@ const ContactUsForm: React.FC = () => {
 
     const response = await fetch("/api/sendEmail", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
 
     setIsSubmitting(false);
 
     if (response.ok) {
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-        message: "",
-      });
+      setFormData({ name: "", email: "", phone: "", address: "", message: "" });
       alert("Your message has been sent successfully!");
     } else {
       alert("There was an error sending your message. Please try again.");
     }
   };
 
+  const formRef = useRef(null);
+  const isInView = useInView(formRef, { amount: 0.4 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    controls.start(isInView ? "visible" : "hidden");
+  }, [isInView, controls]);
+
   return (
     <section
       className="w-full bg-cover bg-center bg-no-repeat py-20"
       style={{ backgroundImage: "url('/RollerDoor2.png')" }}
     >
-      <div className="bg-white/80 backdrop-blur-md rounded-3xl max-w-3xl mx-auto p-8 shadow-lg">
+      <motion.div
+        ref={formRef}
+        animate={controls}
+        initial="hidden"
+        variants={{
+          hidden: { opacity: 0, y: 40 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+        }}
+        className="bg-white/80 backdrop-blur-md rounded-3xl max-w-3xl mx-auto p-8 shadow-lg"
+      >
         <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-8">
           Enquire Form
         </h2>
@@ -121,7 +131,7 @@ const ContactUsForm: React.FC = () => {
             {isSubmitting ? "Sending..." : "Send"}
           </button>
         </form>
-      </div>
+      </motion.div>
     </section>
   );
 };

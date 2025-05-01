@@ -1,16 +1,18 @@
 "use client";
 
 import Head from "next/head";
-import HeroSection from "@/components/HeroSection";
-import InfoSection from "@/components/InfoSection";
-import AccessToolsSection from "@/components/AccessToolsSection";
-import Gallery from "@/components/Gallery";
 import {
   faShieldAlt,
   faBolt,
   faVolumeDown,
   faPalette,
 } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
+
+import HeroSection from "@/components/HeroSection";
+const InfoSection = dynamic(() => import("@/components/InfoSection"));
+const AccessToolsSection = dynamic(() => import("@/components/AccessToolsSection"));
+const Gallery = dynamic(() => import("@/components/Gallery"));
 
 import RS1 from "@/public/image/RollerShuttersImage/RollerShuttersImage1.jpg";
 import RS2 from "@/public/image/RollerShuttersImage/RollerShuttersImage2.jpg";

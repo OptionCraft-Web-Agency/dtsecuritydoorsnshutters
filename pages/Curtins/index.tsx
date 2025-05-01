@@ -1,11 +1,11 @@
 import Head from "next/head";
 import React, { useState } from "react";
-import Image from "next/image";
+import dynamic from "next/dynamic";
 
 import HeroSection from "@/components/HeroSection";
-import Gallery from "@/components/Gallery";
-import TabsComponent from "@/components/TabsComponent";
-import CurtinInfo from "@/components/CurtinInfo";
+const Gallery = dynamic(() => import("@/components/Gallery"));
+const TabsComponent = dynamic(() => import("@/components/TabsComponent"));
+const CurtinInfo = dynamic(() => import("@/components/CurtinInfo"));
 
 import {
   categoryDetails,
@@ -106,7 +106,6 @@ export default function CurtinsPage() {
 
         {/* Info Section */}
         <div className="mt-10 grid grid-cols-1 md:grid-cols-5 gap-12">
-          {/* Left Column: Text Info (2 of 5 columns) */}
           <div className="md:col-span-2">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">{activeTab}</h2>
             <p className="text-gray-700 mb-6">{currentCategory.description}</p>
@@ -126,7 +125,6 @@ export default function CurtinsPage() {
             </div>
           </div>
 
-          {/* Right Column: Color Options (3 of 5 columns) */}
           <div className="md:col-span-3">
             <h3 className="text-xl font-semibold mb-4">Color Options</h3>
             <CurtinInfo

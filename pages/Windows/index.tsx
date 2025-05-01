@@ -1,8 +1,4 @@
 import Head from "next/head";
-import HeroSection from "@/components/HeroSection";
-import InfoSection from "@/components/InfoSection";
-import Gallery from "@/components/Gallery";
-
 import {
   faThermometerHalf,
   faLock,
@@ -10,6 +6,11 @@ import {
   faFan,
   faLeaf,
 } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
+
+import HeroSection from "@/components/HeroSection";
+const InfoSection = dynamic(() => import("@/components/InfoSection"));
+const Gallery = dynamic(() => import("@/components/Gallery"));
 
 import WindowImage1 from "@/public/image/WindowImage/WindowImage1.jpg";
 import WindowImage2 from "@/public/image/WindowImage/WindowImage2.jpg";

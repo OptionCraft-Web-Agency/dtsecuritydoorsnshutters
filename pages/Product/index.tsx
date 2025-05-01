@@ -1,9 +1,10 @@
 import Head from "next/head";
 import React from "react";
+import dynamic from "next/dynamic";
 
 import HeroSection from "@/components/HeroSection";
-import InfoSection from "@/components/InfoSection";
-import ProductList from "@/components/ProductList";
+const InfoSection = dynamic(() => import("@/components/InfoSection"));
+const ProductList = dynamic(() => import("@/components/ProductList"));
 
 import productsData from "../../data/Product.json";
 

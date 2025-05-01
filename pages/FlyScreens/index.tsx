@@ -7,10 +7,11 @@ import {
   faShieldAlt,
   faSprayCan,
 } from "@fortawesome/free-solid-svg-icons";
+import dynamic from "next/dynamic";
 
 import HeroSection from "@/components/HeroSection";
-import InfoSection from "@/components/InfoSection";
-import Gallery from "@/components/Gallery";
+const InfoSection = dynamic(() => import("@/components/InfoSection"));
+const Gallery = dynamic(() => import("@/components/Gallery"));
 
 import FS1 from "@/public/image/FlyScreenImage/FlyScreenImage1.jpg";
 import FS2 from "@/public/image/FlyScreenImage/FlyScreenImage2.jpg";

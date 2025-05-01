@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import dynamic from "next/dynamic";
 
-// Components
 import HomeHeroSection from "@/components/HomeHeroSection";
 const OurServices = dynamic(() => import("@/components/OurServices"));
 const CallToAction = dynamic(() => import("@/components/CallToAction"));

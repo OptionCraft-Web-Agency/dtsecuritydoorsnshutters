@@ -22,7 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
 
   return (
-    <div className="border rounded shadow-sm p-4 flex flex-col items-center">
+    <div className="border rounded shadow-sm p-4 flex flex-col items-center justify-between">
       <div className="w-[95%] relative h-64">
         <Image src={imageUrl} alt={name} layout="fill" objectFit="contain" />
       </div>

@@ -1,455 +1,61 @@
+"use client";
+
 import Head from "next/head";
-import React, { useState, useEffect, CSSProperties, useRef } from "react";
-import useOnScreen from "@/components/useOnScreen";
-import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import HeroSection from "@/components/HeroSection";
+import InfoSection from "@/components/InfoSection";
+import AccessToolsSection from "@/components/AccessToolsSection";
+import Gallery from "@/components/Gallery";
 import {
   faShieldAlt,
   faBolt,
   faVolumeDown,
   faPalette,
-  faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 
-import { motion } from "framer-motion";
-import { useInView } from "react-intersection-observer";
+import RS1 from "@/public/image/RollerShuttersImage/RollerShuttersImage1.jpg";
+import RS2 from "@/public/image/RollerShuttersImage/RollerShuttersImage2.jpg";
+import RS3 from "@/public/image/RollerShuttersImage/RollerShuttersImage3.jpg";
+import RS4 from "@/public/image/RollerShuttersImage/RollerShuttersImage4.jpg";
+import RS5 from "@/public/image/RollerShuttersImage/RollerShuttersImage5.jpg";
 
-import Header from "@/components/Header";
-import MainHeader from "@/components/MainHeader";
-import Footer from "@/components/Footer";
-import Link from "next/link";
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 50 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-};
-
-const RollerShuttersTitle: React.FC = () => {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
-
-  const sectionStyle: CSSProperties = {
-    position: "relative",
-    width: "100%",
-    height: "calc(100vh - 80px)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "white",
-    fontWeight: "bold",
-    textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
-    background: `linear-gradient(180deg, rgba(136, 136, 138, 0.54) 0%, rgba(0, 87, 255, 0.29) 100%), url('/RollerDoor3.png') center/cover no-repeat`,
-  };
-
-  const textStyle: CSSProperties = {
-    fontSize: "clamp(2rem, 4vw, 7vw)", // Ensures a minimum font size of 2rem, scales with viewport width, max 7vw
-  };
-
-  return (
-    <motion.div
-      ref={ref}
-      variants={fadeInUp}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      style={sectionStyle}
-    >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          width: "100%",
-          height: "100%",
-        }}
-      >
-        <span style={textStyle}>Roller Shutters</span>
-      </div>
-    </motion.div>
-  );
-};
-
-const WhyRollerShutters: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const sectionStyle: CSSProperties = {
-    fontFamily: '"Inter", sans-serif',
-    color: "#333",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: isMobile ? "2rem" : "3rem",
-    textAlign: "center",
-  };
-
-  const titleStyle: CSSProperties = {
-    fontSize: isMobile ? "1.5rem" : "2.5rem",
-    fontWeight: "bold",
-    marginBottom: "1rem",
-  };
-
-  const descriptionStyle: CSSProperties = {
-    marginBottom: "2rem",
-    fontSize: isMobile ? "0.9rem" : "1rem",
-    maxWidth: "600px",
-    padding: isMobile ? "0 1rem" : "0",
-  };
-
-  const listStyle: CSSProperties = {
-    listStyle: "none",
-    padding: 0,
-    display: "grid",
-    gridTemplateColumns: isMobile
-      ? "1fr"
-      : "repeat(auto-fit, minmax(140px, 1fr))",
-    gap: "1rem",
-    maxWidth: "800px",
-  };
-
-  const listItemStyle: CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    fontSize: "1rem",
-    marginBottom: isMobile ? "1rem" : "0",
-  };
-
-  const iconStyle: CSSProperties = {
-    backgroundColor: "#eeeeee",
-    borderRadius: "50%",
-    width: "3rem",
-    height: "3rem",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: "0.5rem",
-    fontSize: "1.5rem",
-  };
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        ...sectionStyle,
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 2s ease-in-out",
-      }}
-    >
-      <h2 style={titleStyle}>Why Roller Shutters?</h2>
-      <p style={descriptionStyle}>
-        Discover the benefits of roller shutters for security, energy
-        efficiency, and more:
-      </p>
-      <ul style={listStyle}>
-        <li style={listItemStyle}>
-          <div style={iconStyle}>
-            <FontAwesomeIcon icon={faShieldAlt} />
-          </div>
-          <strong>Enhanced Security</strong> Robust construction deters
-          break-ins.
-        </li>
-        <li style={listItemStyle}>
-          <div style={iconStyle}>
-            <FontAwesomeIcon icon={faBolt} />
-          </div>
-          <strong>Energy Efficiency</strong> Insulates against heat and cold.
-        </li>
-        <li style={listItemStyle}>
-          <div style={iconStyle}>
-            <FontAwesomeIcon icon={faVolumeDown} />
-          </div>
-          <strong>Noise Reduction</strong> Cuts down external noise effectively.
-        </li>
-        <li style={listItemStyle}>
-          <div style={iconStyle}>
-            <FontAwesomeIcon icon={faPalette} />
-          </div>
-          <strong>Customization</strong> Variety of styles to complement your
-          home.
-        </li>
-      </ul>
-    </div>
-  );
-};
-
-const AccessToolsSection: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const handleCardMouseOver = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    e.currentTarget.style.transform = "scale(1.05)";
-  };
-
-  const handleCardMouseOut = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    e.currentTarget.style.transform = "scale(1)";
-  };
-
-  const sectionStyle: CSSProperties = {
-    display: "flex",
-    flexDirection: isMobile ? "column" : "row",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "2rem",
-    background: "linear-gradient(to right, rgb(0, 87, 255), rgb(0, 44, 128))",
-    color: "white",
-    textAlign: isMobile ? "center" : "left",
-    marginTop: "5rem",
-    marginBottom: "5rem",
-  };
-
-  const headerStyle: CSSProperties = {
-    flex: 1,
-    fontSize: isMobile ? "6vw" : "2rem",
-    fontWeight: "bold",
-    textAlign: "left",
-    margin: isMobile ? "0" : "1rem",
-  };
-
-  const cardContainerStyle: CSSProperties = {
-    display: "flex",
-    flexDirection: isMobile ? "column" : "row",
-    justifyContent: "center",
-    gap: "1rem",
-    width: isMobile ? "100%" : "auto",
-    marginTop: isMobile ? "5vw" : "0",
-  };
-
-  const cardStyle: CSSProperties = {
-    textAlign: "center",
-    padding: "1rem",
-    borderRadius: "8px",
-    backgroundColor: "#ffffff",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
-    width: isMobile ? "90%" : "250px", // Adjust width based on screen size
-    margin: "0 auto", // Automatically adjust margin to center cards
-    transition: "transform 0.2s ease-in-out",
-  };
-
-  const iconStyle: CSSProperties = {
-    fontSize: isMobile ? "6vw" : "3rem", // Adjust icon size for better visibility
-  };
-
-  const buttonStyle: CSSProperties = {
-    display: "inline-flex", // Use inline-flex to ensure button text and icon align correctly
-    alignItems: "center",
-    justifyContent: "center",
-    padding: "0.5rem 1rem",
-    fontSize: isMobile ? "3.5vw" : "1rem",
-    fontWeight: "bold",
-    color: "rgb(0, 87, 255)",
-    border: "2px solid white",
-    borderRadius: "5px",
-    cursor: "pointer",
-    textDecoration: "none",
-    backgroundColor: "transparent",
-    transition: "all 0.2s",
-    gap: "0.5rem",
-  };
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        ...sectionStyle,
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 2s ease-in-out",
-      }}
-    >
-      <div style={headerStyle}>Design & Secure Your Space</div>
-      <div style={cardContainerStyle}>
-        {/* Contact Us card */}
-        <Link href="/Contact" passHref legacyBehavior>
-          <a
-            style={cardStyle}
-            onMouseEnter={(e) => handleCardMouseOver(e as any)}
-            onMouseLeave={(e) => handleCardMouseOut(e as any)}
-          >
-            <div style={buttonStyle}>
-              <FontAwesomeIcon icon={faInfoCircle} style={iconStyle} />
-              <span>Contact Us</span>
-            </div>
-          </a>
-        </Link>
-        {/* Color Visualization card */}
-        <Link href="/Visualisation" passHref legacyBehavior>
-          <a
-            style={cardStyle}
-            onMouseEnter={(e) => handleCardMouseOver(e as any)}
-            onMouseLeave={(e) => handleCardMouseOut(e as any)}
-          >
-            <div style={buttonStyle}>
-              <FontAwesomeIcon icon={faPalette} style={iconStyle} />
-              <span>Color Visualization</span>
-            </div>
-          </a>
-        </Link>
-      </div>
-    </div>
-  );
-};
-
-const images = [
-  "/image/RollerShuttersImage/RollerShuttersImage1.jpg",
-  "/image/RollerShuttersImage/RollerShuttersImage2.jpg",
-  "/image/RollerShuttersImage/RollerShuttersImage3.jpg",
-  "/image/RollerShuttersImage/RollerShuttersImage4.jpg",
-  "/image/RollerShuttersImage/RollerShuttersImage5.jpg",
+const benefits = [
+  {
+    icon: faShieldAlt,
+    title: "Enhanced Security",
+    description: "Robust construction deters break-ins.",
+  },
+  {
+    icon: faBolt,
+    title: "Energy Efficiency",
+    description: "Insulates against heat and cold.",
+  },
+  {
+    icon: faVolumeDown,
+    title: "Noise Reduction",
+    description: "Cuts down external noise effectively.",
+  },
+  {
+    icon: faPalette,
+    title: "Customization",
+    description: "Variety of styles to complement your home.",
+  },
 ];
 
-const Gallery: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Set initial state based on the window size
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const galleryStyle = {
-    display: "grid",
-    gridTemplateColumns: isMobile
-      ? "repeat(auto-fit, minmax(150px, 1fr))"
-      : "repeat(4, 1fr)",
-    gap: "10px",
-    padding: isMobile ? "10px" : "20px",
-  };
-
-  const galleryImageStyle: CSSProperties = {
-    width: "100%",
-    height: "200px", // Set a fixed height for all images
-    objectFit: "cover", // This will cover the area without stretching the image
-    opacity: 1,
-    transition: "opacity 0.3s ease",
-  };
-
-  const titleStyle: CSSProperties = {
-    textAlign: "center",
-    margin: "0 0 20px",
-    color: "#333",
-    fontSize: isMobile ? "8vw" : "3rem",
-    fontWeight: "bold",
-    marginTop: "2vw",
-  };
-
-  const handleClick = (image: string) => {
-    setSelectedImage(image);
-  };
-
-  const handleClose = () => {
-    setSelectedImage(null);
-  };
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: "opacity 2s ease-in-out",
-      }}
-    >
-      <h2 style={titleStyle}>Roller Shutters Gallery</h2>
-      <div style={galleryStyle}>
-        {images.map((image, index) => (
-          <div
-            key={index}
-            onClick={() => handleClick(image)}
-            style={{ cursor: "pointer" }}
-          >
-            <Image
-              src={image}
-              alt={`Roller Shutter ${index + 1}`}
-              width={200}
-              height={200}
-              style={galleryImageStyle}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            />
-          </div>
-        ))}
-      </div>
-      {selectedImage && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            zIndex: 1000,
-          }}
-          onClick={handleClose}
-        >
-          <Image
-            src={selectedImage}
-            alt="Enlarged view"
-            width={800}
-            height={600}
-            style={{ maxWidth: "90%", maxHeight: "90%" }}
-          />
-        </div>
-      )}
-    </div>
-  );
-};
+const images = [RS1, RS2, RS3, RS4, RS5];
 
 export default function RollerShutters() {
   return (
     <>
       <Head>
-        <title>
-          DT Security Doors & Shutters - Roller Shutters in Melbourne
-        </title>
+        <title>DT Security Doors & Shutters – Roller Shutters in Melbourne</title>
         <meta
           name="description"
-          content="Enhance your home's security and energy efficiency with our custom-designed roller shutters. Discover the benefits of our roller shutters in Melbourne today."
+          content="Enhance your home's security and energy efficiency with our custom-designed roller shutters in Melbourne."
         />
-
-        <meta
-          property="og:title"
-          content="Roller Shutters - DT Security Doors & Shutters"
-        />
+        <meta property="og:title" content="Roller Shutters – DT Security Doors & Shutters" />
         <meta
           property="og:description"
-          content="Secure and beautify your home with our top-quality roller shutters, designed for Melbourne homes. Learn more about our energy-efficient roller shutters now."
+          content="Secure and beautify your home with our premium roller shutters, tailored for Melbourne residences."
         />
         <meta
           property="og:image"
@@ -459,19 +65,22 @@ export default function RollerShutters() {
           property="og:url"
           content="https://dtsecuritydoorsandshutters.com.au/RollerShutters"
         />
+        <meta property="og:type" content="website" />
         <meta name="twitter:title" content="Roller Shutters by DT Security Doors & Shutters" />
         <meta
           name="twitter:description"
-          content="Maximize your home's security and style with our custom roller shutters in Melbourne. Click to find out more."
+          content="Discover our energy-efficient, secure roller shutters designed for Melbourne homes."
         />
       </Head>
-      <Header />
-      <MainHeader />
-      <RollerShuttersTitle />
-      <WhyRollerShutters />
+
+      <HeroSection title="Roller Shutters" />
+      <InfoSection
+        title="Why Roller Shutters?"
+        description="Discover the benefits of roller shutters for security, energy efficiency, and more."
+        items={benefits}
+      />
       <AccessToolsSection />
-      <Gallery />
-      <Footer />
+      <Gallery images={images} />
     </>
   );
 }

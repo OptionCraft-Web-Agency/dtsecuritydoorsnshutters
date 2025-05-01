@@ -1,13 +1,49 @@
 import Head from "next/head";
 import React, { useState, useEffect, CSSProperties, useRef } from "react";
 import Image from "next/image";
-import Header from "@/components/Header";
-import MainHeader from "@/components/MainHeader";
-import Footer from "@/components/Footer";
+
+import Gallery from "@/components/Gallery";
 import useOnScreen from "@/components/useOnScreen";
 
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+
+import CurtinImage1  from "@/public/image/CurtinImage/CurtinImage1.jpg";
+import CurtinImage2  from "@/public/image/CurtinImage/CurtinImage2.jpg";
+import CurtinImage3  from "@/public/image/CurtinImage/CurtinImage3.jpg";
+import CurtinImage4  from "@/public/image/CurtinImage/CurtinImage4.jpg";
+import CurtinImage5  from "@/public/image/CurtinImage/CurtinImage5.jpg";
+import CurtinImage6  from "@/public/image/CurtinImage/CurtinImage6.jpg";
+import CurtinImage7  from "@/public/image/CurtinImage/CurtinImage7.jpg";
+import CurtinImage8  from "@/public/image/CurtinImage/CurtinImage8.jpg";
+import CurtinImage9  from "@/public/image/CurtinImage/CurtinImage9.jpg";
+import CurtinImage10 from "@/public/image/CurtinImage/CurtinImage10.jpg";
+import CurtinImage11 from "@/public/image/CurtinImage/CurtinImage11.jpg";
+import CurtinImage12 from "@/public/image/CurtinImage/CurtinImage12.jpg";
+import CurtinImage13 from "@/public/image/CurtinImage/CurtinImage13.jpg";
+import CurtinImage14 from "@/public/image/CurtinImage/CurtinImage14.jpg";
+import CurtinImage15 from "@/public/image/CurtinImage/CurtinImage15.jpg";
+import CurtinImage16 from "@/public/image/CurtinImage/CurtinImage16.jpg";
+
+export const images = [
+  CurtinImage1,
+  CurtinImage2,
+  CurtinImage3,
+  CurtinImage4,
+  CurtinImage5,
+  CurtinImage6,
+  CurtinImage7,
+  CurtinImage8,
+  CurtinImage9,
+  CurtinImage10,
+  CurtinImage11,
+  CurtinImage12,
+  CurtinImage13,
+  CurtinImage14,
+  CurtinImage15,
+  CurtinImage16,
+];
+
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
@@ -494,129 +530,6 @@ const TabsComponent: React.FC<TabsComponentProps> = ({
   );
 };
 
-const images = [
-  "/image/CurtinImage/CurtinImage1.jpg",
-  "/image/CurtinImage/CurtinImage2.jpg",
-  "/image/CurtinImage/CurtinImage3.jpg",
-  "/image/CurtinImage/CurtinImage4.jpg",
-  "/image/CurtinImage/CurtinImage5.jpg",
-  "/image/CurtinImage/CurtinImage6.jpg",
-  "/image/CurtinImage/CurtinImage7.jpg",
-  "/image/CurtinImage/CurtinImage8.jpg",
-  "/image/CurtinImage/CurtinImage9.jpg",
-  "/image/CurtinImage/CurtinImage10.jpg",
-  "/image/CurtinImage/CurtinImage11.jpg",
-  "/image/CurtinImage/CurtinImage12.jpg",
-  "/image/CurtinImage/CurtinImage13.jpg",
-  "/image/CurtinImage/CurtinImage14.jpg",
-  "/image/CurtinImage/CurtinImage15.jpg",
-  "/image/CurtinImage/CurtinImage16.jpg",
-];
-
-const Gallery: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Set initial state based on the window size
-    handleResize();
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const galleryStyle = {
-    display: 'grid',
-    gridTemplateColumns: isMobile ? 'repeat(auto-fit, minmax(150px, 1fr))' : 'repeat(4, 1fr)',
-    gap: '10px',
-    padding: isMobile ? '10px' : '20px',
-  };
-
-  const galleryImageStyle: React.CSSProperties = {
-    width: '100%',
-    height: '200px', // Set a fixed height for all images
-    objectFit: 'cover', // This will cover the area without stretching the image
-    opacity: 1,
-    transition: 'opacity 0.3s ease',
-  };
-
-  const titleStyle: CSSProperties = {
-    textAlign: 'center',
-    margin: '0 0 20px',
-    color: '#333',
-    fontSize: isMobile ? '8vw' : '3rem',
-    fontWeight: 'bold',
-    marginTop: '2vw',
-  };
-
-  const handleClick = (image: string) => {
-    setSelectedImage(image);
-  };
-
-  const handleClose = () => {
-    setSelectedImage(null);
-  };
-
-  return (
-    <div
-      ref={ref}
-      style={{
-        opacity: isVisible ? 1 : 0,
-        transition: 'opacity 2s ease-in-out',
-      }}
-    >
-      <h2 style={titleStyle}>Curtin Gallery</h2>
-      <div style={galleryStyle}>
-        {images.map((image, index) => (
-          <div
-            key={index}
-            onClick={() => handleClick(image)}
-            style={{ cursor: 'pointer' }}
-          >
-            <img
-              src={image}
-              alt={`Curtin ${index + 1}`}
-              style={galleryImageStyle}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
-            />
-          </div>
-        ))}
-      </div>
-      {selectedImage && (
-        <div
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            zIndex: 1000,
-          }}
-          onClick={handleClose}
-        >
-          <img
-            src={selectedImage}
-            alt="Enlarged view"
-            style={{ maxWidth: '90%', maxHeight: '90%' }}
-          />
-        </div>
-      )}
-    </div>
-  );
-};
-
 export default function Curtins() {
   const initialActiveTab = "Sheerweave 4300";
   const [activeTab, setActiveTab] = useState<string>(initialActiveTab);
@@ -624,39 +537,6 @@ export default function Curtins() {
     useState<ColorOption | null>(tabColors[initialActiveTab][0] || null);
   const [selectedCategoryInfo, setSelectedCategoryInfo] =
     useState<CategoryInfo | null>(categoryDetails[initialActiveTab]);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Initialize on component mount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const descriptionSectionStyle: CSSProperties = {
-    backgroundColor: "#F5F5F5",
-    borderRadius: "8px",
-    lineHeight: "1.6",
-    padding: isMobile ? "10px" : "20px",
-  };
-
-  const titleStyle: CSSProperties = {
-    color: "#333",
-    marginBottom: "16px",
-    fontSize: isMobile ? "18px" : "22px",
-    fontWeight: "bold",
-  };
-
-  const listStyle: CSSProperties = {
-    listStyleType: "disc",
-    paddingLeft: isMobile ? "15px" : "20px",
-  };
-
-  const itemStyle: CSSProperties = {
-    marginBottom: "8px",
-  };
 
   return (
     <>
@@ -683,9 +563,9 @@ export default function Curtins() {
           content="https://dtsecuritydoorsandshutters.com.au/Logo1.png"
         />
       </Head>
-      <Header />
-      <MainHeader />
+
       <CurtinsTitle />
+
       <TabsComponent
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -698,23 +578,23 @@ export default function Curtins() {
         selectedColorOption={selectedColorOption}
       />
       {selectedCategoryInfo && (
-        <div style={descriptionSectionStyle}>
-          <h2 style={titleStyle}>Description</h2>
+        <div className="bg-[#F5F5F5] rounded-lg leading-relaxed p-2.5 md:p-5">
+          <h2 className="text-[#333333] mb-4 font-bold text-[18px] md:text-[22px]">Description</h2>
           <p>{selectedCategoryInfo.description}</p>
-          <h2 style={titleStyle}>Benefits</h2>
-          <ul style={listStyle}>
+          <h2 className="text-[#333333] mb-4 font-bold text-[18px] md:text-[22px]">Benefits</h2>
+          <ul className="list-disc pl-[15px] md:pl-5">
             {selectedCategoryInfo.benefits.map((benefit, index) => (
-              <li key={index} style={itemStyle}>
+              <li key={index} className="mb-2">
                 {benefit}
               </li>
             ))}
           </ul>
-          <h2 style={titleStyle}>Care Instructions</h2>
+          <h2 className="text-[#333333] mb-4 font-bold text-[18px] md:text-[22px]">Care Instructions</h2>
           <p>{selectedCategoryInfo.careInstructions}</p>
         </div>
       )}
-      <Gallery />
-      <Footer />
+
+      <Gallery images={images} />
     </>
   );
 }

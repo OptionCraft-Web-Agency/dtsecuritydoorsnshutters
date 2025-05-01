@@ -1,145 +1,126 @@
-import React, { useState, useEffect, CSSProperties } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+"use client";
 
-type FAQItemProps = {
-  question: string;
-  answer: string;
-  isLastItem?: boolean; // optional prop to indicate if it is the last item
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+
+const fadeInVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
+  exit: { opacity: 0, y: 50, transition: { duration: 0.6 } },
 };
 
-const FAQItem: React.FC<FAQItemProps> = ({ question, answer, isLastItem }) => {
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
+  exit: { opacity: 0, transition: { duration: 0.5 } },
+};
+
+const faqs = [
+  { question: "What factors should I consider when purchasing security doors?", answer: "Material, locking system, standards compliance, and durability are crucial." },
+  { question: "Are custom sizes available for security doors?", answer: "Yes, all our doors can be fully customized to your measurements." },
+  { question: "How do I maintain my security doors?", answer: "Use mild soap and water for cleaning, and check hardware regularly." },
+  { question: "Can I install a security door myself?", answer: "We highly recommend professional installation for optimal security." },
+  { question: "Do you provide warranties for your doors?", answer: "Yes, we offer manufacturer warranties for material and workmanship defects." },
+  { question: "How secure are your roller shutters?", answer: "Our roller shutters are engineered with premium materials for maximum protection." },
+  { question: "How can I get a quote?", answer: "Simply contact us via our website, phone, or visit our showroom!" },
+];
+
+const AccordionItem: React.FC<{
+  question: string;
+  answer: string;
+}> = ({ question, answer }) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleOpen = () => setIsOpen(!isOpen);
-
-  const faqItemStyle: CSSProperties = {
-    background: 'none',
-    padding: '1rem',
-    cursor: 'pointer',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderTop: '1px solid #ccc', // top border for separating items
-    borderBottom: isLastItem ? 'none' : '1px solid #ccc', // conditional bottom border based on isLastItem
-    margin: '0', // reset any default margins
-  };  
-
-  const questionStyle: CSSProperties = {
-    fontWeight: 'bold',
-    flexGrow: 1,
-  };
-  
-  const answerStyle: CSSProperties = {
-    lineHeight: '1.5',
-    transition: 'max-height 0.3s ease',
-    maxHeight: isOpen ? '500px' : '0',
-    overflow: 'hidden',
-    padding: isOpen ? '1rem' : '0 1rem',
-    borderTop: isOpen && !isLastItem ? '1px solid #ccc' : 'none',
-  };  
-
-  const iconStyle: CSSProperties = {
-    transition: 'transform 0.3s ease',
-    transform: isOpen ? 'rotate(180deg)' : 'none',
-  };
-
   return (
-    <div style={{  }}>
-      <div style={faqItemStyle} onClick={toggleOpen}>
-        <div style={questionStyle}>{question}</div>
-        <FontAwesomeIcon icon={isOpen ? faMinus : faPlus} style={iconStyle} />
-      </div>
-      <div style={answerStyle}>
-        {isOpen && <p>{answer}</p>}
-      </div>
-    </div>
+    <motion.div
+      variants={fadeInVariants}
+      className="overflow-hidden rounded-lg border border-gray-300 bg-white/80 backdrop-blur-md transition-all"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex w-full items-center justify-between px-6 py-5 group focus:outline-none"
+      >
+        <span className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+          {question}
+        </span>
+        <FontAwesomeIcon
+          icon={faChevronDown}
+          className={`text-blue-600 transform transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            initial={{ opacity: 0, scaleY: 0 }}
+            animate={{ opacity: 1, scaleY: 1 }}
+            exit={{ opacity: 0, scaleY: 0 }}
+            transition={{ duration: 0.4, ease: "easeInOut" }}
+            className="origin-top px-6 pb-5 text-gray-600 text-base leading-relaxed"
+          >
+            {answer}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 };
 
-
 const FAQSection: React.FC = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const faqSectionStyle: CSSProperties = {
-    maxWidth: isMobile ? '90vw' : '80vw',
-    margin: '2rem auto',
-    boxShadow: '0 2px 5px rgba(0,0,0,0.2)',
-    borderRadius: '8px',
-    overflow: 'hidden',
-  };
-
-  const faqTitleStyle: CSSProperties = {
-    background: '#f7f7f7',
-    textAlign: 'center',
-    padding: '1rem',
-    fontSize: 'clamp(0.85rem, 5vw, 1.5rem)', // Further reduced minimum font size for mobile
-    fontWeight: 'bold',
-    borderBottom: '1px solid #ccc',
-  };
-
-  const faqs = [
-    {
-      question: "What factors should I consider when purchasing security doors?",
-      answer: "Consider factors such as the door's material, the locking mechanism, the level of security provided, and the door's compliance with Australian Standards."
-    },
-    {
-      question: "Are custom sizes available for security doors?",
-      answer: "Yes, we offer custom sizing to ensure that our security doors fit perfectly with your specific doorways and spaces."
-    },
-    {
-      question: "How do I maintain my security doors?",
-      answer: "Regular cleaning with mild soap and water, checking the locks and hinges for smooth operation, and scheduling periodic maintenance checks are recommended."
-    },
-    {
-      question: "Can I install a security door on my own?",
-      answer: "While DIY installation is possible, we recommend professional installation to ensure that your security door functions effectively and safely."
-    },
-    {
-      question: "What is the lead time for security door installation?",
-      answer: "Lead times can vary based on the custom nature of your order and our current workload. We strive to complete installations within a few weeks from order confirmation."
-    },
-    {
-      question: "Do you provide warranties for your security doors?",
-      answer: "Yes, we provide a manufacturer's warranty on our security doors, covering any defects in materials or workmanship."
-    },
-    {
-      question: "Are your security doors energy efficient?",
-      answer: "Our doors are designed with energy efficiency in mind, helping to insulate your home and potentially reduce energy costs."
-    },
-    {
-      question: "How secure are your roller shutters?",
-      answer: "Our roller shutters are made from high-quality materials and are designed to provide a high level of security against intruders."
-    },
-    {
-      question: "How can I get a quote for my project?",
-      answer: "You can request a quote by contacting us directly through our website, phone, or visiting our showroom."
-    },
-    // ... more FAQs
-  ];
-
   return (
-    <div style={faqSectionStyle}>
-      <div style={faqTitleStyle}>FAQ</div>
-      {faqs.map((faq, index) => (
-        <FAQItem 
-          key={index}
-          question={faq.question} 
-          answer={faq.answer}
-          isLastItem={index === faqs.length - 1} // Pass this prop to the FAQItem
-        />
-      ))}
-    </div>
+    <motion.section
+      className="relative py-24 bg-gradient-to-b from-white to-blue-50"
+      variants={fadeInVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: false, amount: 0.3 }}
+    >
+      {/* Background decorations */}
+      <div className="absolute inset-0 bg-grid-small-black/[0.05] bg-grid-small-white/[0.05]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-white to-transparent" />
+
+      <div className="relative container mx-auto px-4">
+        {/* Title */}
+        <motion.div
+          className="text-center mb-16"
+          variants={fadeInVariants}
+        >
+          <motion.h4
+            className="text-blue-600 text-sm uppercase tracking-wider mb-2 font-semibold"
+          >
+            Frequently Asked Questions
+          </motion.h4>
+
+          <motion.h2
+            className="text-4xl md:text-5xl font-bold text-gray-800 max-w-3xl mx-auto mb-12 leading-tight"
+          >
+            Everything you need to know before getting started.
+          </motion.h2>
+        </motion.div>
+
+        {/* Accordion */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          exit="exit"
+          viewport={{ once: false, amount: 0.3 }}
+          className="max-w-3xl mx-auto space-y-4"
+        >
+          {faqs.map((faq, index) => (
+            <AccordionItem
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+            />
+          ))}
+        </motion.div>
+      </div>
+    </motion.section>
   );
 };
 

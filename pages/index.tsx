@@ -1,21 +1,15 @@
-import Head from "next/head";
-import { Inter } from "next/font/google";
 import React from "react";
+import Head from "next/head";
+import dynamic from "next/dynamic";
 
-// components
-import Header from "../components/Header";
-import MainHeader from "../components/MainHeader";
-import HomePage from "../components/HomePage";
-
-import OurServices from "@/components/OurServices";
-import CallToAction from "@/components/CallToAction";
-import WhyChooseUsSection from "@/components/WhyChooseUsSection";
-import CustomerReview from "../components/CustomerReview";
-import FAQsComponent from "@/components/FAQ";
-import ContactUsForm from "@/components/ContactUsForm";
-import Footer from "../components/Footer";
-
-import FacebookMessenger from "@/components/FacebookMessenger";
+// Components
+import HomeHeroSection from "@/components/HomeHeroSection";
+const OurServices = dynamic(() => import("@/components/OurServices"));
+const CallToAction = dynamic(() => import("@/components/CallToAction"));
+const WhyChooseUsSection = dynamic(() => import("@/components/WhyChooseUsSection"));
+const CustomerReview = dynamic(() => import("@/components/CustomerReview"));
+const FAQ = dynamic(() => import("@/components/FAQ"));
+const ContactUsForm = dynamic(() => import("@/components/ContactUsForm"));
 
 export default function Home() {
   return (
@@ -50,34 +44,19 @@ export default function Home() {
           name="twitter:description"
           content="Premium security doors and window solutions tailored for your Melbourne home. Explore our products and services."
         />
-
         <meta name="author" content="DT Security Doors & Shutters" />
-        <meta
-          name="copyright"
-          content="&copy; 2024 DT Security Doors & Shutters"
-        />
+        <meta name="copyright" content="2024 DT Security Doors & Shutters" />
       </Head>
-      <Header />
-      <div className="w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
-        <MainHeader />
 
-        <HomePage />
+      <div className="w-full mx-auto">
+        <HomeHeroSection />
 
         <OurServices />
-
         <CallToAction />
-
         <WhyChooseUsSection />
-
         <CustomerReview />
-
-        <FAQsComponent />
-
+        <FAQ />
         <ContactUsForm />
-
-        <Footer />
-
-        <FacebookMessenger />
       </div>
     </>
   );

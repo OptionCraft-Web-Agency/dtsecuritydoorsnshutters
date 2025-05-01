@@ -18,7 +18,8 @@
     "framer-motion": "^10.18.0",
     "graphql": "^16.8.1",
     "html2canvas": "^1.4.1",
-    "jspdf": "^2.5.1",
+    "jspdf": "^3.0.1",
+    "keen-slider": "^6.8.6",
     "luxon": "^3.4.4",
     "next": "^14.0.3",
     "node-fetch": "^3.3.2",
@@ -30,8 +31,11 @@
     "react-image-gallery": "^1.3.0",
     "react-intersection-observer": "^9.8.1",
     "react-medium-image-zoom": "^5.1.11",
+    "react-photo-album": "^3.1.0",
+    "react-slideshow-image": "^4.3.2",
     "react-social-icons": "^6.7.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "yet-another-react-lightbox": "^3.23.0"
   },
   "devDependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.2",

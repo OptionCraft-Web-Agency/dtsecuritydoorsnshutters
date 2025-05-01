@@ -1,95 +1,108 @@
-import React, { CSSProperties, useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 
-interface IconProps {
-  style?: CSSProperties;
-  className?: string;
-  link?: string;
-}
-const MenuIcon: React.FC<IconProps> = ({ style, className, link }) => {
-  return <FontAwesomeIcon icon={faBars} style={style} className={className} />;
-};
-const CloseIcon: React.FC<IconProps> = ({ style, className, link }) => {
-  return <FontAwesomeIcon icon={faX} style={style} className={className} />;
-};
 export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const router = useRouter();
 
   const menuItems = [
-    { Text: "Home", link: "/" },
-    // { Text: "Products", link: "/Product" },
-    { Text: "Our Services", link: "/Services" },
-    { Text: "About Us", link: "AboutUs" },
-    { Text: "Contact Us", link: "ContactUs" },
-    //{ Text: "Cost Calculator", link: "/CostCalculator" },
-    { Text: "Color Visualization", link: "/Visualisation" },
+    { text: "Home", link: "/" },
+    { text: "About Us", link: "/AboutUs" },
+    { text: "Our Services", link: "/Services" },
+    { text: "Contact Us", link: "/ContactUs" },
+    { text: "Color Visualization", link: "/Visualisation" },
   ];
+
+  const toggleMenu = () => {
+    setIsMenuOpen((prev) => !prev);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <nav className="px-2 lg:px-10 py-2 flex justify-between items-center bg-white relative px-4">
-      {/* Logo and Animation */}
-      <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="flex items-center"
-      >
-        <Link href="/" legacyBehavior>
+    <nav className="bg-white px-4 md:px-10 py-4 flex items-center justify-between relative border-b border-gray-200">
+      {/* Logo */}
+      <Link href="/" className="flex items-center w-[150px] md:w-[200px]">
+        <Image
+          src="/logo3.jpg"
+          alt="Company Logo"
+          width={200}
+          height={100}
+          className="w-full h-auto"
+        />
+      </Link>
 
-          <a className="flex justify-center items-center w-full sm:max-w-xs">
-            <Image 
-              src="/logo3.jpg" 
-              alt="Company Logo" 
-              width={200} 
-              height={100} 
-              className="w-full h-auto"
-            />
-          </a>
-        </Link>
-      </motion.div>
-
-      {/* Menu Button */}
+      {/* Menu Toggle Button */}
       <button
-        className="block lg:hidden"
-        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        onClick={toggleMenu}
+        className="lg:hidden text-2xl text-gray-700"
+        aria-label="Toggle Menu"
       >
-        <MenuIcon className="text-2xl"></MenuIcon>
+        <FontAwesomeIcon icon={isMenuOpen ? faX : faBars} />
       </button>
 
-      {/* Dropdown Menu */}
-      <ul
-        className={`absolute  right-0 top-full mt-2 lg:top-auto lg:right-auto lg:mt-0
-        lg:relative ${
-          isMenuOpen ? "block" : "hidden"
-        } lg:block bg-white shadow-lg rounded-lg lg:shadow-none lg:rounded-none lg:bg-transparent  md:mr-2 z-10`}
-      >
-        <div className="flex flex-col p-4 lg:p-0 lg:flex-row">
-          {menuItems.map((element) => (
-            <motion.li
-              key={element.Text.toLowerCase()}
-              className="text-sm uppercase text-black cursor-pointer hover:text-blue-600 mb-2 lg:mb-0"
-              whileHover={{ scale: 1.1 }}
+      {/* Desktop Menu */}
+      <ul className="hidden lg:flex gap-8 uppercase text-gray-700 text-base md:text-lg">
+        {menuItems.map(({ text, link }) => (
+          <Link key={text} href={link}>
+            <li
+              className={`cursor-pointer px-2 py-1 transition-all rounded-md ${
+                router.pathname === link
+                  ? "text-blue-600 font-semibold underline underline-offset-4"
+                  : "hover:text-blue-600 hover:bg-gray-100"
+              }`}
             >
-              <Link
-                href={element.link}
-                className="block rounded-lg px-4 py-2 text-sm md:text-xl wide:text-2xl font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-              >
-                {element.Text}
-              </Link>
-            </motion.li>
-          ))}
-          <button
-            className="lg:hidden mb-1 flex justify-center w-full rounded-lg cursor-pointer border border-red-400 border-1 hover:bg-red-400 hover:border-red-500"
-            onClick={() => setIsMenuOpen(false)}
-          >
-            <CloseIcon></CloseIcon>
-          </button>
-        </div>
+              {text}
+            </li>
+          </Link>
+        ))}
       </ul>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <>
+            {/* Background dim */}
+            <motion.div
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeMenu}
+            />
+
+            {/* Slide-down menu */}
+            <motion.ul
+              className="fixed top-0 right-0 w-3/4 max-w-sm h-full bg-white flex flex-col gap-8 p-8 pt-24 text-lg font-semibold text-gray-800 z-50 shadow-lg"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            >
+              {menuItems.map(({ text, link }) => (
+                <Link key={text} href={link} onClick={closeMenu}>
+                  <li
+                    className={`px-4 py-2 rounded-md transition-all ${
+                      router.pathname === link
+                        ? "text-blue-600 font-semibold underline underline-offset-4"
+                        : "hover:text-blue-600 hover:bg-gray-100"
+                    }`}
+                  >
+                    {text}
+                  </li>
+                </Link>
+              ))}
+            </motion.ul>
+          </>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

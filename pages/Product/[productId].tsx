@@ -2,9 +2,6 @@ import Head from "next/head";
 import React from "react";
 import { useRouter } from "next/router";
 import productsData from "../../data/Product.json";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import MainHeader from "@/components/MainHeader";
 import ProductDetails from "@/components/ProductDetails";
 
 type Image = {
@@ -58,15 +55,8 @@ const ProductPage: React.FC = () => {
         <title>{title}</title>
         <meta name="description" content={description} />
       </Head>
-      <Header />
-      <div className="bg-[#FFFCF8] w-screen wide:w-[80%] ultraWide:w-[75%] mx-auto">
-        <MainHeader />
 
-        {/* Render the product details component with the found product */}
-        <ProductDetails product={product} />
-
-        <Footer />
-      </div>
+      <ProductDetails product={product} />
     </>
   );
 };

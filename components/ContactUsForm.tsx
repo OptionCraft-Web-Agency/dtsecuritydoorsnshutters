@@ -1,8 +1,8 @@
-import React, { useState, useEffect, CSSProperties } from "react";
+"use client";
+
+import React, { useState } from "react";
 
 const ContactUsForm: React.FC = () => {
-  // Initialize state without a value as it's unknown at server-side
-  const [isMobile, setIsMobile] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -10,6 +10,9 @@ const ContactUsForm: React.FC = () => {
     address: "",
     message: "",
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -19,9 +22,11 @@ const ContactUsForm: React.FC = () => {
       [name]: value,
     }));
   };
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Submit form data
+    setIsSubmitting(true);
+
     const response = await fetch("/api/sendEmail", {
       method: "POST",
       headers: {
@@ -30,9 +35,9 @@ const ContactUsForm: React.FC = () => {
       body: JSON.stringify(formData),
     });
 
+    setIsSubmitting(false);
+
     if (response.ok) {
-      // Optionally reset form state here
-      //reset ContactUsForm form
       setFormData({
         name: "",
         email: "",
@@ -40,203 +45,84 @@ const ContactUsForm: React.FC = () => {
         address: "",
         message: "",
       });
-
-      // Reset form or show success message
       alert("Your message has been sent successfully!");
     } else {
-      // Handle error
       alert("There was an error sending your message. Please try again.");
     }
   };
-  useEffect(() => {
-    // Now that we are client-side, set the state based on window width
-    setIsMobile(window.innerWidth < 600);
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 600);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const containerStyle: CSSProperties = {
-    height: isMobile ? "auto" : "50vw",
-    width: "100%",
-    backgroundImage: "url(/RollerDoor2.png)",
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-
-  const formStyle: CSSProperties = {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    width: isMobile ? "150%" : "80vh",
-  };
-
-  const inputStyle: CSSProperties = {
-    width: "100%",
-    marginBottom: isMobile ? "0" : "2vw",
-    padding: isMobile ? "3%" : "0.5vw",
-    borderRadius: "5px",
-    border: "1px solid black",
-    fontSize: isMobile ? "4vw" : "1.5vw",
-  };
-
-  const MessageinputStyle: CSSProperties = {
-    width: "100%",
-    marginBottom: "2vw",
-    padding: isMobile ? "3%" : "0.5vw",
-    borderRadius: "5px",
-    border: "1px solid black",
-    fontSize: isMobile ? "4vw" : "1.5vw",
-  };
-
-  const buttonStyle: CSSProperties = {
-    padding: isMobile ? "2%" : "1vw",
-    border: "none",
-    borderRadius: "5px",
-    color: "white",
-    fontSize: isMobile ? "5vw" : "1.5vw",
-    cursor: "pointer",
-    backgroundColor: "rgba(0, 87, 255)",
-    boxShadow: "2px 2px 4px 0px rgba(22, 110, 187, 0.32)",
-    transition: "background-color 0.3s, transform 0.3s",
-    width: "100%",
-  };
-
-  const hoverButtonStyle: CSSProperties = {
-    ...buttonStyle,
-    backgroundColor: "rgba(0, 77, 255)",
-    transform: "scale(1.05)",
-  };
 
   return (
-    <div style={containerStyle}>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          margin: isMobile ? "1rem" : "0",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "100%",
-        }}
-      >
-        <p
-          style={{
-            fontSize: isMobile ? "6vw" : "2.5rem",
-            margin: "1rem 0",
-            fontWeight: "bold",
-          }}
-        >
+    <section
+      className="w-full bg-cover bg-center bg-no-repeat py-20"
+      style={{ backgroundImage: "url('/RollerDoor2.png')" }}
+    >
+      <div className="bg-white/80 backdrop-blur-md rounded-3xl max-w-3xl mx-auto p-8 shadow-lg">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-8">
           Enquire Form
-        </p>
+        </h2>
 
-        <form id="ContactUsForm" style={formStyle} onSubmit={handleSubmit}>
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "min(1.5vw, 16px)",
-              flexDirection: isMobile ? "column" : "row",
-              gap: isMobile ? "10px" : "10px",
-              marginBottom: isMobile ? "10px" : "0px"
-            }}
-          >
+        <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+          <div className="flex flex-col md:flex-row gap-4">
             <input
               type="text"
-              id="name"
               name="name"
               placeholder="Name"
-              style={inputStyle}
               value={formData.name}
               onChange={handleChange}
+              required
+              className="w-full p-4 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none text-gray-700 text-base"
             />
             <input
               type="email"
-              id="email"
               name="email"
               placeholder="Email"
-              style={inputStyle}
               value={formData.email}
               onChange={handleChange}
+              required
+              className="w-full p-4 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none text-gray-700 text-base"
             />
           </div>
 
-          <div
-            style={{
-              width: "100%",
-              display: "flex",
-              justifyContent: "space-between",
-              fontSize: "min(1.5vw, 16px)",
-              flexDirection: isMobile ? "column" : "row",
-              gap: "10px",
-              marginBottom: isMobile ? "10px" : "0px"
-            }}
-          >
+          <div className="flex flex-col md:flex-row gap-4">
             <input
-              type="phone"
-              id="phone"
+              type="text"
               name="phone"
               placeholder="Phone Number"
-              style={inputStyle}
               value={formData.phone}
               onChange={handleChange}
+              required
+              className="w-full p-4 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none text-gray-700 text-base"
             />
             <input
-              type="address"
-              id="address"
+              type="text"
               name="address"
               placeholder="Address"
-              style={inputStyle}
               value={formData.address}
               onChange={handleChange}
+              className="w-full p-4 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none text-gray-700 text-base"
             />
           </div>
 
           <textarea
-            id="message"
             name="message"
             placeholder="Message"
-            rows={4}
-            style={MessageinputStyle}
             value={formData.message}
             onChange={handleChange}
+            rows={4}
+            required
+            className="w-full p-4 rounded-lg border border-gray-300 focus:border-blue-500 focus:outline-none text-gray-700 text-base resize-none"
           />
 
           <button
             type="submit"
-            style={buttonStyle}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.cssText = Object.entries(hoverButtonStyle)
-                .map(
-                  ([key, value]) =>
-                    `${key.replace(/([A-Z])/g, "-$1").toLowerCase()}:${value}`
-                )
-                .join(";"))
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.cssText = Object.entries(buttonStyle)
-                .map(
-                  ([key, value]) =>
-                    `${key.replace(/([A-Z])/g, "-$1").toLowerCase()}:${value}`
-                )
-                .join(";"))
-            }
+            disabled={isSubmitting}
+            className="w-full py-4 mt-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 hover:scale-105 transition-all duration-300 disabled:bg-blue-300 disabled:cursor-not-allowed"
           >
-            Send
+            {isSubmitting ? "Sending..." : "Send"}
           </button>
         </form>
       </div>
-    </div>
+    </section>
   );
 };
 

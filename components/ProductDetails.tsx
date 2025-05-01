@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import "react-image-gallery/styles/css/image-gallery.css";
-import Zoom from "react-medium-image-zoom";
-import "react-medium-image-zoom/dist/styles.css";
-import ImageGallery from "react-image-gallery";
+"use client";
 
-// Assuming these types are defined elsewhere in your code.
+import React, { useState } from "react";
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+
 type ImageType = { sourceUrl: string };
 type Color = { name: string; hex: string };
 type ProductProps = {
@@ -23,193 +22,130 @@ type ProductProps = {
 };
 
 const ProductDetails: React.FC<ProductProps> = ({ product }) => {
-  const [selectedColorName, setSelectedColorName] = useState<string>(
-    product.color[0].name
-  );
-  const [selectedWidth, setSelectedWidth] = useState<string>(product.width[0]);
-  const [selectedHeight, setSelectedHeight] = useState<string>(
-    product.height[0]
-  );
-  const [selectedDVA, setSelectedDVA] = useState<string>(product.DVA[0]);
-  const [selectedDVAColorName, setSelectedDVAColorName] = useState<string>(
-    product.DVAColor[0].name
-  );
-
-  // Convert images for use with react-image-gallery
-  const images = product.image.map((img) => {
-    return {
-      original: img.sourceUrl,
-      thumbnail: img.sourceUrl,
-    };
-  });
-  // Assuming you're using the first image in the array for the main display.
+  const [selectedColorName, setSelectedColorName] = useState(product.color[0].name);
+  const [selectedWidth, setSelectedWidth] = useState(product.width[0]);
+  const [selectedHeight, setSelectedHeight] = useState(product.height[0]);
+  const [selectedDVA, setSelectedDVA] = useState(product.DVA[0]);
+  const [selectedDVAColorName, setSelectedDVAColorName] = useState(product.DVAColor[0].name);
 
   const copyToClipboard = async () => {
-    const productDetails = `
-          Name: ${product.name}
-          ProductID: ${product.id}
-          ProductLink: ${window.location.href}
-          Color: ${selectedColorName}
-          Width: ${selectedWidth}
-          Height: ${selectedHeight}
-          Privacy Mesh (DVA) Required?: ${selectedDVA}
-          DVA Color: ${selectedDVAColorName}
-        `;
-
+    const details = `
+      Name: ${product.name}
+      Product ID: ${product.id}
+      Link: ${window.location.href}
+      Color: ${selectedColorName}
+      Width: ${selectedWidth}
+      Height: ${selectedHeight}
+      DVA: ${selectedDVA}
+      DVA Color: ${selectedDVAColorName}
+    `;
     try {
-      await navigator.clipboard.writeText(productDetails);
-      alert(
-        "Entry copied to clipboard. Send us a message or use the messenger at the bottom right corner and send it to us. We will contact you shortly."
-      );
+      await navigator.clipboard.writeText(details);
+      alert("Copied to clipboard. Please send us the details via messenger.");
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      console.error("Copy failed", err);
     }
   };
-  // Function to render color selection squares
-  const renderColorOptions = (colors: Color[]) => (
-    <div className="flex flex-wrap">
+
+  const renderColorOptions = (colors: Color[], selected: string, setSelected: (val: string) => void) => (
+    <div className="flex flex-wrap gap-1">
       {colors.map((color) => (
         <button
           key={color.name}
-          aria-label={`Select ${color.name}`}
-          title={color.name}
-          className={`m-1 w-10 h-10 border-2 ${
-            selectedColorName === color.name
-              ? "border-blue-500"
-              : "border-gray-300"
-          }`}
+          className={`w-8 h-8 rounded border ${selected === color.name ? "border-blue-600" : "border-gray-300"}`}
           style={{ backgroundColor: color.hex }}
-          onClick={() => setSelectedColorName(color.name)}
+          onClick={() => setSelected(color.name)}
+          title={color.name}
         />
       ))}
     </div>
   );
-  const renderOptionButtons = (
-    options: string[],
-    selectedOption: string,
-    setSelectedOption: React.Dispatch<React.SetStateAction<string>>
-  ) => (
-    <div className="flex flex-wrap">
+
+  const renderOptions = (options: string[], selected: string, setSelected: (val: string) => void) => (
+    <div className="flex flex-wrap gap-1">
       {options.map((option) => (
         <button
           key={option}
-          className={`m-1 px-3 py-1 border rounded ${
-            selectedOption === option
-              ? "bg-blue-500 text-white"
-              : "bg-white text-gray-700 border-gray-300"
+          className={`px-2 py-1 text-xs rounded border ${
+            selected === option ? "bg-blue-500 text-white" : "bg-white text-gray-800 border-gray-300"
           }`}
-          onClick={() => setSelectedOption(option)}
+          onClick={() => setSelected(option)}
         >
           {option}
         </button>
       ))}
     </div>
   );
+
   return (
-    <div className="container mx-auto my-8 px-4 md:px-8">
-      <div className="flex flex-col md:flex-row justify-center md:items-start mx-auto">
-        {/* Container with fixed width and height */}
-        <div className="w-full max-w-full  md:max-w-xs lg:h-72 mx-auto">
-          {/* ImageGallery component */}
-          <ImageGallery
-            items={images}
-            showPlayButton={false}
-            useBrowserFullscreen={true} // Assuming you want the fullscreen icon to appear
-            showNav={true}
-            showThumbnails={false}
-            showFullscreenButton={true} // To show the fullscreen button
-            showBullets={true}
-            infinite={true}
-            slideDuration={450}
-            slideInterval={2000}
-          />
+    <div className="container mx-auto my-6 px-2 md:px-6">
+      <div className="flex flex-col md:flex-row gap-6">
+        {/* Gallery Section */}
+        <div className="w-full md:w-1/2 h-[620px] rounded overflow-hidden">
+          <Slide autoplay={false} arrows={true} duration={4000}>
+            {product.image.map((img, idx) => (
+              <div
+                key={idx}
+                className="flex items-center justify-center h-[480px] bg-white px-4"
+              >
+                <img
+                  src={img.sourceUrl}
+                  alt={`Slide ${idx + 1}`}
+                  className="object-contain max-h-[500px] max-w-[100%]"
+                />
+              </div>
+            ))}
+          </Slide>
         </div>
 
-        <div className="w-full md:max-w-1/2 lg:max-w-2/3 pl-5">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-            <h1 className="text-xl md:text-3xl font-bold">{product.name}</h1>
+        {/* Product Info */}
+        <div className="w-full md:w-1/2 md:h-[620px] overflow-y-auto flex flex-col gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center">
+            <h1 className="text-xl font-semibold text-gray-800">{product.name}</h1>
             <button
               onClick={copyToClipboard}
-              className="mt-4 md:mt-0 text-sm md:text-base bg-blue-500 text-white font-semibold rounded px-4 py-2"
+              className="mt-2 sm:mt-0 text-xs bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700"
             >
-              Copy to Clipboard
+              Copy
             </button>
           </div>
-          <div dangerouslySetInnerHTML={{ __html: product.description }} />
-          {/* Content section */}
-          <div className="prose max-w-none pt-10">
-            <div>
-              <p>
-                <strong>Our Standard is Others’ Extra</strong>
-              </p>
-              <ul>
-                <li>
-                  <strong>Complimentary Installation</strong>: Expert setup
-                  included with every purchase.
-                </li>
-                <li>
-                  <strong>Premium Austral Lock</strong>: Superior security comes
-                  standard.
-                </li>
-                <li>
-                  <strong>Austral Door Closer</strong>: Automatically included
-                  for enhanced convenience.
-                </li>
-                <li>
-                  <strong>Tailored to Your Needs</strong>: Custom sizing options
-                  to perfectly fit your space.
-                </li>
-                <li>
-                  <strong>Insect Screen Feature</strong>: Every door comes with
-                  a Fiberglass Flyscreen, ensuring a bug-free environment.
-                </li>
-                <li>
-                  <strong>Bug-Strip Addition</strong>: Added protection included
-                  in every installation.
-                </li>
-              </ul>
-            </div>
-          </div>
-          {/* Color selection */}
-          <div className="mb-4">
-            <h2 className="text-2xl font-semibold mb-3">
-              Color: {selectedColorName}
-            </h2>
-            {renderColorOptions(product.color)}
+
+          <div
+            className="text-sm text-gray-700 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: product.description }}
+          />
+
+          <div className="bg-gray-50 border p-3 rounded text-xs space-y-1">
+            <p><strong>✔</strong> Complimentary Installation</p>
+            <p><strong>✔</strong> Premium Austral Lock</p>
+            <p><strong>✔</strong> Door Closer & Bug Strip</p>
+            <p><strong>✔</strong> Tailored Sizes</p>
+            <p><strong>✔</strong> Flyscreen Included</p>
           </div>
 
-          {/* Width selection */}
-          <div className="mb-4">
-            <h2 className="text-2xl font-semibold mb-3">Door Width</h2>
-            {renderOptionButtons(
-              product.width,
-              selectedWidth,
-              setSelectedWidth
-            )}
+          <div>
+            <h2 className="text-sm font-medium mb-1">Color: {selectedColorName}</h2>
+            {renderColorOptions(product.color, selectedColorName, setSelectedColorName)}
           </div>
 
-          {/* Height selection */}
-          <div className="mb-4">
-            <h2 className="text-2xl font-semibold mb-3">Door Height</h2>
-            {renderOptionButtons(
-              product.height,
-              selectedHeight,
-              setSelectedHeight
-            )}
+          <div>
+            <h2 className="text-sm font-medium mb-1">Door Width</h2>
+            {renderOptions(product.width, selectedWidth, setSelectedWidth)}
           </div>
 
-          {/* DVA selection */}
-          <div className="mb-4">
-            <h2 className="text-2xl font-semibold mb-3">
-              Privacy Mesh (DVA) Required?
-            </h2>
-            {renderOptionButtons(product.DVA, selectedDVA, setSelectedDVA)}
+          <div>
+            <h2 className="text-sm font-medium mb-1">Door Height</h2>
+            {renderOptions(product.height, selectedHeight, setSelectedHeight)}
           </div>
 
-          {/* DVA Color selection */}
-          <div className="mb-4">
-            <h2 className="text-2xl font-semibold mb-3">DVA Color</h2>
-            {renderColorOptions(product.DVAColor)}
+          <div>
+            <h2 className="text-sm font-medium mb-1">Privacy Mesh (DVA) Required?</h2>
+            {renderOptions(product.DVA, selectedDVA, setSelectedDVA)}
+          </div>
+
+          <div>
+            <h2 className="text-sm font-medium mb-1">DVA Color</h2>
+            {renderColorOptions(product.DVAColor, selectedDVAColorName, setSelectedDVAColorName)}
           </div>
         </div>
       </div>

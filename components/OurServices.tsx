@@ -1,158 +1,98 @@
-import React, { useState, useEffect } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import styled from 'styled-components';
+"use client";
 
-interface Props {
-  isMobile: boolean;
-}
+import React from "react";
+import { motion } from "framer-motion";
+import ServiceCard from "@/components/ServiceCard";
 
-interface OverlayProps {
-  isHovered: boolean;
-}
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  padding: 4vw 0;
-`;
-
-const Heading = styled.p<Props>`
-  font-size: ${({ isMobile }) => (isMobile ? '8vw' : '2rem')};
-  color: #333;
-  font-weight: bold;
-  margin-bottom: 2vw;
-`;
-
-const Grid = styled.div<Props>`
-  display: grid;
-  grid-template-columns: ${({ isMobile }) => (isMobile ? '1fr' : 'repeat(4, 1fr)')};
-  gap: ${({ isMobile }) => (isMobile ? '4vw' : '2vw')};
-  width: 90%;
-  margin: 0 auto;
-`;
-
-const Item = styled.div`
-  position: relative;
-  text-align: center;
-  overflow: hidden;
-  border-radius: 10px;
-  cursor: pointer;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease-in-out;
-`;
-
-const TextContainer = styled.div`
-  padding: 1vw;
-`;
-
-const OverlayText = styled.div<OverlayProps>`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  opacity: ${({ isHovered }) => (isHovered ? 1 : 0)};
-  transition: opacity 0.5s ease-in-out;
-`;
-
-const ServiceName = styled.p<Props>`
-  font-weight: bold;
-  font-size: ${({ isMobile }) => (isMobile ? '4vw' : '1.2rem')};
-  margin-bottom: 0.5vw;
-`;
+import RollerDoor1 from "@/public/RollerDoor1.jpg";
+import CurtainImage1 from "@/public/image/CurtinImage/CurtinImage1.jpg";
+import SecurityDoorImage13 from "@/public/image/SecurityDoorImage/SecurityDoorImage13.jpg";
+import WindowImage1 from "@/public/image/WindowImage/WindowImage1.jpg";
+import FlyScreenImage2 from "@/public/image/FlyScreenImage/FlyScreenImage2.jpg";
 
 const services = [
   {
-    image: '/RollerDoor1.jpg',
-    name: 'Roller Shutters',
-    description: 'High-quality roller shutters designed for smooth operation and robust security.',
-    link: '/RollerShutters',
+    image: RollerDoor1,
+    name: "Roller Shutters",
+    description: "Smooth, reliable shutters for home security.",
+    link: "/RollerShutters",
   },
   {
-    image: '/image/CurtinImage/CurtinImage1.jpg',
-    name: 'Curtains', // Corrected spelling from 'Curtins' to 'Curtains'
-    description: 'Stylish and functional curtains to enhance your privacy and control natural lighting.',
-    link: '/Curtains',
+    image: CurtainImage1,
+    name: "Curtains",
+    description: "Elegant curtains tailored to your style.",
+    link: "/Curtains",
   },
   {
-    image: '/image/SecurityDoorImage/SecurityDoorImage13.jpg',
-    name: 'Security Doors',
-    description: 'Durable security doors that provide peace of mind with enhanced protection.',
-    link: '/Product',
+    image: SecurityDoorImage13,
+    name: "Security Doors",
+    description: "Secure your home with premium door solutions.",
+    link: "/Product",
   },
   {
-    image: '/image/WindowImage/WindowImage1.jpg',
-    name: 'Windows',
-    description: 'Custom-designed windows that bring natural beauty right into your home.',
-    link: '/Windows',
+    image: WindowImage1,
+    name: "Windows",
+    description: "Brighten up your spaces with beautiful windows.",
+    link: "/Windows",
   },
   {
-    image: '/image/FlyScreenImage/FlyScreenImage2.jpg',
-    name: 'Fly Screen',
-    description: 'Durable fly screens for effective insect protection and easy integration with any window style.',
-    link: '/FlyScreens',
+    image: FlyScreenImage2,
+    name: "Fly Screens",
+    description: "Protection without compromising style.",
+    link: "/FlyScreens",
   },
 ];
 
+// Animation for container
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
 const OurServices: React.FC = () => {
-  const [isMobile, setIsMobile] = useState<boolean>(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    if (typeof window !== 'undefined') {
-      handleResize();
-      window.addEventListener('resize', handleResize);
-    }
-
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
   return (
-    <Container>
-      <Heading isMobile={isMobile}>Our Services</Heading>
-      <Grid isMobile={isMobile}>
-        {services.map((service, index) => (
-          <Link key={index} href={service.link} passHref>
-            <Item
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-            >
-              <div style={{ width: '100%', height: '200px', position: 'relative' }}>
-                <Image
-                  src={service.image}
-                  alt={service.name}
-                  layout="fill"
-                  objectFit="cover"
-                  placeholder="blur"
-                  blurDataURL="/placeholder.png" // Placeholder image
-                />
-              </div>
-              <TextContainer>
-                <ServiceName isMobile={isMobile}>{service.name}</ServiceName>
-              </TextContainer>
-              <OverlayText isHovered={hoveredIndex === index}>
-                <ServiceName isMobile={isMobile}>{service.name}</ServiceName>
-                <p>{service.description}</p>
-              </OverlayText>
-            </Item>
-          </Link>
-        ))}
-      </Grid>
-    </Container>
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: false, amount: 0.2 }}
+      variants={containerVariants}
+      className="w-full py-20 bg-gradient-to-b from-white via-blue-50 to-white"
+    >
+      <div className="max-w-7xl mx-auto px-6 text-center">
+        <motion.h2
+          variants={containerVariants}
+          className="text-4xl md:text-5xl font-extrabold text-gray-800 leading-tight"
+        >
+          Our Services
+        </motion.h2>
+        <motion.p
+          variants={containerVariants}
+          className="text-gray-500 text-lg md:text-xl mt-4 mb-12"
+        >
+          Trusted solutions crafted to protect and beautify your home.
+        </motion.p>
+
+        <motion.div
+          variants={containerVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {services.map((service, index) => (
+            <ServiceCard
+              key={index}
+              image={service.image}
+              name={service.name}
+              description={service.description}
+              link={service.link}
+            />
+          ))}
+        </motion.div>
+      </div>
+    </motion.section>
   );
 };
 

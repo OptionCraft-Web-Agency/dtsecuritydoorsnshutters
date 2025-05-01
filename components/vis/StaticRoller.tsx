@@ -27,7 +27,7 @@ const Static: React.FC<RollerComponentProps> = ({
     const base = new Image();
     base.src = "/Vis/roller/staticBase.png";
 
-    const curtains = {
+    const Curtins = {
       bottom: { color: bottom, src: "/Vis/roller/Bottom.png" },
       rail: { color: rail, src: "/Vis/roller/rail.png" },
       headBox: { color: headBox, src: "/Vis/roller/headbox.png" },
@@ -72,7 +72,7 @@ const Static: React.FC<RollerComponentProps> = ({
     const applyAllColors = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(base, 0, 0, canvas.width, canvas.height);
-      Object.values(curtains).forEach((mask) =>
+      Object.values(Curtins).forEach((mask) =>
         applyColor(mask.color, mask.src)
       );
     };

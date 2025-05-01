@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import { motion, Variants } from "framer-motion";
 
@@ -24,6 +24,18 @@ const itemVariants: Variants = {
 
 const Gallery: React.FC<GalleryProps> = ({ images }) => {
   const [selected, setSelected] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (selected) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    return () => {
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [selected]);
 
   return (
     <motion.section
@@ -68,23 +80,33 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
 
       {selected && (
         <motion.div
-          className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
+          className="fixed inset-0 flex items-center justify-center z-50"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={() => setSelected(null)}
         >
-          <div className="relative max-w-[90vw] max-h-[90vh]">
+          <div
+            className="relative w-[90vw] h-[90vh] max-w-screen max-h-screen"
+          >
+            <button
+              className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/40 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/60 transition"
+              onClick={() => setSelected(null)}
+              aria-label="Close enlarged image"
+            >
+              &times;
+            </button>
             <Image
               src={selected}
               alt="Enlarged view"
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-              width={800}
-              height={600}
+              fill
+              className="object-contain rounded-lg shadow-2xl"
+              sizes="(max-width: 768px) 100vw, 90vw"
             />
           </div>
         </motion.div>
       )}
+
     </motion.section>
   );
 };

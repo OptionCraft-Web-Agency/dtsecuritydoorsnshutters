@@ -42,7 +42,7 @@ export default function Home() {
   const [rail, setrail] = useState("#ffffff");
   const [headBox, setheadBox] = useState("#ffffff");
   const [slat, setslat] = useState("#ffffff");
-  const [curtainsColor, setCurtainsColor] = useState(Array(23).fill("#ffffff"));
+  const [CurtinsColor, setCurtinsColor] = useState(Array(23).fill("#ffffff"));
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedColor, setSelectedColor] = useState("#ffffff");
 
@@ -74,7 +74,7 @@ export default function Home() {
   });
 
   const updateCurtainColor = (index: number, color: string) => {
-    setCurtainsColor((prevColors) => {
+    setCurtinsColor((prevColors) => {
       const newColors = [...prevColors];
       newColors[index] = color;
       return newColors;
@@ -453,7 +453,7 @@ Bottom Color: ${bottom}
 Rail Color: ${rail}
 HeadBox Color: ${headBox}
 Slat Color: ${slat}
-Curtains Color: ${curtainsColor}
+Curtins Color: ${CurtinsColor}
 
   
   `;
@@ -516,7 +516,7 @@ Curtains Color: ${curtainsColor}
         <title>DT Security Doors & Shutters - Visualize Your Home</title>
         <meta
           name="description"
-          content="Visualize and customize security doors, roller shutters, and curtains for your home with our advanced visualization tool. Design your perfect home exterior today."
+          content="Visualize and customize security doors, roller shutters, and Curtins for your home with our advanced visualization tool. Design your perfect home exterior today."
         />
           
         <meta
@@ -541,7 +541,7 @@ Curtains Color: ${curtainsColor}
         />
         <meta
           name="twitter:description"
-          content="Design and visualize your home's new look with our security doors, roller shutters, and curtains. Start creating now."
+          content="Design and visualize your home's new look with our security doors, roller shutters, and Curtins. Start creating now."
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="author" content="DT Security Doors & Shutters" />
@@ -591,7 +591,7 @@ Curtains Color: ${curtainsColor}
                               setSelectedSection("");
                             }}
                           >
-                            Curtains
+                            Curtins
                           </button>
                         </div>
                         <div className="flex flex-row justify-evenly pt-1">
@@ -765,7 +765,7 @@ Curtains Color: ${curtainsColor}
                   {showRoller && (
                     <div id="Moving" className="z-0">
                       <CurtainRoller
-                        curtainsColor={curtainsColor}
+                        CurtinsColor={CurtinsColor}
                         slat={slat}
                         width={containerSize.width}
                         height={containerSize.height}

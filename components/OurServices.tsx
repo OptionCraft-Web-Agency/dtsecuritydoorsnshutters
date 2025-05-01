@@ -19,9 +19,9 @@ const services = [
   },
   {
     image: CurtainImage1,
-    name: "Curtains",
-    description: "Elegant curtains tailored to your style.",
-    link: "/Curtains",
+    name: "Curtins",
+    description: "Elegant Curtins tailored to your style.",
+    link: "/Curtins",
   },
   {
     image: SecurityDoorImage13,
@@ -43,7 +43,6 @@ const services = [
   },
 ];
 
-// Animation for container
 const containerVariants = {
   hidden: {},
   visible: {

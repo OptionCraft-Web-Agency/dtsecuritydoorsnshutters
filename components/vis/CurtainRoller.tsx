@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 
 type RollerComponentProps = {
-  curtainsColor: string[];
+  CurtinsColor: string[];
   slat: string;
   width: number;
   height: number;
@@ -9,7 +9,7 @@ type RollerComponentProps = {
 };
 
 const RollerComponent: React.FC<RollerComponentProps> = ({
-  curtainsColor,
+  CurtinsColor,
   slat,
   width,
   height,
@@ -27,31 +27,31 @@ const RollerComponent: React.FC<RollerComponentProps> = ({
     const base = new Image();
     base.src = "/Vis/roller/CurtainBase.png";
 
-    const curtains = {
+    const Curtins = {
       slat: { color: slat, src: "/Vis/roller/slat.png" },
-      1: { color: curtainsColor[0], src: "/Vis/roller/curtain/1.png" },
-      2: { color: curtainsColor[1], src: "/Vis/roller/curtain/2.png" },
-      3: { color: curtainsColor[2], src: "/Vis/roller/curtain/3.png" },
-      4: { color: curtainsColor[3], src: "/Vis/roller/curtain/4.png" },
-      5: { color: curtainsColor[4], src: "/Vis/roller/curtain/5.png" },
-      6: { color: curtainsColor[5], src: "/Vis/roller/curtain/6.png" },
-      7: { color: curtainsColor[6], src: "/Vis/roller/curtain/7.png" },
-      8: { color: curtainsColor[7], src: "/Vis/roller/curtain/8.png" },
-      9: { color: curtainsColor[8], src: "/Vis/roller/curtain/9.png" },
-      10: { color: curtainsColor[9], src: "/Vis/roller/curtain/10.png" },
-      11: { color: curtainsColor[10], src: "/Vis/roller/curtain/11.png" },
-      12: { color: curtainsColor[11], src: "/Vis/roller/curtain/12.png" },
-      13: { color: curtainsColor[12], src: "/Vis/roller/curtain/13.png" },
-      14: { color: curtainsColor[13], src: "/Vis/roller/curtain/14.png" },
-      15: { color: curtainsColor[14], src: "/Vis/roller/curtain/15.png" },
-      16: { color: curtainsColor[15], src: "/Vis/roller/curtain/16.png" },
-      17: { color: curtainsColor[16], src: "/Vis/roller/curtain/17.png" },
-      18: { color: curtainsColor[17], src: "/Vis/roller/curtain/18.png" },
-      19: { color: curtainsColor[18], src: "/Vis/roller/curtain/19.png" },
-      20: { color: curtainsColor[19], src: "/Vis/roller/curtain/20.png" },
-      21: { color: curtainsColor[20], src: "/Vis/roller/curtain/21.png" },
-      22: { color: curtainsColor[21], src: "/Vis/roller/curtain/22.png" },
-      23: { color: curtainsColor[22], src: "/Vis/roller/curtain/23.png" },
+      1: { color: CurtinsColor[0], src: "/Vis/roller/curtain/1.png" },
+      2: { color: CurtinsColor[1], src: "/Vis/roller/curtain/2.png" },
+      3: { color: CurtinsColor[2], src: "/Vis/roller/curtain/3.png" },
+      4: { color: CurtinsColor[3], src: "/Vis/roller/curtain/4.png" },
+      5: { color: CurtinsColor[4], src: "/Vis/roller/curtain/5.png" },
+      6: { color: CurtinsColor[5], src: "/Vis/roller/curtain/6.png" },
+      7: { color: CurtinsColor[6], src: "/Vis/roller/curtain/7.png" },
+      8: { color: CurtinsColor[7], src: "/Vis/roller/curtain/8.png" },
+      9: { color: CurtinsColor[8], src: "/Vis/roller/curtain/9.png" },
+      10: { color: CurtinsColor[9], src: "/Vis/roller/curtain/10.png" },
+      11: { color: CurtinsColor[10], src: "/Vis/roller/curtain/11.png" },
+      12: { color: CurtinsColor[11], src: "/Vis/roller/curtain/12.png" },
+      13: { color: CurtinsColor[12], src: "/Vis/roller/curtain/13.png" },
+      14: { color: CurtinsColor[13], src: "/Vis/roller/curtain/14.png" },
+      15: { color: CurtinsColor[14], src: "/Vis/roller/curtain/15.png" },
+      16: { color: CurtinsColor[15], src: "/Vis/roller/curtain/16.png" },
+      17: { color: CurtinsColor[16], src: "/Vis/roller/curtain/17.png" },
+      18: { color: CurtinsColor[17], src: "/Vis/roller/curtain/18.png" },
+      19: { color: CurtinsColor[18], src: "/Vis/roller/curtain/19.png" },
+      20: { color: CurtinsColor[19], src: "/Vis/roller/curtain/20.png" },
+      21: { color: CurtinsColor[20], src: "/Vis/roller/curtain/21.png" },
+      22: { color: CurtinsColor[21], src: "/Vis/roller/curtain/22.png" },
+      23: { color: CurtinsColor[22], src: "/Vis/roller/curtain/23.png" },
     };
 
     const applyColor = (color: string, maskSrc: string) => {
@@ -93,7 +93,7 @@ const RollerComponent: React.FC<RollerComponentProps> = ({
     const applyAllColors = () => {
       context.clearRect(0, 0, canvas.width, canvas.height);
       context.drawImage(base, 0, 0, canvas.width, canvas.height);
-      Object.values(curtains).forEach((mask) =>
+      Object.values(Curtins).forEach((mask) =>
         applyColor(mask.color, mask.src)
       );
     };
@@ -129,7 +129,7 @@ const RollerComponent: React.FC<RollerComponentProps> = ({
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
     return () => window.removeEventListener("resize", resizeCanvas);
-  }, [slat, curtainsColor, width, height]);
+  }, [slat, CurtinsColor, width, height]);
 
   return (
     <div

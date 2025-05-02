@@ -34,6 +34,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ image, name, description, lin
             alt={name}
             layout="fill"
             objectFit="cover"
+            draggable={false}
             className="transform group-hover:scale-110 transition-transform duration-700"
           />
         </div>

@@ -86,6 +86,7 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
                 className="w-full h-48 object-cover transition-opacity duration-300 group-hover:opacity-75"
                 width={400}
                 height={300}
+                draggable={false}
               />
             </motion.div>
           );
@@ -105,18 +106,21 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-white text-3xl font-bold bg-black/40 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/60 transition"
+              type="button"
               onClick={() => setSelected(null)}
+              className="fixed top-6 right-6 z-[9999] text-white text-3xl font-bold bg-black/50 backdrop-blur-sm rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/70 transition"
               aria-label="Close enlarged image"
             >
               &times;
             </button>
+
             <Image
               src={selected}
               alt="Enlarged view"
               fill
-              className="object-contain rounded-lg shadow-2xl"
+              className="object-contain rounded-lg"
               sizes="(max-width: 768px) 100vw, 90vw"
+              draggable={false}
             />
           </div>
         </motion.div>

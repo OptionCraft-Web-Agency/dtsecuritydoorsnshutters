@@ -42,6 +42,7 @@ const AboutUsInfo: React.FC = () => {
           alt="Quality Assurance Logo"
           width={100}
           height={100}
+          draggable={false}
           className="object-contain"
         />
         <Image
@@ -49,6 +50,7 @@ const AboutUsInfo: React.FC = () => {
           alt="Warranty Logo"
           width={100}
           height={100}
+          draggable={false}
           className="object-contain"
         />
       </div>

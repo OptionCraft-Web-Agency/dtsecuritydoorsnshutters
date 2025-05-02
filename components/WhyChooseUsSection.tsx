@@ -129,6 +129,7 @@ const WhyChooseUsCardsSection = () => {
                 alt="Why Choose Us"
                 width={600}
                 height={500}
+                draggable={false}
                 className="object-cover w-full h-full"
               />
             </div>

@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 import QualityLogo from "@/public/QualityLogo.png";
 import WarrantyLogo from "@/public/WarrantyLogo.png";
@@ -15,6 +15,12 @@ const fadeInVariants = {
 };
 
 const AboutUsInfo: React.FC = () => {
+  const router = useRouter();
+
+  const handleContactClick = () => {
+    router.push("/ContactUs");
+  };
+
   return (
     <motion.section
       variants={fadeInVariants}
@@ -29,7 +35,7 @@ const AboutUsInfo: React.FC = () => {
       </h2>
 
       <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-5xl mb-8">
-        At DT Security Doors & Shutters, client satisfaction is at the heart of everything we do. We understand that true client happiness goes beyond just offering a product; it's about providing a solution that brings security and elegance to your home. With a dedication to exceptional craftsmanship and personalized service, we ensure every product — from security doors to plantation shutters — meets your specific needs.
+        At DT Security Doors &amp; Shutters, client satisfaction is at the heart of everything we do. We understand that true client happiness goes beyond just offering a product; it&apos;s about providing a solution that brings security and elegance to your home. With a dedication to exceptional craftsmanship and personalized service, we ensure every product — from security doors to plantation shutters — meets your specific needs.
       </p>
 
       <p className="text-gray-600 text-base md:text-lg leading-relaxed max-w-5xl mb-12">
@@ -55,11 +61,12 @@ const AboutUsInfo: React.FC = () => {
         />
       </div>
 
-      <Link href="/ContactUs" passHref>
-        <button className="rounded-md border border-blue-600 text-blue-600 bg-white hover:bg-blue-600 hover:text-white font-medium px-8 py-3 transition-all duration-300 shadow-md hover:shadow-lg">
-          Contact Us
-        </button>
-      </Link>
+      <button
+        onClick={handleContactClick}
+        className="rounded-md border border-blue-600 text-blue-600 bg-white hover:bg-blue-600 hover:text-white font-medium px-8 py-3 transition-all duration-300 shadow-md hover:shadow-lg"
+      >
+        Contact Us
+      </button>
     </motion.section>
   );
 };

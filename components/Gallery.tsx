@@ -13,6 +13,48 @@ const fadeInVariants = {
   hidden: { opacity: 0, y: 40, transition: { duration: 0.5 } },
 };
 
+const GalleryItem = ({
+  img,
+  i,
+  onClick,
+}: {
+  img: StaticImageData | string;
+  i: number;
+  onClick: () => void;
+}) => {
+  const cardRef = useRef(null);
+  const inView = useInView(cardRef, { once: false, amount: 0.3 });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (inView) controls.start("visible");
+    else controls.start("hidden");
+  }, [inView, controls]);
+
+  const src = typeof img === "string" ? img : img.src;
+
+  return (
+    <motion.div
+      ref={cardRef}
+      className="group cursor-pointer overflow-hidden rounded-lg shadow-lg"
+      variants={fadeInVariants}
+      initial="hidden"
+      animate={controls}
+      whileHover={{ scale: 1.05 }}
+      onClick={onClick}
+    >
+      <Image
+        src={src}
+        alt={`Gallery image ${i + 1}`}
+        width={400}
+        height={300}
+        className="w-full h-48 object-cover transition-opacity duration-300 group-hover:opacity-75"
+        draggable={false}
+      />
+    </motion.div>
+  );
+};
+
 const Gallery: React.FC<GalleryProps> = ({ images }) => {
   const [selected, setSelected] = useState<string | null>(null);
   const sectionRef = useRef(null);
@@ -54,43 +96,14 @@ const Gallery: React.FC<GalleryProps> = ({ images }) => {
       </motion.h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {images.map((img, i) => {
-          const cardRef = useRef(null);
-          const inView = useInView(cardRef, { once: false, amount: 0.3 });
-          const controls = useAnimation();
-
-          useEffect(() => {
-            if (inView) {
-              controls.start("visible");
-            } else {
-              controls.start("hidden");
-            }
-          }, [inView, controls]);
-
-          const src = typeof img === "string" ? img : img.src;
-
-          return (
-            <motion.div
-              key={i}
-              ref={cardRef}
-              className="group cursor-pointer overflow-hidden rounded-lg shadow-lg"
-              variants={fadeInVariants}
-              initial="hidden"
-              animate={controls}
-              onClick={() => setSelected(src)}
-              whileHover={{ scale: 1.05 }}
-            >
-              <Image
-                src={img}
-                alt={`Gallery image ${i + 1}`}
-                className="w-full h-48 object-cover transition-opacity duration-300 group-hover:opacity-75"
-                width={400}
-                height={300}
-                draggable={false}
-              />
-            </motion.div>
-          );
-        })}
+        {images.map((img, i) => (
+          <GalleryItem
+            key={i}
+            img={img}
+            i={i}
+            onClick={() => setSelected(typeof img === "string" ? img : img.src)}
+          />
+        ))}
       </div>
 
       {selected && (

@@ -51,11 +51,11 @@ const ContactUsInfo: React.FC = () => {
             Get in Touch
           </h2>
           <p className="text-gray-500 text-lg md:text-xl mb-16">
-            We're here to help. Contact us today.
+            We&apos;re here to help. Contact us today.
           </p>
         </motion.div>
 
-        {/* Cards */}
+        {/* Contact Cards */}
         <motion.div
           variants={fadeUpVariants}
           initial="hidden"
@@ -66,14 +66,16 @@ const ContactUsInfo: React.FC = () => {
           {contactInfo.map((info, index) => (
             <div
               key={index}
-              className="bg-gray-50 rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-xl transition"
+              className="bg-gray-50 rounded-xl shadow-md p-6 flex flex-col items-center hover:shadow-lg transition duration-300"
             >
-              <FontAwesomeIcon icon={info.icon} className="text-blue-600 text-4xl mb-4" />
+              <FontAwesomeIcon
+                icon={info.icon}
+                className="text-blue-600 text-4xl mb-4"
+              />
               <h3 className="text-xl font-semibold text-gray-700 mb-3">
                 {info.title}
               </h3>
 
-              {/* Handle array or single */}
               {Array.isArray(info.content) ? (
                 <div className="space-y-2">
                   {info.content.map((item, idx) => (
@@ -106,13 +108,12 @@ const ContactUsInfo: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
-          className="w-full rounded-xl overflow-hidden shadow-md"
+          className="w-full aspect-[3/2] rounded-xl overflow-hidden shadow-md"
         >
           <iframe
             title="DT Security Doors & Shutters Location"
             src="https://maps.google.com/maps?q=3/48%20Barretta%20Rd%20Ravenhall%20VIC%203023%20Australia&t=&z=13&ie=UTF8&iwloc=&output=embed"
-            width="100%"
-            height="400"
+            className="w-full h-full"
             style={{ border: 0 }}
             allowFullScreen
             loading="lazy"

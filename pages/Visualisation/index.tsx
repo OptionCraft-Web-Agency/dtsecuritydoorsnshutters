@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import CanvasComponent from "@/components/Canvas";
 import Static from "@/components/vis/StaticRoller";
 import CurtinRoller from "@/components/vis/CurtinRoller";
-import InsideCurtin from "@/components/vis/insideCurtin";
+import InsideCurtin from "@/components/vis/InsideCurtin";
 import ColorPickerSection from "@/components/CurtinComponent/ColorPickerSection";
 import CurtinPicker from "@/components/CurtinComponent/CurtinPicker";
 import SectionButtons from "@/components/CurtinComponent/SectionButtons";
